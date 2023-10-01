@@ -2,7 +2,7 @@
 
 ## Screenshot from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/student/)
 
-![image](https://ibb.co/tcDxfX3)
+![image](https://i.imgur.com/mObOQ0w.png)
 
 ## Non-feature work
 - We had meetings to discuss project plan and complete all sections
