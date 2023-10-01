@@ -20,13 +20,14 @@ Joshua Medina-Quiaro, 35231729 -> @joshmed27
 N/A
 
 ## Tasks from Project Board
-N/A
+[https://github.com/COSC-499-W2023/year-long-project-team-5/issues/2] - complete project plan
 
 ## Burn Up Chart
 N/A
 
 ## Completed & In-Progress Tasks (Project Board)
-- Completed tasks: project plan
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/252e6ae8-b265-4a09-aaaf-66a857b8b9b0)
+
   
 ## Test Report
 N/A
