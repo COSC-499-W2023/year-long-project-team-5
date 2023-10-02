@@ -164,7 +164,7 @@ Fully completed link sending through email and retrieval from dashboard. Complet
 
 **Front-End:**
 
-Due to the simplicity of our front-end we felt that the best language to use with our application would be a language that mirrored this simplicity. For that we chose to use the holy trinity of front-end development, HTML, CSS, Javascript. This is referred to as the holy trinity as it is a golden standard of front-end development. 
+Due to the simplicity of our front-end, we chose to use vanilla HTML, CSS and Javascript. This is referred to as the holy trinity and is considered to be a golden standard for front-end development. 
 
 **Framework:**
 
