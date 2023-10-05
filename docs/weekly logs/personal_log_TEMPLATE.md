@@ -1,4 +1,4 @@
-# Weekly Personal Log (September 25-28)
+# Weekly Personal Log (DATE RANGE)
 
 ## Screenshot from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/student/)
 
