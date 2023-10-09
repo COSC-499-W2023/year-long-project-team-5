@@ -36,9 +36,11 @@
 - [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/11] - create project board issues
 
 ## Burn Up Chart
-N/A
+<img width="825" alt="Screenshot 2023-10-08 at 10 12 06 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/fadbaad4-f491-47e3-abf1-28df0a591d10">
+
 
 ## Completed & In-Progress Tasks (Project Board)
+<img width="1278" alt="Screenshot 2023-10-08 at 10 09 04 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/c3ceac85-4d5c-4124-9e23-d98c87f43398">
 
   
 ## Test Report
