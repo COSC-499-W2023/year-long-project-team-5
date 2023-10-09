@@ -1,4 +1,4 @@
-# Weekly Personal Log (September 25-28)
+# Weekly Personal Log (DATE RANGE)
 
 ## Screenshot from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/student/)
 
@@ -22,7 +22,7 @@
 - **Issue number**: N/A
 - **Context**: N/A
 
-## Status of work for the **last week**
+## Status of work for the **last week** (in-progress or completed)
 - I completed function xyz, work / comments / talking points
 - Im working on function abc
 

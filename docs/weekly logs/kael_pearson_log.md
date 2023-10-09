@@ -1,3 +1,32 @@
+# Weekly Personal Log (Oct 2 - 8)
+
+## Screenshot from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/student/)
+
+![image](https://i.imgur.com/SSh3HBb.png)
+
+## Non-feature work
+- Watched youtube tutorial on AWS basics
+
+## All of my features for **this milestone**
+
+### **Feature**: ER Diagram
+- **Description**: Worked on ER Diagram
+- **Issue number**: https://github.com/COSC-499-W2023/year-long-project-team-5/issues/9
+- **Context**: Finishing up final details in project plan
+
+
+## Status of work for the **last week**
+- ER Diagram completed
+- AWS tutorial videos in progress
+
+## Issue number reference
+- https://github.com/COSC-499-W2023/year-long-project-team-5/issues/9
+
+## Other notes
+- Spent a few hours teaching myself AWS
+
+
+
 # Weekly Personal Log (September 25-28)
 
 ## Screenshot from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/student/)

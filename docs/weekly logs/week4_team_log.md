@@ -1,5 +1,5 @@
 # Team 5 Weekly Checkpoint
-## Sept 18-24
+## Sept 25-October 1
 Abhinav Thota, 38811428 -> @abeeto
 Kael Pearson, 74280314 -> @kaelpearson
 Beck Corkle, 51664670 -> @namesnipes
