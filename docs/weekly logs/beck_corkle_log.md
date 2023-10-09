@@ -16,7 +16,7 @@
 - **Context**: Individually researched how DFDs are made, made a rough draft on paper, and completed a final draft for the main system, excluding the register/login data flow
 
 ## Status of work for the **last week**
-- Data flow diagram research and completion
+- Data flow diagram research and completion for most system features
 - Still working on DFD for the register/login data flow
 - Will begin work on getting to know AWS and setting up the database
 
