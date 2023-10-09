@@ -7,6 +7,7 @@
 ## Non-feature work
 - team meeting
 - set up AWS account
+- team and individual weekly logs
 
 ## All of my features for **this milestone**
 
