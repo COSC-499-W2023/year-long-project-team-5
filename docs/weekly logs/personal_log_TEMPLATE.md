@@ -22,7 +22,7 @@
 - **Issue number**: N/A
 - **Context**: N/A
 
-## Status of work for the **last week**
+## Status of work for the **last week** (in-progress or completed)
 - I completed function xyz, work / comments / talking points
 - Im working on function abc
 
