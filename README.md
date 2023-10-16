@@ -1,5 +1,5 @@
 # Team 5 Project Github (Option 3)
-[Current Sprint: 2](https://github.com/orgs/COSC-499-W2023/projects/43)
+[Current Sprint: 3](https://github.com/orgs/COSC-499-W2023/projects/43)
 Current Week: 5
 
 <table>
