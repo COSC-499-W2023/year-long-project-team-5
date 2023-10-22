@@ -42,7 +42,6 @@
 
 
 ## Completed & In-Progress Tasks (Project Board)
-NEEDS TO BE COMPLETED
-  
+![project_board](https://i.imgur.com/KvQbpjM.png)
 ## Test Report
 N/A
