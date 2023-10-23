@@ -1,7 +1,7 @@
-# 2 Week Personal Log (Oct 9-22)
+# Week Personal Log (Oct 9-22)
 
 ## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/23/student/)
-![work done in past 2 weeks](image.png)
+![work done in past 2 weeks](https://i.imgur.com/0bayggu.png)
 ## Non feature work
 - Group meetings: discussed about setting up repo with AWS and amplify.
    - Wrote basic querys
