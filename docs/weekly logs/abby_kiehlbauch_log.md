@@ -1,3 +1,37 @@
+# Weekly Personal Log (October 9th-22nd) - Week 6 & 7
+
+## Screenshot from peer evaluation
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/0efb4fe5-441a-4c5a-9588-e0727c002acc)
+
+## Non-feature work
+- team meetings
+- further tech stack research
+- familiarizing ourselves with AWS micro-services
+- setting up test environments
+- configuring our personal laptops to work with the AWS environment
+- best practices for using AWS microservices and adjusting our system architecture 
+
+## All of my features for **this milestone**
+
+### **Feature**: Setting up system architecture
+- **Description**: I set up an amplify and lambda instance to create the architecture for our application
+- **Issue number**: https://github.com/COSC-499-W2023/year-long-project-team-5/issues/24
+- **Context**: The instance I organized and set up was used as a test instance as it wasn't connected to our GitHub (didn't have the necessary permissions)
+### **Feature**: Working on react components for front-end (UI)
+- **Description**: Abhinav and I worked on transforming our Figma wireframes into components, which will then be imported into Amplify studio 
+- **Issue number**: https://github.com/COSC-499-W2023/year-long-project-team-5/issues/32
+- **Context**: We spent a significant amount of time researching and testing best practices when creating Figma components in order for them to be seamlessly into React components
+
+## Status of work for the **last week**
+- final decisions made on our system architecture
+- figma component library in progress
+
+## Issue number reference
+- Issue #24: https://github.com/COSC-499-W2023/year-long-project-team-5/issues/24
+- Issue #32: https://github.com/COSC-499-W2023/year-long-project-team-5/issues/32
+## Other notes
+- most of these last two weeks were spent learning AWS and adjusting our tech stack/system architecture based on our findings
+  
 # Weekly Personal Log (October 2nd-8th)
 
 ## Screenshot from peer evaluation

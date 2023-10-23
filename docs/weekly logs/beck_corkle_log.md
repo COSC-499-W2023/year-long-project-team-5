@@ -1,3 +1,33 @@
+# Weekly Personal Log (October 9th-22th)
+
+## Screenshot from peer evaluation
+
+![image](https://i.imgur.com/svvGMs8.png)
+
+## Non-feature work
+- Team meetings
+- Lots and lots of AWS experimentation
+- Got to know AWS RDS databases and how they work (kind of)
+- Discussions on tech stack and best database to use to integrate with aws: decided on NoSQL graphql database
+- briefly learned graphql
+
+## All of my features for **this milestone**
+
+### **Feature**: Database Setup
+- **Description**: Setting up a database on AWS and getting ready to integrate it to the front end
+- **Issue number**: Issue #12
+- **Context**: This issue is blocked currently due to team discussions about our tech stack. We found up that our previously setup RDS database was not compatible with the front end technologies, so we are in the process taking our old database down to learn and set up a new NoSQL GraphQL database.
+
+## Status of work for the **last week**
+- Database Setup: In-progress/blocked due to tech stack changes, should be able to continue next week
+- Aws learning: In-progress probably forever
+
+## Issue number reference
+- Issue #12 [(https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/6)](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/12)
+
+## Other notes
+- Majority of the work for the past 2 weeks was learning AWS and all of its services and how everything in our app will connect together
+
 # Weekly Personal Log (October 2nd-8th)
 
 ## Screenshot from peer evaluation
