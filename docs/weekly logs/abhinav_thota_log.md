@@ -1,3 +1,33 @@
+# 2 Week Personal Log (Oct 9-22)
+
+## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/23/student/)
+![work done in past 2 weeks](https://i.imgur.com/WYQuyeh.png)
+## Non feature work
+- Group meetings: discussed about setting up repo with AWS and amplify.
+   - had the rest of the team review our wireframes and received good feedback on what to change
+   - concerns with how we were previously setting up our front and backend; currently not best suited to work with Amplify
+   - spent time researching about tech stacks, discussed whether we wanted to stick to Amplify, reviewed and revised current chosen tech stack: decided on using React as framework and GraphQL
+
+
+## All of my features for **this milestone**
+
+### Feature: build a library of React components 
+- overview: have a library of key ui elements as components that can be reused and would act as key building blocks of the website.
+- Spent time configuring amplify with the command line and learning how to use it to pull components 
+- designed a few key components on Figma following best practices guidelines - I used [amplify UI kit library available on Figma](https://www.figma.com/community/file/1047600760128127424/aws-amplify-ui-kit)  to build our own unique components to save time but also ensure that it will work with Amplify.
+
+Status: good progress made with components, still need to make sure that Amplify can read our components correctly. Next stage would be learning React props and hooks as well as following video demos to make sure the components are responsive and functioning (ui wise; e.g text-field can be clicked on and take keyboard input)
+
+## Status of work for the **last week**
+We had to revise our chosen tech stack, look into system arch and configuration of our repo. A lot of the work I did using Figma to make initial components had to be revised so that it used the UI kit by AWS instead. 
+
+## Other comments
+I hope to be able test our front end with Selenium before the mini presentation but I have little experience; need to do research on how to design tests with Selenium. But also test-driven development seems hard for UI/UX. How to write tests before code for front end?
+
+## Issue number reference
+- [Issue No. 32](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/32)
+
+
 # Weekly Personal Log (Oct 2-8)
 
 ## Self Reflection: Work done this week from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/student/)

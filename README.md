@@ -2,7 +2,7 @@
 
 [Current Sprint: 3](https://github.com/orgs/COSC-499-W2023/projects/43)
 
-Current Week: 7
+Current Week: 8
 
 <table>
   <tr><th>Name</th><th>Student #</th><th>Username</th></tr>

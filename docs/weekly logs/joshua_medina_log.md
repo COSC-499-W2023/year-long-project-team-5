@@ -24,8 +24,9 @@
 ## Other notes
 - Great team!!
 
-
-
+&nbsp;
+&nbsp;
+&nbsp;
 
 # Weekly Personal Log (September 25 - October 1)
 
@@ -45,6 +46,40 @@
 
 ## Issue number reference
 - Issue #2 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/2)
+
+## Other notes
+- N/A
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+# Weekly Personal Log (Oct 9 - October 22)
+
+## Screenshot from peer eval
+
+<img width="1056" alt="Screenshot 2023-10-22 at 12 30 22 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/83ca0502-30f0-45bc-8a4c-5f65b30e10e5">
+
+
+## Non-feature work
+- Met on Oct 9, 12, 16, 17 for meetings
+- Setup github with webhooks, issue templates and develop protections
+- Created more issues for future sprints
+- Sprint planning
+- Tech stack defining
+
+## All of my features for **this milestone**
+- AWS Amplify setup
+
+## Status of work for the **last 2 weeks**
+- Finishing AWS Amplify Setup
+- Finishing sprints and isues for remainder of MVP
+
+## Issue number reference
+- Issue #24 - Setup AWS Amplify - (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/24)
+- Issue #11 - Create project board issues - (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/11)
+- Issue #10 - Setup Team Github - (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/10)
+- Issue #27 - (DEPRECATED) Setup AWS Lambda - (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/27)
 
 ## Other notes
 - N/A
