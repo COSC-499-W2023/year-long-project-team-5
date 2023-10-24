@@ -1,0 +1,56 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify7a9bf65e88944-staging-233251-authRole",
+      "UnauthRoleArn": "arn:aws:iam::597718627040:role/amplify-amplify7a9bf65e88944-staging-233251-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::597718627040:role/amplify-amplify7a9bf65e88944-staging-233251-authRole",
+      "Region": "ca-central-1",
+      "DeploymentBucketName": "amplify-amplify7a9bf65e88944-staging-233251-deployment",
+      "UnauthRoleName": "amplify-amplify7a9bf65e88944-staging-233251-unauthRole",
+      "StackName": "amplify-amplify7a9bf65e88944-staging-233251",
+      "StackId": "arn:aws:cloudformation:ca-central-1:597718627040:stack/amplify-amplify7a9bf65e88944-staging-233251/7c087390-71fc-11ee-bc57-0e699fa97408",
+      "AmplifyAppId": "d1tz6jy97536kp"
+    }
+  },
+  "auth": {
+    "yearlongprojectteam5b50595a0": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify7a9bf65e88944-staging-233251-deployment/amplify-cfn-templates/auth/yearlongprojectteam5b50595a0-cloudformation-template.json",
+        "logicalId": "authyearlongprojectteam5b50595a0"
+      },
+      "lastPushTimeStamp": "2023-10-23T23:41:51.331Z",
+      "output": {
+        "UserPoolId": "ca-central-1_WnOdcTrDT",
+        "AppClientIDWeb": "2i6klbuqts6875ombpdj0r11vg",
+        "AppClientID": "1kv2119pvrk140ef6dql58ourq",
+        "IdentityPoolId": "ca-central-1:e982cd56-14b4-479d-8bb8-51a19083197f",
+        "UserPoolArn": "arn:aws:cognito-idp:ca-central-1:597718627040:userpool/ca-central-1_WnOdcTrDT",
+        "IdentityPoolName": "yearlongprojectteam5b50595a0_identitypool_b50595a0__staging",
+        "UserPoolName": "yearlongprojectteam5b50595a0_userpool_b50595a0"
+      },
+      "lastPushDirHash": "iwqA+gCkDg/Uss2OAFfmApbs1+I="
+    }
+  }
+}
