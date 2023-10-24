@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "yearlongprojectteam5b50595a0": {}
+      },
+      "api": {
+        "yearlongprojectteam5": {}
+      },
+      "storage": {
+        "s3099e82d9": {}
       }
     }
   }
