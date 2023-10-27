@@ -1,3 +1,30 @@
+# Week Personal Log (Oct 9-22)
+
+## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/23/student/)
+![work done in past 2 weeks](https://i.imgur.com/0bayggu.png)
+## Non feature work
+- Group meetings: discussed about setting up repo with AWS and amplify.
+   - Wrote basic querys
+   - Researched GraphQL
+
+
+## All of my features for **this milestone**
+
+### Feature: Built basic database using AWS RDS
+- overview: Created a noSQL database and the original SQL database which later needed to be renovated.
+- Had to learn how to use GraphQL for the noSQL database.
+
+Status: Progess on building the database still needs to be redone for the changes to graphQL. 
+
+## Status of work for the **last week**
+Shift of tech stack slowed us down and now requires us to get a better understanding in a new tool. Work in progess.
+
+## Other comments
+
+## Issue number reference
+- [Issue No. 12](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/12)
+
+
 # Weekly Personal Log (Oct 2 - 8)
 
 ## Screenshot from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/student/)
