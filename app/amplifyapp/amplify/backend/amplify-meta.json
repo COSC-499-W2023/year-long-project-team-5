@@ -31,7 +31,7 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "AppSync",
-      "lastPushTimeStamp": "2023-10-26T23:38:37.065Z",
+      "lastPushTimeStamp": "2023-10-28T03:06:43.544Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify7a9bf65e88944-staging-233251-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiyearlongprojectteam5"
@@ -72,7 +72,7 @@
         "IdentityPoolName": "yearlongprojectteam5b50595a0_identitypool_b50595a0__staging",
         "UserPoolName": "yearlongprojectteam5b50595a0_userpool_b50595a0"
       },
-      "lastPushTimeStamp": "2023-10-26T23:38:37.073Z",
+      "lastPushTimeStamp": "2023-10-28T03:06:38.427Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify7a9bf65e88944-staging-233251-deployment/amplify-cfn-templates/auth/yearlongprojectteam5b50595a0-cloudformation-template.json",
         "logicalId": "authyearlongprojectteam5b50595a0"
@@ -89,7 +89,7 @@
         "BucketName": "yearlongprojectteam511a0ebafba74400f8e9be237bbf233251-staging",
         "Region": "ca-central-1"
       },
-      "lastPushTimeStamp": "2023-10-26T23:38:39.249Z",
+      "lastPushTimeStamp": "2023-10-28T03:06:38.428Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify7a9bf65e88944-staging-233251-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
         "logicalId": "storages3099e82d9"

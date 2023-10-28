@@ -17,6 +17,7 @@ import {
   Badge,
   Link,
   useTheme,
+  SearchField,
 } from '@aws-amplify/ui-react';
 import { listNotes } from "./graphql/queries";
 import {
@@ -55,7 +56,7 @@ export const SubmissionCard = () => {
 }
 const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
-
+  const [filteredNotes, setFilteredNotes] = useState([])
   useEffect(() => {
     fetchNotes();
   }, []);
@@ -103,17 +104,20 @@ const App = ({ signOut }) => {
       variables: { input: { id } },
     });
   }
+
+  function filterNotes(searchInput){
+    let newNotes = notes.filter((note)=> note.name.includes(searchInput))
+    setFilteredNotes(newNotes);
+  }
   const {tokens} = useTheme();
 
   return (
     <View className="App">
       <Heading level={1}>My Notes App</Heading>
       <View justifyContent='center'>
-        <SearchSubmission/>
-        <FilterTabs/>
+        {/* <SearchSubmission />
+        <FilterTabs/> */}
       </View> 
-      <SubmissionCard/>
-      <SubmissionCard/>
 
       <View as="form" margin="3rem 0" onSubmit={createNote}>
         <Flex direction="row" justifyContent="center">
@@ -145,8 +149,9 @@ const App = ({ signOut }) => {
       />
       </View>
       <Heading level={2}>Current Notes</Heading>
+      <SearchField onChange={(e) => filterNotes(e.target.value)}/>
       <View>
-        {notes.map((note) => (
+        {filteredNotes.map((note) => (
           <View backgroundColor={tokens.colors.background.secondary}
           padding={tokens.space.medium}>
               <Card variation="outlined">
