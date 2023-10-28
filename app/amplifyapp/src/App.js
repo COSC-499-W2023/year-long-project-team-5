@@ -7,12 +7,16 @@ import { API, Storage } from 'aws-amplify';
 import {
   Button,
   Flex,
-  Heading,
   Image,
   Text,
   TextField,
   View,
   withAuthenticator,
+  Card,
+  Heading,
+  Badge,
+  Link,
+  useTheme,
 } from '@aws-amplify/ui-react';
 import { listNotes } from "./graphql/queries";
 import {
@@ -22,10 +26,33 @@ import {
 import {
   SearchSubmission,
   FilterTabs,
-  EditProfile
 } from "./ui-components"
+
 import './App.css';
 
+
+// ---MY COMPONENTS (using Primitives) --- 
+export const SubmissionCard = () => {
+  const {tokens} = useTheme();
+  return(
+      <View
+      backgroundColor={tokens.colors.background.secondary}
+      padding={tokens.space.medium}
+      >
+          <Card variation="outlined">
+              <Flex direction='column' alignItems='flex-start'>
+                  <Heading level = {4}> ID: 1010</Heading>
+                  <Text as='span' style={{ textAlign: "left" }}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus possimus voluptatibus modi ipsum porro explicabo soluta eum, dolores quaerat iste voluptas quibusdam delectus distinctio, quo reprehenderit in. Totam sit reiciendis necessitatibus nesciunt quo laborum eligendi ipsam doloribus voluptate, harum est. Dignissimos id exercitationem velit unde ea quam consequatur dolore quibusdam?
+                  </Text>
+                  <Link href='#'>emailtodisplay@gmail.com</Link>
+                  <Link href='#'>videoFileName.mp4</Link>
+                  <Button variation="primary">Open Submission</Button>
+              </Flex>
+          </Card>
+      </View>
+  )
+}
 const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
 
@@ -76,14 +103,18 @@ const App = ({ signOut }) => {
       variables: { input: { id } },
     });
   }
+  const {tokens} = useTheme();
 
   return (
     <View className="App">
       <Heading level={1}>My Notes App</Heading>
-      <Flex direction='column' justifyContent='center'>
-          <SearchSubmission/>
-          <FilterTabs/>
-      </Flex>
+      <View justifyContent='center'>
+        <SearchSubmission/>
+        <FilterTabs/>
+      </View> 
+      <SubmissionCard/>
+      <SubmissionCard/>
+
       <View as="form" margin="3rem 0" onSubmit={createNote}>
         <Flex direction="row" justifyContent="center">
           <TextField
@@ -114,29 +145,24 @@ const App = ({ signOut }) => {
       />
       </View>
       <Heading level={2}>Current Notes</Heading>
-      <View margin="3rem 0">
+      <View>
         {notes.map((note) => (
-          <Flex
-            key={note.id || note.name}
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Text as="strong" fontWeight={700}>
-              {note.name}
-            </Text>
-            <Text as="span">{note.description}</Text>
-            {note.image && (
-              <Image
-                src={note.image}
-                alt={`visual aid for ${notes.name}`}
-                style={{ width: 400 }}
-              />
-            )}
-            <Button variation="link" onClick={() => deleteNote(note)}>
-              Delete note
-            </Button>
-          </Flex>
+          <View backgroundColor={tokens.colors.background.secondary}
+          padding={tokens.space.medium}>
+              <Card variation="outlined">
+                  <Flex direction='column' alignItems='flex-start' justifyContent='center'>
+                      <Heading level = {4}> ID: {note.name}</Heading>
+                      <Text as='span' style={{ textAlign: "left" }}>
+                        {note.description}
+                      </Text>
+                      <Link href='#'>emailtodisplay@gmail.com</Link>
+                      <Image
+                        src = {note.image}
+                      />
+                      <Button variation="primary" isFullWidth={true}>Open Submission</Button>
+                  </Flex>
+              </Card>
+          </View>
         ))}
       </View>
       <Button onClick={signOut}>Sign Out</Button>
