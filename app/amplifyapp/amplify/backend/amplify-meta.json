@@ -1,0 +1,100 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify7a9bf65e88944-staging-233251-authRole",
+      "UnauthRoleArn": "arn:aws:iam::597718627040:role/amplify-amplify7a9bf65e88944-staging-233251-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::597718627040:role/amplify-amplify7a9bf65e88944-staging-233251-authRole",
+      "Region": "ca-central-1",
+      "DeploymentBucketName": "amplify-amplify7a9bf65e88944-staging-233251-deployment",
+      "UnauthRoleName": "amplify-amplify7a9bf65e88944-staging-233251-unauthRole",
+      "StackName": "amplify-amplify7a9bf65e88944-staging-233251",
+      "StackId": "arn:aws:cloudformation:ca-central-1:597718627040:stack/amplify-amplify7a9bf65e88944-staging-233251/7c087390-71fc-11ee-bc57-0e699fa97408",
+      "AmplifyAppId": "d1tz6jy97536kp"
+    }
+  },
+  "api": {
+    "yearlongprojectteam5": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            },
+            "authenticationType": "API_KEY"
+          }
+        },
+        "GraphQLAPIIdOutput": "vlivv6bisvevvdk53edmk3fld4",
+        "GraphQLAPIEndpointOutput": "https://fcbd26nj3rghrie3sm5ylouhdq.appsync-api.ca-central-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-wzypwexjevftbpd4veh7ljbtqu"
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync",
+      "lastPushTimeStamp": "2023-10-28T03:06:43.544Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify7a9bf65e88944-staging-233251-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apiyearlongprojectteam5"
+      },
+      "lastPushDirHash": "/eKCENIR6X8xb7ODebyLXKQHYdk="
+    }
+  },
+  "auth": {
+    "yearlongprojectteam5b50595a0": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "output": {
+        "UserPoolId": "ca-central-1_WnOdcTrDT",
+        "AppClientIDWeb": "2i6klbuqts6875ombpdj0r11vg",
+        "AppClientID": "1kv2119pvrk140ef6dql58ourq",
+        "IdentityPoolId": "ca-central-1:e982cd56-14b4-479d-8bb8-51a19083197f",
+        "UserPoolArn": "arn:aws:cognito-idp:ca-central-1:597718627040:userpool/ca-central-1_WnOdcTrDT",
+        "IdentityPoolName": "yearlongprojectteam5b50595a0_identitypool_b50595a0__staging",
+        "UserPoolName": "yearlongprojectteam5b50595a0_userpool_b50595a0"
+      },
+      "lastPushTimeStamp": "2023-10-28T03:06:38.427Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify7a9bf65e88944-staging-233251-deployment/amplify-cfn-templates/auth/yearlongprojectteam5b50595a0-cloudformation-template.json",
+        "logicalId": "authyearlongprojectteam5b50595a0"
+      },
+      "lastPushDirHash": "SrgxvVM81gnpIuGJyGDr92v3aDU="
+    }
+  },
+  "storage": {
+    "s3099e82d9": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3",
+      "output": {
+        "BucketName": "yearlongprojectteam511a0ebafba74400f8e9be237bbf233251-staging",
+        "Region": "ca-central-1"
+      },
+      "lastPushTimeStamp": "2023-10-28T03:06:38.428Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify7a9bf65e88944-staging-233251-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
+        "logicalId": "storages3099e82d9"
+      },
+      "lastPushDirHash": "QgBk9Oa9zE13vKUJCu2MxD1cBdw="
+    }
+  }
+}
