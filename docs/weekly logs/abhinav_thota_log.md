@@ -1,3 +1,30 @@
+# Personal Log (Oct 23-29)
+## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/23/student/)
+![week8 work done](https://i.imgur.com/lIWQ2f6.png)
+## Non feature work
+- Group meetings: discussed upcoming mini presentation
+   - delegated roles, looked over the rubric, will do trial run on Monday (Oct 30) to ensure we all take a minute each.
+- Feature work: 
+   - built out a couple of UI components using Figma
+   - switched to building two UI components directly with React using the Amplify UI kit and by reading the documentation.
+   - worked with Beck to connect some front end components to back end.
+## All of my features for **this milestone**
+
+### Feature: build a library of React components 
+overview: have a library of key ui elements as components that can be reused and would act as key building blocks of the website.
+Status:
+- [Issue No. 32](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/32)
+- Found out that building components using Amplify studio and syncing with Figma is more challenging than writing out the components in code manually (still by using the same react UI library kit by amplify)
+
+### Feature: Sent/Received Table 
+Overview:  Integrating the front end with the back end for the sent/received submissions page.
+- Issue number: [Issue No. 31](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/31)
+- Beck and I managed to build a proof of concept that allows us to use React to fetch data from the backend that can be dynamically displayed and manipulated on the front end. So filtering and searching through the database should now be feasible on the browser (i.e just by using React functions,states and hooks)
+## Status of work for the last week
+My goal this week was to build interactive UI, where things like textfields and buttons could be clicked and typed into. This was far easier to do by coding as opposed to letting Amplify try translate Figma. Switching to building components via React may take longer but I believe it will make our lives easier in the future and so the setback is worth it. I'm confident this can be done by Nov 6th.
+
+
+
 # 2 Week Personal Log (Oct 9-22)
 
 ## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/23/student/)

@@ -1,3 +1,29 @@
+# Weekly Personal Log (October 23 - 29)
+
+## Screenshot from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/student/)
+
+![image](https://i.imgur.com/pwNqkqk.png)
+
+## Non-feature work
+- Team meetings (Monday, Thursday)
+- Working on all things for the mini-presentation 
+
+## All of my features for **this milestone**
+
+### **Feature**: Work through the tutorial for setting up amplify
+- **Description**:  Worked on tutorial for amplify
+- **Issue number**: issue #41
+- **Context**: Worked on tutorial to change our tech stack
+
+## Status of work for the **last week** (in-progress or completed)
+- Feature #41 is complete
+- Our presentation is complete, we will review it on Monday
+
+## Issue number reference
+- Issue #41 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/41)
+
+## Other notes
+
 # Week Personal Log (Oct 9-22)
 
 ## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/23/student/)

@@ -1,3 +1,25 @@
+# Weekly Personal Log (October 23 - 29)
+
+## Screenshot from peer eval
+![Screenshot 2023-10-29 162051](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/bbe3982d-9ef4-4546-93ca-09354b54227a)
+
+## Non-feature work
+- team meetings
+- creating and practicing the mini-presentation
+## All of my features for **this milestone**
+### **Feature**: Wireframe (high-fidelity)
+- **Description**: Setting up interactive flows for our Figma wireframes and setting up components for react conversion.
+- **Issue number**: issue #8
+- **Context**: I added flows to our original wireframes in order to simulate user interaction and provide a realistic demo for our mini-presentation. I also ensured that our components were properly set up to be converted to react components, and debugged errors during conversion.
+## Status of work for the **last week** (in-progress or completed)
+- wireframe flows are completed
+- component library is in progress (errors debugged and best practices sorted, need to finalize our core components and their final design)
+## Issue number reference
+https://github.com/COSC-499-W2023/year-long-project-team-5/issues/8
+
+## Other notes
+- since switching our tech stack we have been feeling a little lost but we met multiple times this week, learned a lot, and are feeling back on track with our project.
+
 # Weekly Personal Log (October 9th-22nd) - Week 6 & 7
 
 ## Screenshot from peer evaluation
