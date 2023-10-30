@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import "@aws-amplify/ui-react/styles.css";
 
-import { API, Storage } from 'aws-amplify';
+import {Amplify, Auth, API, Storage } from 'aws-amplify';
 
 import {
   Button,
@@ -30,6 +30,10 @@ import {
 } from "./ui-components"
 
 import './App.css';
+import awsconfig from './aws-exports';
+
+Auth.configure(awsconfig);
+Amplify.configure(awsconfig);
 
 
 // ---MY COMPONENTS (using Primitives) --- 
@@ -74,6 +78,7 @@ const App = ({ signOut }) => {
       })
     );
     setNotes(notesFromAPI);
+    setFilteredNotes(notesFromAPI);
   }
 
   async function createNote(event) {
@@ -113,7 +118,7 @@ const App = ({ signOut }) => {
 
   return (
     <View className="App">
-      <Heading level={1}>My Notes App</Heading>
+      <Heading level={1}>Patient Submissions</Heading>
       <View justifyContent='center'>
         {/* <SearchSubmission />
         <FilterTabs/> */}
@@ -138,7 +143,7 @@ const App = ({ signOut }) => {
             required
           />
           <Button type="submit" variation="primary">
-            Create Note
+            Request Video
           </Button>
         </Flex>
         <View
@@ -148,7 +153,7 @@ const App = ({ signOut }) => {
         style={{ alignSelf: "end" }}
       />
       </View>
-      <Heading level={2}>Current Notes</Heading>
+      <Heading level={2}></Heading>
       <SearchField onChange={(e) => filterNotes(e.target.value)}/>
       <View>
         {filteredNotes.map((note) => (
