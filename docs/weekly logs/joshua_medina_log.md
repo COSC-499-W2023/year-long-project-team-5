@@ -83,3 +83,30 @@
 
 ## Other notes
 - N/A
+
+
+
+# Weekly Personal Log (Oct 23 - October 29)
+
+## Screenshot from peer eval
+<img width="1059" alt="Screenshot 2023-10-29 at 11 40 53 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/18c8df31-6df8-46cc-be64-94fd89e61c4d">
+
+## Non-feature work
+- Met on Oct 23, 26 for meetings
+- Help creating and defining presentation in the works
+
+## All of my features for **this milestone**
+- Setup amplify front-end with all neccessary functionalities
+- Helped setup amplify back-end
+
+## Status of work for the week
+- In-Progress (Setting up features)
+- Need to take new tickets this monday
+
+## Issue number reference
+- Issue #24 - Setup AWS Amplify - (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/24)
+- Issue #11 - Create project board issues - (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/11)
+- Issue #41 - Amplify backend instance - (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/41)
+## Other notes
+- N/A
+
