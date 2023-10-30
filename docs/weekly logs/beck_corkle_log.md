@@ -1,3 +1,36 @@
+# Weekly Personal Log (October 23 - 29)
+
+## Screenshot from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/student/)
+
+![image](https://i.imgur.com/OJzHvzk.png)
+
+## Non-feature work
+- Team meetings (Monday, Thursday)
+- Working on all things for the mini-presentation 
+
+## All of my features for **this milestone**
+
+### **Feature**: Sent/received table
+- **Description**:  Integrating the front end with the back end for the sent/received table page
+- **Issue number**: issue #31
+- **Context**: I worked on this with Abhinav, it's still in progress but we have a proof of concept which can connect to the database
+
+### **Feature**: Work through the tutorial for setting up amplify
+- **Description**:  Have a working amplify instance which can make queries to the graphql backend according to the tutorials instructions
+- **Issue number**: issue #41
+- **Context**: Our team decided last week to work through a tutorial because our experimenting with AWS technology ended up not working
+
+## Status of work for the **last week** (in-progress or completed)
+- Feature #31 "sent/received table" is still in progress
+- Feature #41 is complete
+- Our presentation is complete, we will review it on Monday
+
+## Issue number reference
+- Issue #31 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/31)
+- Issue #41 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/41)
+
+## Other notes
+
 # Weekly Personal Log (October 9th-22th)
 
 ## Screenshot from peer evaluation
