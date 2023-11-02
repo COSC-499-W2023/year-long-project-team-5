@@ -28,6 +28,8 @@ import {
   SearchSubmission,
   FilterTabs,
 } from "./ui-components"
+import { SubmissionCard } from "./my-components/SubmissionCard";
+import { NavBar } from "./my-components/NavBar";
 
 import './App.css';
 import awsconfig from './aws-exports';
@@ -36,28 +38,7 @@ Auth.configure(awsconfig);
 Amplify.configure(awsconfig);
 
 
-// ---MY COMPONENTS (using Primitives) --- 
-export const SubmissionCard = () => {
-  const {tokens} = useTheme();
-  return(
-      <View
-      backgroundColor={tokens.colors.background.secondary}
-      padding={tokens.space.medium}
-      >
-          <Card variation="outlined">
-              <Flex direction='column' alignItems='flex-start'>
-                  <Heading level = {4}> ID: 1010</Heading>
-                  <Text as='span' style={{ textAlign: "left" }}>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus possimus voluptatibus modi ipsum porro explicabo soluta eum, dolores quaerat iste voluptas quibusdam delectus distinctio, quo reprehenderit in. Totam sit reiciendis necessitatibus nesciunt quo laborum eligendi ipsam doloribus voluptate, harum est. Dignissimos id exercitationem velit unde ea quam consequatur dolore quibusdam?
-                  </Text>
-                  <Link href='#'>emailtodisplay@gmail.com</Link>
-                  <Link href='#'>videoFileName.mp4</Link>
-                  <Button variation="primary">Open Submission</Button>
-              </Flex>
-          </Card>
-      </View>
-  )
-}
+
 const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([])
@@ -119,10 +100,6 @@ const App = ({ signOut }) => {
   return (
     <View className="App">
       <Heading level={1}>Patient Submissions</Heading>
-      <View justifyContent='center'>
-        {/* <SearchSubmission />
-        <FilterTabs/> */}
-      </View> 
 
       <View as="form" margin="3rem 0" onSubmit={createNote}>
         <Flex direction="row" justifyContent="center">
@@ -153,31 +130,16 @@ const App = ({ signOut }) => {
         style={{ alignSelf: "end" }}
       />
       </View>
+      <NavBar></NavBar>
       <Heading level={2}></Heading>
       <SearchField onChange={(e) => filterNotes(e.target.value)}/>
       <View>
         {filteredNotes.map((note) => (
-          <View backgroundColor={tokens.colors.background.secondary}
-          padding={tokens.space.medium}>
-              <Card variation="outlined">
-                  <Flex direction='column' alignItems='flex-start' justifyContent='center'>
-                      <Heading level = {4}> ID: {note.name}</Heading>
-                      <Text as='span' style={{ textAlign: "left" }}>
-                        {note.description}
-                      </Text>
-                      <Link href='#'>emailtodisplay@gmail.com</Link>
-                      <Image
-                        src = {note.image}
-                      />
-                      <Button variation="primary" isFullWidth={true}>Open Submission</Button>
-                  </Flex>
-              </Card>
-          </View>
+          <SubmissionCard margin="1rem" id = {note.name} description = {note.description} image = {note.image}/>
         ))}
       </View>
       <Button onClick={signOut}>Sign Out</Button>
     </View>
   );
 };
-
 export default withAuthenticator(App);
