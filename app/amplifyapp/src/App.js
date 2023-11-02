@@ -166,9 +166,9 @@ const App = ({ signOut }) => {
                         {note.description}
                       </Text>
                       <Link href='#'>emailtodisplay@gmail.com</Link>
-                      <Image
-                        src = {note.image}
-                      />
+                      <video width="320" height="240" controls>
+                        <source src={note.image} type="video/mp4"></source>
+                      </video>
                       <Button variation="primary" isFullWidth={true}>Open Submission</Button>
                   </Flex>
               </Card>
