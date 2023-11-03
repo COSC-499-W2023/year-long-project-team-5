@@ -33,7 +33,7 @@ import {
 import './App.css';
 import awsconfig from './aws-exports';
 
-//Auth.configure(awsconfig);
+Auth.configure(awsconfig);
 Amplify.configure(awsconfig);
 
 // ---MY COMPONENTS (using Primitives) --- 
