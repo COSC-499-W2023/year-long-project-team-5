@@ -24,6 +24,7 @@ import {
   createNote as createNoteMutation,
   deleteNote as deleteNoteMutation,
 } from "./graphql/mutations";
+
 import {
   SearchSubmission,
   FilterTabs,
@@ -32,9 +33,8 @@ import {
 import './App.css';
 import awsconfig from './aws-exports';
 
-Auth.configure(awsconfig);
+//Auth.configure(awsconfig);
 Amplify.configure(awsconfig);
-
 
 // ---MY COMPONENTS (using Primitives) --- 
 export const SubmissionCard = () => {
@@ -58,7 +58,7 @@ export const SubmissionCard = () => {
       </View>
   )
 }
-const App = ({ signOut }) => {
+const App = ({ signOut, user }) => {
   const [notes, setNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([])
   useEffect(() => {
@@ -119,7 +119,7 @@ const App = ({ signOut }) => {
   return (
     <View className="App">
       <Heading level={1}>Patient Submissions</Heading>
-      <View justifyContent='center'>
+            <View justifyContent='center'>
         {/* <SearchSubmission />
         <FilterTabs/> */}
       </View> 
