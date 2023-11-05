@@ -24,6 +24,7 @@ import {
   createNote as createNoteMutation,
   deleteNote as deleteNoteMutation,
 } from "./graphql/mutations";
+
 import {
   SearchSubmission,
   FilterTabs,
@@ -36,7 +37,6 @@ import awsconfig from './aws-exports';
 
 Auth.configure(awsconfig);
 Amplify.configure(awsconfig);
-
 
 
 const App = ({ signOut }) => {
