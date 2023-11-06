@@ -1,5 +1,5 @@
 # Personal Log (Oct 30 - Nov 5)
-## Weekly tasks worked on from [peer eva]!(https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/23/student/)
+## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/23/student/)
 ![week9 work done](https://i.imgur.com/OsRtJlH.png)
 
 ## Non feature work:
@@ -9,11 +9,11 @@
 
 ### Feature: build a library of React components 
 overview: have a library of key ui elements as components that can be reused and would act as key building blocks of the website.
-- created a new branch titled 'my-components' to mostly hold all custom react components that are being designed from Figma.
-      - researched ways to build my components by looking over [Amplify UI Kit documentation](https://ui.docs.amplify.aws/react/components)
-      - installed figma VS code extension to help build first component (receiverNav)
+- created a new branch titled 'my-components' to mostly hold all custom react components that are being coded up from our Figma wireframes
+      - researched ways to build my components by looking over the 'primitive' components in [Amplify UI Kit documentation](https://ui.docs.amplify.aws/react/components)
+      - installed figma VS code extension to help build first component using React and JS. (receiverNav)
       - looking into how to make components dynamic
-         - need to look into states and hooks in order to dynamically update content of components.
+         - need to look into states and hooks in order to dynamically update content of components. (i.e update nav bar to show you're signed in for example.)
 
 - [Issue No. 32](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/32)
 ### Current status:
@@ -23,7 +23,8 @@ Completed. We have pivoted to using the UI kit provided by AWS/Figma in combinat
  - a functional search bar, nav bar and submission cards are being populated from the database. (ahead of schedule since we don't need to focus on functionality!)
  - might need to create a new component to hold data in a data row as opposed to cards for better viewing 
       - need to ask team for their opinion.
-- [Issue No. 19](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/19)
+[Issue No. 19](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/19)
+
 Current status:
    - might need one more week since Abby and I need to look into how to render multiple pages on React. I found a good webpage that might point us in the right direction.
 
@@ -31,6 +32,11 @@ Current status:
 ## Status of work for last week:
 - Issue No 32 is closed, being extended into issue No. 19.
 - Still need to work with Beck to be able to build the basic receiver dashboard.
+
+## Issue number reference 
+[Issue No. 32](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/32)
+
+[Issue No. 19](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/19)
 
 ## Other notes
 - Feeling more confident about the decision to pivot to React to code the components manually; it's so much better than trying to build using Figma.
