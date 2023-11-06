@@ -1,3 +1,41 @@
+# Weekly Personal Log (October 30 - November 5)
+
+## Screenshot from peer eval
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/dc3b49fd-90bd-44fa-abf8-8c35dbf48a3d)
+
+## Non-feature work
+- team meetings
+- mini-presentation prep and practice
+- watching/reviewing other teams mini-presentations
+- setting up PR reviews on Amplify
+- weekly log and individual checkpoint
+  
+## All of my features for **this milestone**
+
+### **Feature**: Basic functionality in the receiver portal
+- **Description**: Working on setting up router functionality to switch between pages in the dashboard
+- **Issue number**: issue #19
+- **Context**: Due to being new to react this required more research and time to set up
+
+### **Feature**: Login/register page
+- **Description**: After hosting on Amplify there is a configuration error we are working to debug
+- **Issue number**: Issue #48
+- **Context**: Still debugging
+
+## Status of work for the **last week** (in-progress or completed)
+- router functionality is nearly complete
+- Figma components complete
+- debugging auth error is in progress
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/19] - Issue #19
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/48] - Issue #48
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/47] - Issue #47
+
+## Other notes
+- Hosting the web app on Amplify was a lot more difficult than expected but I was impressed with how committed the team was to figuring out the bug and getting it hosted!
+
 # Weekly Personal Log (October 23 - 29)
 
 ## Screenshot from peer eval
