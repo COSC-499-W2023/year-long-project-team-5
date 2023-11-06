@@ -30,7 +30,7 @@ import {
   FilterTabs,
 } from "./ui-components"
 import { SubmissionCard } from "./my-components/SubmissionCard";
-import { NavBar } from "./my-components/NavBar";
+import { ReceiverNav } from "./my-components/ReceiverNav";
 
 import './App.css';
 import awsconfig from './aws-exports';
@@ -95,10 +95,11 @@ const App = ({ signOut }) => {
     let newNotes = notes.filter((note)=> note.name.includes(searchInput))
     setFilteredNotes(newNotes);
   }
-  const {tokens} = useTheme();
 
   return (
     <View className="App">
+      <ReceiverNav></ReceiverNav>
+
       <Heading level={1}>Patient Submissions</Heading>
 
       <View as="form" margin="3rem 0" onSubmit={createNote}>
@@ -130,7 +131,6 @@ const App = ({ signOut }) => {
         style={{ alignSelf: "end" }}
       />
       </View>
-      <NavBar></NavBar>
       <Heading level={2}></Heading>
       <SearchField onChange={(e) => filterNotes(e.target.value)}/>
       <View>
