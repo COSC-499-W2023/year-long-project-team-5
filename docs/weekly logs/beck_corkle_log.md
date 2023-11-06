@@ -1,3 +1,29 @@
+# Weekly Personal Log (October 30 - November 5)
+
+## Screenshot from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/student/)
+
+![image](https://i.imgur.com/VW4PRWU.png)
+
+## Non-feature work
+- Practiced Presentation (Monday)
+- Presented (Tuesday)
+- Team Meeting (Thursday)
+
+## All of my features for **this milestone**
+
+### **Feature**: Deployed web app on amplify
+- **Description**:  Host website on aws instead of locally
+- **Issue number**: issue #44
+- **Context**: This one took a long time...
+
+## Status of work for the **last week** (in-progress or completed)
+- Feature #44 is complete
+
+## Issue number reference
+- Issue #44 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/44)
+
+## Other notes
+
 # Weekly Personal Log (October 23 - 29)
 
 ## Screenshot from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/student/)

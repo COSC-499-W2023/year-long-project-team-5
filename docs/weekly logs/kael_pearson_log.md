@@ -1,3 +1,32 @@
+# Weekly Personal Log (October 30 - November 5)
+
+## Screenshot from peer eval
+
+![image](https://i.imgur.com/JZAXciE.png)
+
+## Non-feature work
+- team meetings
+- mini-presentation
+- watching mini-presentations
+- weekly log and individual checkpoint
+  
+## All of my features for **this milestone**
+
+### **Feature**: Setting up Amplify to be hosted on web
+- **Description**: Making amplify pull code from our github and be hosted on AWS
+- **Issue number**: issue #44
+- **Context**: Lots of bug fixing as we followed tutorial and were missing knowledge on hosting it + debugging took time between tries as AWS needs to relaunch it
+
+## Status of work for the **last week** (in-progress or completed)
+- Creating main page
+- Setting up graphQL to match ER diagram
+
+## Issue number reference
+- Issue #44 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/44)
+ 
+## Other notes
+- Took a lot of time to fix AWS bugs
+
 # Weekly Personal Log (October 23 - 29)
 
 ## Screenshot from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/student/)
