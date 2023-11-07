@@ -21,3 +21,5 @@ amplifytools.xcconfig
 #amplify-do-not-edit-end
 app/.DS_Store
 .DS_Store
+app/amplifyapp/amplify/.config/local-env-info.json
+app/amplifyapp/amplify/backend/amplify-meta.json
