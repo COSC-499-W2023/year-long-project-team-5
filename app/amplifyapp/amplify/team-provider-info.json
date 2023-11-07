@@ -13,7 +13,9 @@
     },
     "categories": {
       "auth": {
-        "yearlongprojectteam5b50595a0": {}
+        "yearlongprojectteam5b50595a0": {},
+        "yearlongprojectteam5": {},
+        "userPoolGroups": {}
       },
       "api": {
         "yearlongprojectteam5": {}
