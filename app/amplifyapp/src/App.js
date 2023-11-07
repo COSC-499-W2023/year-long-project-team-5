@@ -35,8 +35,8 @@ import { ReceiverNav } from "./my-components/ReceiverNav";
 import './App.css';
 import awsconfig from './aws-exports';
 
-Auth.configure(awsconfig);
-Amplify.configure(awsconfig);
+// Auth.configure(awsconfig);
+// Amplify.configure(awsconfig);
 
 
 const App = ({ signOut }) => {
@@ -95,13 +95,13 @@ const App = ({ signOut }) => {
     let newNotes = notes.filter((note)=> note.name.includes(searchInput))
     setFilteredNotes(newNotes);
   }
-
+  
   return (
     <View className="App">
-      <ReceiverNav></ReceiverNav>
+<ReceiverNav></ReceiverNav>
 
       <Heading level={1}>Patient Submissions</Heading>
-
+      
       <View as="form" margin="3rem 0" onSubmit={createNote}>
         <Flex direction="row" justifyContent="center">
           <TextField
@@ -142,4 +142,5 @@ const App = ({ signOut }) => {
     </View>
   );
 };
+
 export default withAuthenticator(App);
