@@ -25,13 +25,15 @@
 1. Run `amplfiy update auth`
 2. Choose apply default configuration with social provider (non-federation)
     1. Note: This will reset all of the auth settings to default
+
+
   
 #### Issue #3 - Git ignore not working
 **Problem:** Git is showing files to commit that are in the git ignore
 
 **Solution:**
-1. Run `git rm -r --cached .`
-2. Run `git status` and it will show any files you git commited that are supposed to be ignored for deletion
-3. `git add .` and `git commit -m "fixed untracked files"`
+1. Run `git rm -rf --cached .`
+2. `git add .`
+3. `git commit -m "fixed untracked files"` or just use github desktop
 4. GG
 
