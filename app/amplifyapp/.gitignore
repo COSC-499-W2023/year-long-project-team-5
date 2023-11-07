@@ -12,7 +12,7 @@
 /build
 
 #backend
-/#current-cloud-backend
+/amplify/#current-cloud-backend
 
 #environment path
 /amplify/.config/local-env-info.json
