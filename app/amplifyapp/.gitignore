@@ -11,6 +11,9 @@
 # production
 /build
 
+#backend
+/#current-cloud-backend
+
 #environment path
 /amplify/.config/local-env-info.json
 # misc
