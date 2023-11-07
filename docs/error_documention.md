@@ -22,7 +22,7 @@
 **Problem:** An error message is thrown when logging in: user pool xxxx does not exist
 
 **Solution:**
-1. Run `amplfiy update auth`
+1. Run `amplify update auth`
 2. Choose apply default configuration with social provider (non-federation)
     1. Note: This will reset all of the auth settings to default
 
