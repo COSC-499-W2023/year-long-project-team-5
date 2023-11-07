@@ -8,8 +8,11 @@
 # testing
 /coverage
 
-# production
+# productiong
 /build
+
+#backend
+/#current-cloud-backend
 
 #environment path
 /amplify/.config/local-env-info.json
