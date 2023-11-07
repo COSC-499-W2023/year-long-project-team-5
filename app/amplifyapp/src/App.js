@@ -38,6 +38,7 @@ import awsconfig from './aws-exports';
 Auth.configure(awsconfig);
 Amplify.configure(awsconfig);
 
+console.log(Auth.configure())
 
 const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
