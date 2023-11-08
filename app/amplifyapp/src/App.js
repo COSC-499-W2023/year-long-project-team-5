@@ -109,11 +109,13 @@ const App = ({ signOut }) => {
   return (
     <View className="App">
       <Router>
-      <Routes>
-          <Route
-            path="/home"
-            element={<Home />}
-          />                   
+        <Routes>
+            <Route
+              path="/home"
+              element={<Home />}
+            />                   
+        </Routes>
+      </Router>
       <Heading level={1}>Patient Submissions</Heading>
       <View as="form" margin="3rem 0" onSubmit={createNote}>
         <Flex direction="row" justifyContent="center">
@@ -153,8 +155,6 @@ const App = ({ signOut }) => {
         ))}
       </View>
       <Button onClick={signOut}>Sign Out</Button>
-      </Routes>
-      </Router>
     </View>
   );
 };
