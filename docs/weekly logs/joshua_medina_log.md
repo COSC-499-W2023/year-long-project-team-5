@@ -1,4 +1,4 @@
-# Weekly Personal Log (Oct 2-8)
+# Weekly Personal Log Week 4 (Oct 2-8)
 
 ## Screenshot from peer eval
 
@@ -28,7 +28,7 @@
 &nbsp;
 &nbsp;
 
-# Weekly Personal Log (September 25 - October 1)
+# Weekly Personal Log Week 5 (September 25 - October 1)
 
 ## Screenshot from peer eval
 
@@ -54,7 +54,7 @@
 &nbsp;
 &nbsp;
 
-# Weekly Personal Log (Oct 9 - October 22)
+# Weekly Personal Log Week 6 & 7 (Oct 9 - October 22)
 
 ## Screenshot from peer eval
 
@@ -86,7 +86,7 @@
 
 
 
-# Weekly Personal Log (Oct 23 - October 29)
+# Weekly Personal Log Week 8 (Oct 23 - October 29)
 
 ## Screenshot from peer eval
 <img width="1059" alt="Screenshot 2023-10-29 at 11 40 53 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/18c8df31-6df8-46cc-be64-94fd89e61c4d">
@@ -110,3 +110,30 @@
 ## Other notes
 - N/A
 
+
+
+# Weekly Personal Log Week 9 (October 30 - November 5) 
+
+## Screenshot from peer eval
+<img width="1059" alt="Screenshot 2023-11-05 at 7 00 42 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/be05029f-126c-4516-903e-a921f5be35d7">
+
+
+## Non-feature work
+- Met on Oct 30, Nov 2 for meetings
+- Practiced and presented mini presentation
+
+## All of my features for **this milestone**
+- Debugged amplify to host on aws and not just local
+
+## Status of work for the week
+- Setting up features (In-Progress)
+- Host webapp on amplify (Complete)
+- Mini-Presentations (Complete)
+- New ticket needed
+
+## Issue number reference
+- Issue #44 - Setup AWS Amplify - (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/44)
+- Issue #11 - Create project board issues - (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/11)
+  
+## Other notes
+- N/A
