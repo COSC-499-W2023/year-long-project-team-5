@@ -97,7 +97,7 @@
     
     return (
       <View className="App">
-        <ReceiverNav name = {user.attributes.name}></ReceiverNav>
+        <ReceiverNav name = {user.attributes.name} loggedIn={true}></ReceiverNav>
 
         <Heading level={1}>Patient Submissions</Heading>
         
