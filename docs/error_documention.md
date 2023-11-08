@@ -10,6 +10,14 @@
 7. The website should open in your browser on localhost:3000
 ## **Front End**
 ### Components
+### Issues
+#### Issue #1 - xxx is not a <Route> component.
+**Problem**: When running `npm start` or trying to build the front end, the following react-router error is thrown
+![image](https://images-ext-2.discordapp.net/external/SFdkIW5v7oOzAwbxW3FbNRp12jkPZ9ObKKd-jTVa0BI/https/i.imgur.com/4l6IXo6.png?width=1155&height=670)
+
+**Solution**: react-router V5 uses the  `<Router>` and `<Routes>` tags. In the newest version the library no longer uses those tags
+
+#### Issue #1 - The Josh Problem
 ## **Backend/AWS**
 ### Issues
 #### Issue #1 - The Josh Problem
