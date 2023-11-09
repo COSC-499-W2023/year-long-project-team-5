@@ -6,10 +6,10 @@ export const ReceiverNav = (props) => {
     const { tokens } = useTheme();
     return (
         <View backgroundColor={tokens.colors.primary} height="70px" padding={'.2rem 2rem'} boxShadow={'small'}>
-            <Flex direction='row' justifyContent='space-between'>
-                <Link alignSelf='center'><Icon ariaLabel="Javascript" as={HiHome} /> Home</Link>
-                <Text> Vertically center this. {props.name ? "Hello " + props.name : null}</Text>
-                <View>
+            <Flex height="100%" direction='row' justifyContent='space-between'>
+                <Link alignSelf="center"><Icon ariaLabel="Javascript" as={HiHome} /> Home</Link>
+                <h3>{props.name ? "Hello " + props.name : null}</h3>
+                <View alignSelf="center">
                     {!props.loggedIn ?
                         <Button variation="link" label='Log in' marginRight='1rem'> Log in </Button>
                         : null}
