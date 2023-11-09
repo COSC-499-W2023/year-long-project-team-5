@@ -21,3 +21,4 @@ amplifytools.xcconfig
 #amplify-do-not-edit-end
 app/.DS_Store
 .DS_Store
+app/amplifyapp/.vscode/settings.json
