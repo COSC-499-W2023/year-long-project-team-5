@@ -18,6 +18,15 @@ Current Week: 10
 # Project Purpose:
 The purpose of our software is to allow admins (such as doctors, managers, professors, etc.) to receive videos from users. From this we can enable asynchronized communication which allows for more efficient communication, enhancing the experience for both the user and admin. The intention of our software is to provide an easy to use, secure solution to asynchronous video sharing.
 
+## **Usage**
+### Run website locally
+1. Git pull all files from the repo
+2. Change directory to `app\amplifyapp`
+3. Run `npm install` to install all the node modules locally
+4. Run `amplify init` to initialize amplify (if you want the backend to work)
+5. Run `amplify pull` to update your local backend environment (if you want the backend to work)
+6. Run `npm start` 
+7. The website should open in your browser on localhost:3000
 # Design Diagrams
 
 ## Data Flow Diagram:
