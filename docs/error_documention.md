@@ -8,6 +8,16 @@
 5. Run `amplify pull` to update your local backend environment (if you want the backend to work)
 6. Run `npm start` 
 7. The website should open in your browser on localhost:3000
+
+## **JS Documentation**
+### View documentation
+1. Open the file `amplifyapp/docs/index.html`
+
+### Update documentation
+1. Run the command `npm docs`
+   1. If there are any problems it probably has to do with the `jsdoc` library
+2. The new documentation will be generated in `amplifyapp/docs`
+
 ## **Front End**
 ### Components
 ### Issues
