@@ -18,8 +18,8 @@ Current Week: 10
 # Project Purpose:
 The purpose of our software is to allow admins (such as doctors, managers, professors, etc.) to receive videos from users. From this we can enable asynchronized communication which allows for more efficient communication, enhancing the experience for both the user and admin. The intention of our software is to provide an easy to use, secure solution to asynchronous video sharing.
 
-## **Usage**
-### Run website locally
+# **Usage**
+## Run website locally
 1. Git pull all files from the repo
 2. Change directory to `app\amplifyapp`
 3. Run `npm install` to install all the node modules locally
@@ -34,6 +34,9 @@ The purpose of our software is to allow admins (such as doctors, managers, profe
 
 ## Back-end Database Design Diagram:
 ![Database Design Diagram](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/github-setup/docs/design/ER_Design.png)
+
+# Documentation
+Documentation for react components, and common errors and their fixes [can be found in this file](docs/error_documention.md)
 
 
 
