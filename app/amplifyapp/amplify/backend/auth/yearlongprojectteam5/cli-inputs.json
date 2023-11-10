@@ -20,7 +20,7 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-      "email"
+      "name"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,

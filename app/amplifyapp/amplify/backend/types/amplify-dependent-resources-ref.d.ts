@@ -7,7 +7,11 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "auth": {
-    "yearlongprojectteam5b50595a0": {
+    "userPoolGroups": {
+      "DoctorGroupRole": "string",
+      "PatientGroupRole": "string"
+    },
+    "yearlongprojectteam5": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
       "IdentityPoolId": "string",
