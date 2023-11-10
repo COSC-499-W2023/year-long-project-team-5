@@ -1,8 +1,18 @@
 import * as React from "react";
-import { Tabs, Flex, Heading, Link, Button, useTheme, View, Text, Icon, TabItem } from "@aws-amplify/ui-react";
+import { Flex, Link, Button, useTheme, View, Icon } from "@aws-amplify/ui-react";
 import { HiHome } from 'react-icons/hi';
 
-export const ReceiverNav = (props) => {
+/**
+ * This component displays the header for all pages.
+ * @param {Object} props - component props
+ * @param {string} props.name - The name of the user
+ * @param {boolean} props.loggedIn - Whether the user is logged in
+ * @returns JSX.Element
+ * @example
+ * <ReceiverNav name = {"John"} loggedIn={true}></ReceiverNav>
+ */
+
+const ReceiverNav = (props) => {
     const { tokens } = useTheme();
     return (
         <View backgroundColor={tokens.colors.primary} height="70px" padding={'.2rem 2rem'} boxShadow={'small'}>
@@ -21,3 +31,5 @@ export const ReceiverNav = (props) => {
         </View>
     )
 }
+
+export default ReceiverNav;
