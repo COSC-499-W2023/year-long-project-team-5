@@ -30,7 +30,7 @@
     FilterTabs,
   } from "./ui-components"
   import { SubmissionCard } from "./my-components/SubmissionCard";
-  import { ReceiverNav } from "./my-components/ReceiverNav";
+  import ReceiverNav from "./my-components/ReceiverNav";
 
   import './App.css';
   import awsconfig from './aws-exports';
