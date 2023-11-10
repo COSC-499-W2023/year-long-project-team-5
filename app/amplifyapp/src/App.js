@@ -35,18 +35,8 @@ import { NavBar } from "./my-components/NavBar";
 import './App.css';
 import awsconfig from './aws-exports';
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-import Home from './pages/home'; 
-
 Auth.configure(awsconfig);
 Amplify.configure(awsconfig);
-
-console.log(Auth.configure())
 
 const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
@@ -108,14 +98,6 @@ const App = ({ signOut }) => {
 
   return (
     <View className="App">
-      <Router>
-        <Routes>
-            <Route
-              path="/home"
-              element={<Home />}
-            />                   
-        </Routes>
-      </Router>
       <Heading level={1}>Patient Submissions</Heading>
       <View as="form" margin="3rem 0" onSubmit={createNote}>
         <Flex direction="row" justifyContent="center">
