@@ -8,7 +8,7 @@ import {Layout} from './pages/Layout'
 import {Home} from './pages/Home'
 import {Dashboard} from './pages/Dashboard'
 import {Login} from './pages/Login'
-
+import {Submission} from './pages/Submission'
 import { Authenticator } from "@aws-amplify/ui-react";
 
 function MyRoutes(){
@@ -18,7 +18,8 @@ function MyRoutes(){
         <Route path = "/" element ={<Layout/>}>
           <Route index element={<Home/>}/>
           <Route path = "/dashboard" element={<Dashboard/>}/>
-          <Route path = '/login' element = {<Login/>}/>
+          <Route path = "/login" element = {<Login/>}/>
+          <Route path = "/submission" element = {<Submission/>}/>
         </Route>
       </Routes> 
     </BrowserRouter>

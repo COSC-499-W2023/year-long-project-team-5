@@ -21,7 +21,7 @@ export function Layout(){
                 <Flex direction="row">
                     <AmplifyLink onClick={()=> navigate('/')}>Home</AmplifyLink>
                     <AmplifyLink onClick={()=> navigate('/Dashboard')}> Dashboard</AmplifyLink>
-                    <AmplifyLink onClick={()=> navigate('/')}>Request a video</AmplifyLink>
+                    <AmplifyLink onClick={()=> navigate('/Submission')}>Request a video</AmplifyLink>
                 </Flex>
                 {route !== 'authenticated' ? (
                     <Button onClick={() => navigate('/Login')}> Login</Button>
