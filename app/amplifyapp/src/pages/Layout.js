@@ -19,7 +19,7 @@ export function Layout(){
         <View className="App">
             <Flex justifyContent='space-between' alignItems='center'>
                 <Flex direction="row">
-                    <AmplifyLink onClick={()=> navigate('/Home')}>Home</AmplifyLink>
+                    <AmplifyLink onClick={()=> navigate('/')}>Home</AmplifyLink>
                     <AmplifyLink onClick={()=> navigate('/Dashboard')}> Dashboard</AmplifyLink>
                     <AmplifyLink onClick={()=> navigate('/')}>Request a video</AmplifyLink>
                 </Flex>
