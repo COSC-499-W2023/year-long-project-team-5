@@ -25,15 +25,10 @@ import {
   deleteNote as deleteNoteMutation,
 } from "../graphql/mutations";
 
-import {
-  SearchSubmission,
-  FilterTabs,
-} from "../ui-components"
 import { SubmissionCard } from "../my-components/SubmissionCard";
-import { NavBar } from "../my-components/NavBar";
 
 import awsconfig from '../aws-exports';
-export function Dashboard({signOut}){
+export function Dashboard(){
     const [notes, setNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([])
   useEffect(() => {
@@ -87,9 +82,9 @@ export function Dashboard({signOut}){
         let newNotes = notes.filter((note)=> note.name.includes(searchInput))
         setFilteredNotes(newNotes);
       }
+    const {tokens} = useTheme();
     return(
         <View className="App">
-        <h1>Doctor's Dashboard</h1>
         <Heading level={1}>Patient Submissions</Heading>
         <View as="form" margin="3rem 0" onSubmit={createNote}>
           <Flex direction="row" justifyContent="center">
@@ -120,15 +115,13 @@ export function Dashboard({signOut}){
           style={{ alignSelf: "end" }}
         />
         </View>
-        <NavBar></NavBar>
         <Heading level={2}></Heading>
-        <SearchField onChange={(e) => filterNotes(e.target.value)}/>
+        <SearchField padding={tokens.space.large} onChange={(e) => filterNotes(e.target.value)}/>
         <View>
           {filteredNotes.map((note) => (
             <SubmissionCard margin="1rem" id = {note.name} description = {note.description} image = {note.image}/>
           ))}
         </View>
-        <Button onClick={signOut}>Sign Out</Button>
       </View>
     )
 }
