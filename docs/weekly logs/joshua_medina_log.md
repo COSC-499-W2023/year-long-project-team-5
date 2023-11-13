@@ -24,9 +24,7 @@
 ## Other notes
 - Great team!!
 
-&nbsp;
-&nbsp;
-&nbsp;
+---
 
 # Weekly Personal Log Week 5 (September 25 - October 1)
 
@@ -50,9 +48,7 @@
 ## Other notes
 - N/A
 
-&nbsp;
-&nbsp;
-&nbsp;
+---
 
 # Weekly Personal Log Week 6 & 7 (Oct 9 - October 22)
 
@@ -84,7 +80,7 @@
 ## Other notes
 - N/A
 
-
+---
 
 # Weekly Personal Log Week 8 (Oct 23 - October 29)
 
@@ -110,7 +106,7 @@
 ## Other notes
 - N/A
 
-
+---
 
 # Weekly Personal Log Week 9 (October 30 - November 5) 
 
@@ -134,6 +130,39 @@
 ## Issue number reference
 - Issue #44 - Setup AWS Amplify - (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/44)
 - Issue #11 - Create project board issues - (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/11)
+  
+## Other notes
+- N/A
+
+---
+
+# Weekly Personal Log Week 9 (November 6 - November 12) 
+
+## Screenshot from peer eval
+![Capture2](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/03210a55-8487-4f61-a5ed-c9fcc662c219)
+
+
+## Non-feature work
+- Met on Nov 6, Nov 9 for meetings
+- completed issue board
+
+## All of my features for **this milestone**
+- User Auth
+- Testing
+- Host on amplify
+
+## Status of work for the week
+- Setting up regression testing (In-Progress)
+- Host webapp on amplify (Complete)
+- complete user auth (Complete)
+- Finish issues on project board
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/44] - Host site on amplify (complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/35] - Finish user auth (complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/48] - Resolve signin bug with local and prod drift (complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/11] - Issues for project board (complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/30] - Set up regression testing (in progress)
   
 ## Other notes
 - N/A

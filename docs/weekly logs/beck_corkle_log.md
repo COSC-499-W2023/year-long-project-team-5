@@ -1,3 +1,53 @@
+# Weekly Personal Log (November 6-12)
+
+## Screenshot from peer eval
+
+![image](https://i.imgur.com/oD2N1Wb.png)
+
+## Non-feature work
+- Team meetings
+- Debugged user authentication error
+- Researched react documentation practices
+
+## All of my features for **this milestone**
+
+### **Feature**: Set up documentation for react components
+- **Description**: Used jsdoc and docstrings
+- **Issue number**: #67
+- **Context**:
+
+### **Feature**: Fix deployment error
+- **Description**: Fixed deployment error in group meeting
+- **Issue number**: #48
+- **Context**:
+
+### **Feature**: Created header w/ example react documentation
+- **Description**: Fixed deployment error in group meeting
+- **Issue number**: #61
+- **Context**: Has been superseeded by a more formal navbar, still stands as an example for documentation
+
+### **Feature**: Document how to setup the app
+- **Description**: Described how to start the app in readme + how to document the app
+- **Issue number**: #43
+- **Context**:
+
+
+## Status of work for the **last week** (in-progress or completed)
+- automatic documentation generation complete
+- readme files and documentation are much more encompassing in general
+- react component created as an example completed
+- no more deployment errors
+  
+## Issue number reference
+- https://github.com/COSC-499-W2023/year-long-project-team-5/issues/67
+- https://github.com/COSC-499-W2023/year-long-project-team-5/issues/48
+- https://github.com/COSC-499-W2023/year-long-project-team-5/issues/61
+- https://github.com/COSC-499-W2023/year-long-project-team-5/issues/43
+
+## Other notes
+- spent a lot of time debugging auth error
+- better PRs
+
 # Weekly Personal Log (October 30 - November 5)
 
 ## Screenshot from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/student/)
