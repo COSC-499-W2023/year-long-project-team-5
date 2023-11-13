@@ -1,3 +1,33 @@
+# Weekly Personal Log (November 6-12)
+
+## Screenshot from peer eval
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/e53bf986-abc5-4aea-a760-59745316fd2f)
+
+## Non-feature work
+- team meetings
+- weekly log and individual checkpoint
+- debugging authentication error
+- researching router solutions/best practices
+
+## All of my features for **this milestone**
+
+### **Feature**: Router
+- **Description**: Set up a react-router to switch between pages, and re-organize file structure
+- **Issue number**: #59
+- **Context**: Abhinav and I have been working on the router functionality and researching best practices
+
+## Status of work for the **last week** (in-progress or completed)
+- home page (planning in progress, coding to begin next week)
+- navigation (router setup, template pages setup)
+  
+## Issue number reference
+- https://github.com/COSC-499-W2023/year-long-project-team-5/issues/59
+
+## Other notes
+- we spent a lot of time debugging the authentication error that had been blocking us for the last week (it is finally fixed!)
+- dedicated more time to improving code review practices and documenting PRs 
+
 # Weekly Personal Log (October 30 - November 5)
 
 ## Screenshot from peer eval
