@@ -10,6 +10,7 @@ import {Dashboard} from './pages/Dashboard'
 import {Login} from './pages/Login'
 import {Submission} from './pages/Submission'
 import { Authenticator } from "@aws-amplify/ui-react";
+import {RequireAuth} from "./RequireAuth"
 
 function MyRoutes(){
   return(
@@ -17,9 +18,17 @@ function MyRoutes(){
       <Routes>
         <Route path = "/" element ={<Layout/>}>
           <Route index element={<Home/>}/>
-          <Route path = "/dashboard" element={<Dashboard/>}/>
+          <Route path = "/dashboard" element={
+            <RequireAuth>
+            <Dashboard/>
+            </RequireAuth>
+          }/>
           <Route path = "/login" element = {<Login/>}/>
-          <Route path = "/submission" element = {<Submission/>}/>
+          <Route path = "/submission" element = {
+            <RequireAuth>
+            <Submission/>
+            </RequireAuth>
+          }/>
         </Route>
       </Routes> 
     </BrowserRouter>

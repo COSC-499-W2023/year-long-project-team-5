@@ -11,7 +11,7 @@ import {
   Text,
   TextField,
   View,
-  withAuthenticator,
+  useAuthenticator,
   Card,
   Heading,
   Badge,
@@ -28,7 +28,9 @@ import {
 import { SubmissionCard } from "../my-components/SubmissionCard";
 
 import awsconfig from '../aws-exports';
+
 export function Dashboard(){
+  const {route} = useAuthenticator((context) => [context.route]);
   const [notes, setNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([])
   useEffect(() => {
@@ -49,6 +51,7 @@ export function Dashboard(){
       setNotes(notesFromAPI);
       setFilteredNotes(notesFromAPI);
     }
+    
     async function createNote(event) {
       event.preventDefault();
       const form = new FormData(event.target);
