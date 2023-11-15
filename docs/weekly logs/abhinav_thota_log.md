@@ -1,3 +1,37 @@
+# Personal Log (Nov 6 -12)
+## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/26/student/evaluated/1569/)
+![week10 work done](https://i.imgur.com/eIqYdkd.png)
+
+## Feature work: 
+
+### Feature: work on having multiple pages on our React project.
+- required Abby and I to research React-Router-DOM
+   - spent a lot of time going over forums while also trying to understand code
+   - felt the learning curve
+
+- had to refactor existing code; App.js had to be completely  built up again from scratch.
+- now have multiple pages as their own components that are rendered by using React  Router
+
+### Feature: Cypress testing set up
+
+- I didn't get the time to work on this; Josh has taken the lead on this.
+- I hope to contribute and learn more about how to use Cypress as it will greatly improve our workflow.
+- Cypress will allow us to move closer to test-driven development of our front end react components.
+
+### Current status
+ - router is 80% done; need to learn about redirecting users and protecting routes.
+### Status of work from last week
+ - we have put the react library on hold; want to set up testing first.
+ - that being said, working on the router issue resulted in me needing to make a simple navbar.
+   - in the future, each component needs to be tested to see how responsive it is. e.g how navbar looks on an iphone vs laptop.
+
+### Issues worked on
+- Router/Navigation: [Issue 59](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/59)
+
+### Other notes
+We're making good progress, I do wonder if our code will need to be cleaned up and refactored in the future given how we approach our tasks. We need to get closer to test driven development with good code reviews.
+
+
 # Personal Log (Oct 30 - Nov 5)
 ## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/23/student/)
 ![week9 work done](https://i.imgur.com/OsRtJlH.png)

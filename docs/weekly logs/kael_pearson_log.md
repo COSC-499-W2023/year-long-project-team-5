@@ -1,3 +1,33 @@
+# Weekly Personal Log (November 6-12)
+
+## Screenshot from peer eval
+
+![image](https://i.imgur.com/4wQxWCK.png)
+
+## Non-feature work
+- team meetings
+- debugging authentication error
+
+## All of my features for **this milestone**
+
+### **Feature**: Video recording client side
+- **Description**: Start the setup for the client side video recording
+- **Issue number**: #29
+- **Context**: Worked on client side video recording functionality
+
+## Status of work for the **last week** (in-progress or completed)
+- Video recording in progress
+  
+## Issue number reference
+- https://github.com/COSC-499-W2023/year-long-project-team-5/issues/29
+
+## Other notes
+- Spent several hours debugging authentication on the hosted AWS Amplify site (Fixed now yay!!!!)
+
+
+
+
+
 # Weekly Personal Log (October 30 - November 5)
 
 ## Screenshot from peer eval
