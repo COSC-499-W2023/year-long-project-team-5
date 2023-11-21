@@ -30,7 +30,7 @@ import {
   FilterTabs,
 } from "./ui-components"
 import { SubmissionCard } from "./my-components/SubmissionCard";
-import { NavBar } from "./my-components/NavBar";
+import NavBar from "./my-components/NavBar";
 
 import './App.css';
 import awsconfig from './aws-exports';
