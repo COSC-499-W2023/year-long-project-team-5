@@ -1,8 +1,6 @@
 # Team 5 Project Github (Option 3)
 
-[Current Sprint: 4](https://github.com/orgs/COSC-499-W2023/projects/43)
-
-Current Week: 9
+[Current Week: 11](https://github.com/orgs/COSC-499-W2023/projects/43)
 
 <table>
   <tr><th>Name</th><th>Student #</th><th>Username</th></tr>
@@ -18,6 +16,15 @@ Current Week: 9
 # Project Purpose:
 The purpose of our software is to allow admins (such as doctors, managers, professors, etc.) to receive videos from users. From this we can enable asynchronized communication which allows for more efficient communication, enhancing the experience for both the user and admin. The intention of our software is to provide an easy to use, secure solution to asynchronous video sharing.
 
+# **Usage**
+## Run website locally
+1. Git pull all files from the repo
+2. Change directory to `app\amplifyapp`
+3. Run `npm install` to install all the node modules locally
+4. Run `amplify init` to initialize amplify (if you want the backend to work)
+5. Run `amplify pull` to update your local backend environment (if you want the backend to work)
+6. Run `npm start` 
+7. The website should open in your browser on localhost:3000
 # Design Diagrams
 
 ## Data Flow Diagram:
@@ -25,6 +32,10 @@ The purpose of our software is to allow admins (such as doctors, managers, profe
 
 ## Back-end Database Design Diagram:
 ![Database Design Diagram](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/github-setup/docs/design/ER_Design.png)
+
+# Documentation
+- Documentation for common errors and their fixes [can be found in this file](docs/error_documention.md)
+- Documentation for react components [can be found in this file](app/amplifyapp/docs/index.html)
 
 
 

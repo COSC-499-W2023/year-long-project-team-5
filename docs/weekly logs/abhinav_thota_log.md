@@ -1,3 +1,81 @@
+# Personal Log (Nov 6 -12)
+## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/26/student/evaluated/1569/)
+![week10 work done](https://i.imgur.com/eIqYdkd.png)
+
+## Feature work: 
+
+### Feature: work on having multiple pages on our React project.
+- required Abby and I to research React-Router-DOM
+   - spent a lot of time going over forums while also trying to understand code
+   - felt the learning curve
+
+- had to refactor existing code; App.js had to be completely  built up again from scratch.
+- now have multiple pages as their own components that are rendered by using React  Router
+
+### Feature: Cypress testing set up
+
+- I didn't get the time to work on this; Josh has taken the lead on this.
+- I hope to contribute and learn more about how to use Cypress as it will greatly improve our workflow.
+- Cypress will allow us to move closer to test-driven development of our front end react components.
+
+### Current status
+ - router is 80% done; need to learn about redirecting users and protecting routes.
+### Status of work from last week
+ - we have put the react library on hold; want to set up testing first.
+ - that being said, working on the router issue resulted in me needing to make a simple navbar.
+   - in the future, each component needs to be tested to see how responsive it is. e.g how navbar looks on an iphone vs laptop.
+
+### Issues worked on
+- Router/Navigation: [Issue 59](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/59)
+
+### Other notes
+We're making good progress, I do wonder if our code will need to be cleaned up and refactored in the future given how we approach our tasks. We need to get closer to test driven development with good code reviews.
+
+
+# Personal Log (Oct 30 - Nov 5)
+## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/23/student/)
+![week9 work done](https://i.imgur.com/OsRtJlH.png)
+
+## Non feature work:
+- mini presentation, reviewing other presentations
+
+## Feature work:
+
+### Feature: build a library of React components 
+overview: have a library of key ui elements as components that can be reused and would act as key building blocks of the website.
+- created a new branch titled 'my-components' to mostly hold all custom react components that are being coded up from our Figma wireframes
+      - researched ways to build my components by looking over the 'primitive' components in [Amplify UI Kit documentation](https://ui.docs.amplify.aws/react/components)
+      - installed figma VS code extension to help build first component using React and JS. (receiverNav)
+      - looking into how to make components dynamic
+         - need to look into states and hooks in order to dynamically update content of components. (i.e update nav bar to show you're signed in for example.)
+
+- [Issue No. 32](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/32)
+### Current status:
+Completed. We have pivoted to using the UI kit provided by AWS/Figma in combination with a few of our custom components. (New issue needs to be created)
+
+### Feature:  As Dev, I want to create the basic reciever dashboard with React #19 
+ - a functional search bar, nav bar and submission cards are being populated from the database. (ahead of schedule since we don't need to focus on functionality!)
+ - might need to create a new component to hold data in a data row as opposed to cards for better viewing 
+      - need to ask team for their opinion.
+[Issue No. 19](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/19)
+
+Current status:
+   - might need one more week since Abby and I need to look into how to render multiple pages on React. I found a good webpage that might point us in the right direction.
+
+
+## Status of work for last week:
+- Issue No 32 is closed, being extended into issue No. 19.
+- Still need to work with Beck to be able to build the basic receiver dashboard.
+
+## Issue number reference 
+[Issue No. 32](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/32)
+
+[Issue No. 19](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/19)
+
+## Other notes
+- Feeling more confident about the decision to pivot to React to code the components manually; it's so much better than trying to build using Figma.
+   - very excited to try figure out react router v5 with amplify ui elements. 
+
 # Personal Log (Oct 23-29)
 ## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/23/student/)
 ![week8 work done](https://i.imgur.com/lIWQ2f6.png)
