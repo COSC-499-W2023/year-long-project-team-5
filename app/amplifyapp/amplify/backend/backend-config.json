@@ -52,7 +52,7 @@
           "passwordPolicyMinLength": 8
         },
         "signupAttributes": [
-          "EMAIL"
+          "NAME"
         ],
         "socialProviders": [],
         "usernameAttributes": [
