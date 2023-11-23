@@ -4,8 +4,8 @@
         "dictionaries": ["jsdoc", "closure"]
     },
     "source": {
-        "include": ["src/my-components"],
-        "includePattern": ".+\\.jsx$",
+        "include": ["src/my-components", "src/pages"],
+        "includePattern": ".+\\.(js|jsx)$",
         "excludePattern": "(node_modules/|docs)"
     },
     "plugins": ["plugins/markdown"],
