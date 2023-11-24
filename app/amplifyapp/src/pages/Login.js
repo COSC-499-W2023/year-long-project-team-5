@@ -1,3 +1,11 @@
+/**
+ * Login TODO: finish docs
+ * @param {Object} props - prop1 name
+ * @returns JSX.Element
+ * @example
+ * <Login></Login>
+ */
+
 import { Authenticator, Flex, useAuthenticator} from "@aws-amplify/ui-react"
 import {useEffect} from "react";
 import "@aws-amplify/ui-react/styles.css";
