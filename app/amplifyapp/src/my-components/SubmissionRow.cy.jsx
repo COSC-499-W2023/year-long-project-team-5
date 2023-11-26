@@ -10,22 +10,16 @@ describe('<SubmissionRow/>', () => {
       cy.mount(<SubmissionRow id = {fakeSubmission.id} email = {fakeSubmission.email} 
        dateSent = {fakeSubmission.dateSent} dateReceived = {fakeSubmission.dateReceived} videoLink = {fakeSubmission.videoLink} />)
     })
-    // if each row has: id, email, date sent, date received, and video submission link
-    it('each row has values in props: id, email, date sent, date received, and video submission link', () => {
+    // write assertions with .get to using className assigned in React..
+    it('check if component renders with correct data being passed through props..', () => {
       cy.mount(<SubmissionRow id = {fakeSubmission.id} email = {fakeSubmission.email} 
       dateSent = {fakeSubmission.dateSent} dateReceived = {fakeSubmission.dateReceived} videoLink = {fakeSubmission.videoLink} />)
-      cy.contains('1').should('be.visible');
-      cy.contains('kenaa@example.com').should('be.visible');
-      cy.contains('2020-01-01T00:00:00').should('be.visible');
-      cy.contains('2020-01-03T00:00:00').should('be.visible');
-      cy.contains('Video Link').should('be.visible');
-      // cy.contains('https://www.youtube.com/watch?v=dQw4w9').should('be.visible');
-    })
-// trying to write assertions with props:
-    it('renders SubmissionRow', () => {
-      cy.mount(<SubmissionRow id = {fakeSubmission.id} email = {fakeSubmission.email} 
-      dateSent = {fakeSubmission.dateSent} dateReceived = {fakeSubmission.dateReceived} videoLink = {fakeSubmission.videoLink} />)
-      cy.get('a.amplify-link').should('contains.text', 'Video Link')
-      cy.get('a.amplify-link').should('have.attr', 'href').and('include', 'https://www.youtube.com/watch?v=dQw4w9')
+      cy.get('.subID').eq(0).should('contains.text', '1')
+      cy.get('.subEmail').eq(0).should('contains.text', 'kenaa@example.com')
+      cy.get('.subDS').eq(0).should('contains.text', '2020-01-01T00:00:00')
+      cy.get('.subDR').eq(0).should('contains.text', '2020-01-03T00:00:00')
+      cy.get('.vidLink').eq(0).should('contains.text', 'Video Link')
+      cy.get('.vidLink :first-child').eq(0).should('have.attr', 'href').and('include', 'https://www.youtube.com/watch?v=dQw4w9')
     })
   })
+

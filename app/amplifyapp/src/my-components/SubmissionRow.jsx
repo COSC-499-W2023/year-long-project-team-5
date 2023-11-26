@@ -1,15 +1,15 @@
 import * as React from "react";
-import {Card, Flex, Heading, Link, Button, useTheme, View, Text} from "@aws-amplify/ui-react";
+import {TableRow,TableCell, Link,useTheme, View, Text} from "@aws-amplify/ui-react";
 
 export const SubmissionRow = (props) => {
     const {tokens} = useTheme();
     return(
-        <View>
-            <Text> {props.id}</Text>
-            <Text> {props.email}</Text>
-            <Text> {props.dateSent}</Text>
-            <Text> {props.dateReceived}</Text>
-            <Link href={props.videoLink}>Video Link</Link>
-        </View>
+        <TableRow className='subRow'>
+            <TableCell className = 'subID'> {props.id}</TableCell>
+            <TableCell className = 'subEmail'> {props.email}</TableCell>
+            <TableCell className = 'subDS'> {props.dateSent}</TableCell>
+            <TableCell className = 'subDR'> {props.dateReceived}</TableCell>
+            <TableCell className="vidLink"><Link href={props.videoLink}>Video Link</Link></TableCell>
+        </TableRow>
     );
 }
