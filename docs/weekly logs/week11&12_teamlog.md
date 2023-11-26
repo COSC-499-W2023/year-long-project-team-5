@@ -42,8 +42,7 @@
 
 
 ## Completed & In-Progress Tasks (Project Board)
-![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/0f1a86e0-a2ea-4949-afd6-81d6d5a6c645)
-![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/a43622fb-9507-4e49-aa6d-798ccba46182)
+INSERT IMAGES
 
 ## Test Report
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/41f04257-6976-4070-a311-b9bfcacc6a08)
