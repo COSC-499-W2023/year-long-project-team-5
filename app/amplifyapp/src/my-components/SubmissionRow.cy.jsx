@@ -21,8 +21,11 @@ describe('<SubmissionRow/>', () => {
       cy.contains('Video Link').should('be.visible');
       // cy.contains('https://www.youtube.com/watch?v=dQw4w9').should('be.visible');
     })
-    // // if video link opens the correct webpage containing the video
-    // it('renders SubmissionRow', () => {
-    //   cy.get('[data-cy=')
-    // })
+// trying to write assertions with props:
+    it('renders SubmissionRow', () => {
+      cy.mount(<SubmissionRow id = {fakeSubmission.id} email = {fakeSubmission.email} 
+      dateSent = {fakeSubmission.dateSent} dateReceived = {fakeSubmission.dateReceived} videoLink = {fakeSubmission.videoLink} />)
+      cy.get('a.amplify-link').should('contains.text', 'Video Link')
+      cy.get('a.amplify-link').should('have.attr', 'href').and('include', 'https://www.youtube.com/watch?v=dQw4w9')
+    })
   })
