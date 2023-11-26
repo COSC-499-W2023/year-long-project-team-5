@@ -1,3 +1,4 @@
+import React from 'react'
 import { SubmissionRow } from './SubmissionRow'
 
 describe('<SubmissionRow/>', () => {
