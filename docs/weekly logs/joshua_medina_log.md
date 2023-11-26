@@ -172,7 +172,7 @@
 # Weekly Personal Log Week 11 & 12 (November 13 - November 26) 
 
 ## Screenshot from peer eval
-![Capture2](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/03210a55-8487-4f61-a5ed-c9fcc662c219)
+<img width="1056" alt="Screenshot 2023-11-26 at 3 29 23 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/49a8da6e-e7be-4c64-b089-cb97f608e3ee">
 
 
 ## Non-feature work
