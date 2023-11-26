@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom';
  * @component
  * @example
  * // Example usage of SubmissionRow (but all arguments passed to props will be passed through api calls):
- * <SubmissionRow id=1021 email ='jsaon1@gmail.com' dateSent='2023-10-01T01:30:01' dateReceived='2023-10-15T15:30:50 videoLink='www.somevideo.com/watchassa1231 submissionLink = '/asdasdl1''
+ * <SubmissionRow id=1021 email ='jsaon1@gmail.com' dateSent='2023-10-01T01:30:01' dateReceived='2023-10-15T15:30:50' videoLink='www.somevideo.com/watchassa1231' submissionLink = '/asdasdl1'/>'
  */
 
 
@@ -22,10 +22,11 @@ export const SubmissionRow = (props) => {
  * @returns {JSX.Element}
  */
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const handleButtonClick = () => {
         // Navigate to the '/Submission' page when the button is clicked - should be different custom page!
-        navigate('/Submission');
+        // navigate('/Submission');
+        console.log('should navigate to new page')
     };
 
     return(

@@ -26,6 +26,7 @@ import {
 } from "../graphql/mutations";
 
 import { SubmissionCard } from "../my-components/SubmissionCard";
+import { SubmissionRow } from "../my-components/SubmissionRow";
 
 import awsconfig from '../aws-exports';
 
