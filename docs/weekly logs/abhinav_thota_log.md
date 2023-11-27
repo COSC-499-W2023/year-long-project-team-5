@@ -1,3 +1,47 @@
+# Personal Log (Nov 12-26)
+## Nov 12-18: Nothing significant done during reading break.
+## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/27/student/evaluated/1569/)
+![week12 work done](https://i.imgur.com/HGnnHqQ.png)
+
+
+## Feature Work Done
+
+### Feature: work on having multiple pages on our React project. (issue 59)
+- helped Abby finish up setting up ProtectedRoutes so you can't access certain pages without being authenticated. 
+- pages are now set up as their own components. 
+- figured out how to navigate between other pages outside App.js(I think...) 
+
+#### Current status:
+- I'd say this feature is done
+
+
+### Feature: Cypress testing set up (issue 30)
+- merged the installation Josh did into component-library branch so moving forward we can use Cypress to write and run tests as we make components
+- facing a steep learning curve to write tests first and isolate components.
+
+#### Current status:
+- Cypress is up and running, learned how to make a few basic assertions and cypress commands to be able to test basic UI rendering
+- I'd say I'm done working on this feature; I will be using cypress moving forward on each component I design and build.
+
+## Feature: component/SubmissionRow (issue 31)
+- built a UI component by writing tests on Cypress first.
+- works well but hard to isolate and test if it renders if the component uses other components outside of it (maybe needs E2E testing)
+
+#### Current status:
+- need to figure out how to get tests fully working (ccurrently code works test fails)
+- forgot to write tests that check for the component handles missing values, need to discuss with the team what's the best way to represent that.
+
+## Other work done:
+- started working on design documentation; might need to revise our designs to be more aligned with Nielsen's heuristics for design.
+
+## Issues worked on:
+- Router/Navigation: [Issue 59](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/59)
+- Component/SubmissionRow [Issue No. 31](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/31)
+- Cypress Testing: [Issue No. 30](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/32)
+### Other notes:
+A lot of the problems I faced could be down to a lack of experience and facing a steep learning curve. I anticipate way more problems ahead but I'm glad I managed to use Cypress to write a few component tests. The workflow is becoming more streamlined, yay...
+
+
 # Personal Log (Nov 6 -12)
 ## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/26/student/evaluated/1569/)
 ![week10 work done](https://i.imgur.com/eIqYdkd.png)
