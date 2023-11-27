@@ -22,10 +22,10 @@ export const SubmissionRow = (props) => {
  * @returns {JSX.Element}
  */
 
-    // const navigate = useNavigate();
+    //const navigate = useNavigate();
     const handleButtonClick = () => {
         // Navigate to the '/Submission' page when the button is clicked - should be different custom page!
-        // navigate('/Submission');
+        //navigate('/Submission');
         console.log('should navigate to new page')
     };
 
