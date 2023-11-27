@@ -40,11 +40,11 @@
 - [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/33] - Create patient portal (& homepage) (in progress)
 
 ## Burn Up Chart
-<img width="822" alt="Screenshot 2023-11-26 at 2 40 52 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/8ea00bec-3f17-464d-b64b-0485045c7a4e">
-
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/41bcc4df-f742-4c39-9bf0-090eb659ff64)
 
 ## Completed & In-Progress Tasks (Project Board)
-![ProjectBoardWeek12](https://i.imgur.com/zujWaCs.png)
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/ed6a54aa-3150-48d1-89b4-d20dddbe3d46)
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/1c9d5d3f-f391-41f1-bfc6-b8585ccfa96f)
 
 ## Test Report
 <img width="718" alt="Screenshot 2023-11-26 at 2 59 19 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/3983c53e-0aa8-464f-a0a8-c8bed9217f6d">
