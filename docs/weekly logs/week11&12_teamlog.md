@@ -12,6 +12,8 @@
 ### Work Completed
 - Setup Automated Regression Testing with cypress (#30)
 - Build out webpage routing (#59)
+- Wrote first few component tests using Cypress to build out component/SubmissionRow (#31)
+
 
 ## Milestone Goals
 - Record video outlining progress done
@@ -42,7 +44,7 @@
 
 
 ## Completed & In-Progress Tasks (Project Board)
-INSERT IMAGES
+![ProjectBoardWeek12](https://i.imgur.com/zujWaCs.png)
 
 ## Test Report
 <img width="718" alt="Screenshot 2023-11-26 at 2 59 19 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/3983c53e-0aa8-464f-a0a8-c8bed9217f6d">
