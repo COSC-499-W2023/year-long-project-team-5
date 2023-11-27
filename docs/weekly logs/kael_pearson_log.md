@@ -1,3 +1,29 @@
+# Weekly Personal Log (November 13-26)
+
+## Screenshot from peer eval
+
+![image](https://i.imgur.com/2FLCEl0.png)
+
+## Non-feature work
+- team meetings
+
+## All of my features for **this milestone**
+
+### **Feature**: Video recording client side
+- **Description**: basic video recording setup
+- **Issue number**: #29
+- **Context**: Completed on client side video recording functionality
+
+## Status of work for the **last week** (in-progress or completed)
+- Video recording completed
+  
+## Issue number reference
+- https://github.com/COSC-499-W2023/year-long-project-team-5/issues/29
+
+## Other notes
+- Basic functionality of video recording completed to local file side, will continue to work on more features for it such as uploading and playback
+- No work done on reading break
+
 # Weekly Personal Log (November 6-12)
 
 ## Screenshot from peer eval

@@ -1,3 +1,27 @@
+# Personal Log (Nov 12-26)
+
+## Screenshot from peer eval
+![week12 work done](https://i.imgur.com/OMp9nuR.png)
+
+## Non-feature work
+- Team meetings
+- Researched cypress testing
+- Worked on the design document
+- Code Reviews
+- Added a Apache license to our repo
+
+## Feature Work Done
+
+### **Feature**: Set up documentation for react components
+- **Description**: Used jsdoc and docstrings
+- **Issue number**: #67
+- **Context**: I had this issue completed last week, this week I PRed it into the main branch, there were enough merge conflicts and code review changes that I am including it again.
+
+## Issues worked on:
+- Documentation: [Issue 59](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/67)
+### Other notes:
+- no work done on reading break
+
 # Weekly Personal Log (November 6-12)
 
 ## Screenshot from peer eval

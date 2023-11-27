@@ -1,3 +1,35 @@
+# Weekly Personal Log (November 13-26)
+
+## Screenshot from peer eval
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/8b3ef030-712b-4c64-92e7-286536af6964)
+
+## Non-feature work
+- team meetings
+- discussed the features for the design milestone
+
+## All of my features for **this milestone**
+
+### **Feature**: Router functionality
+- **Description**: Set up a multi-page system and authenticated router functionality in the nav bar
+- **Issue number**: issue #59
+- **Context**: N/A
+
+### **Feature**: landing page
+- **Description**: A landing page for the website with basic information about the software
+- **Issue number**: issue #76
+- **Context**: N/A
+
+## Status of work for the **last week** (in-progress or completed)
+- completed router functionality, including protected routes (worked with Abhinav)
+- landing page in progress
+
+## Issue number reference
+- Issue #59 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/59)
+- Issue #76 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/76)
+
+## Other notes
+
 # Weekly Personal Log (November 6-12)
 
 ## Screenshot from peer eval
