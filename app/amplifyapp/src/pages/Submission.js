@@ -3,7 +3,7 @@ import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
 import {Amplify, Auth, API, Storage } from 'aws-amplify';
-
+import { SubmissionRow } from "../my-components/SubmissionRow";
 import {
     Button,
     Flex,

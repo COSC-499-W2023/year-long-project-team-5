@@ -15,6 +15,8 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import "../../src/App.css";
+import "@aws-amplify/ui-react/styles.css";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
