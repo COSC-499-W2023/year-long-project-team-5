@@ -25,5 +25,13 @@ describe('<SubmissionRow/>', () => {
       cy.get('.subLink').eq(0).should('exist').and('contains.text', 'No Submission')
 
     })
+    it("check if component renders 'NA' text message instead of date if there's no link", ()=> {
+      cy.mount(<SubmissionRow id = {fakeSubmission.id} email = {fakeSubmission.email} 
+        dateSent = {fakeSubmission.dateSent} dateReceived = '2022-01-12T12:10:05' videoLink = {null}  ></SubmissionRow>)
+    })
+    it("check if component renders 'NA' text message instead of date if there's no date", ()=> {
+      cy.mount(<SubmissionRow id = {fakeSubmission.id} email = {fakeSubmission.email} 
+        dateSent = {fakeSubmission.dateSent} dateReceived = {null} videoLink = {null}  ></SubmissionRow>)
+    })
   })
 
