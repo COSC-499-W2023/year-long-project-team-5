@@ -44,5 +44,14 @@ The purpose of our software is to allow admins (such as doctors, managers, profe
 - Documentation for common errors and their fixes [can be found in this file](docs/error_documention.md)
 - Documentation for react components [can be found in this file](app/amplifyapp/docs/index.html)
 
+## License
+   Copyright [2023] [COSC499 Team 5]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
 
 
