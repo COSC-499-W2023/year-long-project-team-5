@@ -8,25 +8,15 @@ export const createNote = /* GraphQL */ `
   ) {
     createNote(input: $input, condition: $condition) {
       id
-      videoURL
+      name
+      description
+      image
+      createdAt
+      updatedAt
       __typename
     }
   }
 `;
-
-export const createVideo = /* GraphQL */ `
-  mutation CreateVideo(
-    $input: CreateVideoInput!
-    $condition: ModelVideoConditionInput
-  ) {
-    createVideo(input: $input, condition: $condition) {
-      id
-      videoURL
-      __typename
-    }
-  }
-`;
-
 export const updateNote = /* GraphQL */ `
   mutation UpdateNote(
     $input: UpdateNoteInput!
@@ -37,7 +27,6 @@ export const updateNote = /* GraphQL */ `
       name
       description
       image
-      viewedStatus
       createdAt
       updatedAt
       __typename
@@ -54,7 +43,6 @@ export const deleteNote = /* GraphQL */ `
       name
       description
       image
-      viewedStatus
       createdAt
       updatedAt
       __typename

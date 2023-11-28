@@ -1,34 +1,6 @@
-type Submission @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  adminId: ID
-  Video: Note @hasOne
-  User: User @hasOne
-  SubmissionRequest: SubmissionRequest @hasOne
-}
-
-type Video @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  videoURL: String
-}
-
-type User @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  email: AWSEmail
-  name: String
-}
-
-type SubmissionRequest @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  adminID: ID
-  userEmail: AWSEmail
-  note: String
-}
-
 type Note @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
   description: String
   image: String
-  viewedStatus: Boolean
-}
- 
+} 

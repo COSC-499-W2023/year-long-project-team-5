@@ -6,13 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import {
-  Button,
-  Flex,
-  Grid,
-  SwitchField,
-  TextField,
-} from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { API } from "aws-amplify";
 import { createNote } from "../graphql/mutations";
@@ -31,29 +25,23 @@ export default function NoteCreateForm(props) {
     name: "",
     description: "",
     image: "",
-    viewedStatus: false,
   };
   const [name, setName] = React.useState(initialValues.name);
   const [description, setDescription] = React.useState(
     initialValues.description
   );
   const [image, setImage] = React.useState(initialValues.image);
-  const [viewedStatus, setViewedStatus] = React.useState(
-    initialValues.viewedStatus
-  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
     setDescription(initialValues.description);
     setImage(initialValues.image);
-    setViewedStatus(initialValues.viewedStatus);
     setErrors({});
   };
   const validations = {
     name: [{ type: "Required" }],
     description: [],
     image: [],
-    viewedStatus: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -84,7 +72,6 @@ export default function NoteCreateForm(props) {
           name,
           description,
           image,
-          viewedStatus,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -150,7 +137,6 @@ export default function NoteCreateForm(props) {
               name: value,
               description,
               image,
-              viewedStatus,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -177,7 +163,6 @@ export default function NoteCreateForm(props) {
               name,
               description: value,
               image,
-              viewedStatus,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -204,7 +189,6 @@ export default function NoteCreateForm(props) {
               name,
               description,
               image: value,
-              viewedStatus,
             };
             const result = onChange(modelFields);
             value = result?.image ?? value;
@@ -219,33 +203,6 @@ export default function NoteCreateForm(props) {
         hasError={errors.image?.hasError}
         {...getOverrideProps(overrides, "image")}
       ></TextField>
-      <SwitchField
-        label="Viewed status"
-        defaultChecked={false}
-        isDisabled={false}
-        isChecked={viewedStatus}
-        onChange={(e) => {
-          let value = e.target.checked;
-          if (onChange) {
-            const modelFields = {
-              name,
-              description,
-              image,
-              viewedStatus: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.viewedStatus ?? value;
-          }
-          if (errors.viewedStatus?.hasError) {
-            runValidationTasks("viewedStatus", value);
-          }
-          setViewedStatus(value);
-        }}
-        onBlur={() => runValidationTasks("viewedStatus", viewedStatus)}
-        errorMessage={errors.viewedStatus?.errorMessage}
-        hasError={errors.viewedStatus?.hasError}
-        {...getOverrideProps(overrides, "viewedStatus")}
-      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
