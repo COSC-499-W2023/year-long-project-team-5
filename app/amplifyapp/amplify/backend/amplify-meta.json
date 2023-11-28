@@ -23,11 +23,11 @@
             }
           ],
           "defaultAuthentication": {
+            "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 30,
               "description": "api key description"
-            },
-            "authenticationType": "API_KEY"
+            }
           }
         },
         "GraphQLAPIIdOutput": "vlivv6bisvevvdk53edmk3fld4",
@@ -36,11 +36,12 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "AppSync",
-      "lastPushTimeStamp": "2023-11-09T21:54:21.368Z",
+      "lastPushTimeStamp": "2023-11-28T05:35:21.260Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify7a9bf65e88944-staging-233251-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiyearlongprojectteam5"
-      }
+      },
+      "lastPushDirHash": "VrxKXI/qTCuE3vEvr+blEzgHmwc="
     }
   },
   "auth": {
@@ -63,7 +64,7 @@
         "DoctorGroupRole": "arn:aws:iam::597718627040:role/ca-central-1_k2hPA2cbw-DoctorGroupRole",
         "PatientGroupRole": "arn:aws:iam::597718627040:role/ca-central-1_k2hPA2cbw-PatientGroupRole"
       },
-      "lastPushTimeStamp": "2023-11-09T21:54:21.370Z",
+      "lastPushTimeStamp": "2023-11-28T05:35:24.789Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify7a9bf65e88944-staging-233251-deployment/amplify-cfn-templates/auth/userPoolGroups-cloudformation-template.json",
         "logicalId": "authuserPoolGroups"
@@ -103,12 +104,11 @@
         "IdentityPoolName": "testAuthIdentityPool__staging",
         "UserPoolName": "yearlongprojectteam5"
       },
-      "lastPushTimeStamp": "2023-11-09T21:54:21.372Z",
+      "lastPushTimeStamp": "2023-11-28T05:35:21.302Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify7a9bf65e88944-staging-233251-deployment/amplify-cfn-templates/auth/yearlongprojectteam5-cloudformation-template.json",
         "logicalId": "authyearlongprojectteam5"
-      },
-      "lastPushDirHash": "jN/+RGukJdwpxIZJWJaEg/p7Y+Q="
+      }
     }
   },
   "storage": {
@@ -120,7 +120,7 @@
         "BucketName": "yearlongprojectteam511a0ebafba74400f8e9be237bbf233251-staging",
         "Region": "ca-central-1"
       },
-      "lastPushTimeStamp": "2023-11-09T21:54:21.374Z",
+      "lastPushTimeStamp": "2023-11-28T05:35:24.894Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify7a9bf65e88944-staging-233251-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
         "logicalId": "storages3099e82d9"
