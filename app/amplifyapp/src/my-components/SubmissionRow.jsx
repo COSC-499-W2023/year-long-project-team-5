@@ -26,7 +26,6 @@ export const SubmissionRow = (props) => {
     const handleButtonClick = () => {
         // Navigate to the '/Submission' page when the button is clicked - should be different custom page!
         //navigate('/Submission');
-        console.log('should navigate to new page')
     };
 
     return(
@@ -35,8 +34,7 @@ export const SubmissionRow = (props) => {
             <TableCell className = 'subEmail'> {props.email}</TableCell>
             <TableCell className = 'subDS'> {props.dateSent}</TableCell>
             <TableCell className = 'subDR'> {props.dateReceived}</TableCell>
-            <TableCell className="vidLink"><Link href={props.videoLink}>Video Link</Link></TableCell>
-            <TableCell className='subLink'><Button variation="primary" onClick={handleButtonClick}> Open Submission</Button></TableCell>
+            <TableCell className='subLink'><Button variation="link" onClick={()=>{window.open(props.videoLink)}}> Video</Button></TableCell>
         </TableRow>
     );
 }
