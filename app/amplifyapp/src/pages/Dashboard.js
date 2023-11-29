@@ -61,7 +61,8 @@ export function Dashboard() {
       filteredSubmissions.map(async (note) => {
         if (note.Video.videoURL) {
           const url = await Storage.get(note.Video.videoURL);
-          note.image = url;
+          note.Video.videoName = note.Video.videoURL;
+          note.Video.videoURL = url;
         }
         return note;
       })
@@ -123,9 +124,9 @@ export function Dashboard() {
             <p>email: {note.User.email}</p>
             <h3>Video:</h3>
             <p>id: {note.Video.id}</p>
-            <p>videoName: {note.Video.videoURL}</p>
+            <p>videoName: {note.Video.videoName}</p>
             <video width="320" height="240" controls>
-              <source src={note.image} type="video/mp4"></source>
+              <source src={note.Video.videoURL} type="video/mp4"></source>
             </video>
           </div>
         ))}
