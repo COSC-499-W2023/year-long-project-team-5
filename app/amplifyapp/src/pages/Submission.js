@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
+import Popup from 'reactjs-popup';
 
 import {Amplify, Auth, API, Storage } from 'aws-amplify';
 
@@ -23,6 +24,8 @@ export function Submission(){
     useEffect(() => {
       fetchNotes();
     }, []);
+    const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
+
     async function fetchNotes() {
         const apiData = await API.graphql({ query: listNotes });
         const notesFromAPI = apiData.data.listNotes.items;
@@ -54,6 +57,8 @@ export function Submission(){
         });
         fetchNotes();
         event.target.reset();
+        setIsFormSubmitted(true); // Set the form submission state to true
+
       }
       const { tokens } = useTheme();
     return(
@@ -62,18 +67,18 @@ export function Submission(){
         <View as="form" margin="1rem 3rem" alignContent = "center" onSubmit={createNote} padding={tokens.space.medium}>
           <Card variation="elevated">
           <Flex direction="column" justifyContent = "center" textAlign = "left">
-          <TextField
+          {/*<TextField
               name="name"
               placeholder="Recipient name"
-              label="Name"
+              label="name"
               labelHidden
               variation="quiet"
               required
-            />
+    />*/}
             <TextField
-              name="email"
+              name="name"
               placeholder="Recipient email"
-              label="email"
+              label="name"
               labelHidden
               variation="quiet"
               required
@@ -86,21 +91,29 @@ export function Submission(){
               variation="quiet"
               required
             />
-            <TextField
+            {/*<TextField
               name="company"
               placeholder="Company name"
               label="company"
               labelHidden
               variation="quiet"
-              required
-            />
-            <Button type="submit" variation="primary">
-              Request Video
-            </Button>
+  />*/}
+           <Button type="submit" variation="primary">Request Video </Button>
             </Flex>
-
             </Card>
         </View>
+        
+         {/* Popup for successful form submission */}
+      <Popup open={isFormSubmitted} modal closeOnDocumentClick>
+        <View>
+          <Heading level={2}>Success!</Heading>
+          <p>Your form was successfully submitted.</p>
+          {/* You can add additional content or actions in the popup if needed */}
+          <Button onClick={() => setIsFormSubmitted(false)}>Close</Button>
+        </View>
+      </Popup>
+
+
         </View>
     )
 }
