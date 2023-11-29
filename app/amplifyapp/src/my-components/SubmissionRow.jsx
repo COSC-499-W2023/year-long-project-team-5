@@ -1,5 +1,5 @@
 import * as React from "react";
-import {TableRow,TableCell, Link,useTheme, Button, Flex, useAuthenticator} from "@aws-amplify/ui-react";
+import {TableRow,TableCell, Text, Link,useTheme, Button, Flex, useAuthenticator} from "@aws-amplify/ui-react";
 import {useNavigate} from 'react-router-dom';
 /**
  * SubmissionRow is intended to be the data row for each submission (to display info better on larger screens)
@@ -27,14 +27,13 @@ export const SubmissionRow = (props) => {
         // Navigate to the '/Submission' page when the button is clicked - should be different custom page!
         //navigate('/Submission');
     };
-
     return(
         <TableRow className='subRow'>
             <TableCell className = 'subID'> {props.id}</TableCell>
             <TableCell className = 'subEmail'> {props.email}</TableCell>
             <TableCell className = 'subDS'> {props.dateSent}</TableCell>
-            <TableCell className = 'subDR'> {props.dateReceived}</TableCell>
-            <TableCell className='subLink'><Button variation="link" onClick={()=>{window.open(props.videoLink)}}> Video</Button></TableCell>
+            <TableCell className = 'subDR'> {props.videoLink===null || props.dateReceived ==null ?  <Text variation='tertiary'>N/A</Text> : <Text>{props.dateReceived}</Text>}</TableCell>
+            <TableCell className='subLink'> {props.videoLink===null || props.dateReceived ==null ? <Text variation='warning'>No Submission</Text> : <Button variation="link" onClick={()=>{window.open(props.videoLink)}}> Video</Button>}</TableCell>
         </TableRow>
     );
 }
