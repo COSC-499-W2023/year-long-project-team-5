@@ -24,6 +24,7 @@ import { listNotes } from "../graphql/queries";
 import {
   createNote as createNoteMutation,
   deleteNote as deleteNoteMutation,
+  createVideo as createVideoMutation
 } from "../graphql/mutations";
 
 import { SubmissionCard } from "../my-components/SubmissionCard";
@@ -58,8 +59,8 @@ export function Dashboard() {
     });
     await Promise.all(
       filteredSubmissions.map(async (note) => {
-        if (note.image) {
-          const url = await Storage.get(note.name);
+        if (note.Video.videoURL) {
+          const url = await Storage.get(note.Video.videoURL);
           note.image = url;
         }
         return note;
@@ -72,15 +73,17 @@ export function Dashboard() {
   async function createNote(event) {
     event.preventDefault();
     const form = new FormData(event.target);
+    console.log(form)
     const image = form.get("image");
     const data = {
       name: form.get("name"),
       description: form.get("description"),
       image: image.name,
     };
+    console.log(data)
     if (!!data.image) await Storage.put(data.name, image);
     await API.graphql({
-      query: createNoteMutation,
+      query: createVideoMutation,
       variables: { input: data },
     });
     fetchNotes();
@@ -120,7 +123,10 @@ export function Dashboard() {
             <p>email: {note.User.email}</p>
             <h3>Video:</h3>
             <p>id: {note.Video.id}</p>
-            <p>videoURL: {note.Video.videoURL}</p>
+            <p>videoName: {note.Video.videoURL}</p>
+            <video width="320" height="240" controls>
+              <source src={note.image} type="video/mp4"></source>
+            </video>
           </div>
         ))}
       </View>
