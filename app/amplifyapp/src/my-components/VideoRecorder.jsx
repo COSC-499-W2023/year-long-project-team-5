@@ -1,6 +1,9 @@
 import React, { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
 
+import {Amplify, Auth, API, Storage } from 'aws-amplify';
+
+
 export default function WebcamVideo() {
   const webcamRef = useRef(null);
   const mediaRecorderRef = useRef(null);
@@ -50,6 +53,28 @@ export default function WebcamVideo() {
     }
   }, [recordedChunks]);
 
+
+  const handleUpload= useCallback(() => {
+    if (recordedChunks.length) {
+      const blob = new Blob(recordedChunks, {
+        type: "video/webm",
+      });
+
+      const randNum = parseInt(Math.random() * 10000000);
+      const name = "video" + randNum + ".webm";
+      console.log(randNum)
+      const data = {
+        name: name,
+        description: "NO DESC",
+        video: blob,
+      };
+
+      Storage.put(data.name, data.video);
+
+      setRecordedChunks([]);
+    }
+  }, [recordedChunks]);
+
   const videoConstraints = {
     width: 420,
     height: 420,
@@ -76,7 +101,7 @@ export default function WebcamVideo() {
             <button onClick={handleDownload}>Download</button>
         )}
         {recordedChunks.length > 0 && (
-            <button onClick={handleDownload}>Upload</button>
+            <button onClick={handleUpload}>Upload</button>
         )}
       </div>
     </div>
