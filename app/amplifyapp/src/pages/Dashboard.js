@@ -40,7 +40,8 @@ import awsconfig from '../aws-exports';
  */
 
 export function Dashboard() {
-  const { route } = useAuthenticator((context) => [context.route]);
+  const { user, route } = useAuthenticator((context) => [context.user, context.route]);
+  console.log(Auth.user.username)
   const [notes, setNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([])
   useEffect(() => {
@@ -48,12 +49,15 @@ export function Dashboard() {
   }, []);
   async function fetchNotes() {
     const apiData = await API.graphql({ query: listSubmissions });
-    const apiData2 = await API.graphql({ query: listNotes });
-    console.log(apiData2)
-    console.log(apiData)
-    const notesFromAPI = apiData.data.listSubmissions.items;
+    const submissions = apiData.data.listSubmissions.items;
+    const filteredSubmissions = submissions.filter((submission) => {
+      // filter admin submissions
+      console.log("Filtered submissions")
+      const condition = submission.adminId === Auth.user.username;
+      return condition;
+    });
     await Promise.all(
-      notesFromAPI.map(async (note) => {
+      filteredSubmissions.map(async (note) => {
         if (note.image) {
           const url = await Storage.get(note.name);
           note.image = url;
@@ -61,8 +65,8 @@ export function Dashboard() {
         return note;
       })
     );
-    setNotes(notesFromAPI);
-    setFilteredNotes(notesFromAPI);
+    setNotes(filteredSubmissions);
+    setFilteredNotes(filteredSubmissions);
   }
 
   async function createNote(event) {
@@ -108,7 +112,7 @@ export function Dashboard() {
         {filteredNotes.map((note) => (
           <div key={note.id}>
             <h3>Requesting Admin:</h3>
-            <p>{note.adminId}</p>
+            <p>{user.attributes.name}</p>
             <h3>Note:</h3>
             <p>{note.note}</p>
             <h3>User:</h3>
