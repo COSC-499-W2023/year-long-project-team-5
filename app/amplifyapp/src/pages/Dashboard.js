@@ -51,6 +51,7 @@ export function Dashboard() {
   async function fetchNotes() {
     const apiData = await API.graphql({ query: listSubmissions });
     const submissions = apiData.data.listSubmissions.items;
+    const filteredSubmissions = submissions;
 
     /*
     const filteredSubmissions = submissions.filter((submission) => {
