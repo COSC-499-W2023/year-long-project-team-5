@@ -53,7 +53,6 @@ export function Dashboard() {
     const apiData = await API.graphql({ query: listSubmissions });
     const submissions = apiData.data.listSubmissions.items;
     const filteredSubmissions = submissions;
-
     /*
     const filteredSubmissions = submissions.filter((submission) => {
       // filter admin submissions
@@ -119,7 +118,7 @@ export function Dashboard() {
       <Heading level={2}>Video Log</Heading>
       <SearchField padding={tokens.space.large} onChange={(e) => filterNotes(e.target.value)} />
       <View padding={tokens.space.large}>
-        <SubmissionTable rowsToDisplay = {filteredNotes.map((note) => (<SubmissionRow id={note.id} email={note.User.email} dateSent = {note.Video.createdAt} dateReceived = {null} videoLink = {note.Video.videoURL}/>))} />
+        <SubmissionTable rowsToDisplay = {filteredNotes.map((submission) => (<SubmissionRow id={submission.id} email={submission.User.email} description = {submission.note} dateSent = {submission.Video.createdAt} dateReceived = {submission.submittedAt} videoLink = {submission.Video.videoURL}/>))} />
       </View>
     </View>
   )
