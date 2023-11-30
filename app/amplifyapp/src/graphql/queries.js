@@ -49,6 +49,7 @@ export const listSubmissions = /* GraphQL */ `
         Video {
           id
           videoURL
+          createdAt
         }
         User {
           id
