@@ -14,6 +14,7 @@ import {
   import { listNotes } from "../graphql/queries";
 import {
   createNote as createNoteMutation,
+  createVideo as createVideoMutation
 } from "../graphql/mutations";
 
 /**
@@ -49,13 +50,12 @@ export function Submission(){
         const form = new FormData(event.target);
         const image = form.get("image");
         const data = {
-          name: form.get("name"),
-          description: form.get("description"),
-          image: image.name,
+          videoURL: image.name,
         };
-        if (!!data.image) await Storage.put(data.name, image);
+        console.log(data)
+        if (!!data.image) await Storage.put(image.name, image);
         await API.graphql({
-          query: createNoteMutation,
+          query: createVideoMutation,
           variables: { input: data },
         });
         fetchNotes();
@@ -82,6 +82,7 @@ export function Submission(){
               variation="quiet"
               required
             />
+            <input type="file" name="image" id="image"></input>
             <Button type="submit" variation="primary">
               Request Video
             </Button>
