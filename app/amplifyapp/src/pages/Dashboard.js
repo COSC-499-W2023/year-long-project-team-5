@@ -51,12 +51,16 @@ export function Dashboard() {
   async function fetchNotes() {
     const apiData = await API.graphql({ query: listSubmissions });
     const submissions = apiData.data.listSubmissions.items;
+
+    /*
     const filteredSubmissions = submissions.filter((submission) => {
       // filter admin submissions
       console.log("Filtered submissions")
       const condition = submission.adminId === Auth.user.username;
       return condition;
     });
+    */
+    // uncomment when we implement submissions
     await Promise.all(
       filteredSubmissions.map(async (note) => {
         if (note.Video.videoURL) {
