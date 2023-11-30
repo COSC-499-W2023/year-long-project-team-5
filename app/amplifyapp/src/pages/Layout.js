@@ -27,7 +27,7 @@ export function Layout(){
                     <Button onClick={() => navigate('/Login')}> Login</Button>
                 ):
                     <Flex direction='row' alignItems='center'>
-                        <Text>Hello, {user.attributes.name}!</Text>
+                        <AmplifyLink onClick={()=> navigate('/Profile')}>Hello, {user.attributes.name}!</AmplifyLink>
                         <Button onClick={() => logOut()}> Sign Out</Button>
                     </Flex>
                 }

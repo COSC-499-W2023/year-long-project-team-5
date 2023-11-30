@@ -67,14 +67,14 @@ export function Submission(){
         <View as="form" margin="1rem 3rem" alignContent = "center" onSubmit={createNote} padding={tokens.space.medium}>
           <Card variation="elevated">
           <Flex direction="column" justifyContent = "center" textAlign = "left">
-          {/*<TextField
+          {<TextField
               name="name"
               placeholder="Recipient name"
               label="name"
               labelHidden
               variation="quiet"
               required
-    />*/}
+          />}
             <TextField
               name="name"
               placeholder="Recipient email"
@@ -91,13 +91,13 @@ export function Submission(){
               variation="quiet"
               required
             />
-            {/*<TextField
+            {<TextField
               name="company"
               placeholder="Company name"
               label="company"
               labelHidden
               variation="quiet"
-  />*/}
+  />}
            <Button type="submit" variation="primary">Request Video </Button>
             </Flex>
             </Card>
@@ -112,8 +112,6 @@ export function Submission(){
           <Button onClick={() => setIsFormSubmitted(false)}>Close</Button>
         </View>
       </Popup>
-
-
-        </View>
+    </View>
     )
 }
