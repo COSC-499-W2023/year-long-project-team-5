@@ -29,6 +29,7 @@ import {
 
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
+import {SubmissionTable} from '../my-components/SubmissionTable'
 
 import awsconfig from '../aws-exports';
 
@@ -117,24 +118,8 @@ export function Dashboard() {
     <View className="App">
       <Heading level={2}>Video Log</Heading>
       <SearchField padding={tokens.space.large} onChange={(e) => filterNotes(e.target.value)} />
-      <View>
-        {filteredNotes.map((note) => (
-          <div key={note.id}>
-            <h3>Requesting Admin:</h3>
-            <p>{user.attributes.name}</p>
-            <h3>Note:</h3>
-            <p>{note.note}</p>
-            <h3>User:</h3>
-            <p>id: {note.User.id}</p>
-            <p>email: {note.User.email}</p>
-            <h3>Video:</h3>
-            <p>id: {note.Video.id}</p>
-            <p>videoName: {note.Video.videoName}</p>
-            <video width="320" height="240" controls>
-              <source src={note.Video.videoURL} type="video/mp4"></source>
-            </video>
-          </div>
-        ))}
+      <View padding={tokens.space.large}>
+        <SubmissionTable rowsToDisplay = {filteredNotes.map((note) => (<SubmissionRow id={note.id} email={note.User.email} dateSent = {note.Video.createdAt} dateReceived = {null} videoLink = {note.Video.videoURL}/>))} />
       </View>
     </View>
   )
