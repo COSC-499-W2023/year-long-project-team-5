@@ -58,7 +58,7 @@ export const listSubmissions = /* GraphQL */ `
           updatedAt
         }
         note
-        submitedAt
+        submittedAt
         __typename
       }
       nextToken
