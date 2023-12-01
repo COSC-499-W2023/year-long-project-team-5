@@ -29,6 +29,7 @@ import {
 
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
+import {SubmissionTable} from '../my-components/SubmissionTable'
 
 import awsconfig from '../aws-exports';
 
@@ -39,24 +40,41 @@ import awsconfig from '../aws-exports';
  * @example
  * <Dashboard></Dashboard>
  */
-
 export function Dashboard() {
   const { user, route } = useAuthenticator((context) => [context.user, context.route]);
   console.log(Auth.user.username)
   const [notes, setNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([])
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
+
+
+  //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1000);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  //this useEffect is used to fetch submissions data from the database: calls fetchNotes() which is below..
   useEffect(() => {
     fetchNotes();
   }, []);
   async function fetchNotes() {
     const apiData = await API.graphql({ query: listSubmissions });
     const submissions = apiData.data.listSubmissions.items;
+    const filteredSubmissions = submissions;
+    /*
     const filteredSubmissions = submissions.filter((submission) => {
       // filter admin submissions
       console.log("Filtered submissions")
       const condition = submission.adminId === Auth.user.username;
       return condition;
     });
+    */
+    // uncomment when we implement submissions
     await Promise.all(
       filteredSubmissions.map(async (note) => {
         if (note.Video.videoURL) {
@@ -112,24 +130,31 @@ export function Dashboard() {
     <View className="App">
       <Heading level={2}>Video Log</Heading>
       <SearchField padding={tokens.space.large} onChange={(e) => filterNotes(e.target.value)} />
-      <View>
-        {filteredNotes.map((note) => (
-          <div key={note.id}>
-            <h3>Requesting Admin:</h3>
-            <p>{user.attributes.name}</p>
-            <h3>Note:</h3>
-            <p>{note.note}</p>
-            <h3>User:</h3>
-            <p>id: {note.User.id}</p>
-            <p>email: {note.User.email}</p>
-            <h3>Video:</h3>
-            <p>id: {note.Video.id}</p>
-            <p>videoName: {note.Video.videoName}</p>
-            <video width="320" height="240" controls>
-              <source src={note.Video.videoURL} type="video/mp4"></source>
-            </video>
-          </div>
-        ))}
+      <View padding={tokens.space.large}>
+        {/* this line is a conditional JSX expression, renders SubmissionTable if it's not mobile and SubmissionCard if it's mobile */}
+        {!isMobile ? (
+          <SubmissionTable
+            rowsToDisplay={filteredNotes.map((submission) => (
+              <SubmissionRow
+                id={submission.id}
+                email={submission.User.email}
+                description={submission.note}
+                dateSent={submission.Video.createdAt}
+                dateReceived={submission.submittedAt}
+                videoLink={submission.Video.videoURL}
+              />
+            ))}
+          />
+        ) : (
+          filteredNotes.map((submission) => (
+            <SubmissionCard
+              margin="1rem"
+              id={submission.id}
+              description={submission.note}
+              image={submission.Video.videoURL}
+            />
+          ))
+        )}
       </View>
     </View>
   )

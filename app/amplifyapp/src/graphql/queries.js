@@ -49,6 +49,7 @@ export const listSubmissions = /* GraphQL */ `
         Video {
           id
           videoURL
+          createdAt
         }
         User {
           id
@@ -57,7 +58,7 @@ export const listSubmissions = /* GraphQL */ `
           updatedAt
         }
         note
-        submitedAt
+        submittedAt
         __typename
       }
       nextToken

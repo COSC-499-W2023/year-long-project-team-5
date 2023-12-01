@@ -24,19 +24,19 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type SubmissionUpdateFormInputValues = {
     adminId?: string;
     note?: string;
-    submitedAt?: string;
+    submittedAt?: string;
 };
 export declare type SubmissionUpdateFormValidationValues = {
     adminId?: ValidationFunction<string>;
     note?: ValidationFunction<string>;
-    submitedAt?: ValidationFunction<string>;
+    submittedAt?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type SubmissionUpdateFormOverridesProps = {
     SubmissionUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     adminId?: PrimitiveOverrideProps<TextFieldProps>;
     note?: PrimitiveOverrideProps<TextFieldProps>;
-    submitedAt?: PrimitiveOverrideProps<TextFieldProps>;
+    submittedAt?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type SubmissionUpdateFormProps = React.PropsWithChildren<{
     overrides?: SubmissionUpdateFormOverridesProps | undefined | null;

@@ -52,7 +52,6 @@ export function Submission(){
         const data = {
           videoURL: image.name,
         };
-        console.log(data)
         if (!!data.image) await Storage.put(image.name, image);
         await API.graphql({
           query: createVideoMutation,

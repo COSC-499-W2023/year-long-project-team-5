@@ -26,11 +26,13 @@ export default function SubmissionUpdateForm(props) {
   const initialValues = {
     adminId: "",
     note: "",
-    submitedAt: "",
+    submittedAt: "",
   };
   const [adminId, setAdminId] = React.useState(initialValues.adminId);
   const [note, setNote] = React.useState(initialValues.note);
-  const [submitedAt, setSubmitedAt] = React.useState(initialValues.submitedAt);
+  const [submittedAt, setSubmittedAt] = React.useState(
+    initialValues.submittedAt
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = submissionRecord
@@ -38,7 +40,7 @@ export default function SubmissionUpdateForm(props) {
       : initialValues;
     setAdminId(cleanValues.adminId);
     setNote(cleanValues.note);
-    setSubmitedAt(cleanValues.submitedAt);
+    setSubmittedAt(cleanValues.submittedAt);
     setErrors({});
   };
   const [submissionRecord, setSubmissionRecord] =
@@ -61,7 +63,7 @@ export default function SubmissionUpdateForm(props) {
   const validations = {
     adminId: [],
     note: [],
-    submitedAt: [],
+    submittedAt: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -108,7 +110,7 @@ export default function SubmissionUpdateForm(props) {
         let modelFields = {
           adminId: adminId ?? null,
           note: note ?? null,
-          submitedAt: submitedAt ?? null,
+          submittedAt: submittedAt ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -171,7 +173,7 @@ export default function SubmissionUpdateForm(props) {
             const modelFields = {
               adminId: value,
               note,
-              submitedAt,
+              submittedAt,
             };
             const result = onChange(modelFields);
             value = result?.adminId ?? value;
@@ -197,7 +199,7 @@ export default function SubmissionUpdateForm(props) {
             const modelFields = {
               adminId,
               note: value,
-              submitedAt,
+              submittedAt,
             };
             const result = onChange(modelFields);
             value = result?.note ?? value;
@@ -213,11 +215,11 @@ export default function SubmissionUpdateForm(props) {
         {...getOverrideProps(overrides, "note")}
       ></TextField>
       <TextField
-        label="Submited at"
+        label="Submitted at"
         isRequired={false}
         isReadOnly={false}
         type="datetime-local"
-        value={submitedAt && convertToLocal(new Date(submitedAt))}
+        value={submittedAt && convertToLocal(new Date(submittedAt))}
         onChange={(e) => {
           let value =
             e.target.value === "" ? "" : new Date(e.target.value).toISOString();
@@ -225,20 +227,20 @@ export default function SubmissionUpdateForm(props) {
             const modelFields = {
               adminId,
               note,
-              submitedAt: value,
+              submittedAt: value,
             };
             const result = onChange(modelFields);
-            value = result?.submitedAt ?? value;
+            value = result?.submittedAt ?? value;
           }
-          if (errors.submitedAt?.hasError) {
-            runValidationTasks("submitedAt", value);
+          if (errors.submittedAt?.hasError) {
+            runValidationTasks("submittedAt", value);
           }
-          setSubmitedAt(value);
+          setSubmittedAt(value);
         }}
-        onBlur={() => runValidationTasks("submitedAt", submitedAt)}
-        errorMessage={errors.submitedAt?.errorMessage}
-        hasError={errors.submitedAt?.hasError}
-        {...getOverrideProps(overrides, "submitedAt")}
+        onBlur={() => runValidationTasks("submittedAt", submittedAt)}
+        errorMessage={errors.submittedAt?.errorMessage}
+        hasError={errors.submittedAt?.hasError}
+        {...getOverrideProps(overrides, "submittedAt")}
       ></TextField>
       <Flex
         justifyContent="space-between"

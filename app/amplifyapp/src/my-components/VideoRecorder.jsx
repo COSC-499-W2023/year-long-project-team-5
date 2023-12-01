@@ -3,6 +3,9 @@ import Webcam from "react-webcam";
 
 import {Amplify, Auth, API, Storage } from 'aws-amplify';
 
+import {
+  createVideo as createVideoMutation
+} from "../graphql/mutations";
 
 export default function WebcamVideo() {
   const webcamRef = useRef(null);
@@ -54,7 +57,7 @@ export default function WebcamVideo() {
   }, [recordedChunks]);
 
 
-  const handleUpload= useCallback(() => {
+  const handleUpload= useCallback(async () => {
     if (recordedChunks.length) {
       const blob = new Blob(recordedChunks, {
         type: "video/webm",
@@ -66,16 +69,19 @@ export default function WebcamVideo() {
       const data = {
         videoURL: name, // name is the key (not the url) for the s3 bucket, get video URL with Storage.get(name)
       };
-
-      Storage.put(data.name, data.video);
-
+      
+      await Storage.put(name, blob); // store video in s3 bucket under the key
+      await API.graphql({ //store the key for the video in DynamoDB
+        query: createVideoMutation,
+        variables: { input: data },
+      });
       setRecordedChunks([]);
     }
   }, [recordedChunks]);
 
   const videoConstraints = {
-    width: 420,
-    height: 420,
+    width: 5,
+    height: 5,
     facingMode: "user",
   };
 
