@@ -64,6 +64,7 @@ export function Dashboard() {
   }, []);
   async function fetchNotes() {
     const apiData = await API.graphql({ query: listSubmissions });
+    console.log(apiData)
     const submissions = apiData.data.listSubmissions.items;
     const filteredSubmissions = submissions;
     /*
@@ -77,7 +78,7 @@ export function Dashboard() {
     // uncomment when we implement submissions
     await Promise.all(
       filteredSubmissions.map(async (note) => {
-        if (note.Video.videoURL) {
+        if (note.Video && note.Video.videoURL) {
           const url = await Storage.get(note.Video.videoURL);
           note.Video.videoName = note.Video.videoURL;
           note.Video.videoURL = url;

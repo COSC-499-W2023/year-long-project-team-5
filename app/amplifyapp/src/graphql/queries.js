@@ -39,8 +39,23 @@ export const listSubmissions = /* GraphQL */ `
   ) {
     listSubmissions(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        id
+          id
         adminId
+        Video {
+          id
+          videoURL
+          createdAt
+          updatedAt
+          __typename
+        }
+        User {
+          id
+          email
+          name
+          createdAt
+          updatedAt
+          __typename
+        }
         note
         submittedAt
         createdAt
@@ -48,7 +63,7 @@ export const listSubmissions = /* GraphQL */ `
         submissionVideoId
         submissionUserId
         __typename
-      }
+        }
       nextToken
       __typename
     }

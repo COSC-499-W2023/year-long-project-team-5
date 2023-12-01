@@ -13,9 +13,9 @@ import {
   } from '@aws-amplify/ui-react';
   import { listNotes } from "../graphql/queries";
 import {
-  createNote as createNoteMutation,
   createVideo as createVideoMutation,
-  createUser as createUserMutation
+  createUser as createUserMutation,
+  createSubmission as createSubmissionMutation
 } from "../graphql/mutations";
 
 /**
@@ -62,29 +62,29 @@ export function Submission(){
         event.target.reset();
       }
 
-      async function createUser(event) {
-        event.preventDefault();
-        const form = new FormData(event.target);
+      async function createUser(email,name) {
         const data = {
-          email: form.get("email"),
-          name: form.get("name"),
+          email: email,
+          name: name
         };
-        await API.graphql({
+        return await API.graphql({
           query: createUserMutation,
           variables: { input: data },
         });
-        event.target.reset();
       }
 
       async function createSubmission(event){
         event.preventDefault();
         const form = new FormData(event.target);
+        let user = await createUser(form.get("email"),form.get("name"));
+        let userId = user.data.createUser.id
         const data = {
+          adminId: "testadminID",
           note: form.get("note"),
-          description: form.get("description"),
+          submissionUserId: userId
         };
         await API.graphql({
-          query: createNoteMutation,
+          query: createSubmissionMutation,
           variables: { input: data },
         });
         fetchNotes();
@@ -93,7 +93,7 @@ export function Submission(){
     return(
         <View className="App">
         <Heading level={1}>Request a video</Heading>
-        <View as="form" margin="3rem 0" onSubmit={createNote}>
+        <View as="form" margin="3rem 0" onSubmit={createSubmission}>
           <Flex direction="row" justifyContent="center">
             <TextField
               name="email"
