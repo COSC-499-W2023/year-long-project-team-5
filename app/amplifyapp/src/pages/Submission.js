@@ -14,7 +14,8 @@ import {
   import { listNotes } from "../graphql/queries";
 import {
   createNote as createNoteMutation,
-  createVideo as createVideoMutation
+  createVideo as createVideoMutation,
+  createUser as createUserMutation
 } from "../graphql/mutations";
 
 /**
@@ -60,6 +61,35 @@ export function Submission(){
         fetchNotes();
         event.target.reset();
       }
+
+      async function createUser(event) {
+        event.preventDefault();
+        const form = new FormData(event.target);
+        const data = {
+          email: form.get("email"),
+          name: form.get("name"),
+        };
+        await API.graphql({
+          query: createUserMutation,
+          variables: { input: data },
+        });
+        event.target.reset();
+      }
+
+      async function createSubmission(event){
+        event.preventDefault();
+        const form = new FormData(event.target);
+        const data = {
+          note: form.get("note"),
+          description: form.get("description"),
+        };
+        await API.graphql({
+          query: createNoteMutation,
+          variables: { input: data },
+        });
+        fetchNotes();
+        event.target.reset();
+      }
     return(
         <View className="App">
         <Heading level={1}>Request a video</Heading>
@@ -82,7 +112,7 @@ export function Submission(){
               required
             />
             <TextField
-              name="description"
+              name="note"
               placeholder="Instructions/notes"
               label="Note Description"
               labelHidden
