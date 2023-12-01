@@ -40,12 +40,25 @@ import awsconfig from '../aws-exports';
  * @example
  * <Dashboard></Dashboard>
  */
-
 export function Dashboard() {
   const { user, route } = useAuthenticator((context) => [context.user, context.route]);
   console.log(Auth.user.username)
   const [notes, setNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([])
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
+
+
+  //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1000);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  //this useEffect is used to fetch submissions data from the database: calls fetchNotes() which is below..
   useEffect(() => {
     fetchNotes();
   }, []);
@@ -118,7 +131,30 @@ export function Dashboard() {
       <Heading level={2}>Video Log</Heading>
       <SearchField padding={tokens.space.large} onChange={(e) => filterNotes(e.target.value)} />
       <View padding={tokens.space.large}>
-        <SubmissionTable rowsToDisplay = {filteredNotes.map((submission) => (<SubmissionRow id={submission.id} email={submission.User.email} description = {submission.note} dateSent = {submission.Video.createdAt} dateReceived = {submission.submittedAt} videoLink = {submission.Video.videoURL}/>))} />
+        {/* this line is a conditional JSX expression, renders SubmissionTable if it's not mobile and SubmissionCard if it's mobile */}
+        {!isMobile ? (
+          <SubmissionTable
+            rowsToDisplay={filteredNotes.map((submission) => (
+              <SubmissionRow
+                id={submission.id}
+                email={submission.User.email}
+                description={submission.note}
+                dateSent={submission.Video.createdAt}
+                dateReceived={submission.submittedAt}
+                videoLink={submission.Video.videoURL}
+              />
+            ))}
+          />
+        ) : (
+          filteredNotes.map((submission) => (
+            <SubmissionCard
+              margin="1rem"
+              id={submission.id}
+              description={submission.note}
+              image={submission.Video.videoURL}
+            />
+          ))
+        )}
       </View>
     </View>
   )
