@@ -64,7 +64,6 @@ export function Dashboard() {
   }, []);
   async function fetchNotes() {
     const apiData = await API.graphql({ query: listSubmissions });
-    console.log(apiData)
     const submissions = apiData.data.listSubmissions.items;
     const filteredSubmissions = submissions;
     /*
@@ -140,9 +139,9 @@ export function Dashboard() {
                 id={submission.id}
                 email={submission.User.email}
                 description={submission.note}
-                dateSent={submission.Video.createdAt}
+                dateSent={submission.createdAt}
                 dateReceived={submission.submittedAt}
-                videoLink={submission.Video.videoURL}
+                videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
               />
             ))}
           />
@@ -152,7 +151,7 @@ export function Dashboard() {
               margin="1rem"
               id={submission.id}
               description={submission.note}
-              image={submission.Video.videoURL}
+              image={submission.Video ? submission.Video.videoURL : "N/A"}
             />
           ))
         )}
