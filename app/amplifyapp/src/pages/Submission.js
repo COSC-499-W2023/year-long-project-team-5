@@ -66,9 +66,17 @@ export function Submission(){
         <View as="form" margin="3rem 0" onSubmit={createNote}>
           <Flex direction="row" justifyContent="center">
             <TextField
-              name="name"
+              name="email"
               placeholder="Recipient email"
               label="Note Name"
+              labelHidden
+              variation="quiet"
+              required
+            />
+            <TextField
+              name="name"
+              placeholder="Full name of recipient"
+              label="Full Name"
               labelHidden
               variation="quiet"
               required
@@ -81,7 +89,6 @@ export function Submission(){
               variation="quiet"
               required
             />
-            <input type="file" name="image" id="image"></input>
             <Button type="submit" variation="primary">
               Request Video
             </Button>
