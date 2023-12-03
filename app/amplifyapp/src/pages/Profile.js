@@ -27,9 +27,9 @@ export function Profile(){
     return(
         <View className="App">
         <Heading level={1}>Welcome, {user.attributes.name}!</Heading>
-        <Flex direction = 'row' width = '100%'>
-        <View as="form" margin="1rem 3rem" alignContent = "center" padding={tokens.space.medium} width = '45%'>
-        <Heading textAlign = 'left' level={4}>Edit Profile</Heading>
+ <Flex direction = 'column' width = '100%' justifyContent='space-evenly' alignItems='center' marginTop = '2rem' rowGap='2.5rem'>
+        <View as="form" minWidth ='80%'>
+        <Heading textAlign = 'left' marginBottom='1rem' level={4}>Edit Profile</Heading>
           <Card variation="elevated">
           <Flex direction="column" justifyContent = "center" textAlign = "left">
           {<TextField
@@ -57,8 +57,8 @@ export function Profile(){
             </Flex>
             </Card>
         </View>
-        <View as="form" margin="1rem 3rem" alignContent = "center" padding={tokens.space.medium} width = '45%'>
-        <Heading textAlign = 'left' level={4}>Change password</Heading>
+        <View as="form" minWidth ='80%'>
+        <Heading textAlign = 'left' marginBottom='1rem' level={4}>Change password</Heading>
           <Card variation="elevated">
           <Flex direction="column" justifyContent = "center" textAlign = "left">
           {<TextField

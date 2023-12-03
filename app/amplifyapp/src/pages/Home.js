@@ -23,7 +23,7 @@ import {
 				padding={tokens.space.medium}
 			>
 				<Card width = '20rem' height = '12rem'>
-					<Flex direction="column" alignItems="flex-start">
+<Flex direction="column" alignItems="flex-start"  textAlign="left">
 						<Heading level={5}>
 							User-friendly
 						</Heading>
@@ -39,7 +39,7 @@ import {
 				padding={tokens.space.medium}
 			>
 				<Card width = '20rem' height = '12rem'>
-					<Flex direction="column" alignItems="flex-start">
+<Flex direction="column" alignItems="flex-start"  textAlign="left">
 						<Heading level={5}>
 							Asynchronous communication
 						</Heading>
@@ -54,7 +54,7 @@ import {
 				backgroundColor= {tokens.colors.blue[20]}
 				padding={tokens.space.medium}
 			>
-				<Card width = '20rem' height = '10rem'>
+<Card width = '20rem' height = '12rem'/>
 				<Flex direction="column" alignItems="flex-start">
 					<Heading level={5}>
 						Open Source
