@@ -91,13 +91,13 @@ export function Submission(){
               variation="quiet"
               required
             />
-            {<TextField
+            {/*<TextField
               name="company"
               placeholder="Company name"
               label="company"
               labelHidden
               variation="quiet"
-  />}
+          />*/}
            <Button type="submit" variation="primary">Request Video </Button>
             </Flex>
             </Card>

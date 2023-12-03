@@ -4,7 +4,6 @@ import "@aws-amplify/ui-react/styles.css";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Authenticator, useAuthenticator} from "@aws-amplify/ui-react"
 
-
 import {Amplify, Auth, API, Storage } from 'aws-amplify';
 
 import {
@@ -16,7 +15,6 @@ import {
     Card, 
     useTheme
   } from '@aws-amplify/ui-react';
-  import { listNotes } from "../graphql/queries";
 
 export function Profile(){
     const { tokens } = useTheme();
@@ -29,7 +27,8 @@ export function Profile(){
     return(
         <View className="App">
         <Heading level={1}>Welcome, {user.attributes.name}!</Heading>
-        <View as="form" margin="1rem 3rem" alignContent = "center" padding={tokens.space.medium}>
+        <Flex direction = 'row' width = '100%'>
+        <View as="form" margin="1rem 3rem" alignContent = "center" padding={tokens.space.medium} width = '45%'>
         <Heading textAlign = 'left' level={4}>Edit Profile</Heading>
           <Card variation="elevated">
           <Flex direction="column" justifyContent = "center" textAlign = "left">
@@ -58,31 +57,25 @@ export function Profile(){
             </Flex>
             </Card>
         </View>
-        <View as="form" margin="1rem 3rem" alignContent = "center" padding={tokens.space.medium}>
+        <View as="form" margin="1rem 3rem" alignContent = "center" padding={tokens.space.medium} width = '45%'>
         <Heading textAlign = 'left' level={4}>Change password</Heading>
           <Card variation="elevated">
           <Flex direction="column" justifyContent = "center" textAlign = "left">
           {<TextField
               name="currPassword"
-              placeholder="Current password"
-              label="currPassword"
-              labelHidden
+              label="Enter your current password"
               variation="default"
               required
           />}
             <TextField
               name="newPass1"
-              placeholder="New password"
-              label="newPass1"
-              labelHidden
+              label="Enter your new password"
               variation="default"
               required
             />
             {<TextField
               name="newPass2"
-              placeholder="Confirm your new password"
-              label="newPass2"
-              labelHidden
+              label="Confirm your new password"
               variation="default"
               required
             />}
@@ -90,6 +83,7 @@ export function Profile(){
             </Flex>
             </Card>
         </View>
+        </Flex>
     </View>
     )
 }
