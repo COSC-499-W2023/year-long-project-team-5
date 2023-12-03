@@ -215,6 +215,7 @@
 - Design Video
 
 ## Status of work for the week
+- Designing more specs for automated testing (In-Progress)
 - Design Document (Complete)
 - Video Demo (Complete)
 
