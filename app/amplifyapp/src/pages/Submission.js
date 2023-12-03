@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
-import Popup from 'reactjs-popup';
 
 import {Amplify, Auth, API, Storage } from 'aws-amplify';
 
@@ -102,16 +101,16 @@ export function Submission(){
             </Flex>
             </Card>
         </View>
-        
-         {/* Popup for successful form submission */}
+       {/* Will enable popup once submission code is finalized
       <Popup open={isFormSubmitted} modal closeOnDocumentClick>
         <View>
           <Heading level={2}>Success!</Heading>
           <p>Your form was successfully submitted.</p>
-          {/* You can add additional content or actions in the popup if needed */}
           <Button onClick={() => setIsFormSubmitted(false)}>Close</Button>
         </View>
       </Popup>
+    */} 
     </View>
+
     )
 }
