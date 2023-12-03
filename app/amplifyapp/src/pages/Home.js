@@ -1,5 +1,3 @@
-import { Rating } from '@aws-amplify/ui-react';
-
 import {
 	Card,
 	Image,
@@ -62,7 +60,7 @@ import {
 						Open Source
 					</Heading>
 						<Text as="span">
-						This software is open source and developed using AWS services such as Amplify, Cognito Rekognition.
+						This software is open source and developed using AWS services such as Amplify, Cognito, and Rekognition.
 						</Text>
 					</Flex>
 				</Card>

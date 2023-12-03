@@ -136,7 +136,7 @@
 
 ---
 
-# Weekly Personal Log Week 9 (November 6 - November 12) 
+# Weekly Personal Log Week 10 (November 6 - November 12) 
 
 ## Screenshot from peer eval
 ![Capture2](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/03210a55-8487-4f61-a5ed-c9fcc662c219)
@@ -163,6 +163,36 @@
 - [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/48] - Resolve signin bug with local and prod drift (complete)
 - [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/11] - Issues for project board (complete)
 - [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/30] - Set up regression testing (in progress)
+
+## Other notes
+- N/A
+
+---
+
+# Weekly Personal Log Week 11 & 12 (November 13 - November 26) 
+
+## Screenshot from peer eval
+<img width="1056" alt="Screenshot 2023-11-26 at 3 29 23 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/49a8da6e-e7be-4c64-b089-cb97f608e3ee">
+
+
+## Non-feature work
+- Met on Nov 20, Nov 21 for meetings
+- Started work on design document & video
+
+## All of my features for **this milestone**
+- Finished implementing new regression testing framework (cypress)
+- Worked on writing testings for new testing framework
+- Design Document
+
+## Status of work for the week
+- Setting up regression testing (Complete)
+- Design Document (in-progress)
+- Video Demo (in-progress)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/30] - Regression Testing Setup (complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/53] - ER Diagram (DD) (in-progress)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/55] - Demo Video (DD) (in-progress)
   
 ## Other notes
 - N/A

@@ -26,8 +26,17 @@ import {
 } from "../graphql/mutations";
 
 import { SubmissionCard } from "../my-components/SubmissionCard";
+import { SubmissionRow } from "../my-components/SubmissionRow";
 
 import awsconfig from '../aws-exports';
+
+/**
+ * dashboard TODO: finish docs
+ * @param {Object} props - prop1 name
+ * @returns JSX.Element
+ * @example
+ * <Dashboard></Dashboard>
+ */
 
 export function Dashboard(){
   const {route} = useAuthenticator((context) => [context.route]);
