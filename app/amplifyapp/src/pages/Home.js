@@ -54,7 +54,7 @@ import {
 				backgroundColor= {tokens.colors.blue[20]}
 				padding={tokens.space.medium}
 			>
-<Card width = '20rem' height = '12rem'/>
+				<Card width = '20rem' height = '12rem'>
 				<Flex direction="column" alignItems="flex-start">
 					<Heading level={5}>
 						Open Source
