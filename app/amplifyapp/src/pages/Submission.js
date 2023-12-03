@@ -67,14 +67,14 @@ export function Submission(){
         <View as="form" margin="1rem 3rem" alignContent = "center" onSubmit={createNote} padding={tokens.space.medium}>
           <Card variation="elevated">
           <Flex direction="column" justifyContent = "center" textAlign = "left">
-          {<TextField
+          {/*<TextField
               name="name"
               placeholder="Recipient name"
               label="name"
               labelHidden
               variation="quiet"
               required
-          />}
+    />*/}
             <TextField
               name="name"
               placeholder="Recipient email"
