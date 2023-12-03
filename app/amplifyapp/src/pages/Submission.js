@@ -3,7 +3,7 @@ import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
 import {Amplify, Auth, API, Storage } from 'aws-amplify';
-
+import { SubmissionRow } from "../my-components/SubmissionRow";
 import {
     Button,
     Flex,
@@ -17,6 +17,14 @@ import {
 import {
   createNote as createNoteMutation,
 } from "../graphql/mutations";
+
+/**
+ * Submission TODO: finish docs
+ * @param {Object} props - prop1 name
+ * @returns JSX.Element
+ * @example
+ * <Submission></Submission>
+ */
 export function Submission(){
     const [notes, setNotes] = useState([]);
     const [filteredNotes, setFilteredNotes] = useState([])
