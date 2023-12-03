@@ -1,5 +1,5 @@
 # Team 5 Weekly Checkpoint (Week 13)
-## November 26 - December 3
+## November 27 - December 3
 <table>
   <tr><th>Name</th><th>Student #</th><th>Username</th></tr>
   <tr><td>Abhinav Thota</td><td>38811428</td><td>@abeeto</td></tr>
