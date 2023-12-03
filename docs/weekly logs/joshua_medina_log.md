@@ -202,27 +202,26 @@
 # Weekly Personal Log Week 13 (November 27 - December 3) 
 
 ## Screenshot from peer eval
-<img width="1056" alt="Screenshot 2023-11-26 at 3 29 23 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/49a8da6e-e7be-4c64-b089-cb97f608e3ee">
-
+<img width="1056" alt="Screenshot 2023-12-03 at 12 32 58 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/141c2c85-d491-4cdf-87ac-2d3146ec9447">
 
 ## Non-feature work
-- Met on Nov 20, Nov 21 for meetings
-- Started work on design document & video
+- Met on Nov 27, Nov 30 for meetings
+- Wrote up design document
+- Created design video
 
 ## All of my features for **this milestone**
-- Finished implementing new regression testing framework (cypress)
-- Worked on writing testings for new testing framework
+- Created more automated testing specs for Cypress
 - Design Document
+- Design Video
 
 ## Status of work for the week
-- Setting up regression testing (Complete)
-- Design Document (in-progress)
-- Video Demo (in-progress)
+- Design Document (Complete)
+- Video Demo (Complete)
 
 ## Issue number reference
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/30] - Regression Testing Setup (complete)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/53] - ER Diagram (DD) (in-progress)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/55] - Demo Video (DD) (in-progress)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/52] - Architecture Diagram (DD) (complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/53] - ER Diagram (DD) (complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/55] - Demo Video (DD) complete)
   
 ## Other notes
 - N/A
