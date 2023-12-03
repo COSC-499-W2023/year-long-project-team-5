@@ -16,6 +16,7 @@
 - Design Video
 - Landing page for webapp
 - Responsive doctor dashboard
+- Front-end of profile page
 
 ## Milestone Goals
 - Record video outlining progress done
@@ -43,13 +44,13 @@
 - [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/53] - DESIGN DOCUMENT ER Diagram (Complete)
 - [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/55] - Create a 5 min Design Video (Complete)
 - [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/76] - Create landing page for webapp (Complete)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/20] - DESIGN DOCUMENT UI diagrams & navigation (Complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/92] - Profile page (In progress)
 
 ## Burn Up Chart
 <img width="828" alt="Screenshot 2023-12-03 at 1 24 37 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/b9ab0fc1-5c84-422a-aa3e-2d0afba091c8">
 
 ## Completed & In-Progress Tasks (Project Board)
-IMAGE
+<img width="1628" alt="Screenshot 2023-12-03 at 2 05 47 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/8a4b2e5f-9133-428a-ace9-f7ce45286d50">
 
 ## Test Report
 <img width="721" alt="Screenshot 2023-12-03 at 1 42 45 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/224ec0c0-649b-49e2-9de8-4709b6b3c434">
