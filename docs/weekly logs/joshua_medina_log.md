@@ -196,3 +196,34 @@
   
 ## Other notes
 - N/A
+
+---
+
+# Weekly Personal Log Week 13 (November 27 - December 3) 
+
+## Screenshot from peer eval
+<img width="1056" alt="Screenshot 2023-11-26 at 3 29 23 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/49a8da6e-e7be-4c64-b089-cb97f608e3ee">
+
+
+## Non-feature work
+- Met on Nov 20, Nov 21 for meetings
+- Started work on design document & video
+
+## All of my features for **this milestone**
+- Finished implementing new regression testing framework (cypress)
+- Worked on writing testings for new testing framework
+- Design Document
+
+## Status of work for the week
+- Setting up regression testing (Complete)
+- Design Document (in-progress)
+- Video Demo (in-progress)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/30] - Regression Testing Setup (complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/53] - ER Diagram (DD) (in-progress)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/55] - Demo Video (DD) (in-progress)
+  
+## Other notes
+- N/A
+
