@@ -9,14 +9,15 @@
   <tr><td>Joshua Medina-Quiaro</td><td>35231729</td><td>@joshmed27</td></tr>
 </table>
 
-### Work Completed OLLDD
-- Mini-presentations!
-- Actually hosting proper site on AWS (Large bug fix)
-- Complete auth and login
-- Finished react component library
-- Coded basic patient portal
+### Work Completed
+- Video functionality in patient portal
+- Table of sent/recieved in doctor dashboard
+- Design Document
+- Design Video
+- Landing page for webapp
+- Responsive doctor dashboard
 
-## Milestone Goals OLLDD
+## Milestone Goals
 - Record video outlining progress done
 - Web page setup
 - AWS Nodejs Server setup
@@ -26,31 +27,32 @@
 - UI/UX - 2 designs (chosen one, alternative one that’s bad)
 - Database architecture setup 
 
-## Features in Project Plan OLLDDD
-- Web page setup
-- User authentication done using Amazon Cognito
-- User credentials sent from client to server
+## Features in Project Plan
+- Client Portal - video recording integrated into front end
+- Video submits to the back end using AWS
+- Query example on webpage
+- Functional search bar
 
-## Tasks from Project Board OLDDDDD
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/19] - Create basic doctor dashboard (in progress)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/30] - Set up regression testing (in progress)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/29] - Setup video recording in patient portal (in progress)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/59] - Setup webpage nav (in progress)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/11] - Issues for project board (complete)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/48] - Resolve signin bug with local and prod drift (complete)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/43] - Create amplify setup docs (complete)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/35] - Finish user auth (complete)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/34] - Finish doctor login (complete)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/20] - Create basic patient portal (complete)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/44] - Host site on amplify (complete)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/47] - Setup PR previews (complete)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/32] - Finish react component library (complete)
+## Tasks from Project Board
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/29] - Create video recording functionality in patient portal (Complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/80] - Create react component for submission table (Complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/31] - Create submission table (Complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/19] - Make dashboard UI components (Complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/81] - Make submission table responsive (Complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/52] - DESIGN DOCUMENT System Architecture Diagram (Complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/53] - DESIGN DOCUMENT ER Diagram (Complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/55] - Create a 5 min Design Video (Complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/76] - Create landing page for webapp (Complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/20] - DESIGN DOCUMENT UI diagrams & navigation (Complete)
 
 ## Burn Up Chart
-IMAGE
+<img width="828" alt="Screenshot 2023-12-03 at 1 24 37 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/b9ab0fc1-5c84-422a-aa3e-2d0afba091c8">
 
 ## Completed & In-Progress Tasks (Project Board)
 IMAGE
 
 ## Test Report
-IMAGE
+<img width="721" alt="Screenshot 2023-12-03 at 1 42 45 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/224ec0c0-649b-49e2-9de8-4709b6b3c434">
+<img width="705" alt="Screenshot 2023-12-03 at 1 43 08 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/54ec68fe-f3f4-411c-b9a0-39416acae353">
+
+
