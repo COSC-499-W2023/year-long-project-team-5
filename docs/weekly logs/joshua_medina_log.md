@@ -196,3 +196,34 @@
   
 ## Other notes
 - N/A
+
+---
+
+# Weekly Personal Log Week 13 (November 27 - December 3) 
+
+## Screenshot from peer eval
+<img width="1056" alt="Screenshot 2023-12-03 at 12 32 58 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/141c2c85-d491-4cdf-87ac-2d3146ec9447">
+
+## Non-feature work
+- Met on Nov 27, Nov 30 for meetings
+- Wrote up design document
+- Created design video
+
+## All of my features for **this milestone**
+- Created more automated testing specs for Cypress
+- Design Document
+- Design Video
+
+## Status of work for the week
+- Designing more specs for automated testing (In-Progress)
+- Design Document (Complete)
+- Video Demo (Complete)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/52] - Architecture Diagram (DD) (complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/53] - ER Diagram (DD) (complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/55] - Demo Video (DD) complete)
+  
+## Other notes
+- N/A
+
