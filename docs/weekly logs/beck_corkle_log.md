@@ -1,3 +1,61 @@
+
+# Weekly Personal Log Week 13 (November 27 - December 3) 
+
+## Screenshot from peer eval
+<img src="https://i.imgur.com/hHVvDDN.png">
+
+## Non-feature work
+- Met on Nov 27, Nov 30 for meetings
+- Made changes to design document for database design
+- Made new ER diagram
+- Helped create design video
+
+## All of my features for **this milestone**
+### **Feature**: Create ER updated diagram
+- **Description**: Created a new ER diagram for our current database design, this also involved a lot of discussion on what design is right for our system
+- **Issue number**: #53
+- **Context**:
+
+### **Feature**: Help Create Demo Video
+- **Description**: Create demo video for the design presentation
+- **Issue number**: #55
+- **Context**: I didn't edit or record the video I was just there to discuss ideas and want to record/say
+
+### **Feature**: Make the backend database schema
+- **Description**: After the creation of the ER diagram, I created the schema in code on the backend in AWS which reflects the diagram
+- **Issue number**: #49
+- **Context**:
+
+### **Feature**: Connect the database with the frontend
+- **Description**: Involves things like querying the db to populate a dashboard, saving videos in the database, and creating tables on user input
+- **Issue number**: #57
+- **Context**:
+
+### **Feature**: Build dashboard
+- **Description**: Complete the doctor dashboard
+- **Issue number**: #19
+- **Context**: I helped abhinav connect the backend to the dashboard
+
+## Status of work for the week
+- Create ER updated diagram (Complete)
+- Video Demo (Complete)
+- Backend database schema (Complete)
+- Connect the database with the frontend (Complete)
+- Build dashboard (Complete)
+- Backend tests (in progress)
+- Backend refactor (in progress)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/53]
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/55]
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/49]
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/57]
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/19]
+  
+## Other notes
+- N/A
+
+
 # Personal Log (Nov 12-26)
 
 ## Screenshot from peer eval
@@ -19,6 +77,7 @@
 
 ## Issues worked on:
 - Documentation: [Issue 59](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/67)
+
 ### Other notes:
 - no work done on reading break
 
