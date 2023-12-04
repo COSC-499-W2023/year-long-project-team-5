@@ -1,6 +1,6 @@
 # Team 5 Project Github (Option 3)
 
-[Current Week: 13](https://github.com/orgs/COSC-499-W2023/projects/43)
+[Current Week: WINTER BREAK](https://github.com/orgs/COSC-499-W2023/projects/43)
 
 <table>
   <tr><th>Name</th><th>Student #</th><th>Username</th></tr>
@@ -33,7 +33,12 @@ The purpose of our software is to allow admins (such as doctors, managers, profe
 4. Open the application window and launch e2e or component testing in your preferred brower
 5. In the browser window run specs indiviudally or a full run
 
-# Design Diagrams
+# Project Design Documents:
+## Design Checkpoint (Document and Video) (Halfway-point)
+[Design Document (PDF)](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/develop/docs/design/Team%205%20Design%20Document.pdf)
+
+[Design Demo Video (Google Drive Link)](https://drive.google.com/file/d/1hsxgtyWNExZPvq0keI0xe8E0u1FqfNyJ/view?usp=drive_link)
+
 ## Data Flow Diagram:
 ![Dataflow Diagram](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/github-setup/docs/design/DataFlowDiagram.png)
 
@@ -43,6 +48,15 @@ The purpose of our software is to allow admins (such as doctors, managers, profe
 # Documentation
 - Documentation for common errors and their fixes [can be found in this file](docs/error_documention.md)
 - Documentation for react components [can be found in this file](app/amplifyapp/docs/index.html)
+
+## License
+   Copyright [2023] [COSC499 Team 5]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
 
 
 
