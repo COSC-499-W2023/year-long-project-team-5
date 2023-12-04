@@ -35,9 +35,9 @@ The purpose of our software is to allow admins (such as doctors, managers, profe
 
 # Project Design Documents:
 ## Design Checkpoint (Document and Video) (Halfway-point)
-![Design Document (PDF)](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/develop/docs/design/Team%205%20Design%20Document.pdf)
+[Design Document (PDF)](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/develop/docs/design/Team%205%20Design%20Document.pdf)
 
-![Design Demo Video (Google Drive Link)](https://drive.google.com/file/d/1hsxgtyWNExZPvq0keI0xe8E0u1FqfNyJ/view?usp=drive_link)
+[Design Demo Video (Google Drive Link)](https://drive.google.com/file/d/1hsxgtyWNExZPvq0keI0xe8E0u1FqfNyJ/view?usp=drive_link)
 
 ## Data Flow Diagram:
 ![Dataflow Diagram](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/github-setup/docs/design/DataFlowDiagram.png)
