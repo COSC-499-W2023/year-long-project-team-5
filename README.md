@@ -35,7 +35,7 @@ The purpose of our software is to allow admins (such as doctors, managers, profe
 
 # Design Diagrams
 ## Data Flow Diagram:
-![Dataflow Diagram](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/github-setup/docs/design/DataFlowDiagram.png)
+![Dataflow Diagram](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/weekly-documentation/docs/design/DataFlowDiagram.png)
 
 ## Back-end Database Design Diagram:
 ![Database Design Diagram](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/github-setup/docs/design/ER_Design.png)
