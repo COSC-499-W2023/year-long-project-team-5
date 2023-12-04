@@ -1,3 +1,45 @@
+# Personal Log (Nov 26- Dec 3)
+## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/28/student/evaluated/1569/)
+![week13 work done](https://i.imgur.com/58IzZIY.png)
+
+## Feature Work Done This Week
+
+## Issue [#80](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/80) : Make SubmissionTable
+
+Requirements:
+
+    The code for displaying submissions
+    Documentation for the component
+    Tests for the component
+
+### Status of work done
+Test driven development, wrote cypress tests before writing the component. Was capable of handing empty data values appropriately.
+Documentation done using JSDocs.
+
+## Issue [#81](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/81) : Make dashboard responsive 
+
+
+Requirements:
+
+    Dashboard.js will need to be reworked to include media queries
+    SubmissionCard component will need to render for mobile devices
+    SubmissionTable component rendered for larger displays
+    Optional: search bar and navbar should be rendered differently based on devices
+
+### Status of work done: 
+managed to refactor dashboard, code is slightly cleaner, more readable and most importantly dynamically renders either SubmissionCard or SubmissionTable based on screen size. Done.
+
+## Status of previous weeks
+most of previous issues I worked on have been closed. There were a few things to keep in consideration; the components will likely need minor tweaks going into the next term as our needs change. But everything has been built and tested well so it should be very easy to make these changes. 
+
+## Issue number reference
+- Make SubmissionTable, Issue [#80](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/80) 
+- Make dashboard responsive, Issue [#81](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/81)
+## Other notes
+This week was the most productive, I felt like I learned the most this week and I feel slightly more confident in my ability with React and test driven develpoement. Proud of the work the team has made in regards to our web app. Looking forward to learn more; especially, on the backend side of this project next term.
+
+
+
 # Personal Log (Nov 12-26)
 ## Nov 12-18: Nothing significant done during reading break.
 ## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/27/student/evaluated/1569/)
