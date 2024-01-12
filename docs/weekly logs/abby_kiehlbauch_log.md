@@ -1,3 +1,37 @@
+# Weekly Personal Log (November 27 - Dec 3)
+
+## Screenshot from peer eval
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/430d6e94-9bac-48a6-ac74-ba1a5efddefd)
+
+## Non-feature work
+- team meetings
+- design document
+  - creating navigation flow diagrams
+  - brainstorming and decided on 6 design changes
+  - rational for chosen features
+ 
+## All of my features for **this milestone**
+
+### **Feature**: Home page
+- **Description**: Set up a landing page with information about the software where users can log in or create an account
+- **Issue number**: issue #76
+- **Context**: N/A
+
+### **Feature**: Profile page
+- **Description**: Set up a profile page where users can view/update their information and change their password
+- **Issue number**: issue 
+- **Context**: the design is laid out and profile information is displayed, but backend queries are not set up yet so information cannot be changed/updated
+
+## Status of work for the **last week** (in-progress or completed)
+- completed home page
+- completed UI/front-end for profile page
+- adjusted design of the video request page
+- design document completed
+
+## Issue number reference
+- Issue #76 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/76)
+- Issue #92 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/92)
+
 # Weekly Personal Log (November 13-26)
 
 ## Screenshot from peer eval
