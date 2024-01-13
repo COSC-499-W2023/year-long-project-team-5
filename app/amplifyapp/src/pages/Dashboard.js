@@ -75,7 +75,7 @@ export function Dashboard() {
   }
 
   function filtersubmissions(searchInput) {
-    let newsubmissions = submissions.filter((submission) => submission.name.includes(searchInput))
+    let newsubmissions = submissions.filter((submission) => submission.note.toLowerCase().includes(searchInput.toLowerCase()))
     setFilteredsubmissions(newsubmissions);
   }
 
@@ -93,7 +93,7 @@ export function Dashboard() {
               <SubmissionRow
                 id={submission.id}
                 email={submission.User.email}
-                description={submission.submission}
+                description={submission.note}
                 dateSent={submission.createdAt}
                 dateReceived={submission.submittedAt}
                 videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
@@ -105,7 +105,7 @@ export function Dashboard() {
             <SubmissionCard
               margin="1rem"
               id={submission.id}
-              description={submission.submission}
+              description={submission.note}
               image={submission.Video ? submission.Video.videoURL : "N/A"}
             />
           ))
