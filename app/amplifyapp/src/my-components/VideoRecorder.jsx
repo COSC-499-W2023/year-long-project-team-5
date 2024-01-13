@@ -67,7 +67,7 @@ export default function WebcamVideo() {
       const name = "video" + randNum + ".webm";
       console.log(randNum)
       const data = {
-        videoURL: name, // the key for the s3 bucket, get video URL with Storage.get
+        videoURL: name, // name is the key (not the url) for the s3 bucket, get video URL with Storage.get(name)
       };
       
       await Storage.put(name, blob); // store video in s3 bucket under the key

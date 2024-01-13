@@ -13,8 +13,9 @@ import {
   } from '@aws-amplify/ui-react';
   import { listNotes } from "../graphql/queries";
 import {
-  createNote as createNoteMutation,
-  createVideo as createVideoMutation
+  createVideo as createVideoMutation,
+  createUser as createUserMutation,
+  createSubmission as createSubmissionMutation
 } from "../graphql/mutations";
 
 /**
@@ -60,13 +61,42 @@ export function Submission(){
         fetchNotes();
         event.target.reset();
       }
+
+      async function createUser(email,name) {
+        const data = {
+          email: email,
+          name: name
+        };
+        return await API.graphql({
+          query: createUserMutation,
+          variables: { input: data },
+        });
+      }
+
+      async function createSubmission(event){
+        event.preventDefault();
+        const form = new FormData(event.target);
+        let user = await createUser(form.get("email"),form.get("name"));
+        let userId = user.data.createUser.id
+        const data = {
+          adminId: "testadminID",
+          note: form.get("note"),
+          submissionUserId: userId
+        };
+        await API.graphql({
+          query: createSubmissionMutation,
+          variables: { input: data },
+        });
+        fetchNotes();
+        event.target.reset();
+      }
     return(
         <View className="App">
         <Heading level={1}>Request a video</Heading>
-        <View as="form" margin="3rem 0" onSubmit={createNote}>
+        <View as="form" margin="3rem 0" onSubmit={createSubmission}>
           <Flex direction="row" justifyContent="center">
             <TextField
-              name="name"
+              name="email"
               placeholder="Recipient email"
               label="Note Name"
               labelHidden
@@ -74,14 +104,21 @@ export function Submission(){
               required
             />
             <TextField
-              name="description"
+              name="name"
+              placeholder="Full name of recipient"
+              label="Full Name"
+              labelHidden
+              variation="quiet"
+              required
+            />
+            <TextField
+              name="note"
               placeholder="Instructions/notes"
               label="Note Description"
               labelHidden
               variation="quiet"
               required
             />
-            <input type="file" name="image" id="image"></input>
             <Button type="submit" variation="primary">
               Request Video
             </Button>
