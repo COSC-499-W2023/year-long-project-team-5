@@ -41,7 +41,7 @@ export function Submission(){
         let userId = user.data.createUser.id
         const data = {
           adminId: "testadminID",
-          note: form.get("note"),
+          submission: form.get("submission"),
           submissionUserId: userId
         };
         await API.graphql({
@@ -58,7 +58,7 @@ export function Submission(){
             <TextField
               name="email"
               placeholder="Recipient email"
-              label="Note Name"
+              label="Submission Name"
               labelHidden
               variation="quiet"
               required
@@ -72,9 +72,9 @@ export function Submission(){
               required
             />
             <TextField
-              name="note"
-              placeholder="Instructions/notes"
-              label="Note Description"
+              name="submission"
+              placeholder="Instructions/submissions"
+              label="Submission Description"
               labelHidden
               variation="quiet"
               required

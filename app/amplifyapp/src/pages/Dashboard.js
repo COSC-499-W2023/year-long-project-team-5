@@ -61,13 +61,13 @@ export function Dashboard() {
     */
     // uncomment when we implement submissions
     await Promise.all(
-      filteredSubmissions.map(async (note) => {
-        if (note.Video && note.Video.videoURL) {
-          const url = await Storage.get(note.Video.videoURL);
-          note.Video.videoName = note.Video.videoURL;
-          note.Video.videoURL = url;
+      filteredSubmissions.map(async (submission) => {
+        if (submission.Video && submission.Video.videoURL) {
+          const url = await Storage.get(submission.Video.videoURL);
+          submission.Video.videoName = submission.Video.videoURL;
+          submission.Video.videoURL = url;
         }
-        return note;
+        return submission;
       })
     );
     setsubmissions(filteredSubmissions);
@@ -75,7 +75,7 @@ export function Dashboard() {
   }
 
   function filtersubmissions(searchInput) {
-    let newsubmissions = submissions.filter((note) => note.name.includes(searchInput))
+    let newsubmissions = submissions.filter((submission) => submission.name.includes(searchInput))
     setFilteredsubmissions(newsubmissions);
   }
 
@@ -93,7 +93,7 @@ export function Dashboard() {
               <SubmissionRow
                 id={submission.id}
                 email={submission.User.email}
-                description={submission.note}
+                description={submission.submission}
                 dateSent={submission.createdAt}
                 dateReceived={submission.submittedAt}
                 videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
@@ -105,7 +105,7 @@ export function Dashboard() {
             <SubmissionCard
               margin="1rem"
               id={submission.id}
-              description={submission.note}
+              description={submission.submission}
               image={submission.Video ? submission.Video.videoURL : "N/A"}
             />
           ))
