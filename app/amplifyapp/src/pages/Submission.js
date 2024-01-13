@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, {  } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
-import {Amplify, Auth, API, Storage } from 'aws-amplify';
-import { SubmissionRow } from "../my-components/SubmissionRow";
+import {API } from 'aws-amplify';
 import {
     Button,
     Flex,
@@ -11,9 +10,7 @@ import {
     View,
     Heading,
   } from '@aws-amplify/ui-react';
-  import { listNotes } from "../graphql/queries";
 import {
-  createVideo as createVideoMutation,
   createUser as createUserMutation,
   createSubmission as createSubmissionMutation
 } from "../graphql/mutations";
