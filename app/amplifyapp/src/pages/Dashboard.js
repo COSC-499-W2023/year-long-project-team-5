@@ -28,8 +28,8 @@ import {SubmissionTable} from '../my-components/SubmissionTable'
 export function Dashboard() {
   const { user, route } = useAuthenticator((context) => [context.user, context.route]);
   console.log(Auth.user.username)
-  const [notes, setNotes] = useState([]);
-  const [filteredNotes, setFilteredNotes] = useState([])
+  const [submissions, setsubmissions] = useState([]);
+  const [filteredsubmissions, setFilteredsubmissions] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
 
 
@@ -43,11 +43,11 @@ export function Dashboard() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  //this useEffect is used to fetch submissions data from the database: calls fetchNotes() which is below..
+  //this useEffect is used to fetch submissions data from the database: calls fetchsubmissions() which is below..
   useEffect(() => {
-    fetchNotes();
+    fetchSubmissions();
   }, []);
-  async function fetchNotes() {
+  async function fetchSubmissions() {
     const apiData = await API.graphql({ query: listSubmissions });
     const submissions = apiData.data.listSubmissions.items;
     const filteredSubmissions = submissions;
@@ -70,13 +70,13 @@ export function Dashboard() {
         return note;
       })
     );
-    setNotes(filteredSubmissions);
-    setFilteredNotes(filteredSubmissions);
+    setsubmissions(filteredSubmissions);
+    setFilteredsubmissions(filteredSubmissions);
   }
 
-  function filterNotes(searchInput) {
-    let newNotes = notes.filter((note) => note.name.includes(searchInput))
-    setFilteredNotes(newNotes);
+  function filtersubmissions(searchInput) {
+    let newsubmissions = submissions.filter((note) => note.name.includes(searchInput))
+    setFilteredsubmissions(newsubmissions);
   }
 
   const { tokens } = useTheme();
@@ -84,12 +84,12 @@ export function Dashboard() {
   return (
     <View className="App">
       <Heading level={2}>Video Log</Heading>
-      <SearchField padding={tokens.space.large} onChange={(e) => filterNotes(e.target.value)} />
+      <SearchField padding={tokens.space.large} onChange={(e) => filtersubmissions(e.target.value)} />
       <View padding={tokens.space.large}>
         {/* this line is a conditional JSX expression, renders SubmissionTable if it's not mobile and SubmissionCard if it's mobile */}
         {!isMobile ? (
           <SubmissionTable
-            rowsToDisplay={filteredNotes.map((submission) => (
+            rowsToDisplay={filteredsubmissions.map((submission) => (
               <SubmissionRow
                 id={submission.id}
                 email={submission.User.email}
@@ -101,7 +101,7 @@ export function Dashboard() {
             ))}
           />
         ) : (
-          filteredNotes.map((submission) => (
+          filteredsubmissions.map((submission) => (
             <SubmissionCard
               margin="1rem"
               id={submission.id}
