@@ -12,10 +12,6 @@ import {
   SearchField,
 } from '@aws-amplify/ui-react';
 import { listSubmissions } from "../graphql/queries";
-import {
-  deleteNote as deleteNoteMutation,
-  createVideo as createVideoMutation
-} from "../graphql/mutations";
 
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
@@ -76,36 +72,6 @@ export function Dashboard() {
     );
     setNotes(filteredSubmissions);
     setFilteredNotes(filteredSubmissions);
-  }
-
-  async function createNote(event) {
-    event.preventDefault();
-    const form = new FormData(event.target);
-    console.log(form)
-    const image = form.get("image");
-    const data = {
-      name: form.get("name"),
-      description: form.get("description"),
-      image: image.name,
-    };
-    console.log(data)
-    if (!!data.image) await Storage.put(data.name, image);
-    await API.graphql({
-      query: createVideoMutation,
-      variables: { input: data },
-    });
-    fetchNotes();
-    event.target.reset();
-  }
-
-  async function deleteNote({ id, name }) {
-    const newNotes = notes.filter((note) => note.id !== id);
-    setNotes(newNotes);
-    await Storage.remove(name);
-    await API.graphql({
-      query: deleteNoteMutation,
-      variables: { input: { id } },
-    });
   }
 
   function filterNotes(searchInput) {

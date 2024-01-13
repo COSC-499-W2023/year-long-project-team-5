@@ -26,42 +26,6 @@ import {
  * <Submission></Submission>
  */
 export function Submission(){
-    const [notes, setNotes] = useState([]);
-    const [filteredNotes, setFilteredNotes] = useState([])
-    useEffect(() => {
-      fetchNotes();
-    }, []);
-    async function fetchNotes() {
-        const apiData = await API.graphql({ query: listNotes });
-        const notesFromAPI = apiData.data.listNotes.items;
-        await Promise.all(
-          notesFromAPI.map(async (note) => {
-            if (note.image) {
-              const url = await Storage.get(note.name);
-              note.image = url;
-            }
-            return note;
-          })
-        );
-        setNotes(notesFromAPI);
-        setFilteredNotes(notesFromAPI);
-      }
-      async function createNote(event) {
-        event.preventDefault();
-        const form = new FormData(event.target);
-        const image = form.get("image");
-        const data = {
-          videoURL: image.name,
-        };
-        if (!!data.image) await Storage.put(image.name, image);
-        await API.graphql({
-          query: createVideoMutation,
-          variables: { input: data },
-        });
-        fetchNotes();
-        event.target.reset();
-      }
-
       async function createUser(email,name) {
         const data = {
           email: email,
@@ -87,7 +51,6 @@ export function Submission(){
           query: createSubmissionMutation,
           variables: { input: data },
         });
-        fetchNotes();
         event.target.reset();
       }
     return(
