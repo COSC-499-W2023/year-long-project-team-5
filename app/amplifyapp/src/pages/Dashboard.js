@@ -2,27 +2,17 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
-import { Amplify, Auth, API, Storage } from 'aws-amplify';
+import { Auth, API, Storage } from 'aws-amplify';
 
 import {
-  Button,
-  Flex,
-  Image,
-  Text,
-  TextField,
   View,
   useAuthenticator,
-  Card,
   Heading,
-  Badge,
-  Link,
   useTheme,
   SearchField,
 } from '@aws-amplify/ui-react';
 import { listSubmissions } from "../graphql/queries";
-import { listNotes } from "../graphql/queries";
 import {
-  createNote as createNoteMutation,
   deleteNote as deleteNoteMutation,
   createVideo as createVideoMutation
 } from "../graphql/mutations";
@@ -31,7 +21,6 @@ import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
 import {SubmissionTable} from '../my-components/SubmissionTable'
 
-import awsconfig from '../aws-exports';
 
 /**
  * dashboard TODO: finish docs
