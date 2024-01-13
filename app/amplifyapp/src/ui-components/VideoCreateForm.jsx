@@ -6,17 +6,11 @@
 
 /* eslint-disable */
 import * as React from "react";
-import {
-  Button,
-  Flex,
-  Grid,
-  SwitchField,
-  TextField,
-} from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { API } from "aws-amplify";
-import { createNote } from "../graphql/mutations";
-export default function NoteCreateForm(props) {
+import { createVideo } from "../graphql/mutations";
+export default function VideoCreateForm(props) {
   const {
     clearOnSuccess = true,
     onSuccess,
@@ -28,32 +22,16 @@ export default function NoteCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    name: "",
-    description: "",
-    image: "",
-    viewedStatus: false,
+    videoURL: "",
   };
-  const [name, setName] = React.useState(initialValues.name);
-  const [description, setDescription] = React.useState(
-    initialValues.description
-  );
-  const [image, setImage] = React.useState(initialValues.image);
-  const [viewedStatus, setViewedStatus] = React.useState(
-    initialValues.viewedStatus
-  );
+  const [videoURL, setVideoURL] = React.useState(initialValues.videoURL);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setName(initialValues.name);
-    setDescription(initialValues.description);
-    setImage(initialValues.image);
-    setViewedStatus(initialValues.viewedStatus);
+    setVideoURL(initialValues.videoURL);
     setErrors({});
   };
   const validations = {
-    name: [{ type: "Required" }],
-    description: [],
-    image: [],
-    viewedStatus: [],
+    videoURL: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -81,10 +59,7 @@ export default function NoteCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          name,
-          description,
-          image,
-          viewedStatus,
+          videoURL,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -115,7 +90,7 @@ export default function NoteCreateForm(props) {
             }
           });
           await API.graphql({
-            query: createNote.replaceAll("__typename", ""),
+            query: createVideo.replaceAll("__typename", ""),
             variables: {
               input: {
                 ...modelFields,
@@ -135,117 +110,33 @@ export default function NoteCreateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "NoteCreateForm")}
+      {...getOverrideProps(overrides, "VideoCreateForm")}
       {...rest}
     >
       <TextField
-        label="Name"
-        isRequired={true}
-        isReadOnly={false}
-        value={name}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              name: value,
-              description,
-              image,
-              viewedStatus,
-            };
-            const result = onChange(modelFields);
-            value = result?.name ?? value;
-          }
-          if (errors.name?.hasError) {
-            runValidationTasks("name", value);
-          }
-          setName(value);
-        }}
-        onBlur={() => runValidationTasks("name", name)}
-        errorMessage={errors.name?.errorMessage}
-        hasError={errors.name?.hasError}
-        {...getOverrideProps(overrides, "name")}
-      ></TextField>
-      <TextField
-        label="Description"
+        label="Video url"
         isRequired={false}
         isReadOnly={false}
-        value={description}
+        value={videoURL}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              name,
-              description: value,
-              image,
-              viewedStatus,
+              videoURL: value,
             };
             const result = onChange(modelFields);
-            value = result?.description ?? value;
+            value = result?.videoURL ?? value;
           }
-          if (errors.description?.hasError) {
-            runValidationTasks("description", value);
+          if (errors.videoURL?.hasError) {
+            runValidationTasks("videoURL", value);
           }
-          setDescription(value);
+          setVideoURL(value);
         }}
-        onBlur={() => runValidationTasks("description", description)}
-        errorMessage={errors.description?.errorMessage}
-        hasError={errors.description?.hasError}
-        {...getOverrideProps(overrides, "description")}
+        onBlur={() => runValidationTasks("videoURL", videoURL)}
+        errorMessage={errors.videoURL?.errorMessage}
+        hasError={errors.videoURL?.hasError}
+        {...getOverrideProps(overrides, "videoURL")}
       ></TextField>
-      <TextField
-        label="Image"
-        isRequired={false}
-        isReadOnly={false}
-        value={image}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              name,
-              description,
-              image: value,
-              viewedStatus,
-            };
-            const result = onChange(modelFields);
-            value = result?.image ?? value;
-          }
-          if (errors.image?.hasError) {
-            runValidationTasks("image", value);
-          }
-          setImage(value);
-        }}
-        onBlur={() => runValidationTasks("image", image)}
-        errorMessage={errors.image?.errorMessage}
-        hasError={errors.image?.hasError}
-        {...getOverrideProps(overrides, "image")}
-      ></TextField>
-      <SwitchField
-        label="Viewed status"
-        defaultChecked={false}
-        isDisabled={false}
-        isChecked={viewedStatus}
-        onChange={(e) => {
-          let value = e.target.checked;
-          if (onChange) {
-            const modelFields = {
-              name,
-              description,
-              image,
-              viewedStatus: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.viewedStatus ?? value;
-          }
-          if (errors.viewedStatus?.hasError) {
-            runValidationTasks("viewedStatus", value);
-          }
-          setViewedStatus(value);
-        }}
-        onBlur={() => runValidationTasks("viewedStatus", viewedStatus)}
-        errorMessage={errors.viewedStatus?.errorMessage}
-        hasError={errors.viewedStatus?.hasError}
-        {...getOverrideProps(overrides, "viewedStatus")}
-      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

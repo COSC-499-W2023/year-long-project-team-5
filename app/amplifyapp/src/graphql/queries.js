@@ -35,3 +35,34 @@ export const listNotes = /* GraphQL */ `
     }
   }
 `;
+
+export const listSubmissions = /* GraphQL */ `
+  query ListSubmissions(
+    $filter: ModelSubmissionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listSubmissions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        adminId
+        Video {
+          id
+          videoURL
+          createdAt
+        }
+        User {
+          id
+          email
+          createdAt
+          updatedAt
+        }
+        note
+        submittedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;

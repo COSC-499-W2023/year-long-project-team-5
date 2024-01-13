@@ -18,6 +18,7 @@ export const SubmissionTable = (props) => {
                 <TableRow>
                     <TableCell as='th' className='tableHeader'>Submission #</TableCell>
                     <TableCell as='th' className='tableHeader'>Customer Email</TableCell>
+                    <TableCell as='th' className='tableHeader'>Note</TableCell>
                     <TableCell as='th' className='tableHeader'>Date Sent</TableCell>
                     <TableCell as='th' className='tableHeader'>Date Received</TableCell>
                     <TableCell as='th' className='tableHeader'>Submission</TableCell>

@@ -31,6 +31,7 @@ export const SubmissionRow = (props) => {
         <TableRow className='subRow'>
             <TableCell className = 'subID'> {props.id}</TableCell>
             <TableCell className = 'subEmail'> {props.email}</TableCell>
+            <TableCell className="description">{props.description}</TableCell>
             <TableCell className = 'subDS'> {props.dateSent}</TableCell>
             <TableCell className = 'subDR'> {props.videoLink===null || props.dateReceived ==null ?  <Text variation='tertiary'>N/A</Text> : <Text>{props.dateReceived}</Text>}</TableCell>
             <TableCell className='subLink'> {props.videoLink===null || props.dateReceived ==null ? <Text variation='warning'>No Submission</Text> : <Button variation="link" onClick={()=>{window.open(props.videoLink)}}> Video</Button>}</TableCell>

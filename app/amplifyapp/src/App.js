@@ -9,7 +9,7 @@ import {Home} from './pages/Home'
 import {Dashboard} from './pages/Dashboard'
 import {Login} from './pages/Login'
 import {Submission} from './pages/Submission'
-import {Profile} from './pages/Profile'
+import {Recording} from './pages/Recording'
 import { Authenticator } from "@aws-amplify/ui-react";
 import {RequireAuth} from "./RequireAuth"
 
@@ -30,11 +30,7 @@ function MyRoutes(){
             <Submission/>
             </RequireAuth>
           }/>
-          <Route path = "/profile" element = {
-            <RequireAuth>
-            <Profile/>
-            </RequireAuth>
-          }/>
+          <Route path = "/recording" element = {<Recording/>}/>
         </Route>
         
       </Routes> 
