@@ -1,12 +1,9 @@
 import {
 	Card,
-	Image,
 	View,
 	Heading,
 	Flex,
-	Badge,
 	Text,
-	Button,
 	useTheme,
   } from '@aws-amplify/ui-react';
   
@@ -15,7 +12,7 @@ import {
 	return (
 		<div>
 			<div>
-				<img src = {process.env.PUBLIC_URL + "/full-logo.png"} width = '25%'/>
+				<img src = {process.env.PUBLIC_URL + "/full-logo.png"} width = '25%' alt = "logo"/>
 			</div>
 		<Flex alignItems = 'center' direction = 'row' justifyContent = 'center' wrap = "wrap" margin = '1rem 0rem 1rem 0rem'>
 			<View
