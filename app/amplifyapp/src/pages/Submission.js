@@ -75,14 +75,14 @@ export function Submission(){
         <Flex alignItems="center" justifyContent="center" height="50vh">
           <Card variation="elevated" width="400px">
           <Flex direction="column" justifyContent = "center" textAlign = "left">
-          {/*<TextField
+            <TextField
               name="name"
               placeholder="Recipient name"
               label="name"
               labelHidden
               variation="quiet"
               required
-    />*/}
+            />
             <TextField
               name="name"
               placeholder="Recipient email"

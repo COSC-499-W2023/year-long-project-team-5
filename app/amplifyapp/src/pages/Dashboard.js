@@ -98,7 +98,7 @@ export function Dashboard(){
 
     return(
         <View className="App">
-        <Heading level={2}>Video Log</Heading>
+        <Heading level={2}>Your Video Logs</Heading>
         <SearchField textAlign = 'left' padding={tokens.space.large} onChange={(e) => filterNotes(e.target.value)}/>
         <View>
           {filteredNotes.map((note) => (
