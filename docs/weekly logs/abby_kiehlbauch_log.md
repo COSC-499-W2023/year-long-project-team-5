@@ -1,4 +1,4 @@
-# Weekly Personal Log (December 8th - 14th)
+# Weekly Personal Log (January 8th - 14th)
 
 ## Screenshot from peer eval
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/bb366c01-63bd-445b-8f70-37cb6ac3f067)
