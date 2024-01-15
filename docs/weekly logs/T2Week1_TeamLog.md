@@ -13,7 +13,7 @@
 - Connect databases to front-end
 - UI Refactor of Video Request Tab
 - Dashboard overhaul
-- 
+- Change GraphQL database to match diagrams
 
 ## Milestone Goals (Term 2 Week 4: Peer Testing)
 - Pages will implemented [x]
@@ -43,7 +43,7 @@
 <img width="829" alt="Screenshot 2024-01-14 at 7 27 20 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/b8594a5f-7444-46b1-871c-2c87217c2b18">
 
 ## Completed & In-Progress Tasks (Project Board)
-<img width="1628" alt="Screenshot 2023-12-03 at 2 05 47 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/8a4b2e5f-9133-428a-ace9-f7ce45286d50">
+![3mgeuGsh](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/7c4973b1-7518-47ba-90ff-c65b49ef7062)
 
 ## Test Report
 <img width="721" alt="Screenshot 2023-12-03 at 1 42 45 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/224ec0c0-649b-49e2-9de8-4709b6b3c434">
