@@ -1,3 +1,37 @@
+# Personal log (Jan 07-14)
+## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/34/student/evaluated/1569/)
+![T2 W1 work done](https://i.imgur.com/NUTw8CS.png)
+
+## Feature Work done this week 
+
+## Issue [#105]: As Dev, I want to shrink down video request tab to a card size
+
+Helped Josh, reviewed PR, made new changes to UI for the video request page.
+
+## Status of work done
+The UI adjustments have been done and seem to be a considerable improvement to the previous version.
+
+## Issue [#95]: As Dev, I want to add light and dark mode
+Requirements:
+
+    A button should be added that can change the theme of the application to light and dark mode
+    This theme should be persistent when browsing around
+    Should keep a consistent colour palette
+
+## Status of work done:
+Ongoing. Still need to work on it. Hope to do it by end of the night(!)
+
+## Status of previous weeks
+Everything from last term is intact. We will need to refactor some code by resolving some merge conflicts, this will provide us a good opportunity to review all the code as a team and make adjustments so that moving forward, there will be cleaner and more maintainable code.
+
+## Issue number reference
+- Improve UI of Request Video page, Issue [#95](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/95)
+- Dark/Light mode for UI, Issue [#105](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/105)
+
+## Other notes
+I didn't get as much work as I'd liked to this week but I'm hoping to make up for it in the coming days. I seem to have an irrational fear towards integration/E2E testing and I hope to overcome it next week.
+
+
 # Personal Log (Nov 26- Dec 3)
 ## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/28/student/evaluated/1569/)
 ![week13 work done](https://i.imgur.com/58IzZIY.png)
