@@ -1,3 +1,35 @@
+# Weekly Personal Log (January 8th - 14th)
+
+## Screenshot from peer eval
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/bb366c01-63bd-445b-8f70-37cb6ac3f067)
+
+## Non-feature work
+- team meetings
+- setting a plan for the semester
+- re-familiarizing ourselves with where we left off before the break
+- brainstorming UI changes based on the last milestone's feedback
+
+## All of my features for **this milestone**
+
+### **Feature**: Home page
+- **Description**: Improve the UI of the home page (including animations)
+- **Issue number**: issue #99
+- **Context**: N/A
+
+### **Feature**: Animations
+- **Description**: set up animations across the site to improve UI and give our website a more sophisticated feel
+- **Issue number**: issue #97
+- **Context**: UI improvements
+
+## Status of work for the **last week** (in-progress or completed)
+- home page/landing page in progress
+- familiarized with framer motion and animations implemented on home page
+  - animations for all other pages in progress
+
+## Issue number reference
+- Issue #97 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/97)
+- Issue #99 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/99)
+
 # Weekly Personal Log (November 27 - Dec 3)
 
 ## Screenshot from peer eval
