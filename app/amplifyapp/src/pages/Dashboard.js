@@ -77,7 +77,7 @@ export function Dashboard() {
     // uncomment when we implement submissions
     await Promise.all(
       filteredSubmissions.map(async (note) => {
-        if (note.Video.videoURL) {
+        if (note.Video && note.Video.videoURL) {
           const url = await Storage.get(note.Video.videoURL);
           note.Video.videoName = note.Video.videoURL;
           note.Video.videoURL = url;
@@ -139,9 +139,9 @@ export function Dashboard() {
                 id={submission.id}
                 email={submission.User.email}
                 description={submission.note}
-                dateSent={submission.Video.createdAt}
+                dateSent={submission.createdAt}
                 dateReceived={submission.submittedAt}
-                videoLink={submission.Video.videoURL}
+                videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
               />
             ))}
           />
@@ -151,7 +151,7 @@ export function Dashboard() {
               margin="1rem"
               id={submission.id}
               description={submission.note}
-              image={submission.Video.videoURL}
+              image={submission.Video ? submission.Video.videoURL : "N/A"}
             />
           ))
         )}
