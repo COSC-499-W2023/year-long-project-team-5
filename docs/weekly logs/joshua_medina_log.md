@@ -227,3 +227,30 @@
 ## Other notes
 - N/A
 
+---
+
+# Weekly Personal Log Term 2 Week 1 (January 8 - January 14) 
+
+## Screenshot from peer eval
+<img width="962" alt="Screenshot 2024-01-14 at 5 18 37 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/65df4610-cc55-4708-988f-2e2277fee3f2">
+
+## Non-feature work
+- Met on Jan 11 for meeting
+- Added UI tasks for UI overhaul
+
+## All of my features for **this milestone**
+- UI overhaul, video request form
+- UI overhaul, card dashboard beginnings
+
+## Status of work for the week
+- Designing more specs for automated testing (In-Progress)
+- Design Document (Complete)
+- Video Demo (Complete)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/105] - (UI) I want to shrink down video request tab to a card size (complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/101] - I want data sort by client {dropdown/accordion} (in-progress)
+  
+## Other notes
+- N/A
+
