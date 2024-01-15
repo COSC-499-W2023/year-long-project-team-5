@@ -232,7 +232,7 @@
 # Weekly Personal Log Term 2 Week 1 (January 8 - January 14) 
 
 ## Screenshot from peer eval
-<img width="962" alt="Screenshot 2024-01-14 at 5 18 37 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/65df4610-cc55-4708-988f-2e2277fee3f2">
+<img width="1007" alt="Screenshot 2024-01-14 at 7 06 07 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/dfd1b0e8-de99-43a2-8cde-504773e663c7">
 
 ## Non-feature work
 - Met on Jan 11 for meeting
