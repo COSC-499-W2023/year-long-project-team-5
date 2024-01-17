@@ -48,8 +48,8 @@ export const SubmissionTable = (props) => {
             <Table variation = "striped" highlightOnHover>
                 <TableHead>
                     <TableRow textAlign="left">
-                        <TableCell as='th' className='tableHeader'>ID</TableCell>
-                        <TableCell as='th' className='tableHeader'>Customer Email</TableCell>
+                        <TableCell as='th' className='tableHeader'>Name</TableCell>
+                        <TableCell as='th' className='tableHeader'>Email</TableCell>
                         <TableCell as='th' className='tableHeader'>Note</TableCell>
                         <TableCell as='th' className='tableHeader'>Date Sent</TableCell>
                         <TableCell as='th' className='tableHeader'>Date Received</TableCell>
