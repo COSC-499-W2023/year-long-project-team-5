@@ -135,7 +135,6 @@ export function Submission(){
           />*/}
            <Button type="submit" variation="primary">Request Video </Button>
             </Flex>
-            </Card>
         </View>
        {/* Will enable popup once submission code is finalized
       <Popup open={isFormSubmitted} modal closeOnDocumentClick>

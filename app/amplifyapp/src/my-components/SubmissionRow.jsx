@@ -1,5 +1,5 @@
 import * as React from "react";
-import {TableRow,TableCell, Text, Link,useTheme, Button, Flex, useAuthenticator} from "@aws-amplify/ui-react";
+import {TableRow,TableCell, Text, Link, Button} from "@aws-amplify/ui-react";
 import {useNavigate} from 'react-router-dom';
 /**
  * SubmissionRow is intended to be the data row for each submission (to display info better on larger screens)
@@ -34,8 +34,10 @@ export const SubmissionRow = (props) => {
             <TableCell className="description">{props.description}</TableCell>
             <TableCell className = 'subDS'> {props.dateSent}</TableCell>
             <TableCell className = 'subDR'> {props.videoLink===null || props.dateReceived ==null ?  <Text variation='tertiary'>N/A</Text> : <Text>{props.dateReceived}</Text>}</TableCell>
+            {/* need to change the onclick function in line 38 to be able to address issue 102 */}
             <TableCell className='subLink'> {props.videoLink===null || props.dateReceived ==null ? <Text variation='warning'>No Submission</Text> : <Button variation="link" onClick={()=>{window.open(props.videoLink)}}> Video</Button>}</TableCell>
         </TableRow>
     );
 }
 
+    
