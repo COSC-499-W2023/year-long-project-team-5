@@ -29,7 +29,7 @@ import {
 
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
-import {SubmissionTable} from '../my-components/SubmissionTable'
+import { SubmissionTable } from '../my-components/SubmissionTable'
 
 import awsconfig from '../aws-exports';
 
@@ -120,7 +120,15 @@ export function Dashboard() {
   }
 
   function filterNotes(searchInput) {
-    let newNotes = notes.filter((note) => note.name.includes(searchInput))
+    if (searchInput.length === 0) {
+      setFilteredNotes(notes)
+      return
+    }
+    let newNotes = notes.filter((submission) =>
+      submission.note.toLowerCase().includes(searchInput.toLowerCase())
+      || submission.User.email.toLowerCase().includes(searchInput.toLowerCase())
+      || submission.User.name.toLowerCase().includes(searchInput.toLowerCase())
+    )
     setFilteredNotes(newNotes);
   }
 
