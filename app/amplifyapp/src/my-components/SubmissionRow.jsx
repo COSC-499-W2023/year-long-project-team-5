@@ -1,6 +1,7 @@
 import * as React from "react";
-import {TableRow,TableCell, Text, Link,useTheme, Button, Flex, useAuthenticator} from "@aws-amplify/ui-react";
+import {TableRow,TableCell, Text, Link, Button } from "@aws-amplify/ui-react";
 import {useNavigate} from 'react-router-dom';
+
 /**
  * SubmissionRow is intended to be the data row for each submission (to display info better on larger screens)
  * @component
@@ -29,13 +30,15 @@ export const SubmissionRow = (props) => {
     };
     return(
         <TableRow className='subRow'>
-            <TableCell className = 'subID'> {props.id}</TableCell>
-            <TableCell className = 'subEmail'> {props.email}</TableCell>
-            <TableCell className="description">{props.description}</TableCell>
-            <TableCell className = 'subDS'> {props.dateSent}</TableCell>
-            <TableCell className = 'subDR'> {props.videoLink===null || props.dateReceived ==null ?  <Text variation='tertiary'>N/A</Text> : <Text>{props.dateReceived}</Text>}</TableCell>
-            <TableCell className='subLink'> {props.videoLink===null || props.dateReceived ==null ? <Text variation='warning'>No Submission</Text> : <Button variation="link" onClick={()=>{window.open(props.videoLink)}}> Video</Button>}</TableCell>
+            <TableCell className  = 'subClientName' width='15%'> {props.name === undefined || props.name === null ? <Text variation='tertiary'>N/A</Text> :  <Text> {props.name} </Text> }</TableCell>
+            <TableCell className = 'subEmail' width='15%'> {props.email}</TableCell>
+            <TableCell className="description" width='50%'>{props.description}</TableCell>
+            <TableCell className = 'subDS' width='10%'> {props.dateSent}</TableCell>
+            <TableCell className = 'subDR' width='10%'> {props.videoLink===null || props.dateReceived ==null ?  <Text variation='tertiary'>N/A</Text> : <Text>{props.dateReceived}</Text>}</TableCell>
+            {/* need to change the onclick function in line 38 to be able to address issue 102 */}
+            <TableCell className='subLink' width='5%'> {props.videoLink===null || props.dateReceived ==null ? <Button variation= 'link' size='small' disabled> no video</Button> : <Button variation="primary" size='small' width='100%' onClick={()=>{window.open(props.videoLink)}}> Video</Button>}</TableCell>
         </TableRow>
     );
 }
 
+    

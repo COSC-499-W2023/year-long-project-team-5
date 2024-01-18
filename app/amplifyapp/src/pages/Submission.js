@@ -9,6 +9,8 @@ import {
     TextField,
     View,
     Heading,
+    useTheme,
+    Card
   } from '@aws-amplify/ui-react';
 import {
   createUser as createUserMutation,
@@ -50,40 +52,53 @@ export function Submission(){
         });
         event.target.reset();
       }
+
+      const { tokens } = useTheme();
+
     return(
         <View className="App">
-        <Heading level={1}>Request a video</Heading>
-        <View as="form" margin="3rem 0" onSubmit={createSubmission}>
-          <Flex direction="row" justifyContent="center">
-            <TextField
-              name="email"
-              placeholder="Recipient email"
-              label="Submission Name"
-              labelHidden
-              variation="quiet"
-              required
-            />
-            <TextField
-              name="name"
-              placeholder="Full name of recipient"
-              label="Full Name"
-              labelHidden
-              variation="quiet"
-              required
-            />
-            <TextField
-              name="submission"
-              placeholder="Instructions/submissions"
-              label="Submission Description"
-              labelHidden
-              variation="quiet"
-              required
-            />
-            <Button type="submit" variation="primary">
-              Request Video
-            </Button>
+        <Heading level={2}>Video Request</Heading>
+        <View as="form" margin="2rem 3rem" alignContent = "center" onSubmit={createSubmission} padding={tokens.space.medium}>
+          <Flex alignItems="center" justifyContent="center" height="50vh">
+            <Card variation="elevated" width="30em" padding='1em'>
+              <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em' padding='1em'>
+                <TextField
+                  name="name"
+                  placeholder="Bilbo Baggins"
+                  label="Recipient Name"
+                  required
+                />
+                <TextField
+                  name="email"
+                  placeholder="bilbobaggins@mordor.com"
+                  label="Recipient Email"
+                  required
+                />
+                <TextField
+                  name="description"
+                  placeholder="Instructions/notes"
+                  label="Video Instructions"
+                  inputStyles={{
+                    paddingBottom: "5em",
+                  }}
+                  required
+                />
+              <Button type="submit" variation="primary">Request Video </Button>
+              </Flex>
+            </Card>
           </Flex>
         </View>
+          
+       {/* Will enable popup once submission code is finalized
+      <Popup open={isFormSubmitted} modal closeOnDocumentClick>
+        <View>
+          <Heading level={2}>Success!</Heading>
+          <p>Your form was successfully submitted.</p>
+          <Button onClick={() => setIsFormSubmitted(false)}>Close</Button>
         </View>
-    )
+      </Popup>
+    */} 
+    </View>
+
+)
 }

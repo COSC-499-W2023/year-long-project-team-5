@@ -1,3 +1,29 @@
+# Weekly Personal Log S2 Week 1 (Jan 8 - Jan 14) 
+
+## Screenshot from peer eval
+<img src="https://i.imgur.com/dz0c2lx.png">
+
+## Non-feature work
+- Team meetings
+- Lambda setup with triggers
+- Doing setup on Lambda code
+
+## All of my features for **this milestone**
+### **Feature**: Lambda triggers on S3 Bucket video input
+- **Description**: Video needs to prompt a trigger so that the videos get processed by the blur function
+- **Issue number**: #11
+- **Context**: Started programming on AWS side
+
+## Status of work for the week
+- Lambda triggers (in progress)
+- Backend refactor (in progress)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/111]
+  
+## Other notes
+- N/A
+
 # Weekly Psrsonal Log (November 27-Dec 4)
 ## Screenshot from peer eval
 ![image](https://i.imgur.com/2FLCEl0.png)

@@ -1,3 +1,30 @@
+# Weekly Personal Log S2 Week 1 (Jan 8 - Jan 14) 
+
+## Screenshot from peer eval
+<img src="https://i.imgur.com/BsTaDhu.png">
+
+## Non-feature work
+- Team meetings
+- Reviewing PRs (PR 107)
+- Resolving problems on my PRs (PR 109 and PR 89)
+- Solving merge conflicts for refactor-dash
+
+## All of my features for **this milestone**
+### **Feature**: Refactor backend
+- **Description**: Aim to have more description backend variable and function names, less code reuse and prettier overall code
+- **Issue number**: #87
+- **Context**: Got a good start on this problem, had to get a refresher on all the code we wrote last semester
+
+## Status of work for the week
+- Backend tests (in progress)
+- Backend refactor (in progress)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/87]
+  
+## Other notes
+- N/A
+
 
 # Weekly Personal Log Week 13 (November 27 - December 3) 
 

@@ -91,7 +91,7 @@ export function Dashboard() {
           <SubmissionTable
             rowsToDisplay={filteredsubmissions.map((submission) => (
               <SubmissionRow
-                id={submission.id}
+                name={submission.User.name}
                 email={submission.User.email}
                 description={submission.note}
                 dateSent={submission.createdAt}

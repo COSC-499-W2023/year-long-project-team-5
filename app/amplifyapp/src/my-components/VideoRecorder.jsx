@@ -64,13 +64,13 @@ export default function WebcamVideo() {
       });
 
       const randNum = parseInt(Math.random() * 10000000);
-      const name = "video" + randNum + ".webm";
+      const videoNameS3 = "video" + randNum + ".webm";
       console.log(randNum)
       const data = {
-        videoURL: name, // name is the key (not the url) for the s3 bucket, get video URL with Storage.get(name)
+        videoURL: videoNameS3, // videoNameS3 is the key (not the url) for the s3 bucket, get video URL with Storage.get(name)
       };
       
-      await Storage.put(name, blob); // store video in s3 bucket under the key
+      await Storage.put(videoNameS3, blob); // store video in s3 bucket under the key
       await API.graphql({ //store the key for the video in DynamoDB
         query: createVideoMutation,
         variables: { input: data },
