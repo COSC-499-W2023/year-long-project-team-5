@@ -75,8 +75,8 @@ export function Dashboard() {
   }
 
   function filtersubmissions(searchInput) {
-    let newsubmissions = submissions.filter((submission) => submission.note.toLowerCase().includes(searchInput.toLowerCase()))
-    setFilteredsubmissions(newsubmissions);
+    let newSubmissions = submissions.filter((submission) => submission.name.includes(searchInput))
+    setFilteredsubmissions(newSubmissions);
   }
 
   const { tokens } = useTheme();
