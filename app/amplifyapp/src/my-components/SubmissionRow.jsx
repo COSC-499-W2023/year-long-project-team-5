@@ -30,7 +30,7 @@ export const SubmissionRow = (props) => {
     };
     return(
         <TableRow className='subRow'>
-            <TableCell className  = 'subClientName' width='15%'> {props.name === undefined || props.name === null ? <Text variation='tertiary'>N/A</Text> :  <Text variation='tertiary'> {props.name} </Text> }</TableCell>
+            <TableCell className  = 'subClientName' width='15%'> {props.name === undefined || props.name === null ? <Text variation='tertiary'>N/A</Text> :  <Text> {props.name} </Text> }</TableCell>
             <TableCell className = 'subEmail' width='15%'> {props.email}</TableCell>
             <TableCell className="description" width='50%'>{props.description}</TableCell>
             <TableCell className = 'subDS' width='10%'> {props.dateSent}</TableCell>
