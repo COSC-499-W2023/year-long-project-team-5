@@ -15,7 +15,9 @@ import {
   } from '@aws-amplify/ui-react';
   import { listNotes } from "../graphql/queries";
 import {
-  createNote as createNoteMutation,
+  createVideo as createVideoMutation,
+  createUser as createUserMutation,
+  createSubmission as createSubmissionMutation
 } from "../graphql/mutations";
 
 /**
@@ -53,13 +55,40 @@ export function Submission(){
         const form = new FormData(event.target);
         const image = form.get("image");
         const data = {
-          name: form.get("name"),
-          description: form.get("description"),
-          image: image.name,
+          videoURL: image.name,
         };
-        if (!!data.image) await Storage.put(data.name, image);
+        if (!!data.image) await Storage.put(image.name, image);
         await API.graphql({
-          query: createNoteMutation,
+          query: createVideoMutation,
+          variables: { input: data },
+        });
+        fetchNotes();
+        event.target.reset();
+      }
+
+      async function createUser(email,name) {
+        const data = {
+          email: email,
+          name: name
+        };
+        return await API.graphql({
+          query: createUserMutation,
+          variables: { input: data },
+        });
+      }
+
+      async function createSubmission(event){
+        event.preventDefault();
+        const form = new FormData(event.target);
+        let user = await createUser(form.get("email"),form.get("name"));
+        let userId = user.data.createUser.id
+        const data = {
+          adminId: "testadminID",
+          note: form.get("note"),
+          submissionUserId: userId
+        };
+        await API.graphql({
+          query: createSubmissionMutation,
           variables: { input: data },
         });
         fetchNotes();
