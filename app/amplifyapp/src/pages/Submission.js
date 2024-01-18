@@ -99,43 +99,38 @@ export function Submission(){
       const { tokens } = useTheme();
     return(
         <View className="App">
-        <Heading level={1}>Request a video</Heading>
-        <View as="form" margin="3rem 0" onSubmit={createSubmission}>
-          <Flex direction="row" justifyContent="center">
-            <TextField
-              name="email"
-              placeholder="Recipient email"
-              label="name"
-              labelHidden
-              variation="quiet"
-              required
-            />
-            <TextField
-              name="name"
-              placeholder="Full name of recipient"
-              label="Full Name"
-              labelHidden
-              variation="quiet"
-              required
-            />
-            <TextField
-              name="note"
-              placeholder="Instructions/notes"
-              label="Note Description"
-              labelHidden
-              variation="quiet"
-              required
-            />
-            {/*<TextField
-              name="company"
-              placeholder="Company name"
-              label="company"
-              labelHidden
-              variation="quiet"
-          />*/}
-           <Button type="submit" variation="primary">Request Video </Button>
-            </Flex>
+        <Heading level={2}>Video Request</Heading>
+        <View as="form" margin="2rem 3rem" alignContent = "center" onSubmit={createNote} padding={tokens.space.medium}>
+          <Flex alignItems="center" justifyContent="center" height="50vh">
+            <Card variation="elevated" width="30em" padding='1em'>
+              <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em' padding='1em'>
+                <TextField
+                  name="name"
+                  placeholder="Bilbo Baggins"
+                  label="Recipient Name"
+                  required
+                />
+                <TextField
+                  name="email"
+                  placeholder="bilbobaggins@mordor.com"
+                  label="Recipient Email"
+                  required
+                />
+                <TextField
+                  name="description"
+                  placeholder="Instructions/notes"
+                  label="Video Instructions"
+                  inputStyles={{
+                    paddingBottom: "5em",
+                  }}
+                  required
+                />
+              <Button type="submit" variation="primary">Request Video </Button>
+              </Flex>
+            </Card>
+          </Flex>
         </View>
+          
        {/* Will enable popup once submission code is finalized
       <Popup open={isFormSubmitted} modal closeOnDocumentClick>
         <View>
