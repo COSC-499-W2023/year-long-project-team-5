@@ -18,6 +18,8 @@ import {
   Link,
   useTheme,
   SearchField,
+  ToggleButton,
+  ToggleButtonGroup
 } from '@aws-amplify/ui-react';
 import { listSubmissions } from "../graphql/queries";
 import { listNotes } from "../graphql/queries";
@@ -46,8 +48,9 @@ export function Dashboard() {
   const [notes, setNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
-
-
+  const [isPressed, setIsPressed] = useState(false);
+  const [dashView, setDashView] = useState(false);
+  
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
   useEffect(() => {
     const handleResize = () => {
@@ -62,6 +65,10 @@ export function Dashboard() {
   useEffect(() => {
     fetchNotes();
   }, []);
+  //This handles the click when the button is pressed to switch the layout to isMobile
+ 
+
+
   async function fetchNotes() {
     const apiData = await API.graphql({ query: listSubmissions });
     const submissions = apiData.data.listSubmissions.items;
@@ -128,11 +135,18 @@ export function Dashboard() {
 
   return (
     <View className="App">
-      <Heading level={2}>Video Log</Heading>
-      <SearchField padding={tokens.space.large} onChange={(e) => filterNotes(e.target.value)} />
+      <Heading level={2}>Video Logs</Heading>
+      <Flex alignItems="center" justifyContent="center">
+        <SearchField width="30em" padding={tokens.space.large} onChange={(e) => filterNotes(e.target.value)} />
+        <ToggleButton 
+          isPressed={isPressed}
+          onChange ={()=> setIsPressed(!isPressed)} 
+          onClick={() => {dashView === 'table' ? setDashView('card') : setDashView('table')}}> {isPressed ? "Table View" : "Card View"}
+        </ToggleButton>
+      </Flex>
       <View padding={tokens.space.large}>
         {/* this line is a conditional JSX expression, renders SubmissionTable if it's not mobile and SubmissionCard if it's mobile */}
-        {!isMobile ? (
+        {!isMobile && dashView === 'table' ? (
           <SubmissionTable
             rowsToDisplay={filteredNotes.map((submission) => (
               <SubmissionRow
