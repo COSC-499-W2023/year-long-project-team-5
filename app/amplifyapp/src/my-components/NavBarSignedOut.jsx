@@ -24,7 +24,6 @@ const NavBarSignedOut = (props) => {
     return (
         <View
         backgroundColor={tokens.colors.background.primary}
-        padding={tokens.space.large}
         >
            <Flex boxShadow={tokens.shadows.medium} padding={tokens.space.small} justifyContent='space-between' alignItems='center' marginBottom={tokens.space.large}>
                 <Flex direction="row">
