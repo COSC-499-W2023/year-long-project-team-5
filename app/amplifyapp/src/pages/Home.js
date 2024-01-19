@@ -14,6 +14,10 @@ import {
   import amplifyLogo from '../assets/amplify.svg';
   import cognitoLogo from '../assets/cognito.svg';
   import rekognitionLogo from '../assets/rekognition.svg';
+  import appsync from '../assets/appsync.svg';
+  import lambda from '../assets/lambda.svg';
+  import s3 from '../assets/s3.svg';
+  import reactLogo from '../assets/reactLogo.svg';
   import {motion, useScroll} from "framer-motion";
   import { useRef } from "react";
 
@@ -89,42 +93,67 @@ import {
 					</View>
 	  			</Flex>
 			</motion.div>
+			
 			{/*service logo section*/}
-		
-			<Flex direction="row" alignItems="center" justifyContent="center">
-			<motion.div
-				initial = {{opacity: 0}}
-				whileInView = {{opacity:1}}
-				exit = {{opacity: 0}}
-				viewport={{amount: 0.3, once: false}}
-			>
-			<figure className='figure'>
-				<img src={amplifyLogo} width = '100%'/>
-				<figcaption>AWS Amplify</figcaption>
-			</figure>
-			</motion.div>
-			<motion.div
-				initial = {{opacity: 0}}
-				whileInView = {{opacity:1}}
-				exit = {{opacity: 0}}
-				viewport={{amount: 0.6, once: false}}
-			>
-			<figure className='figure'>
-				<img src={rekognitionLogo} width = '100%'/>
-				<figcaption>Rekognition</figcaption>
-			</figure>
-			</motion.div>
-			<motion.div
-				initial = {{opacity: 0}}
-				whileInView = {{opacity:1}}
-				exit = {{opacity: 0}}
-				viewport={{amount: 0.8, once: false}}
-			>
-			<figure className='figure'>
-				<img src={cognitoLogo} width = '100%'/>
-				<figcaption>AWS Cognito</figcaption>
-			</figure>
-			</motion.div>
+			
+			<div class = 'carousel'>
+				<div class = "scroll" style = {{'--t': '40s'}}>
+					<div>
+						<figure className='figure'>
+							<img src={amplifyLogo} alt = "AWS Amplify" width = '75em'/>
+						</figure>
+						<figure className='figure'>
+							<img src={rekognitionLogo} alt = "Rekognition"  width = '75em'/>
+						</figure>
+						<figure className='figure'>
+							<img src={cognitoLogo}  alt = "AWS Cognito" width = '75em'/>
+						</figure>
+						<figure className='figure'>
+							<img src={appsync} alt = "AppSync"  width = '75em'/>
+						</figure>
+						<figure className='figure'>
+							<img src={lambda} alt = "Lambda"  width = '75em'/>
+						</figure>
+						<figure className='figure'>
+							<img src={s3} alt = "S3 Buckets" width = '75em'/>
+						</figure>
+						<figure className='figure'>
+							<img src={reactLogo} alt = "React" width = '75em'/>
+						</figure>
+					</div>
+					<div>
+						<figure className='figure' >
+							<img src={amplifyLogo} alt = "AWS Amplify" width = '75em'/>
+						</figure>
+						<figure className='figure'>
+							<img src={rekognitionLogo} alt = "Rekognition" width = '75em'/>
+						</figure>
+						<figure className='figure'>
+							<img src={cognitoLogo}  alt = "AWS Cognito" width = '75em'/>
+						</figure>
+						<figure className='figure'>
+							<img src={appsync} alt = "AppSync"  width = '75em'/>
+						</figure>
+						<figure className='figure'>
+							<img src={lambda} alt = "Lambda"  width = '75em'/>
+						</figure>
+						<figure className='figure'>
+							<img src={s3} alt = "S3 Buckets" width = '75em'/>
+						</figure>
+						<figure className='figure'>
+							<img src={reactLogo} alt = "React" width = '75em'/>
+						</figure>
+					</div>
+				</div>
+			</div>	
+			<Flex direction="column" alignItems="flex-start"  textAlign="left">
+				<Divider/>
+				<Heading level={5}>
+					blur software
+				</Heading>
+				<Text as="span">
+				The purpose of our software is to allow admins (such as doctors, managers, professors, etc.) to receive videos from users. From this we can enable asynchronized communication which allows for more efficient communication, enhancing the experience for both the user and admin. The intention of our software is to provide an easy to use, secure solution to asynchronous video sharing.
+				</Text>
 			</Flex>
 		</div>
 	);
