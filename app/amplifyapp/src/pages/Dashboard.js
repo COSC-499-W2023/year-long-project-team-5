@@ -141,7 +141,7 @@ export function Dashboard() {
         <ToggleButton 
           isPressed={isPressed}
           onChange ={()=> setIsPressed(!isPressed)} 
-          onClick={() => {dashView === 'table' ? setDashView('card') : setDashView('table')}}> {isPressed ? "Table View" : "Card View"}
+          onClick={() => {dashView === 'table' ? setDashView('card') : setDashView('table')}}> {isPressed ? "Card View" : "Table View"}
         </ToggleButton>
       </Flex>
       <View padding={tokens.space.large}>
