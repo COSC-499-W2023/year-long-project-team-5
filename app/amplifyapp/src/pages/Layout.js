@@ -20,7 +20,7 @@ export function Layout(){
   
     const {user, route, signOut} = useAuthenticator((context) => [
         context.user,
-        context.route,
+        context.route,  
         context.signOut,
     ]);
     const navigate = useNavigate();
@@ -31,21 +31,20 @@ export function Layout(){
     const {tokens} = useTheme();
     return(
         <ThemeProvider theme={theme} colorMode={colorMode}>
-            <View className="App">
-                <Flex boxShadow={tokens.shadows.medium} padding={tokens.space.small} justifyContent='space-between' alignItems='center' marginBottom={tokens.space.large}>
+            <View className="App" backgroundColor={tokens.colors.background.primary} minHeight='100vh'>
+                <Flex backgroundColor={tokens.colors.primary} boxShadow={tokens.shadows.small} padding={tokens.space.small} justifyContent='space-between' alignItems='center' marginBottom={tokens.space.large}>
                     <Flex direction="row">
                         <AmplifyLink onClick={()=> navigate('/')}>Home</AmplifyLink>
                         <AmplifyLink onClick={()=> navigate('/Dashboard')}> Dashboard</AmplifyLink>
                         <AmplifyLink onClick={()=> navigate('/Submission')}>Request a video</AmplifyLink>
                     </Flex>
-                    
                     {route !== 'authenticated' ? (
                         <Flex direction='row' alignItems='center'>
                             {/* <Button onClick={() => setColorMode('dark')}>{colorMode === 'dark' ? "Dark Mode" : "Light Mode"}</Button> */}
                             <ToggleButton 
                             isPressed={isPressed}
                             onChange ={()=> setIsPressed(!isPressed)} 
-                            onClick={() => {colorMode === 'light' ? setColorMode('dark') : setColorMode('light')}}> isPressed ? Dark : Light</ToggleButton>
+                            onClick={() => {colorMode === 'light' ? setColorMode('dark') : setColorMode('light')}}>{isPressed ? "Dark" : "Light"} </ToggleButton>
                             <Button onClick={() => navigate('/Login')}> Login</Button>
                         </Flex>
                     ):
