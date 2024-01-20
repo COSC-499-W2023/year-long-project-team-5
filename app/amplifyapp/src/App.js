@@ -1,6 +1,8 @@
 import React, { useState, useEffect, StrictMode } from "react";
 import "./App.css";
-import "@aws-amplify/ui-react/styles.css";
+
+import('@aws-amplify/ui-react/styles.css');
+
 import {Amplify, Auth, API, Storage } from 'aws-amplify';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
