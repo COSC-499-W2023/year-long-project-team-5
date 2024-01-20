@@ -163,9 +163,12 @@ export function Dashboard() {
           filteredNotes.map((submission) => (
             <SubmissionCard
               margin="1rem"
-              id={submission.id}
+              name={submission.User.name}
+              email={submission.User.email}
               description={submission.note}
-              image={submission.Video ? submission.Video.videoURL : "N/A"}
+              dateSent={submission.createdAt}
+              dateReceived={submission.submittedAt}
+              videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
             />
           ))
         )}
