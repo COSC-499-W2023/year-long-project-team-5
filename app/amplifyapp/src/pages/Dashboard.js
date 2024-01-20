@@ -136,7 +136,7 @@ export function Dashboard() {
 
   return (
     <View className="App">
-      <Heading level={2}>Video Logs</Heading>
+      <Heading level={2}>Your Video Submissions</Heading>
       <Flex alignItems="center" justifyContent="center">
         <SearchField width="30em" padding={tokens.space.large} onChange={(e) => filterNotes(e.target.value)} />
         {!isMobile && (
