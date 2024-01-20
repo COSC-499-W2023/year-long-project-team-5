@@ -5,6 +5,7 @@ import "@aws-amplify/ui-react/styles.css";
 import { Amplify, Auth, API, Storage } from 'aws-amplify';
 
 import {
+  Grid,
   Button,
   Flex,
   Image,
@@ -138,11 +139,13 @@ export function Dashboard() {
       <Heading level={2}>Video Logs</Heading>
       <Flex alignItems="center" justifyContent="center">
         <SearchField width="30em" padding={tokens.space.large} onChange={(e) => filterNotes(e.target.value)} />
-        <ToggleButton 
-          isPressed={isPressed}
-          onChange ={()=> setIsPressed(!isPressed)} 
-          onClick={() => {dashView === 'table' ? setDashView('card') : setDashView('table')}}> {isPressed ? "Card View" : "Table View"}
-        </ToggleButton>
+        {!isMobile && (
+          <ToggleButton 
+            isPressed={isPressed}
+            onChange ={()=> setIsPressed(!isPressed)} 
+            onClick={() => {dashView === 'table' ? setDashView('card') : setDashView('table')}}> {isPressed ? "Card View" : "Table View"}
+          </ToggleButton>
+        )}
       </Flex>
       <View padding={tokens.space.large}>
         {/* this line is a conditional JSX expression, renders SubmissionTable if it's not mobile and SubmissionCard if it's mobile */}
@@ -153,24 +156,40 @@ export function Dashboard() {
                 name={submission.User.name}
                 email={submission.User.email}
                 description={submission.note}
-                dateSent={submission.createdAt}
-                dateReceived={submission.submittedAt}
+                dateSent={submission.createdAt ==null ? null : new Date(submission.createdAt).toLocaleDateString()}
+                dateReceived={submission.submittedAt ==null ? null : new Date(submission.submittedAt).toLocaleDateString()}
                 videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
               />
             ))}
           />
         ) : (
-          filteredNotes.map((submission) => (
-            <SubmissionCard
-              margin="1rem"
-              name={submission.User.name}
-              email={submission.User.email}
-              description={submission.note}
-              dateSent={submission.createdAt}
-              dateReceived={submission.submittedAt}
-              videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
-            />
-          ))
+          !isMobile ? (
+            <Grid templateColumns="1fr 1fr"  gap={tokens.space.small}>
+            {filteredNotes.map((submission) => (
+              <SubmissionCard
+                margin="1rem"
+                name={submission.User.name}
+                email={submission.User.email}
+                description={submission.note}
+                dateSent={submission.createdAt ==null ? null : new Date(submission.createdAt).toLocaleDateString()}
+                dateReceived={submission.submittedAt ==null ? null : new Date(submission.submittedAt).toLocaleDateString()}
+                videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
+              />
+            ))}
+            </Grid>
+          ) : (
+            filteredNotes.map((submission) => (
+              <SubmissionCard
+                margin="1rem"
+                name={submission.User.name}
+                email={submission.User.email}
+                description={submission.note}
+                dateSent={submission.createdAt ==null ? null : new Date(submission.createdAt).toLocaleDateString()}
+                dateReceived={submission.submittedAt ==null ? null : new Date(submission.submittedAt).toLocaleDateString()}
+                videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
+              />
+            ))
+          )
         )}
       </View>
     </View>
