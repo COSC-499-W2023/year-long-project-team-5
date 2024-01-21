@@ -45,9 +45,8 @@
   "devDependencies": {
     "cypress": "^13.5.1"
   },
-  "jest": {
-    "moduleNameMapper": {
-      "^.+\\.(css|less)$": "<rootDir>/cssstub.js"
-    }
+  "jest":{
+    "moduleNameMapper":{"^.+\\.(css|less)$": "<rootDir>/cssstub.js"}
   }
+
 }

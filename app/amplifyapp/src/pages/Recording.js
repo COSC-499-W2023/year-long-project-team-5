@@ -4,9 +4,7 @@ import "@aws-amplify/ui-react/styles.css";
 
 import VideoRecorder from "../my-components/VideoRecorder";
 import Webcam from "react-webcam";
-import { generateClient } from 'aws-amplify/api';
-import { uploadData, getUrl, remove } from 'aws-amplify/storage'
-import {Amplify, Auth} from 'aws-amplify';
+import {Amplify, Auth, API, Storage } from 'aws-amplify';
 
 import {
     Button,
@@ -20,7 +18,6 @@ import {
   createNote as createNoteMutation,
 } from "../graphql/mutations";
 
-const client = generateClient();
 /**
  * Recording TODO: finish docs
  * @param {Object} props - prop1 name
@@ -35,12 +32,12 @@ export function Recording(){
       fetchNotes();
     }, []);
     async function fetchNotes() {
-        const apiData = await client.graphql({ query: listNotes });
+        const apiData = await API.graphql({ query: listNotes });
         const notesFromAPI = apiData.data.listNotes.items;
         await Promise.all(
           notesFromAPI.map(async (note) => {
             if (note.image) {
-              const url = await getUrl(note.name);
+              const url = await Storage.get(note.name);
               note.image = url;
             }
             return note;
@@ -59,7 +56,7 @@ export function Recording(){
           image: image.name,
         };
         if (!!data.image) await Storage.put(data.name, image);
-        await client.graphql({
+        await API.graphql({
           query: createNoteMutation,
           variables: { input: data },
         });

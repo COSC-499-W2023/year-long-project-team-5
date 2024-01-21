@@ -94,7 +94,7 @@ export default function UserCreateForm(props) {
               modelFields[key] = null;
             }
           });
-          await client.graphql({
+          await API.graphql({
             query: createUser.replaceAll("__typename", ""),
             variables: {
               input: {
