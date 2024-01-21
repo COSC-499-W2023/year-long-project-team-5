@@ -199,7 +199,7 @@ import {
 					}}
 				>
 				<div className = 'center_text'>
-				<h3>Abhinav Thortle</h3>
+				<h3>Abhinav Thota</h3>
 				<p>MAIN TASK</p>
 				</div>
 				</motion.div>
