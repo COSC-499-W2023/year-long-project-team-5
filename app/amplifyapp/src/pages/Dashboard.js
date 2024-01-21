@@ -3,7 +3,7 @@ import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
 import { Amplify, Auth, API, Storage } from 'aws-amplify';
-
+import { filterSubmissions } from "../Helpers/Search";
 import {
   Button,
   Flex,
@@ -30,7 +30,6 @@ import {
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
 import { SubmissionTable } from '../my-components/SubmissionTable'
-
 import awsconfig from '../aws-exports';
 
 /**
@@ -118,26 +117,12 @@ export function Dashboard() {
       variables: { input: { id } },
     });
   }
-
-  function filterNotes(searchInput) {
-    if (searchInput.length === 0) {
-      setFilteredNotes(notes)
-      return
-    }
-    let newNotes = notes.filter((submission) =>
-      submission.note.toLowerCase().includes(searchInput.toLowerCase())
-      || submission.User.email.toLowerCase().includes(searchInput.toLowerCase())
-      || submission.User.name.toLowerCase().includes(searchInput.toLowerCase())
-    )
-    setFilteredNotes(newNotes);
-  }
-
   const { tokens } = useTheme();
 
   return (
     <View className="App">
       <Heading level={2}>Video Log</Heading>
-      <SearchField padding={tokens.space.large} onChange={(e) => filterNotes(e.target.value)} />
+      <SearchField padding={tokens.space.large} onChange={(e) => setFilteredNotes(filterSubmissions(e.target.value,notes))} />
       <View padding={tokens.space.large}>
         {/* this line is a conditional JSX expression, renders SubmissionTable if it's not mobile and SubmissionCard if it's mobile */}
         {!isMobile ? (
