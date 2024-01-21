@@ -49,8 +49,7 @@ export function Dashboard() {
   const [notes, setNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
-  const [isPressed, setIsPressed] = useState(false);
-  const [dashView, setDashView] = useState(false);
+  const [dashView, setDashView] = useState('table');
   
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
   useEffect(() => {
@@ -132,65 +131,57 @@ export function Dashboard() {
     setFilteredNotes(newNotes);
   }
 
-  const { tokens } = useTheme();
+  function renderSubmissions(){
+    if(!isMobile && dashView === "table"){
+      return(
+        <SubmissionTable
+          rowsToDisplay={filteredNotes.map((submission) => (
+            <SubmissionRow
+              name={submission.User.name}
+              email={submission.User.email}
+              description={submission.note}
+              dateSent={submission.createdAt == null ? null : new Date(submission.createdAt).toLocaleDateString()}
+              dateReceived={submission.submittedAt == null ? null : new Date(submission.submittedAt).toLocaleDateString()}
+              videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
+            />
+          ))}
+        />
+      );
+    }else{
+      const gridLayout = !isMobile ? "1fr 1fr" : "1fr";
+      return (
+        <Grid templateColumns={gridLayout} gap={tokens.space.small}>
+          {filteredNotes.map((submission) => (
+            <SubmissionCard
+              margin="1rem"
+              name={submission.User.name}
+              email={submission.User.email}
+              description={submission.note}
+              dateSent={submission.createdAt == null ? null : new Date(submission.createdAt).toLocaleDateString()}
+              dateReceived={submission.submittedAt == null ? null : new Date(submission.submittedAt).toLocaleDateString()}
+              videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
+            />
+          ))}
+        </Grid>
+      );
+    }
+  }
 
+  const { tokens } = useTheme();
   return (
     <View className="App">
       <Heading level={2}>Your Video Submissions</Heading>
       <Flex alignItems="center" justifyContent="center">
         <SearchField width="30em" padding={tokens.space.large} onChange={(e) => filterNotes(e.target.value)} />
         {!isMobile && (
-          <ToggleButton 
-            isPressed={isPressed}
-            onChange ={()=> setIsPressed(!isPressed)} 
-            onClick={() => {dashView === 'table' ? setDashView('card') : setDashView('table')}}> {isPressed ? "Card View" : "Table View"}
-          </ToggleButton>
+          <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
+            <ToggleButton value = "table"> Table </ToggleButton>
+            <ToggleButton value = "card"> Card </ToggleButton>
+          </ToggleButtonGroup>
         )}
       </Flex>
       <View padding={tokens.space.large}>
-        {/* this line is a conditional JSX expression, renders SubmissionTable if it's not mobile and SubmissionCard if it's mobile */}
-        {!isMobile && dashView === 'table' ? (
-          <SubmissionTable
-            rowsToDisplay={filteredNotes.map((submission) => (
-              <SubmissionRow
-                name={submission.User.name}
-                email={submission.User.email}
-                description={submission.note}
-                dateSent={submission.createdAt ==null ? null : new Date(submission.createdAt).toLocaleDateString()}
-                dateReceived={submission.submittedAt ==null ? null : new Date(submission.submittedAt).toLocaleDateString()}
-                videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
-              />
-            ))}
-          />
-        ) : (
-          !isMobile ? (
-            <Grid templateColumns="1fr 1fr"  gap={tokens.space.small}>
-            {filteredNotes.map((submission) => (
-              <SubmissionCard
-                margin="1rem"
-                name={submission.User.name}
-                email={submission.User.email}
-                description={submission.note}
-                dateSent={submission.createdAt ==null ? null : new Date(submission.createdAt).toLocaleDateString()}
-                dateReceived={submission.submittedAt ==null ? null : new Date(submission.submittedAt).toLocaleDateString()}
-                videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
-              />
-            ))}
-            </Grid>
-          ) : (
-            filteredNotes.map((submission) => (
-              <SubmissionCard
-                margin="1rem"
-                name={submission.User.name}
-                email={submission.User.email}
-                description={submission.note}
-                dateSent={submission.createdAt ==null ? null : new Date(submission.createdAt).toLocaleDateString()}
-                dateReceived={submission.submittedAt ==null ? null : new Date(submission.submittedAt).toLocaleDateString()}
-                videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
-              />
-            ))
-          )
-        )}
+        {renderSubmissions()}
       </View>
     </View>
   )
