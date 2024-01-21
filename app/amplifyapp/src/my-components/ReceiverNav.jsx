@@ -17,7 +17,7 @@ const ReceiverNav = (props) => {
     return (
         <View backgroundColor={tokens.colors.primary} height="70px" padding={'.2rem 2rem'} boxShadow={'small'}>
             <Flex height="100%" direction='row' justifyContent='space-between'>
-                <Link alignSelf="center"><Icon ariaLabel="Javascript" as={HiHome} /> Home</Link>
+                <Link alignSelf="center"><HiHome/> Home</Link>
                 <h3>{props.name && props.loggedIn ? "Hello " + props.name : null}</h3>
                 <View alignSelf="center">
                     {!props.loggedIn ?

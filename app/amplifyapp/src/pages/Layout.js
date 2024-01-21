@@ -1,5 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import {NavBar} from '../my-components/NavBar';
+import DarkLightToggle from "../my-components/DarkLightToggle"
 import * as React from "react";
 import {Button, defaultDarkModeOverride, ToggleButton, Theme, ThemeProvider, useTheme, useAuthenticator,View, Flex, Tabs, TabItem, Text, Link as AmplifyLink} from '@aws-amplify/ui-react';
 
@@ -11,8 +12,7 @@ import {Button, defaultDarkModeOverride, ToggleButton, Theme, ThemeProvider, use
  * <Layout></Layout>
  */
 export function Layout(){
-    const [colorMode, setColorMode] = React.useState('light');
-    const [isPressed, setIsPressed] = React.useState(false);
+    
     const theme = {
       name: 'my-theme',
       overrides: [defaultDarkModeOverride],
@@ -29,9 +29,11 @@ export function Layout(){
         navigate('/login');
     }
     const {tokens} = useTheme();
+    const [colorMode, setColorMode] = React.useState('light');
     return(
         <ThemeProvider theme={theme} colorMode={colorMode}>
             <View className="App" backgroundColor={tokens.colors.background.primary} minHeight='100vh'>
+
                 <Flex backgroundColor={tokens.colors.primary} boxShadow={tokens.shadows.small} padding={tokens.space.small} justifyContent='space-between' alignItems='center' marginBottom={tokens.space.large}>
                     <Flex direction="row">
                         <AmplifyLink onClick={()=> navigate('/')}>Home</AmplifyLink>
@@ -40,20 +42,12 @@ export function Layout(){
                     </Flex>
                     {route !== 'authenticated' ? (
                         <Flex direction='row' alignItems='center'>
-                            {/* <Button onClick={() => setColorMode('dark')}>{colorMode === 'dark' ? "Dark Mode" : "Light Mode"}</Button> */}
-                            <ToggleButton 
-                            isPressed={isPressed}
-                            onChange ={()=> setIsPressed(!isPressed)} 
-                            onClick={() => {colorMode === 'light' ? setColorMode('dark') : setColorMode('light')}}>{isPressed ? "Dark" : "Light"} </ToggleButton>
+                            <DarkLightToggle colorMode={colorMode} setColorMode={setColorMode}/>
                             <Button onClick={() => navigate('/Login')}> Login</Button>
                         </Flex>
                     ):
                         <Flex direction='row' alignItems='center'>
-                            {/* <Button onClick={() => {colorMode === 'light' ? setColorMode('dark') : setColorMode('light')}}>{colorMode === 'dark' ? "Dark Mode" : "Light Mode"}</Button> */}
-                            <ToggleButton 
-                            isPressed={isPressed}
-                            onChange ={()=> setIsPressed(!isPressed)} 
-                            onClick={() => {colorMode === 'light' ? setColorMode('dark') : setColorMode('light')}}> {isPressed ? "Light Mode" : "Dark Mode"}</ToggleButton>
+                            <DarkLightToggle colorMode={colorMode} setColorMode={setColorMode}/>
                             <AmplifyLink onClick={()=> navigate('/Profile')}>Hello, {user.attributes.name}!</AmplifyLink>
                             <Button onClick={() => logOut()}> Sign Out</Button>
                         </Flex>
