@@ -144,7 +144,23 @@ import {
 					</div>
 				</div>
 			</div>	
-			
+			{/*software info*/}
+			<View
+			padding={tokens.space.large}
+			border-top = "1px solid #669999"
+			>
+				<Card variation = 'elevated'>
+					<Flex direction="column" alignItems="flex-start"  textAlign="left">
+					<Heading level={5}>
+						blur software
+					</Heading>
+					<Text as="span">
+					The purpose of our software is to allow admins (such as doctors, managers, professors, etc.) to receive videos from users. From this we can enable asynchronized communication which allows for more efficient communication, enhancing the experience for both the user and admin. The intention of our software is to provide an easy to use, secure solution to asynchronous video sharing.
+					</Text>
+					<Button variation = 'primary' alignSelf = 'center' onClick={() => navigate('/Login')}>Try it out today!</Button>
+					</Flex>
+				</Card>
+			</View>
 			{/*Team members*/}
 			<Heading level = {3}>
 					Meet the team!
@@ -194,7 +210,7 @@ import {
 				>
 				<div className = 'center_text'>
 				<h3>Abhinav Thota</h3>
-				<p>MAIN TASK</p>
+				<p>MAIN TASKS</p>
 				</div>
 				</motion.div>
 				</div>
@@ -209,7 +225,7 @@ import {
 				>
 				<div className = 'center_text'>
 				<h3>Beck Corkle</h3>
-				<p>MAIN TASK</p>
+				<p>MAIN TASKS</p>
 				</div>
 				</motion.div>
 				</div>
@@ -232,23 +248,7 @@ import {
 			</Flex>
 			</View>
 
-			{/*software info*/}
-			<View
-			padding={tokens.space.large}
-			border-top = "1px solid #669999"
-			>
-				<Card variation = 'elevated'>
-					<Flex direction="column" alignItems="flex-start"  textAlign="left">
-					<Heading level={5}>
-						blur software
-					</Heading>
-					<Text as="span">
-					The purpose of our software is to allow admins (such as doctors, managers, professors, etc.) to receive videos from users. From this we can enable asynchronized communication which allows for more efficient communication, enhancing the experience for both the user and admin. The intention of our software is to provide an easy to use, secure solution to asynchronous video sharing.
-					</Text>
-					<Button variation = 'primary' alignSelf = 'center' onClick={() => navigate('/Login')}>Try it out today!</Button>
-					</Flex>
-				</Card>
-			</View>
+			
 		</div>
 	);
   };
