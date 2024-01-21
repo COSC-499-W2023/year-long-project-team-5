@@ -3,7 +3,7 @@ import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
 import { Auth, API, Storage } from 'aws-amplify';
-
+import { filterSubmissions } from "../Helpers/Search";
 import {
   View,
   useAuthenticator,
@@ -28,8 +28,8 @@ import {SubmissionTable} from '../my-components/SubmissionTable'
 export function Dashboard() {
   const { user, route } = useAuthenticator((context) => [context.user, context.route]);
   console.log(Auth.user.username)
-  const [submissions, setsubmissions] = useState([]);
-  const [filteredsubmissions, setFilteredsubmissions] = useState([])
+  const [submissions, setSubmissions] = useState([]);
+  const [filteredsubmissions, setFilteredSubmissions] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
 
 
@@ -70,13 +70,8 @@ export function Dashboard() {
         return submission;
       })
     );
-    setsubmissions(filteredSubmissions);
-    setFilteredsubmissions(filteredSubmissions);
-  }
-
-  function filtersubmissions(searchInput) {
-    let newSubmissions = submissions.filter((submission) => submission.name.includes(searchInput))
-    setFilteredsubmissions(newSubmissions);
+    setSubmissions(filteredSubmissions);
+    setFilteredSubmissions(filteredSubmissions);
   }
 
   const { tokens } = useTheme();
@@ -84,7 +79,7 @@ export function Dashboard() {
   return (
     <View className="App">
       <Heading level={2}>Video Log</Heading>
-      <SearchField padding={tokens.space.large} onChange={(e) => filtersubmissions(e.target.value)} />
+      <SearchField padding={tokens.space.large} onChange={(e) => setFilteredSubmissions(filterSubmissions(e.target.value,submissions))} />
       <View padding={tokens.space.large}>
         {/* this line is a conditional JSX expression, renders SubmissionTable if it's not mobile and SubmissionCard if it's mobile */}
         {!isMobile ? (
