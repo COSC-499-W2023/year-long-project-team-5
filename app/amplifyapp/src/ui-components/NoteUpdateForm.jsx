@@ -8,7 +8,7 @@
 import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
-import { API } from "aws-amplify";
+import { generateClient } from 'aws-amplify/api';
 import { getNote } from "../graphql/queries";
 import { updateNote } from "../graphql/mutations";
 export default function NoteUpdateForm(props) {
@@ -48,7 +48,7 @@ export default function NoteUpdateForm(props) {
     const queryData = async () => {
       const record = idProp
         ? (
-            await API.graphql({
+            await client.graphql({
               query: getNote.replaceAll("__typename", ""),
               variables: { id: idProp },
             })

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Card, Flex, Heading, Link, Button, useTheme, View, Text, Tabs, TabItem} from "@aws-amplify/ui-react";
+import {Card, Flex, Heading, Link, Button, useTheme, View, Text, Tabs} from "@aws-amplify/ui-react";
 
 /**
  * navbar TODO: finish docs
@@ -17,15 +17,15 @@ const NavBar = (props) => {
         padding={tokens.space.large}
         >
             <Tabs justifyContent="flex-start">
-                <TabItem title="Home">
+                <Tabs.Item title="Home">
                     {props.home}
-                </TabItem>
-                <TabItem title="Dashboard">
+                </Tabs.Item>
+                <Tabs.Item title="Dashboard">
                     {props.dashboard}
-                </TabItem>
-                <TabItem title="Settings" isDisabled={true}>
+                </Tabs.Item>
+                <Tabs.Item title="Settings" isDisabled={true}>
                     {props.settings}
-                </TabItem>
+                </Tabs.Item>
             </Tabs>
         </View>
     )

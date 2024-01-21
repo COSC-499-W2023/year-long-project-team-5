@@ -4,7 +4,8 @@ import "@aws-amplify/ui-react/styles.css";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Authenticator, useAuthenticator} from "@aws-amplify/ui-react"
 
-import {Amplify, Auth, API, Storage } from 'aws-amplify';
+import {Amplify, Auth} from 'aws-amplify';
+import { fetchUserAttributes } from 'aws-amplify/auth';
 
 import {
     Button,
@@ -24,9 +25,24 @@ export function Profile(){
         context.signOut,
     ]);
     const navigate = useNavigate();
+
+    const [attributes, setAttributes] = useState(null);
+    useEffect(() => {
+        const fetchAttributes = async () => {
+            try {
+                const userAttributes = await fetchUserAttributes();
+                setAttributes(userAttributes);
+            } catch (error) {
+                // Handle any errors
+            }
+        };
+
+        fetchAttributes();
+    }, []);
+    
     return(
         <View className="App">
-        <Heading level={1}>Welcome, {user.attributes.name}!</Heading>
+        <Heading level={1}>Welcome, {attributes ? attributes.name : ""}!</Heading>
  <Flex direction = 'column' width = '100%' justifyContent='space-evenly' alignItems='center' marginTop = '2rem' rowGap='2.5rem'>
         <View as="form" minWidth ='80%'>
         <Heading textAlign = 'left' marginBottom='1rem' level={4}>Edit Profile</Heading>
@@ -34,14 +50,14 @@ export function Profile(){
           <Flex direction="column" justifyContent = "center" textAlign = "left">
           {<TextField
               name="name"
-              placeholder={user.attributes.name}
+              placeholder={attributes ? attributes.name : ""}
               label="Name"
               variation="default"
               required
           />}
             <TextField
               name="name"
-              placeholder={user.attributes.email}
+              placeholder={attributes ? attributes.email : ""}
               label="Email"
               variation="default"
               required

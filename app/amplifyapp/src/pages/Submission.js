@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
-import {Amplify, Auth, API, Storage } from 'aws-amplify';
+import { generateClient } from 'aws-amplify/api';
+import { uploadData, getUrl, remove } from 'aws-amplify/storage';
+import {Amplify, Auth } from 'aws-amplify';
 import { SubmissionRow } from "../my-components/SubmissionRow";
 import {
     Button,
@@ -25,6 +27,8 @@ import {
  * @example
  * <Submission></Submission>
  */
+
+const client = generateClient();
 export function Submission(){
     const [notes, setNotes] = useState([]);
     const [filteredNotes, setFilteredNotes] = useState([])
@@ -34,12 +38,12 @@ export function Submission(){
     const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
 
     async function fetchNotes() {
-        const apiData = await API.graphql({ query: listNotes });
+        const apiData = await client.graphql({ query: listNotes });
         const notesFromAPI = apiData.data.listNotes.items;
         await Promise.all(
           notesFromAPI.map(async (note) => {
             if (note.image) {
-              const url = await Storage.get(note.name);
+              const url = await getUrl({ key: note.name });
               note.image = url;
             }
             return note;
@@ -57,8 +61,8 @@ export function Submission(){
           description: form.get("description"),
           image: image.name,
         };
-        if (!!data.image) await Storage.put(data.name, image);
-        await API.graphql({
+        if (!!data.image) await uploadData({ key: data.name, data: image });
+        await client.graphql({
           query: createNoteMutation,
           variables: { input: data },
         });

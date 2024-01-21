@@ -1,9 +1,7 @@
 import React, { useState, useEffect, StrictMode } from "react";
 import "./App.css";
 
-import('@aws-amplify/ui-react/styles.css');
-
-import {Amplify, Auth, API, Storage } from 'aws-amplify';
+import {Amplify, Auth} from 'aws-amplify';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import {Layout} from './pages/Layout'
@@ -14,6 +12,8 @@ import {Submission} from './pages/Submission'
 import {Profile} from './pages/Profile'
 import { Authenticator } from "@aws-amplify/ui-react";
 import {RequireAuth} from "./RequireAuth"
+
+import('@aws-amplify/ui-react/styles.css');
 
 function MyRoutes(){
   return(
