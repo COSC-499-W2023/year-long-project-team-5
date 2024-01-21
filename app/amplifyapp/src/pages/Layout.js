@@ -1,7 +1,7 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import NavBar from '../my-components/NavBar';
-import  NavBarSignedOut  from '../my-components/NavBarSignedOut';
-import * as React from "react";
+import  NavBarMobile  from '../my-components/NavBarMobile';
+import React, { useState, useEffect } from "react";
 import {Button, useTheme, useAuthenticator,View, Flex, Tabs, TabItem, Text, Link as AmplifyLink} from '@aws-amplify/ui-react';
 
 /**
@@ -22,11 +22,21 @@ export function Layout(){
         signOut();
         navigate('/login');
     }
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
     const {tokens} = useTheme();
+    useEffect(() => {
+        const handleResize = () => {
+          setIsMobile(window.innerWidth <= 1000);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+      }, []);
     return(
         <View className="App">
-            {route !== 'authenticated' ? (
-                    <NavBarSignedOut/>
+            {isMobile ? (
+                    <NavBarMobile/>
                 ):
             <NavBar/>    
             }
