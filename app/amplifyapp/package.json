@@ -3,18 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@aws-amplify/ui-components": "^1.9.40",
-    "@aws-amplify/ui-react": "^6.1.1",
+    "@aws-amplify/ui-react": "^5.3.3",
     "@fontsource/inter": "^5.0.15",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "aws-amplify": "^6.0.12",
+    "aws-amplify": "^5.0.1",
     "jsdoc": "^4.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.18.0",
     "react-scripts": "^5.0.1",
+    "react-webcam": "^7.2.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -51,5 +51,4 @@
       "^axios$": "axios/dist/node/axios.cjs"
     }
   }
-
 }

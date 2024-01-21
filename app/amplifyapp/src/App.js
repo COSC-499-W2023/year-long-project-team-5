@@ -13,6 +13,11 @@ import {Recording} from './pages/Recording'
 import {Profile} from './pages/Profile'
 import { Authenticator } from "@aws-amplify/ui-react";
 import {RequireAuth} from "./RequireAuth"
+import {Amplify, Auth } from 'aws-amplify';
+import awsconfig from './aws-exports';
+
+Auth.configure(awsconfig);
+Amplify.configure(awsconfig);
 function MyRoutes(){
   return(
     <BrowserRouter>
