@@ -15,23 +15,28 @@ export const SubmissionCard = (props) => {
 
     const {tokens} = useTheme();
     return(
-        <View
-        backgroundColor={tokens.colors.background.secondary}
-        padding={tokens.space.large}
-        >
-            <Card variation="outlined">
+        <View padding={tokens.space.large}>
+            <Card variation="elevated">
+                <Flex color={tokens.colors.background.secondary} justifyContent="space-between">
+                    <Heading level = {4}> {props.name === undefined || props.name === null ? "N/A" : props.name}</Heading>
+                    <Text fontWeight={"light"}>Sent: {props.dateSent}</Text>
+                </Flex>
                 <Flex direction='column' alignItems='flex-start'>
-                    <Flex color={tokens.colors.background.secondary} direction="row" justifyContent="flex-start" alignItems="flex-start"  alignContent="flex-start"  wrap="wrap">
-                        <Heading level = {4}> {props.name === undefined || props.name === null ? "N/A" : props.name}</Heading>
-                        <Heading style={{textAlign: "right" }} level = {6}> Sent: {props.dateSent}</Heading>
-                    </Flex>
-                    <Heading style={{textAlign: "right" }} level = {6}> Email: {props.email}</Heading>
+                    <Text fontWeight={"light"}>Email: {props.email}</Text>
+                    <Text fontWeight={"semibold"}>Instructions:</Text>
                     <Text numberOfLines={1} as='span' style={{ flex: 1 }}>
                         {props.description}
                     </Text>
-                    {props.videoLink===null || props.dateReceived ==null ? <Button variation="primary" size='small' disabled>No Video Received</Button> : <Button variation="primary" size='small' width='15%' onClick={()=>{window.open(props.videoLink)}}>Video</Button>}
-                    {/*<Button variation="primary">Open Submission</Button>*/}
+                    <span>&nbsp;&nbsp;</span>
                 </Flex>
+                    {props.videoLink===null || props.dateReceived==null ? (
+                        <Button variation="primary" size='small' disabled>No Video Received</Button>
+                    ) : (
+                    <Flex justifyContent='center' alignItems='center'>
+                        <Button variation="primary" size='small' width='12em' onClick={()=>{window.open(props.videoLink)}}>Video</Button>
+                        <Text fontWeight={"light"}>Received: {props.dateReceived}</Text>
+                    </Flex>
+                    )}
             </Card>
         </View>
     )
