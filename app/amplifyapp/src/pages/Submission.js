@@ -17,7 +17,9 @@ import {
   } from '@aws-amplify/ui-react';
   import { listNotes } from "../graphql/queries";
 import {
-  createNote as createNoteMutation,
+  createVideo as createVideoMutation,
+  createUser as createUserMutation,
+  createSubmission as createSubmissionMutation
 } from "../graphql/mutations";
 
 /**
@@ -57,13 +59,40 @@ export function Submission(){
         const form = new FormData(event.target);
         const image = form.get("image");
         const data = {
-          name: form.get("name"),
-          description: form.get("description"),
-          image: image.name,
+          videoURL: image.name,
         };
-        if (!!data.image) await uploadData({ key: data.name, data: image });
+        if (!!data.image) await uploadData(image.name, image);
         await client.graphql({
-          query: createNoteMutation,
+          query: createVideoMutation,
+          variables: { input: data },
+        });
+        fetchNotes();
+        event.target.reset();
+      }
+
+      async function createUser(email,name) {
+        const data = {
+          email: email,
+          name: name
+        };
+        return await client.graphql({
+          query: createUserMutation,
+          variables: { input: data },
+        });
+      }
+
+      async function createSubmission(event){
+        event.preventDefault();
+        const form = new FormData(event.target);
+        let user = await createUser(form.get("email"),form.get("name"));
+        let userId = user.data.createUser.id
+        const data = {
+          adminId: "testadminID",
+          note: form.get("note"),
+          submissionUserId: userId
+        };
+        await client.graphql({
+          query: createSubmissionMutation,
           variables: { input: data },
         });
         fetchNotes();
@@ -74,45 +103,38 @@ export function Submission(){
       const { tokens } = useTheme();
     return(
         <View className="App">
-        <Heading level={1}>Request a video</Heading>
-        <View as="form" margin="1rem 3rem" alignContent = "center" onSubmit={createNote} padding={tokens.space.medium}>
-          <Card variation="elevated">
-          <Flex direction="column" justifyContent = "center" textAlign = "left">
-          {/*<TextField
-              name="name"
-              placeholder="Recipient name"
-              label="name"
-              labelHidden
-              variation="quiet"
-              required
-    />*/}
-            <TextField
-              name="name"
-              placeholder="Recipient email"
-              label="name"
-              labelHidden
-              variation="quiet"
-              required
-            />
-            <TextField
-              name="description"
-              placeholder="Instructions/notes"
-              label="Note Description"
-              labelHidden
-              variation="quiet"
-              required
-            />
-            {/*<TextField
-              name="company"
-              placeholder="Company name"
-              label="company"
-              labelHidden
-              variation="quiet"
-          />*/}
-           <Button type="submit" variation="primary">Request Video </Button>
-            </Flex>
+        <Heading level={2}>Video Request</Heading>
+        <View as="form" margin="2rem 3rem" alignContent = "center" onSubmit={createNote} padding={tokens.space.medium}>
+          <Flex alignItems="center" justifyContent="center" height="50vh">
+            <Card variation="elevated" width="30em" padding='1em'>
+              <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em' padding='1em'>
+                <TextField
+                  name="name"
+                  placeholder="Bilbo Baggins"
+                  label="Recipient Name"
+                  required
+                />
+                <TextField
+                  name="email"
+                  placeholder="bilbobaggins@mordor.com"
+                  label="Recipient Email"
+                  required
+                />
+                <TextField
+                  name="description"
+                  placeholder="Instructions/notes"
+                  label="Video Instructions"
+                  inputStyles={{
+                    paddingBottom: "5em",
+                  }}
+                  required
+                />
+              <Button type="submit" variation="primary">Request Video </Button>
+              </Flex>
             </Card>
+          </Flex>
         </View>
+          
        {/* Will enable popup once submission code is finalized
       <Popup open={isFormSubmitted} modal closeOnDocumentClick>
         <View>

@@ -1,6 +1,28 @@
+type Submission @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  adminId: ID
+  Video: Video @hasOne
+  User: User @hasOne
+  note: String
+  submittedAt: AWSDateTime
+}
+
+type Video @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  videoURL: String
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  email: AWSEmail
+  name: String
+}
+
 type Note @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
   description: String
   image: String
-} 
+  viewedStatus: Boolean
+}
+ 
