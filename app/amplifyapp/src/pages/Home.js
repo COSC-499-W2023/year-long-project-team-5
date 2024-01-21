@@ -17,6 +17,11 @@ import {
   import appsync from '../assets/appsync.svg';
   import lambda from '../assets/lambda.svg';
   import s3 from '../assets/s3.svg';
+  import Josh from '../assets/josh.jpg';
+  import Abby from '../assets/abby.jpg';
+  import Abhinav from '../assets/abhinav.jpg';
+  import Beck from '../assets/beck.jpg';
+  import Kael from '../assets/kael.jpg';
   import reactLogo from '../assets/reactLogo.svg';
   import {motion, useScroll} from "framer-motion";
   import { useRef } from "react";
@@ -42,7 +47,7 @@ import {
 				initial = {{opacity: 0}}
 				whileInView = {{opacity:1}}
 				exit = {{opacity: 0}}
-				viewport={{amount: 0.8, once: false}}
+				viewport={{amount: 0.5, once: false}}
 			>
 				<Flex alignItems = 'center' direction = 'row' justifyContent = 'center' wrap = "wrap" margin = '1rem 0rem 1rem 0rem'>
 					<View padding={tokens.space.medium}>
@@ -95,7 +100,6 @@ import {
 			</motion.div>
 			
 			{/*service logo section*/}
-			
 			<div class = 'carousel'>
 				<div class = "scroll" style = {{'--t': '40s'}}>
 					<div>
@@ -146,6 +150,99 @@ import {
 					</div>
 				</div>
 			</div>	
+			
+			{/*Team members*/}
+			<Heading level = {3}>
+					Meet the team!
+				</Heading>
+			<View padding = {tokens.space.large}>
+				
+				<Flex alignItems = 'center' direction = 'row' justifyContent = 'center' wrap = "nowrap">
+					<div className='headerText'>
+					<img className = "profile" src = {Abby} width = '100%'/>
+					<motion.div
+						initial = {{opacity: 0}}
+						whileHover = {{
+							opacity: 1,
+							transition: {duration: 0.5}
+						}}
+					>
+					<div className = 'center_text'>
+					<h3>Abby Kiehlbauch</h3>
+					<p>MAIN TASKS</p>
+					</div>
+					</motion.div>
+					</div>
+						
+				<div className='headerText'>
+				<img className = "profile" src = {Josh} width = '100%'/>
+				<motion.div
+					initial = {{opacity: 0}}
+					whileHover = {{
+						opacity: 1,
+						transition: {duration: 0.5}
+					}}
+				>
+				<div className = 'center_text'>
+				<h3>Josh Medina Quiaro</h3>
+				<p>MAIN TASKS</p>
+				</div>
+				</motion.div>
+				</div>
+				<div className='headerText'>
+				<img className = "profile" src = {Abhinav} width = '100%'/>
+				<motion.div
+					initial = {{opacity: 0}}
+					whileHover = {{
+						opacity: 1,
+						transition: {duration: 0.5}
+					}}
+				>
+				<div className = 'center_text'>
+				<h3>Abhinav Thortle</h3>
+				<p>MAIN TASK</p>
+				</div>
+				</motion.div>
+				</div>
+				<div className='headerText'>
+				<img className = "profile" src = {Beck} width = '100%'/>
+				<motion.div
+					initial = {{opacity: 0}}
+					whileHover = {{
+						opacity: 1,
+						transition: {duration: 0.5}
+					}}
+				>
+				<div className = 'center_text'>
+				<h3>Beck Corkle</h3>
+				<p>MAIN TASK</p>
+				</div>
+				</motion.div>
+				</div>
+				<div className='headerText'>
+				<img className = "profile" src = {Kael} width = '100%'/>
+				<motion.div
+					initial = {{opacity: 0}}
+					whileHover = {{
+						opacity: 1,
+						transition: {duration: 0.5}
+					}}
+				>
+				<div className = 'center_text'>
+				<h3>Kael Pearson</h3>
+				<p>MAIN TASKS</p>
+				</div>
+				</motion.div>
+				</div>
+						
+			</Flex>
+			</View>
+
+			{/*software info*/}
+			<View
+			padding={tokens.space.large}
+			border-top = "1px solid #669999"
+			>
 			<Flex direction="column" alignItems="flex-start"  textAlign="left">
 				<Divider/>
 				<Heading level={5}>
@@ -155,6 +252,8 @@ import {
 				The purpose of our software is to allow admins (such as doctors, managers, professors, etc.) to receive videos from users. From this we can enable asynchronized communication which allows for more efficient communication, enhancing the experience for both the user and admin. The intention of our software is to provide an easy to use, secure solution to asynchronous video sharing.
 				</Text>
 			</Flex>
+			</View>
+
 		</div>
 	);
   };
