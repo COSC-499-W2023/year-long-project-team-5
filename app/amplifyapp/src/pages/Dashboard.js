@@ -36,7 +36,6 @@ const client = generateClient();
  */
 export function Dashboard() {
   const { user, route } = useAuthenticator((context) => [context.user, context.route]);
-  console.log(Auth.user.username)
   const [notes, setNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
@@ -94,8 +93,8 @@ export function Dashboard() {
       image: image.name,
     };
     console.log(data)
-    if (!!data.image) await Storage.put(data.name, image);
-    await API.graphql({
+    if (!!data.image) await uploadData(data.name, image);
+    await client.graphql({
       query: createVideoMutation,
       variables: { input: data },
     });
@@ -106,8 +105,8 @@ export function Dashboard() {
   async function deleteNote({ id, name }) {
     const newNotes = notes.filter((note) => note.id !== id);
     setNotes(newNotes);
-    await Storage.remove(name);
-    await API.graphql({
+    await remove(name);
+    await client.graphql({
       query: deleteNoteMutation,
       variables: { input: { id } },
     });

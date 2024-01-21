@@ -40,7 +40,7 @@ export default function VideoUpdateForm(props) {
     const queryData = async () => {
       const record = idProp
         ? (
-            await API.graphql({
+            await client.graphql({
               query: getVideo.replaceAll("__typename", ""),
               variables: { id: idProp },
             })
@@ -110,7 +110,7 @@ export default function VideoUpdateForm(props) {
               modelFields[key] = null;
             }
           });
-          await API.graphql({
+          await client.graphql({
             query: updateVideo.replaceAll("__typename", ""),
             variables: {
               input: {

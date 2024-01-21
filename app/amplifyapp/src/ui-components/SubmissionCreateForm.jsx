@@ -118,7 +118,7 @@ export default function SubmissionCreateForm(props) {
               modelFields[key] = null;
             }
           });
-          await API.graphql({
+          await client.graphql({
             query: createSubmission.replaceAll("__typename", ""),
             variables: {
               input: {

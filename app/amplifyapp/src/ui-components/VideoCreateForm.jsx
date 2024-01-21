@@ -89,7 +89,7 @@ export default function VideoCreateForm(props) {
               modelFields[key] = null;
             }
           });
-          await API.graphql({
+          await client.graphql({
             query: createVideo.replaceAll("__typename", ""),
             variables: {
               input: {

@@ -135,7 +135,7 @@ export default function NoteUpdateForm(props) {
               modelFields[key] = null;
             }
           });
-          await API.graphql({
+          await client.graphql({
             query: updateNote.replaceAll("__typename", ""),
             variables: {
               input: {

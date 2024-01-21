@@ -1,12 +1,13 @@
 import React, { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
-
-import {Amplify, Auth, API, Storage } from 'aws-amplify';
+import { generateClient } from 'aws-amplify/api';
+import { uploadData, getUrl, remove } from 'aws-amplify/storage'
+import {Amplify, Auth } from 'aws-amplify';
 
 import {
   createVideo as createVideoMutation
 } from "../graphql/mutations";
-
+const client = generateClient();
 export default function WebcamVideo() {
   const webcamRef = useRef(null);
   const mediaRecorderRef = useRef(null);
@@ -70,8 +71,8 @@ export default function WebcamVideo() {
         videoURL: videoNameS3, // videoNameS3 is the key (not the url) for the s3 bucket, get video URL with Storage.get(name)
       };
       
-      await Storage.put(videoNameS3, blob); // store video in s3 bucket under the key
-      await API.graphql({ //store the key for the video in DynamoDB
+      await uploadData(videoNameS3, blob); // store video in s3 bucket under the key
+      await client.graphql({ //store the key for the video in DynamoDB
         query: createVideoMutation,
         variables: { input: data },
       });

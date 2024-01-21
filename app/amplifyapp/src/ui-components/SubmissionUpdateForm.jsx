@@ -49,7 +49,7 @@ export default function SubmissionUpdateForm(props) {
     const queryData = async () => {
       const record = idProp
         ? (
-            await API.graphql({
+            await client.graphql({
               query: getSubmission.replaceAll("__typename", ""),
               variables: { id: idProp },
             })
@@ -140,7 +140,7 @@ export default function SubmissionUpdateForm(props) {
               modelFields[key] = null;
             }
           });
-          await API.graphql({
+          await client.graphql({
             query: updateSubmission.replaceAll("__typename", ""),
             variables: {
               input: {

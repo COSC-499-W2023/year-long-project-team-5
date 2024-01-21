@@ -114,7 +114,7 @@ export default function NoteCreateForm(props) {
               modelFields[key] = null;
             }
           });
-          await API.graphql({
+          await client.graphql({
             query: createNote.replaceAll("__typename", ""),
             variables: {
               input: {
