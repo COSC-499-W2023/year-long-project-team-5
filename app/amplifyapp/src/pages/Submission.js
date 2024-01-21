@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
-import { generateClient } from 'aws-amplify/api';
-import { uploadData, getUrl, remove } from 'aws-amplify/storage';
-import {Amplify, Auth } from 'aws-amplify';
+import {Amplify, Auth, API, Storage } from 'aws-amplify';
 import { SubmissionRow } from "../my-components/SubmissionRow";
 import {
     Button,
@@ -29,8 +27,6 @@ import {
  * @example
  * <Submission></Submission>
  */
-
-const client = generateClient();
 export function Submission(){
     const [notes, setNotes] = useState([]);
     const [filteredNotes, setFilteredNotes] = useState([])
@@ -40,12 +36,12 @@ export function Submission(){
     const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
 
     async function fetchNotes() {
-        const apiData = await client.graphql({ query: listNotes });
+        const apiData = await API.graphql({ query: listNotes });
         const notesFromAPI = apiData.data.listNotes.items;
         await Promise.all(
           notesFromAPI.map(async (note) => {
             if (note.image) {
-              const url = await getUrl({ key: note.name });
+              const url = await Storage.get(note.name);
               note.image = url;
             }
             return note;
@@ -61,38 +57,9 @@ export function Submission(){
         const data = {
           videoURL: image.name,
         };
-        if (!!data.image) await uploadData(image.name, image);
-        await client.graphql({
-          query: createVideoMutation,
-          variables: { input: data },
-        });
-        fetchNotes();
-        event.target.reset();
-      }
-
-      async function createUser(email,name) {
-        const data = {
-          email: email,
-          name: name
-        };
-        return await client.graphql({
-          query: createUserMutation,
-          variables: { input: data },
-        });
-      }
-
-      async function createSubmission(event){
-        event.preventDefault();
-        const form = new FormData(event.target);
-        let user = await createUser(form.get("email"),form.get("name"));
-        let userId = user.data.createUser.id
-        const data = {
-          adminId: "testadminID",
-          note: form.get("note"),
-          submissionUserId: userId
-        };
-        await client.graphql({
-          query: createSubmissionMutation,
+        if (!!data.image) await Storage.put(data.name, image);
+        await API.graphql({
+          query: createNoteMutation,
           variables: { input: data },
         });
         fetchNotes();
