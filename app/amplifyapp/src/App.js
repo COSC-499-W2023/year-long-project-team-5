@@ -1,10 +1,8 @@
-import React, { useState, useEffect, StrictMode } from "react";
+import React from "react";
 import "./App.css";
-
-import('@aws-amplify/ui-react/styles.css');
-
-import {Amplify, Auth, API, Storage } from 'aws-amplify';
+import "@aws-amplify/ui-react/styles.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 import {Layout} from './pages/Layout'
 import {Home} from './pages/Home'
@@ -15,7 +13,6 @@ import {Recording} from './pages/Recording'
 import {Profile} from './pages/Profile'
 import { Authenticator } from "@aws-amplify/ui-react";
 import {RequireAuth} from "./RequireAuth"
-
 function MyRoutes(){
   return(
     <BrowserRouter>
