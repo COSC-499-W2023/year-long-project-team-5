@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import {Button, useTheme, useAuthenticator,View, Flex, Tabs, TabItem, Text, Link as AmplifyLink, Menu, MenuItem } from '@aws-amplify/ui-react';
+import {Button, useTheme, useAuthenticator,View, Flex, Link as AmplifyLink, Menu, MenuItem } from '@aws-amplify/ui-react';
 /**
- * navbar TODO: finish docs
- * @param {Object} props - prop1 name
+ * NavBar component used to display NavBar on smaller displays (mobile), 
+ * for users in both a logged in and logged out state
+ * @component {Object} NavBarMobile
  * @returns JSX.Element
- * @example
- * <NavBar></NavBar>
+ * @exampleNa
+ * <NavBarMobile/>
  */
 
 const NavBar = (props) => {
