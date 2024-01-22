@@ -259,7 +259,7 @@
 # Weekly Personal Log (January 15-21st)
 
 ## Screenshot from peer eval
-
+![Capture](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/a07f9c7f-97eb-47e1-885f-e34a74cc90cb)
 
 ## Non-feature work
 - Met on Jan 18 for meeting
@@ -268,21 +268,16 @@
 ## All of my features for **this milestone**
 
 ### **Feature**: Card UI Overhaul
-- **Description**: Improve the UI of the card view and added switching between them
+- **Description**: Improve the UI of the card view and added switching between table and card view
 - **Issue number**: issue #100, issue #101 issue #114
 - **Context**: Worked on the card-view branch which is not merged
 
-### **Feature**: Re-factor navbar
-- **Description**: refactor navbar code to make it a component and adjust display based on logged in/out state and mobile or desktop display
-- **Issue number**: issue #98
-- **Context**: UI improvements and code refactor
-
 ## Status of work for the **last week** (in-progress or completed)
-- major improvements made on homepage, need to have the team make a couple of final UI decisions before finalzing
-  - to view work done on homepage check branch 'landingPage', most of my work this week was done there
-- navbar refactor completed, waiting on logo to replace 'home' option
-  - branch 'navbar-fix'
+- major improvements made on card view, dashboard now looks very professional. issue #100 (in-review, pending completion)
+- Accordion dropdown for clients in-progress.
+- Description shorteners in-progress.
 
 ## Issue number reference
-- Issue #98 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/97)
-- Issue #99 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/99)
+- Issue #100 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/100)
+- Issue #101 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/101)
+- Issue #114 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/114)
