@@ -5,7 +5,7 @@ import { MdOutlineNightlight, MdOutlineLightMode } from "react-icons/md";
 export default function DarkLightToggle(props){
     const [isPressed, setIsPressed] = React.useState(false);
     return(
-        <ToggleButton 
+        <ToggleButton className = "toggleColorMode"
             isPressed={isPressed}
             onChange ={()=> setIsPressed(!isPressed)} 
             onClick={() => {props.colorMode === 'light' ? props.setColorMode('dark') : props.setColorMode('light')}}
