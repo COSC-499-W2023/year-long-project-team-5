@@ -50,4 +50,5 @@
 
 ## Test Report
 <img width="545" alt="Screenshot 2024-01-21 at 7 35 30 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/1151f853-37d2-473c-9937-cf3644727e34">
+<img width="723" alt="Screenshot 2024-01-21 at 7 44 30 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/55ef9305-5109-4362-b56c-f3bde0dd49ca">
 
