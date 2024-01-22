@@ -254,3 +254,35 @@
 ## Other notes
 - N/A
 
+---
+
+# Weekly Personal Log (January 15-21st)
+
+## Screenshot from peer eval
+
+
+## Non-feature work
+- Met on Jan 18 for meeting
+- making UI decisions with the team
+
+## All of my features for **this milestone**
+
+### **Feature**: Card UI Overhaul
+- **Description**: Improve the UI of the card view and added switching between them
+- **Issue number**: issue #100, issue #101 issue #114
+- **Context**: Worked on the card-view branch which is not merged
+
+### **Feature**: Re-factor navbar
+- **Description**: refactor navbar code to make it a component and adjust display based on logged in/out state and mobile or desktop display
+- **Issue number**: issue #98
+- **Context**: UI improvements and code refactor
+
+## Status of work for the **last week** (in-progress or completed)
+- major improvements made on homepage, need to have the team make a couple of final UI decisions before finalzing
+  - to view work done on homepage check branch 'landingPage', most of my work this week was done there
+- navbar refactor completed, waiting on logo to replace 'home' option
+  - branch 'navbar-fix'
+
+## Issue number reference
+- Issue #98 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/97)
+- Issue #99 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/99)
