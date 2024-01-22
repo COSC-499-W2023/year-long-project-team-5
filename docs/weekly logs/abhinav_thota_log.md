@@ -8,7 +8,6 @@
 - made big UI overhauls to table:
    - adjust widths of each column
    - make table striped (the contrast should help readability)
-   - truncate very long string (add '...') so the each data field's width and height is preserved
    - format date and time string (ended up being done by Josh in another branch)
    - choose better colors
 
