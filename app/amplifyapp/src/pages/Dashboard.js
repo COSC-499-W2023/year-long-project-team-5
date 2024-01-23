@@ -3,7 +3,7 @@ import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
 import { Amplify, Auth, API, Storage } from 'aws-amplify';
-
+import { filterSubmissions } from "../Helpers/Search";
 import {
   Grid,
   Button,
@@ -32,8 +32,7 @@ import {
 
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
-import {SubmissionTable} from '../my-components/SubmissionTable'
-
+import { SubmissionTable } from '../my-components/SubmissionTable'
 import awsconfig from '../aws-exports';
 
 /**
@@ -172,7 +171,7 @@ export function Dashboard() {
     <View className="App">
       <Heading level={2}>Your Video Submissions</Heading>
       <Flex alignItems="center" justifyContent="center">
-        <SearchField width="30em" padding={tokens.space.large} onChange={(e) => filterNotes(e.target.value)} />
+        <SearchField padding={tokens.space.large} onChange={(e) => setFilteredNotes(filterSubmissions(e.target.value,notes))} />
         {!isMobile && (
           <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
             <ToggleButton value = "table"> Table </ToggleButton>
