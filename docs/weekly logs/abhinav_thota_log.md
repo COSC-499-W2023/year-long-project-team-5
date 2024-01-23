@@ -1,3 +1,30 @@
+# Personal log (Jan 14-21)
+## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/35/student/evaluated/1569/)
+![T2 W2 work done](https://i.imgur.com/4lJlFXk.png)
+
+## Feature work done this week:
+## Issue [#113](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/113): As Dev, refine UI for dashboard table
+
+- made big UI overhauls to table:
+   - adjust widths of each column
+   - make table striped (the contrast should help readability)
+   - format date and time string (ended up being done by Josh in another branch)
+   - choose better colors
+
+
+## Issue [#95](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/95): As Dev, I'd like to implement light/dark mode
+- wrote an E2E test to ensure toggle button was switching background color of the app throughout the webpage.
+- made a togglebutton and integrated it into navbar (seperate component), wrote logic for it to update and change theme of website
+
+ 
+## Other work done:
+- Spent a lot of additional time doing pull request reviews, testing code and providing code suggestions/help.
+
+## Other notes:
+- Need to fix some merge conflicts and refactor more front end code, hoping to do that next week but we also need to have all the pages we need for peer testing.
+ 
+
+
 # Personal log (Jan 07-14)
 ## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/34/student/evaluated/1569/)
 ![T2 W1 work done](https://i.imgur.com/NUTw8CS.png)
