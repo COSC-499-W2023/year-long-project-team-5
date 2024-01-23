@@ -40,6 +40,8 @@ const NavBar = (props) => {
     const {tokens} = useTheme();
     React.useState('light');
     return (
+        <ThemeProvider theme={theme} colorMode={colorMode}>
+
         <View
          backgroundColor={tokens.colors.background.primary}
         >
@@ -101,6 +103,7 @@ const NavBar = (props) => {
 }
             <Outlet/>
         </View>
+        </ThemeProvider>
     )
 }
 
