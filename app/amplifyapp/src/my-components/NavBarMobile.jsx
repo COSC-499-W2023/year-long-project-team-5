@@ -1,6 +1,8 @@
 import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import {Button, useTheme, useAuthenticator,View, Flex, Link as AmplifyLink, Menu, MenuItem } from '@aws-amplify/ui-react';
+import DarkLightToggle from "../my-components/DarkLightToggle"
+
+import {Button, defaultDarkModeOverride, ToggleButton, Theme, ThemeProvider,useTheme, useAuthenticator,View, Flex, Link as AmplifyLink, Menu, MenuItem } from '@aws-amplify/ui-react';
 /**
  * NavBar component used to display NavBar on smaller displays (mobile), 
  * for users in both a logged in and logged out state
@@ -22,11 +24,19 @@ const NavBar = (props) => {
         navigate('/');
     }
     const {tokens} = useTheme();
+    const theme = {
+        name: 'my-theme',
+        overrides: [defaultDarkModeOverride],
+      };
+      const [colorMode, setColorMode] = React.useState('light');
+      React.useState('light');
+
     return (
+        <ThemeProvider theme = {theme} colorMode = {colorMode}>
         <View
-        backgroundColor={tokens.colors.background.primary}
+        class = "App" backgroundColor={tokens.colors.background.primary}
         >
-                <Flex boxShadow={tokens.shadows.medium} padding={tokens.space.small} justifyContent='space-between' alignItems='center' marginBottom={tokens.space.large}>
+                <Flex backgroundColor = {tokens.colors.primary} boxShadow={tokens.shadows.medium} padding={tokens.space.small} justifyContent='space-between' alignItems='center' marginBottom={tokens.space.large}>
                  
                 {route !== 'authenticated' ? (
                 <Menu direction = 'column'>    
@@ -41,9 +51,13 @@ const NavBar = (props) => {
                 }
                 
                 {route !== 'authenticated' ? (
+                     <Flex direction='row' alignItems='center'>
+                     <DarkLightToggle colorMode={colorMode} setColorMode={setColorMode}/>
                      <Button onClick={() => navigate('/Login')}> Login</Button>
+                 </Flex>
                 ): 
                 <Flex direction='row' alignItems='center'>
+                    <DarkLightToggle colorMode={colorMode} setColorMode={setColorMode}/>
                     <AmplifyLink onClick={()=> navigate('/Profile')}>Hello, {user.attributes.name}!</AmplifyLink>
                     <Button onClick={() => logOut()}> Sign Out</Button>
                 </Flex>
@@ -51,6 +65,7 @@ const NavBar = (props) => {
                 </Flex>
             <Outlet/>
         </View>
+        </ThemeProvider>
     )
 }
 

@@ -98,11 +98,11 @@ export function Submission(){
       }
       const { tokens } = useTheme();
     return(
-        <View className="App">
+        <View className="SubmissionForm">
         <Heading level={2}>Video Request</Heading>
         <View as="form" margin="2rem 3rem" alignContent = "center" onSubmit={createNote} padding={tokens.space.medium}>
           <Flex alignItems="center" justifyContent="center" height="50vh">
-            <Card variation="elevated" width="30em" padding='1em'>
+            <Card backgroundColor={tokens.colors.background.secondary} variation="elevated" width="30em" padding='1em'>
               <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em' padding='1em'>
                 <TextField
                   name="name"
