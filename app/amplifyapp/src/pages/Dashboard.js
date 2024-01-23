@@ -43,8 +43,6 @@ import awsconfig from '../aws-exports';
  * <Dashboard></Dashboard>
  */
 export function Dashboard() {
-  const { user, route } = useAuthenticator((context) => [context.user, context.route]);
-  console.log(Auth.user.username)
   const [notes, setNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
@@ -180,3 +178,4 @@ export function Dashboard() {
     </View>
   )
 }
+export default Dashboard;
