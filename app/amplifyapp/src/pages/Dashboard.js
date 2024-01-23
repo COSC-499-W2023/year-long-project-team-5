@@ -125,11 +125,6 @@ export function Dashboard() {
     });
   }
 
-  function filterNotes(searchInput) {
-    let newNotes = notes.filter((note) => note.name.includes(searchInput))
-    setFilteredNotes(newNotes);
-  }
-
   function renderSubmissions(){
     if(!isMobile && dashView === "table"){
       return(
