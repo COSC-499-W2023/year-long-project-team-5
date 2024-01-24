@@ -1,6 +1,6 @@
 # Team 5 Project Github (Option 3)
 
-[Current Week: Week 1 (Sem2)](https://github.com/orgs/COSC-499-W2023/projects/43)
+[Current Week: Term 2 Week 3](https://github.com/orgs/COSC-499-W2023/projects/43)
 
 <table>
   <tr><th>Name</th><th>Student #</th><th>Username</th></tr>
@@ -35,15 +35,15 @@ The purpose of our software is to allow admins (such as doctors, managers, profe
 
 # Project Design Documents:
 ## Design Checkpoint (Document and Video) (Halfway-point)
-[Design Document (PDF)](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/develop/docs/design/Team%205%20Design%20Document.pdf)
+[Design Document (PDF)](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/master/docs/design/Team%205%20Design%20Document.pdf)
 
 [Design Demo Video (Google Drive Link)](https://drive.google.com/file/d/1hsxgtyWNExZPvq0keI0xe8E0u1FqfNyJ/view?usp=drive_link)
 
 ## Data Flow Diagram:
-![Dataflow Diagram](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/github-setup/docs/design/DataFlowDiagram.png)
+![Dataflow Diagram](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/master/docs/design/DataFlowDiagram.png)
 
 ## Back-end Database Design Diagram:
-![Database Design Diagram](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/github-setup/docs/design/ER_Design.png)
+![Database Design Diagram](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/master/docs/design/ER_Design.png)
 
 # Documentation
 - Documentation for common errors and their fixes [can be found in this file](docs/error_documention.md)

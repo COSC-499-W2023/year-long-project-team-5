@@ -1,18 +1,23 @@
-import React, { useState, useEffect, StrictMode } from "react";
+import React from "react";
 import "./App.css";
 import "@aws-amplify/ui-react/styles.css";
-import {Amplify, Auth, API, Storage } from 'aws-amplify';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 import {Layout} from './pages/Layout'
 import {Home} from './pages/Home'
 import {Dashboard} from './pages/Dashboard'
 import {Login} from './pages/Login'
 import {Submission} from './pages/Submission'
+import {Recording} from './pages/Recording'
 import {Profile} from './pages/Profile'
 import { Authenticator } from "@aws-amplify/ui-react";
 import {RequireAuth} from "./RequireAuth"
+import {Amplify, Auth } from 'aws-amplify';
+import awsconfig from './aws-exports';
 
+Auth.configure(awsconfig);
+Amplify.configure(awsconfig);
 function MyRoutes(){
   return(
     <BrowserRouter>
@@ -30,6 +35,7 @@ function MyRoutes(){
             <Submission/>
             </RequireAuth>
           }/>
+          <Route path = "/recording" element = {<Recording/>}/>
           <Route path = "/profile" element = {
             <RequireAuth>
             <Profile/>

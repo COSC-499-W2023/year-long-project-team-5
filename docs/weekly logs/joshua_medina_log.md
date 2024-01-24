@@ -227,3 +227,57 @@
 ## Other notes
 - N/A
 
+---
+
+# Weekly Personal Log Term 2 Week 1 (January 8 - January 14) 
+
+## Screenshot from peer eval
+<img width="1007" alt="Screenshot 2024-01-14 at 7 06 07 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/dfd1b0e8-de99-43a2-8cde-504773e663c7">
+
+## Non-feature work
+- Met on Jan 11 for meeting
+- Added UI tasks for UI overhaul
+
+## All of my features for **this milestone**
+- UI overhaul, video request form
+- UI overhaul, card dashboard beginnings
+
+## Status of work for the week
+- Designing more specs for automated testing (In-Progress)
+- Design Document (Complete)
+- Video Demo (Complete)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/105] - (UI) I want to shrink down video request tab to a card size (complete)
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/101] - I want data sort by client {dropdown/accordion} (in-progress)
+  
+## Other notes
+- N/A
+
+---
+
+# Weekly Personal Log (January 15-21st)
+
+## Screenshot from peer eval
+![Capture](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/a07f9c7f-97eb-47e1-885f-e34a74cc90cb)
+
+## Non-feature work
+- Met on Jan 18 for meeting
+- making UI decisions with the team
+
+## All of my features for **this milestone**
+
+### **Feature**: Card UI Overhaul
+- **Description**: Improve the UI of the card view and added switching between table and card view
+- **Issue number**: issue #100, issue #101 issue #114
+- **Context**: Worked on the card-view branch which is not merged
+
+## Status of work for the **last week** (in-progress or completed)
+- major improvements made on card view, dashboard now looks very professional. issue #100 (in-review, pending completion)
+- Accordion dropdown for clients in-progress.
+- Description shorteners in-progress.
+
+## Issue number reference
+- Issue #100 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/100)
+- Issue #101 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/101)
+- Issue #114 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/114)
