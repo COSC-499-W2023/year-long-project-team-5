@@ -1,6 +1,6 @@
 import NavBar from '../my-components/NavBar';
 import React from "react";
-import {useTheme, ThemeProvider,  View,  defaultDarkModeOverride, Link as AmplifyLink} from '@aws-amplify/ui-react';
+import {useTheme,  View, Link as AmplifyLink} from '@aws-amplify/ui-react';
 
 /**
  * Layout TODO: finish docs
@@ -9,18 +9,11 @@ import {useTheme, ThemeProvider,  View,  defaultDarkModeOverride, Link as Amplif
  * @example
  * <Layout></Layout>
  */
-export function Layout(){
-    const theme = {
-      name: 'my-theme',
-      overrides: [defaultDarkModeOverride],
-    };
+export function Layout(props){
     const {tokens} = useTheme();
-    const [colorMode, setColorMode] = React.useState('light');
     return(
-        <ThemeProvider theme={theme} colorMode={colorMode}>
         <View className="App" backgroundColor={tokens.colors.background.primary}>
-            <NavBar/>    
+            <NavBar colorMode = {props.colorMode} setColorMode={props.setColorMode}/>    
         </View>
-        </ThemeProvider>
     )
 }

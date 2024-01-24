@@ -91,37 +91,32 @@ export function VideoRequestForm(){
           }      
     const { tokens } = useTheme();
     return (
-    <View className="SubmissionForm">
-        <View as="form" margin="2rem 3rem" alignContent = "center" onSubmit={createNote} padding={tokens.space.medium}>
-          <Flex alignItems="center" justifyContent="center" height="50vh">
-            <Card backgroundColor={tokens.colors.background.secondary} variation="elevated" width="30em" padding='1em'>
-              <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em' padding='1em'>
-                <TextField
-                  name="name"
-                  placeholder="Bilbo Baggins"
-                  label="Recipient Name"
-                  required
-                />
-                <TextField
-                  name="email"
-                  placeholder="bilbobaggins@mordor.com"
-                  label="Recipient Email"
-                  required
-                />
-                <TextField
-                  name="description"
-                  placeholder="Instructions/notes"
-                  label="Video Instructions"
-                  inputStyles={{
-                    paddingBottom: "5em",
-                  }}
-                  required
-                />
-              <Button type="submit" variation="primary">Request Video </Button>
-              </Flex>
-            </Card>
-          </Flex>
-        </View>
-    </View>
+      // hardcoding the widths and heights was causing previous clipping into heading error.
+      <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createNote}>
+        <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em'>
+          <TextField
+            name="name"
+            placeholder="Bilbo Baggins"
+            label="Recipient Name"
+            required
+          />
+          <TextField
+            name="email"
+            placeholder="bilbobaggins@mordor.com"
+            label="Recipient Email"
+            required
+          />
+          <TextField
+            name="description"
+            placeholder="Instructions/notes"
+            label="Video Instructions"
+            inputStyles={{
+              paddingBottom: "5em",
+            }}
+            required
+          />
+        <Button type="submit" variation="primary">Request Video </Button>
+        </Flex>
+      </Card>
     )
 } export default VideoRequestForm;
