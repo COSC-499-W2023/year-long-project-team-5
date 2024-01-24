@@ -91,8 +91,9 @@ export function VideoRequestForm(){
           }      
     const { tokens } = useTheme();
     return (
-      // hardcoding the widths and heights was causing previous clipping into heading error.
-      <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createNote}>
+      // hardcoding the widths and heights was causing previous clipping 
+      // this form should have multiple breakpoints for its width: mobile & large screens
+      <Card backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createNote}>
         <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em'>
           <TextField
             name="name"
