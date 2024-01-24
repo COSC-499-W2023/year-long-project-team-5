@@ -11,10 +11,10 @@ import { View } from "@aws-amplify/ui-react";
  * @example
  * <Submission></Submission>
  */
-export function Submission(){
+export const  Submission = () =>{
     return(
       <View className="App">
         <VideoRequestForm/>
-        </View>
+      </View>
     )
 }
