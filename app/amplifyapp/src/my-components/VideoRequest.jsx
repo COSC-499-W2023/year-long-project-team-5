@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
-import {Amplify, Auth, API, Storage } from 'aws-amplify';
-import { SubmissionRow } from "../my-components/SubmissionRow";
+import {API, Storage } from 'aws-amplify';
 import {
     Button,
     Flex,
@@ -26,74 +25,89 @@ export function VideoRequestForm(){
       fetchNotes();
     }, []);
     
-        const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
+    const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
     
-        async function fetchNotes() {
-            const apiData = await API.graphql({ query: listNotes });
-            const notesFromAPI = apiData.data.listNotes.items;
-            await Promise.all(
-              notesFromAPI.map(async (note) => {
-                if (note.image) {
-                  const url = await Storage.get(note.name);
-                  note.image = url;
-                }
-                return note;
-              })
-            );
-            setNotes(notesFromAPI);
-            setFilteredNotes(notesFromAPI);
-          }
-          async function createNote(event) {
-            event.preventDefault();
-            const form = new FormData(event.target);
-            const image = form.get("image");
-            const data = {
-              videoURL: image.name,
-            };
-            if (!!data.image) await Storage.put(image.name, image);
-            await API.graphql({
-              query: createVideoMutation,
-              variables: { input: data },
-            });
-            fetchNotes();
-            event.target.reset();
-          }
-    
-          async function createUser(email,name) {
-            const data = {
-              email: email,
-              name: name
-            };
-            return await API.graphql({
-              query: createUserMutation,
-              variables: { input: data },
-            });
-          }
-    
-          async function createSubmission(event){
-            event.preventDefault();
-            const form = new FormData(event.target);
-            let user = await createUser(form.get("email"),form.get("name"));
-            let userId = user.data.createUser.id
-            const data = {
-              adminId: "testadminID",
-              note: form.get("note"),
-              submissionUserId: userId
-            };
-            await API.graphql({
-              query: createSubmissionMutation,
-              variables: { input: data },
-            });
-            fetchNotes();
-            event.target.reset();
-            setIsFormSubmitted(true); // Set the form submission state to true
-    
-          }      
+    async function fetchNotes() {
+        const apiData = await API.graphql({ query: listNotes });
+        const notesFromAPI = apiData.data.listNotes.items;
+        await Promise.all(
+          notesFromAPI.map(async (note) => {
+            if (note.image) {
+              const url = await Storage.get(note.name);
+              note.image = url;
+            }
+            return note;
+          })
+        );
+        setNotes(notesFromAPI);
+        setFilteredNotes(notesFromAPI);
+      }
+    async function createNote(event) {
+      event.preventDefault();
+      const form = new FormData(event.target);
+      const image = form.get("image");
+      const data = {
+        videoURL: image.name,
+      };
+      if (!!data.image) await Storage.put(image.name, image);
+      await API.graphql({
+        query: createVideoMutation,
+        variables: { input: data },
+      });
+      fetchNotes();
+      event.target.reset();
+    }
+
+    async function createUser(email,name) {
+      const data = {
+        email: email,
+        name: name
+      };
+      return await API.graphql({
+        query: createUserMutation,
+        variables: { input: data },
+      });
+    }
+
+    async function createSubmission(event){
+      event.preventDefault();
+      const form = new FormData(event.target);
+      let user = await createUser(form.get("email"),form.get("name"));
+      let userId = user.data.createUser.id
+      const data = {
+        adminId: "testadminID",
+        note: form.get("description"),
+        submissionUserId: userId
+      };
+      await API.graphql({
+        query: createSubmissionMutation,
+        variables: { input: data },
+      });
+      fetchNotes();
+      event.target.reset();
+      setIsFormSubmitted(true); // Set the form submission state to true
+    }
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const resizeCenterComps = (windowWidth) => {
+      return {
+          width: (windowWidth > 1024) ? '50%' : (windowWidth > 600) ? '80%' : '100%',
+          margin: '0 auto',
+          padding: '20px',
+          maxWidth: '800px', // You can adjust this value
+      };
+    };    
+    const cardStyle = resizeCenterComps(windowWidth);
     const { tokens } = useTheme();
+    useEffect(() => {
+      const handleResize = () => setWindowWidth(window.innerWidth);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     return (
       // hardcoding the widths and heights was causing previous clipping 
       // this form should have multiple breakpoints for its width: mobile & large screens
-      <Card backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createNote}>
+      <Card backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle}>
         <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em'>
           <TextField
             name="name"
