@@ -27,6 +27,8 @@ export function VideoRequestForm(){
     
     const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
     
+
+    // potential for these functions to be a utility function? 
     async function fetchNotes() {
         const apiData = await API.graphql({ query: listNotes });
         const notesFromAPI = apiData.data.listNotes.items;
@@ -87,6 +89,9 @@ export function VideoRequestForm(){
       event.target.reset();
       setIsFormSubmitted(true); // Set the form submission state to true
     }
+
+    // these states and functions below are to help dynamically adjust the width of the parent Card component (i.e the form)
+    // depending on browser width, takes less % of screen width if screen is large, and greater % when mobile.
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const resizeCenterComps = (windowWidth) => {
       return {
@@ -107,7 +112,8 @@ export function VideoRequestForm(){
     return (
       // hardcoding the widths and heights was causing previous clipping 
       // this form should have multiple breakpoints for its width: mobile & large screens
-      <Card backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle}>
+      // this form IS NOT VALIDATED!! needs testing!
+      <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle}>
         <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em'>
           <TextField
             name="name"
