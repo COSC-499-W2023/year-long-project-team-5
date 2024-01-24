@@ -167,7 +167,7 @@ import {
 				</Heading>
 			<View padding = {tokens.space.large}>
 				
-				<Flex alignItems = 'center' direction = 'row' justifyContent = 'center' wrap = "nowrap">
+			<Flex alignItems = 'center' direction = 'row' justifyContent = 'center' wrap = "nowrap" margin = '1rem 0rem 1rem 0rem'>
 					<div className='headerText'>
 					<img className = "profile" src = {Abby} width = '100%'/>
 					<motion.div
@@ -179,7 +179,7 @@ import {
 					>
 					<div className = 'center_text'>
 					<h3>Abby Kiehlbauch</h3>
-					<p>MAIN TASKS</p>
+					<p>Front-end</p>
 					</div>
 					</motion.div>
 					</div>
@@ -195,7 +195,7 @@ import {
 				>
 				<div className = 'center_text'>
 				<h3>Josh Medina Quiaro</h3>
-				<p>MAIN TASKS</p>
+				<p>PM, Front-end, Testing</p>
 				</div>
 				</motion.div>
 				</div>
@@ -210,7 +210,7 @@ import {
 				>
 				<div className = 'center_text'>
 				<h3>Abhinav Thota</h3>
-				<p>MAIN TASKS</p>
+				<p>Front-end</p>
 				</div>
 				</motion.div>
 				</div>
@@ -225,7 +225,7 @@ import {
 				>
 				<div className = 'center_text'>
 				<h3>Beck Corkle</h3>
-				<p>MAIN TASKS</p>
+				<p>Back-end</p>
 				</div>
 				</motion.div>
 				</div>
@@ -240,15 +240,12 @@ import {
 				>
 				<div className = 'center_text'>
 				<h3>Kael Pearson</h3>
-				<p>MAIN TASKS</p>
+				<p>Back-end</p>
 				</div>
 				</motion.div>
-				</div>
-						
+				</div>		
 			</Flex>
 			</View>
-
-			
 		</div>
 	);
   };
