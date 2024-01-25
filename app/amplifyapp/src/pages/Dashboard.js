@@ -7,11 +7,7 @@ import { Auth, API, Storage } from 'aws-amplify';
 import { filterSubmissions } from "../Helpers/Search";
 import {
   Grid,
-  Button,
   Flex,
-  Image,
-  Text,
-  TextField,
   View,
   useAuthenticator,
   Heading,
