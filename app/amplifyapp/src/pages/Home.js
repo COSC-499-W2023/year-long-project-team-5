@@ -16,7 +16,7 @@ import {
   import rekognitionLogo from '../assets/rekognition.svg';
   import appsync from '../assets/appsync.svg';
   import lambda from '../assets/lambda.svg';
-  import s3 from '../assets/S3.svg';
+  import s3 from '../assets/s3.svg';
   import Josh from '../assets/josh.jpg';
   import Abby from '../assets/abby.jpg';
   import Abhinav from '../assets/abhinav.jpg';
