@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
-import { Amplify, Auth, API, Storage } from 'aws-amplify';
+import { getSubmissions } from "../Helpers/Getters";
+import { Auth, API, Storage } from 'aws-amplify';
 import { filterSubmissions } from "../Helpers/Search";
 import {
   Grid,
@@ -24,7 +25,6 @@ import { listSubmissions } from "../graphql/queries";
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
 import { SubmissionTable } from '../my-components/SubmissionTable'
-import awsconfig from '../aws-exports';
 
 /**
  * dashboard TODO: finish docs
@@ -40,7 +40,7 @@ export function Dashboard() {
   const [filteredsubmissions, setFilteredSubmissions] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
   const [dashView, setDashView] = useState('table');
-  
+
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
   useEffect(() => {
     const handleResize = () => {
@@ -56,10 +56,7 @@ export function Dashboard() {
     fetchSubmissions();
   }, []);
   async function fetchSubmissions() {
-  //This handles the click when the button is pressed to switch the layout to isMobile
-    const apiData = await API.graphql({ query: listSubmissions });
-    const submissions = apiData.data.listSubmissions.items;
-    const filteredSubmissions = submissions;
+    const filteredSubmissions = await getSubmissions()
     /*
     const filteredSubmissions = submissions.filter((submission) => {
       // filter admin submissions
