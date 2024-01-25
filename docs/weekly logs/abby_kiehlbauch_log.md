@@ -1,3 +1,34 @@
+# Weekly Personal Log (January 15-21st)
+
+## Screenshot from peer eval
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/e0673949-fdbc-4061-a1e1-7ee167ee4c04)
+
+## Non-feature work
+- team meetings
+- making UI decisions
+
+## All of my features for **this milestone**
+
+### **Feature**: Home page
+- **Description**: Improve the UI of the home page (including animations)
+- **Issue number**: issue #99
+- **Context**: N/A
+
+### **Feature**: Re-factor navbar
+- **Description**: refactor navbar code to make it a component and adjust display based on logged in/out state and mobile or desktop display
+- **Issue number**: issue #98
+- **Context**: UI improvements and code refactor
+
+## Status of work for the **last week** (in-progress or completed)
+- major improvements made on homepage, need to have the team make a couple of final UI decisions before finalzing
+  - to view work done on homepage check branch 'landingPage', most of my work this week was done there
+- navbar refactor completed, waiting on logo to replace 'home' option
+  - branch 'navbar-fix'
+
+## Issue number reference
+- Issue #98 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/97)
+- Issue #99 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/99)
+
 # Weekly Personal Log (January 8th - 14th)
 
 ## Screenshot from peer eval

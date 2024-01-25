@@ -2,21 +2,29 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
-import { Auth, API, Storage } from 'aws-amplify';
+import { Amplify, Auth, API, Storage } from 'aws-amplify';
 import { filterSubmissions } from "../Helpers/Search";
 import {
+  Grid,
+  Button,
+  Flex,
+  Image,
+  Text,
+  TextField,
   View,
   useAuthenticator,
   Heading,
   useTheme,
   SearchField,
+  ToggleButton,
+  ToggleButtonGroup
 } from '@aws-amplify/ui-react';
 import { listSubmissions } from "../graphql/queries";
 
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
-import {SubmissionTable} from '../my-components/SubmissionTable'
-
+import { SubmissionTable } from '../my-components/SubmissionTable'
+import awsconfig from '../aws-exports';
 
 /**
  * dashboard TODO: finish docs
@@ -31,8 +39,8 @@ export function Dashboard() {
   const [submissions, setSubmissions] = useState([]);
   const [filteredsubmissions, setFilteredSubmissions] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
-
-
+  const [dashView, setDashView] = useState('table');
+  
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
   useEffect(() => {
     const handleResize = () => {
@@ -48,6 +56,7 @@ export function Dashboard() {
     fetchSubmissions();
   }, []);
   async function fetchSubmissions() {
+  //This handles the click when the button is pressed to switch the layout to isMobile
     const apiData = await API.graphql({ query: listSubmissions });
     const submissions = apiData.data.listSubmissions.items;
     const filteredSubmissions = submissions;
@@ -74,37 +83,57 @@ export function Dashboard() {
     setFilteredSubmissions(filteredSubmissions);
   }
 
-  const { tokens } = useTheme();
-
-  return (
-    <View className="App">
-      <Heading level={2}>Video Log</Heading>
-      <SearchField padding={tokens.space.large} onChange={(e) => setFilteredSubmissions(filterSubmissions(e.target.value,submissions))} />
-      <View padding={tokens.space.large}>
-        {/* this line is a conditional JSX expression, renders SubmissionTable if it's not mobile and SubmissionCard if it's mobile */}
-        {!isMobile ? (
-          <SubmissionTable
-            rowsToDisplay={filteredsubmissions.map((submission) => (
-              <SubmissionRow
-                name={submission.User.name}
-                email={submission.User.email}
-                description={submission.note}
-                dateSent={submission.createdAt}
-                dateReceived={submission.submittedAt}
-                videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
-              />
-            ))}
-          />
-        ) : (
-          filteredsubmissions.map((submission) => (
+  function renderSubmissions(){
+    if(!isMobile && dashView === "table"){
+      return(
+        <SubmissionTable
+          rowsToDisplay={filteredsubmissions.map((submission) => (
+            <SubmissionRow
+              name={submission.User.name}
+              email={submission.User.email}
+              description={submission.note}
+              dateSent={submission.createdAt == null ? null : new Date(submission.createdAt).toLocaleDateString()}
+              dateReceived={submission.submittedAt == null ? null : new Date(submission.submittedAt).toLocaleDateString()}
+              videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
+            />
+          ))}
+        />
+      );
+    }else{
+      const gridLayout = !isMobile ? "1fr 1fr" : "1fr";
+      return (
+        <Grid templateColumns={gridLayout} gap={tokens.space.small}>
+          {filteredsubmissions.map((submission) => (
             <SubmissionCard
               margin="1rem"
-              id={submission.id}
+              name={submission.User.name}
+              email={submission.User.email}
               description={submission.note}
-              image={submission.Video ? submission.Video.videoURL : "N/A"}
+              dateSent={submission.createdAt == null ? null : new Date(submission.createdAt).toLocaleDateString()}
+              dateReceived={submission.submittedAt == null ? null : new Date(submission.submittedAt).toLocaleDateString()}
+              videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
             />
-          ))
+          ))}
+        </Grid>
+      );
+    }
+  }
+
+  const { tokens } = useTheme();
+  return (
+    <View className="App">
+      <Heading level={2}>Your Video Submissions</Heading>
+      <Flex alignItems="center" justifyContent="center">
+        <SearchField padding={tokens.space.large} onChange={(e) => setFilteredSubmissions(filterSubmissions(e.target.value,submissions))} />
+        {!isMobile && (
+          <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
+            <ToggleButton value = "table"> Table </ToggleButton>
+            <ToggleButton value = "card"> Card </ToggleButton>
+          </ToggleButtonGroup>
         )}
+      </Flex>
+      <View padding={tokens.space.large}>
+        {renderSubmissions()}
       </View>
     </View>
   )
