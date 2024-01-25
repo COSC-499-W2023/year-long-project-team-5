@@ -34,6 +34,7 @@ const NavBar = (props) => {
       }, []);
 
     const {tokens} = useTheme();
+
     return (
         <View
          backgroundColor={tokens.colors.background.primary}
@@ -98,5 +99,3 @@ const NavBar = (props) => {
         </View>
     )
 }
-
-export default NavBar;
