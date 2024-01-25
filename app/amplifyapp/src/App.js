@@ -18,11 +18,12 @@ import awsconfig from './aws-exports';
 
 Auth.configure(awsconfig);
 Amplify.configure(awsconfig);
-function MyRoutes(){
+
+function MyRoutes({ colorMode, setColorMode }){
   return(
     <BrowserRouter>
       <Routes>
-        <Route path = "/" element ={<Layout/>}>
+        <Route path = "/" element ={<Layout colorMode = {colorMode} setColorMode = {setColorMode} />}>
           <Route index element={<Home/>}/>
           <Route path = "/dashboard" element={
             <RequireAuth>
@@ -48,11 +49,11 @@ function MyRoutes(){
   )
 }
 
-function App(){
+function App({colorMode, setColorMode}){
   return(
-    <Authenticator.Provider>
-      <MyRoutes/>
-    </Authenticator.Provider>
+      <Authenticator.Provider>
+        <MyRoutes colorMode={colorMode} setColorMode={setColorMode}/>
+      </Authenticator.Provider>
   )
 }
 export default App;
