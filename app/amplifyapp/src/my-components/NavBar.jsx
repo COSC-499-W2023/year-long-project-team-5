@@ -9,7 +9,7 @@ import {Card, Flex, Heading, Link, Button, useTheme, View, Text, Tabs, TabItem} 
  * <NavBar></NavBar>
  */
 
-const NavBar = (props) => {
+export const NavBar = (props) => {
     const {tokens} = useTheme()
     return (
         <View
@@ -30,5 +30,3 @@ const NavBar = (props) => {
         </View>
     )
 }
-
-export default NavBar;
