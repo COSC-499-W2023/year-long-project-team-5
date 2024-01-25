@@ -1,4 +1,4 @@
-import NavBar from '../my-components/NavBar';
+import {NavBar} from '../my-components/NavBar';
 import React from "react";
 import {useTheme,  View, Link as AmplifyLink} from '@aws-amplify/ui-react';
 

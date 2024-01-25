@@ -11,7 +11,7 @@ import {Button, useTheme, useAuthenticator,View, Flex, Link as AmplifyLink, Menu
  * <NavBar/>
  */
 
-const NavBar = (props) => {
+export const NavBar = (props) => {
     const {user, route, signOut} = useAuthenticator((context) => [
         context.user,
         context.route,
@@ -99,3 +99,4 @@ const NavBar = (props) => {
         </View>
     )
 }
+export default NavBar;
