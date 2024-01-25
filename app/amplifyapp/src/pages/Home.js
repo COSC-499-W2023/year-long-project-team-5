@@ -94,8 +94,8 @@ import {
 			</motion.div>
 			
 			{/*service logo section*/}
-			<div class = 'carousel'>
-				<div class = "scroll" style = {{'--t': '40s'}}>
+			<div className = 'carousel'>
+				<div className = "scroll" style = {{'--t': '40s'}}>
 					<div>
 						<figure className='figure'>
 							<img src={amplifyLogo} alt = "AWS Amplify" width = '75em'/>
