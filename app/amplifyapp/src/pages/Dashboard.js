@@ -6,17 +6,10 @@ import { Amplify, Auth, API, Storage } from 'aws-amplify';
 import { filterSubmissions } from "../Helpers/Search";
 import {
   Grid,
-  Button,
   Flex,
-  Image,
-  Text,
-  TextField,
   View,
   useAuthenticator,
-  Card,
   Heading,
-  Badge,
-  Link,
   useTheme,
   SearchField,
   ToggleButton,
