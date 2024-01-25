@@ -5,19 +5,15 @@ import "@aws-amplify/ui-react/styles.css";
 import { Amplify, Auth, API, Storage } from 'aws-amplify';
 import { filterSubmissions } from "../Helpers/Search";
 import {
-  Button,
+  Grid,
   Flex,
-  Image,
-  Text,
-  TextField,
   View,
   useAuthenticator,
-  Card,
   Heading,
-  Badge,
-  Link,
   useTheme,
   SearchField,
+  ToggleButton,
+  ToggleButtonGroup
 } from '@aws-amplify/ui-react';
 import { listSubmissions } from "../graphql/queries";
 import { listNotes } from "../graphql/queries";
@@ -45,8 +41,8 @@ export function Dashboard() {
   const [notes, setNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
-
-
+  const [dashView, setDashView] = useState('table');
+  
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
   useEffect(() => {
     const handleResize = () => {
@@ -61,6 +57,10 @@ export function Dashboard() {
   useEffect(() => {
     fetchNotes();
   }, []);
+  //This handles the click when the button is pressed to switch the layout to isMobile
+ 
+
+
   async function fetchNotes() {
     const apiData = await API.graphql({ query: listSubmissions });
     const submissions = apiData.data.listSubmissions.items;
@@ -117,37 +117,58 @@ export function Dashboard() {
       variables: { input: { id } },
     });
   }
-  const { tokens } = useTheme();
 
-  return (
-    <View className="App">
-      <Heading level={2}>Video Log</Heading>
-      <SearchField padding={tokens.space.large} onChange={(e) => setFilteredNotes(filterSubmissions(e.target.value,notes))} />
-      <View padding={tokens.space.large}>
-        {/* this line is a conditional JSX expression, renders SubmissionTable if it's not mobile and SubmissionCard if it's mobile */}
-        {!isMobile ? (
-          <SubmissionTable
-            rowsToDisplay={filteredNotes.map((submission) => (
-              <SubmissionRow
-                name={submission.User.name}
-                email={submission.User.email}
-                description={submission.note}
-                dateSent={submission.createdAt}
-                dateReceived={submission.submittedAt}
-                videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
-              />
-            ))}
-          />
-        ) : (
-          filteredNotes.map((submission) => (
+  function renderSubmissions(){
+    if(!isMobile && dashView === "table"){
+      return(
+        <SubmissionTable
+          rowsToDisplay={filteredNotes.map((submission) => (
+            <SubmissionRow
+              name={submission.User.name}
+              email={submission.User.email}
+              description={submission.note}
+              dateSent={submission.createdAt == null ? null : new Date(submission.createdAt).toLocaleDateString()}
+              dateReceived={submission.submittedAt == null ? null : new Date(submission.submittedAt).toLocaleDateString()}
+              videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
+            />
+          ))}
+        />
+      );
+    }else{
+      const gridLayout = !isMobile ? "1fr 1fr" : "1fr";
+      return (
+        <Grid templateColumns={gridLayout} gap={tokens.space.small}>
+          {filteredNotes.map((submission) => (
             <SubmissionCard
               margin="1rem"
-              id={submission.id}
+              name={submission.User.name}
+              email={submission.User.email}
               description={submission.note}
-              image={submission.Video ? submission.Video.videoURL : "N/A"}
+              dateSent={submission.createdAt == null ? null : new Date(submission.createdAt).toLocaleDateString()}
+              dateReceived={submission.submittedAt == null ? null : new Date(submission.submittedAt).toLocaleDateString()}
+              videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
             />
-          ))
+          ))}
+        </Grid>
+      );
+    }
+  }
+
+  const { tokens } = useTheme();
+  return (
+    <View className="App">
+      <Heading level={2}>Your Video Submissions</Heading>
+      <Flex alignItems="center" justifyContent="center">
+        <SearchField padding={tokens.space.large} onChange={(e) => setFilteredNotes(filterSubmissions(e.target.value,notes))} />
+        {!isMobile && (
+          <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
+            <ToggleButton value = "table"> Table </ToggleButton>
+            <ToggleButton value = "card"> Card </ToggleButton>
+          </ToggleButtonGroup>
         )}
+      </Flex>
+      <View padding={tokens.space.large}>
+        {renderSubmissions()}
       </View>
     </View>
   )
