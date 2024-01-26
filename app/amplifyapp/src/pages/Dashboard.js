@@ -52,15 +52,14 @@ export function Dashboard() {
     fetchSubmissions();
   }, []);
   async function fetchSubmissions() {
-    const filteredSubmissions = await getSubmissions()
-    /*
-    const filteredSubmissions = submissions.filter((submission) => {
+    let filteredSubmissions = await getSubmissions()
+    filteredSubmissions = filteredSubmissions.filter((submission) => {
       // filter admin submissions
       console.log("Filtered submissions")
+      console.log(Auth.user)
       const condition = submission.adminId === Auth.user.username;
       return condition;
     });
-    */
     // uncomment when we implement submissions
     await Promise.all(
       filteredSubmissions.map(async (submission) => {
