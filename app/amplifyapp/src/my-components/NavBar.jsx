@@ -36,12 +36,9 @@ export const NavBar = (props) => {
     const {tokens} = useTheme();
 
     return (
-        <View
-         backgroundColor={tokens.colors.background.primary}
-        >
+        <View>
            {isMobile ? (
-            <Flex backgroundColor = {tokens.colors.primary} boxShadow={tokens.shadows.medium} padding={tokens.space.small} justifyContent='space-between' alignItems='center' marginBottom={tokens.space.large}>
-                 
+            <Flex boxShadow={tokens.shadows.medium} padding={tokens.space.small} justifyContent='space-between' alignItems='center' marginBottom={tokens.space.large}>
                  {route !== 'authenticated' ? (
                  <Menu direction = 'column'>    
                      <MenuItem onClick={()=> navigate('/')}> Home</MenuItem>
@@ -69,7 +66,7 @@ export const NavBar = (props) => {
                  </Flex>
            ):
            
-           <Flex backgroundColor = {tokens.colors.primary} boxShadow={tokens.shadows.medium} padding={tokens.space.small} justifyContent='space-between' alignItems='center' marginBottom={tokens.space.large}>
+           <Flex boxShadow={tokens.shadows.medium} padding={tokens.space.small} justifyContent='space-between' alignItems='center' marginBottom={tokens.space.large}>
                 <Flex direction="row">
                     {route !== 'authenticated' ? (
                         <AmplifyLink onClick={()=> navigate('/')}>Home</AmplifyLink>

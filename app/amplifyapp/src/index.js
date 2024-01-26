@@ -3,21 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ThemeProvider, defaultDarkModeOverride } from "@aws-amplify/ui-react";
+import { ThemeProvider } from "@aws-amplify/ui-react";
 import { Amplify } from 'aws-amplify';
+import ourTheme from './ourTheme';
 import config from './aws-exports';
 
 Amplify.configure(config);
 
 const Index = () => {
   const [colorMode, setColorMode] = useState('light');
-  const theme = {
-    name: 'my-theme',
-    overrides: [defaultDarkModeOverride],
-  };
 
   return (
-    <ThemeProvider theme={theme} colorMode={colorMode}>
+    <ThemeProvider theme={ourTheme} colorMode={colorMode}>
       <React.StrictMode>
         <App colorMode={colorMode} setColorMode={setColorMode} />
       </React.StrictMode>
