@@ -1,4 +1,4 @@
-import React, {  } from "react";
+import React, { Auth } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 import { useNavigate } from "react-router-dom";
@@ -19,13 +19,14 @@ export function Profile(){
     const {user, route, signOut} = useAuthenticator((context) => [
         context.user,
         context.route,
-        context.signOut,
+        context.signOut
     ]);
     return(
       <View className="App">
         <ProfileInfo 
           name = {user.attributes.name}
           email = {user.attributes.email}
+          id = {user.getUsername()}
         />
       </View>
     )

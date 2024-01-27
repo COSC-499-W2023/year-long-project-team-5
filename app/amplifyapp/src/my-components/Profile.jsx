@@ -1,6 +1,8 @@
 import React, {  } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
+import {API, Storage, Auth } from 'aws-amplify';
+import { updateUser } from "../graphql/mutations";
 import { useNavigate } from "react-router-dom";
 import { useAuthenticator} from "@aws-amplify/ui-react"
 
@@ -16,14 +18,38 @@ import {
 
 export const ProfileInfo = (props) => {
     const { tokens } = useTheme();
+    async function updateUserInfo(event) {
+        event.preventDefault();
+        const form = new FormData(event.target);
+        const data = {
+            input: {
+                id: props.id,
+                name: form.get("name"),
+                email: props.email
+            },
+            condition: {
+                id: props.id
+            }
+        };
+        try {
+            await API.graphql({
+                query: updateUser,
+                variables: { input: data },
+            });
+            // Handle success, e.g., show a success message or navigate to another page
+            console.log("User updated successfully!");
+        } catch (error) {
+            // Log the actual error object
+            console.error("Error updating user:", error);
+        }
+    }
 
     return (
     <View backgroundColor={tokens.colors.background.primary}>
         <Heading level={1}>Welcome, {props.name}!</Heading>
         <Flex direction = 'column' width = '100%' justifyContent='space-evenly' alignItems='center' marginTop = '2rem' rowGap='2.5rem'>
-            <View as="form" minWidth ='80%'>
                 <Heading textAlign = 'left' marginBottom='1rem' level={4}>Edit Profile</Heading>
-                <Card variation="elevated">
+                <Card as = "form" onSubmit = {updateUserInfo} variation="elevated" width = '80%'>
                 <Flex direction="column" justifyContent = "center" textAlign = "left">
                 {<TextField
                     name="name"
@@ -33,7 +59,7 @@ export const ProfileInfo = (props) => {
                     required
                 />}
                     <TextField
-                    name="name"
+                    name="email"
                     placeholder={props.email}
                     label="Email"
                     variation="default"
@@ -46,10 +72,10 @@ export const ProfileInfo = (props) => {
                     label="Company Name"
                     variation="default"
                     />}
-                <Button type="submit" variation="primary">Save Changes </Button>
+                    <Button type="submit" variation="primary">Save Changes </Button>
                     </Flex>
-                    </Card>
-                </View>
+                </Card>
+                {/*
                 <View as="form" minWidth ='80%'>
                 <Heading textAlign = 'left' marginBottom='1rem' level={4}>Change password</Heading>
                 <Card variation="elevated">
@@ -76,7 +102,9 @@ export const ProfileInfo = (props) => {
                     </Flex>
                     </Card>
                 </View>
+                    */}
             </Flex>
+                    
         </View>
     )
 }
