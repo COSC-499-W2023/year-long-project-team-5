@@ -135,8 +135,6 @@ export default function WebcamVideo() {
             {renderVideoPreview()}
             </>
         )}
-        
-
       </div>
     </div>
   );
