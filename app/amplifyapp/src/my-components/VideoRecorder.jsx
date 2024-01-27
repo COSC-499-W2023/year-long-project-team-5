@@ -78,6 +78,9 @@ export default function WebcamVideo() {
       setRecordedChunks([]);
     }
   }, [recordedChunks]);
+  const handleRetakeClick = useCallback(() => {
+    setRecordedChunks([]); // Reset recorded chunks when retaking the video
+  }, [setRecordedChunks]);
 
   const videoConstraints = {
     width: 5,
@@ -98,14 +101,15 @@ export default function WebcamVideo() {
       <div>
         {capturing ? (
             <button onClick={handleStopCaptureClick}>Stop Capture</button>
-        ) : (
-            <button onClick={handleStartCaptureClick}>Start Capture</button>
-        )}
+            ) : recordedChunks.length === 0 ? (
+              <button onClick={handleStartCaptureClick}>Start Capture</button>
+            ) : null}
         {recordedChunks.length > 0 && (
+            <>
             <button onClick={handleDownload}>Download</button>
-        )}
-        {recordedChunks.length > 0 && (
             <button onClick={handleUpload}>Upload</button>
+            <button onClick={handleRetakeClick}>Retake</button>
+            </>
         )}
       </div>
     </div>
