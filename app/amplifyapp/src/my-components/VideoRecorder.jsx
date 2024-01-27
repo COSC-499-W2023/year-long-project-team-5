@@ -12,6 +12,7 @@ export default function WebcamVideo() {
   const mediaRecorderRef = useRef(null);
   const [capturing, setCapturing] = useState(false);
   const [recordedChunks, setRecordedChunks] = useState([]);
+  const [videoPreviewUrl, setVideoPreviewUrl] = useState(null);
 
   const handleDataAvailable = useCallback(
     ({ data }) => {
@@ -24,6 +25,7 @@ export default function WebcamVideo() {
 
   const handleStartCaptureClick = useCallback(() => {
     setCapturing(true);
+    setVideoPreviewUrl(null);
     mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
       mimeType: "video/webm",
     });
@@ -38,6 +40,16 @@ export default function WebcamVideo() {
     mediaRecorderRef.current.stop();
     setCapturing(false);
   }, [mediaRecorderRef, setCapturing]);
+
+  const handleRecordingStop = useCallback(() => {
+    if (recordedChunks.length > 0) {
+      const blob = new Blob(recordedChunks, {
+        type: "video/webm",
+      });
+      const url = URL.createObjectURL(blob);
+      setVideoPreviewUrl(url);
+    }
+  }, [videoPreviewUrl, recordedChunks]);
 
   const handleDownload = useCallback(() => {
     if (recordedChunks.length) {
@@ -82,6 +94,16 @@ export default function WebcamVideo() {
     setRecordedChunks([]); // Reset recorded chunks when retaking the video
   }, [setRecordedChunks]);
 
+  const renderVideoPreview = () => {
+    if(videoPreviewUrl) {
+      return (
+        <div>
+          <video controls width = {640} height = {360} src = {videoPreviewUrl} />
+        </div>
+      );
+    }
+    return null;
+  };
   const videoConstraints = {
     width: 5,
     height: 5,
@@ -109,8 +131,12 @@ export default function WebcamVideo() {
             <button onClick={handleDownload}>Download</button>
             <button onClick={handleUpload}>Upload</button>
             <button onClick={handleRetakeClick}>Retake</button>
+            <button onClick = {handleRecordingStop}>View Preview</button>
+            {renderVideoPreview()}
             </>
         )}
+        
+
       </div>
     </div>
   );
