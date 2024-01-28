@@ -1,6 +1,5 @@
 import * as React from "react";
-import {TableRow,TableCell, Text, Link, Button } from "@aws-amplify/ui-react";
-import {useNavigate} from 'react-router-dom';
+import {TableRow,TableCell, Text, Button } from "@aws-amplify/ui-react";
 
 /**
  * SubmissionRow is intended to be the data row for each submission (to display info better on larger screens)
