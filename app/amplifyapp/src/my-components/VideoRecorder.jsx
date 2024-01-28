@@ -85,15 +85,23 @@ export default function WebcamVideo() {
         videoURL: videoNameS3, // videoNameS3 is the key (not the url) for the s3 bucket, get video URL with Storage.get(name)
       };
       
-      await Storage.put(videoNameS3, blob); // store video in s3 bucket under the key
-      await API.graphql({ //store the key for the video in DynamoDB
-        query: createVideoMutation,
-        variables: { input: data },
-      });
-      setRecordedChunks([]);
+      try {
+        await Storage.put(videoNameS3, blob); // store video in s3 bucket under the key
+        await API.graphql({ // store the key for the video in DynamoDB
+          query: createVideoMutation,
+          variables: { input: data },
+        });
+
+        setRecordedChunks([]);
+        
+        // Redirect to another page after successful upload
+        navigate('/confirmation');
+      } catch (error) {
+        console.error("Error uploading video:", error);
+      }
     }
-    navigate('/Confirmation');
   }, [recordedChunks]);
+
   const handleRetakeClick = useCallback(() => {
     setRecordedChunks([]); // Reset recorded chunks when retaking the video
     
