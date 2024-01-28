@@ -141,6 +141,19 @@ export default function WebcamVideo() {
     <View>
       <Flex justifyContent={"center"}>
         <style>{styles}</style>
+        {recordedChunks.length > 0 ? (
+            <div>
+            <Flex justifyContent={"center"}>
+              {renderVideoPreview()}
+            </Flex>
+            <Flex justifyContent={"center"} margin={'5px'}>
+              <Button onClick = {handleRecordingStop}>View Preview</Button>
+            </Flex>
+            <Button onClick={handleDownload}>Download</Button>
+            <Button onClick={handleUpload}>Upload</Button>
+            <Button onClick={handleRetakeClick}>Retake</Button>
+            </div>
+        ):
         <Webcam
           className="recorder"
           muted={true}
@@ -149,6 +162,7 @@ export default function WebcamVideo() {
           ref={webcamRef}
           videoConstraints={videoConstraints}
         />
+        }
       </Flex>
       <div justifyContent={"center"}>
         {capturing ? (
@@ -156,17 +170,6 @@ export default function WebcamVideo() {
             ) : recordedChunks.length === 0 ? (
               <Button onClick={handleStartCaptureClick}>Start Capture</Button>
             ) : null}
-        {recordedChunks.length > 0 && (
-            <>
-            <Button onClick={handleDownload}>Download</Button>
-            <Button onClick={handleUpload}>Upload</Button>
-            <Button onClick={handleRetakeClick}>Retake</Button>
-            <Button onClick = {handleRecordingStop}>View Preview</Button>
-            <Flex justifyContent={"center"}>
-              {renderVideoPreview()}
-            </Flex>
-            </>
-        )}
       </div>
     </View>
   );
