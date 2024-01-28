@@ -7,6 +7,7 @@ import {Amplify, Auth, API, Storage } from 'aws-amplify';
 import {
   createVideo as createVideoMutation
 } from "../graphql/mutations";
+import { useNavigate } from "react-router-dom";
 
 export default function WebcamVideo() {
   const webcamRef = useRef(null);
@@ -14,6 +15,7 @@ export default function WebcamVideo() {
   const [capturing, setCapturing] = useState(false);
   const [recordedChunks, setRecordedChunks] = useState([]);
   const [videoPreviewUrl, setVideoPreviewUrl] = useState(null);
+  const navigate = useNavigate();
 
   const handleDataAvailable = useCallback(
     ({ data }) => {
@@ -67,6 +69,7 @@ export default function WebcamVideo() {
       window.URL.revokeObjectURL(url);
       setRecordedChunks([]);
     }
+    
   }, [recordedChunks]);
 
 
@@ -90,9 +93,11 @@ export default function WebcamVideo() {
       });
       setRecordedChunks([]);
     }
+    navigate('/Confirmation');
   }, [recordedChunks]);
   const handleRetakeClick = useCallback(() => {
     setRecordedChunks([]); // Reset recorded chunks when retaking the video
+    
   }, [setRecordedChunks]);
 
   const renderVideoPreview = () => {
@@ -151,7 +156,7 @@ export default function WebcamVideo() {
             </Flex>
             <Button onClick={handleDownload}>Download</Button>
             <Button onClick={handleUpload}>Upload</Button>
-            <Button onClick={handleRetakeClick}>Retake</Button>
+            <Button onClick={handleRetakeClick }>Retake</Button>
             </div>
         ):
         <Webcam
