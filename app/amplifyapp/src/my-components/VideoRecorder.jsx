@@ -103,12 +103,13 @@ export default function WebcamVideo() {
     if(videoPreviewUrl) {
       return (
         <div>
-          <video controls width = {640} height = {360} src = {videoPreviewUrl} />
+          <video controls width = {620} height = {480} src = {videoPreviewUrl} />
         </div>
       );
     }
     return null;
   };
+
   const videoConstraints = {
     width: 720,
     height: 480,
@@ -139,6 +140,7 @@ export default function WebcamVideo() {
   `.recorder {
     margin: 30px;
     padding: 0px;
+    border-radius: 8px;
   }`;
 
   return (
@@ -147,15 +149,16 @@ export default function WebcamVideo() {
         <style>{styles}</style>
         {recordedChunks.length > 0 ? (
             <div>
-            <Flex justifyContent={"center"}>
-              {renderVideoPreview()}
-            </Flex>
-            <Flex justifyContent={"center"} margin={'5px'}>
-              <Button onClick = {handleRecordingStop}>View Preview</Button>
-            </Flex>
-            <Button onClick={handleDownload}>Download</Button>
-            <Button onClick={handleUpload}>Submit Video</Button>
-            <Button onClick={handleRetakeClick }>Retake</Button>
+              <div justifyContent={"center"}>
+                <h1>Video Capture Success!</h1>
+                {renderVideoPreview()}
+              </div>
+              <Flex justifyContent={"center"} margin={'5px'}>
+                <Button onClick = {handleRecordingStop}>View Preview</Button>
+              </Flex>
+              <Button onClick={handleDownload}>Download</Button>
+              <Button onClick={handleUpload}>Submit Video</Button>
+              <Button onClick={handleRetakeClick }>Retake</Button>
             </div>
         ):
         <Webcam
