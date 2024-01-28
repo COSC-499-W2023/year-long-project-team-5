@@ -12,6 +12,7 @@ import {
     TextField,
     View,
     Heading,
+    Card,
   } from '@aws-amplify/ui-react';
 
 /**
@@ -23,11 +24,15 @@ import {
  */
 export function Recording(){
     return(
-        <div>
-            <div>
-                <h1>Video Recording</h1>
+        <div className="App">
+            <Flex direction={'row'} alignItems={'center'} justifyContent={'space-evenly'}>
+                <Card variation="elevated" margin={'2em'} width = "30%" textAlign={'left'} >
+                    <p><b>Name:</b> John Doe</p>
+                    <p><b>Requester:</b> Dr. Jim </p>
+                    <p><b>Instructions:</b> Please take a video of the areas of your body affected by the rash.</p>
+                </Card>
                 <VideoRecorder/>
-            </div>
+            </Flex>
         </div>
     )
 }

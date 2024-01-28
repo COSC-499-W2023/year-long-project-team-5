@@ -69,7 +69,6 @@ export default function WebcamVideo() {
       window.URL.revokeObjectURL(url);
       setRecordedChunks([]);
     }
-    
   }, [recordedChunks]);
 
 
@@ -111,8 +110,8 @@ export default function WebcamVideo() {
     return null;
   };
   const videoConstraints = {
-    width: 1240,
-    height: 960,
+    width: 720,
+    height: 480,
     facingMode: "user",
   };
 
@@ -155,7 +154,7 @@ export default function WebcamVideo() {
               <Button onClick = {handleRecordingStop}>View Preview</Button>
             </Flex>
             <Button onClick={handleDownload}>Download</Button>
-            <Button onClick={handleUpload}>Upload</Button>
+            <Button onClick={handleUpload}>Submit Video</Button>
             <Button onClick={handleRetakeClick }>Retake</Button>
             </div>
         ):
