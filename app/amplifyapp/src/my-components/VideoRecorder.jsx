@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
+import { Flex, View, Button } from "@aws-amplify/ui-react";
 
 import {Amplify, Auth, API, Storage } from 'aws-amplify';
 
@@ -105,39 +106,68 @@ export default function WebcamVideo() {
     return null;
   };
   const videoConstraints = {
-    width: 5,
-    height: 5,
+    width: 1240,
+    height: 960,
     facingMode: "user",
   };
 
+  const styles = 
+  capturing ?
+  `@keyframes pulseAnimation {
+    0% {
+      border-color: red;
+    }
+    50% {
+      border-color: darkred;
+    }
+    100% {
+      border-color: red;
+    }
+  }
+
+  .recorder {
+    animation: pulseAnimation 3s infinite;
+    border: 10px solid red;
+    border-radius: 8px;
+    margin: 20px;
+    padding: 0px;
+  }`:
+  `.recorder {
+    margin: 30px;
+    padding: 0px;
+  }`;
+
   return (
-    <div className="Container">
-      <Webcam
-        height={360}
-        width={640}
-        audio={true}
-        mirrored={true}
-        ref={webcamRef}
-        videoConstraints={videoConstraints}
-      />
-      <div>
+    <View>
+      <Flex justifyContent={"center"}>
+        <style>{styles}</style>
+        <Webcam
+          className="recorder"
+          muted={true}
+          audio={true}
+          mirrored={true}
+          ref={webcamRef}
+          videoConstraints={videoConstraints}
+        />
+      </Flex>
+      <div justifyContent={"center"}>
         {capturing ? (
-            <button onClick={handleStopCaptureClick}>Stop Capture</button>
+            <Button onClick={handleStopCaptureClick}>Stop Capture</Button>
             ) : recordedChunks.length === 0 ? (
-              <button onClick={handleStartCaptureClick}>Start Capture</button>
+              <Button onClick={handleStartCaptureClick}>Start Capture</Button>
             ) : null}
         {recordedChunks.length > 0 && (
             <>
-            <button onClick={handleDownload}>Download</button>
-            <button onClick={handleUpload}>Upload</button>
-            <button onClick={handleRetakeClick}>Retake</button>
-            <button onClick = {handleRecordingStop}>View Preview</button>
-            {renderVideoPreview()}
+            <Button onClick={handleDownload}>Download</Button>
+            <Button onClick={handleUpload}>Upload</Button>
+            <Button onClick={handleRetakeClick}>Retake</Button>
+            <Button onClick = {handleRecordingStop}>View Preview</Button>
+            <Flex justifyContent={"center"}>
+              {renderVideoPreview()}
+            </Flex>
             </>
         )}
-        
-
       </div>
-    </div>
+    </View>
   );
 }
