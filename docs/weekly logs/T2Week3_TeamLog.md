@@ -53,8 +53,13 @@
 
 
 ## Burn Up Chart
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/1761c275-289c-4854-9f70-338bce562d04)
 
 ## Completed & In-Progress Tasks (Project Board)
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/126ec393-083b-4622-a031-b7fa7db3a336)
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/7791161e-b4d7-4cfd-bc6b-afe55d13be80)
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/b6a33617-1b97-4827-9403-b6bd30120ff1)
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/782dcaa3-36b1-4f0c-b6e8-8031614a0235)
 
 ## Test Report
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/17e70841-1902-4c44-becf-4f48051d0d4a)
