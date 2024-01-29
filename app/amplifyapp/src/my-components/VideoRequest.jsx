@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
-import {API, Storage } from 'aws-amplify';
+import {API, Storage, Auth } from 'aws-amplify';
 import {
     Button,
     Flex,
@@ -39,7 +39,7 @@ export function VideoRequestForm(){
       let user = await createUser(form.get("email"),form.get("name"));
       let userId = user.data.createUser.id
       const data = {
-        adminId: "testadminID",
+        adminId: Auth.user.username,
         note: form.get("description"),
         submissionUserId: userId
       };

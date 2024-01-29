@@ -31,7 +31,6 @@ import { SubmissionTable } from '../my-components/SubmissionTable'
  */
 export function Dashboard() {
   const { user, route } = useAuthenticator((context) => [context.user, context.route]);
-  console.log(Auth.user.username)
   const [submissions, setSubmissions] = useState([]);
   const [filteredsubmissions, setFilteredSubmissions] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
@@ -52,15 +51,12 @@ export function Dashboard() {
     fetchSubmissions();
   }, []);
   async function fetchSubmissions() {
-    const filteredSubmissions = await getSubmissions()
-    /*
-    const filteredSubmissions = submissions.filter((submission) => {
+    let filteredSubmissions = await getSubmissions()
+    filteredSubmissions = filteredSubmissions.filter((submission) => {
       // filter admin submissions
-      console.log("Filtered submissions")
       const condition = submission.adminId === Auth.user.username;
       return condition;
     });
-    */
     // uncomment when we implement submissions
     await Promise.all(
       filteredSubmissions.map(async (submission) => {
