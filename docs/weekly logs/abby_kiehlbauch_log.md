@@ -6,6 +6,7 @@
 ## Non-feature work
 - team meetings
 - Peer evaluation planning
+- team log
 
 ## All of my features for **this milestone**
 
@@ -23,6 +24,11 @@
 - **Description**: Improve the UI of the home page (including animations)
 - **Issue number**: issue #99
 - **Context**: Most of the work was completed last week, final decisions were made this week and were merged
+
+### **Feature**: Profile page backend
+- **Description**: Connect backend to the profile page front end
+- **Issue number**: issue #92
+- **Context**: backend queries are set up but erroring due to database settings that have to be fixed
 - 
 ## Status of work for the **last week** (in-progress or completed)
 - Home page improved UI finalized and merged (completed)
@@ -30,12 +36,14 @@
 - Confirmation page and error handling completed, UI improvements to be made at a later date (complete)
 - Navbar - finalized and merged dark/light mode changes made by Abhinav (completed)
 - animations continue to be implemented
+- Profile page backend (blocked)
 
 ## Issue number reference
 - Issue #51 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/51)
 - Issue #98 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/99)
 - Issue #99 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/99)
 - Issue #104 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/104)
+- Issue #92 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/92)
 
 # Weekly Personal Log (January 15-21st)
 
