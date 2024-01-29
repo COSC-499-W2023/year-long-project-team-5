@@ -1,6 +1,6 @@
 # Team 5 Project Github (Option 3)
 
-[Current Week: Term 2 Week 3](https://github.com/orgs/COSC-499-W2023/projects/43)
+[Current Week: Term 2 Week 4](https://github.com/orgs/COSC-499-W2023/projects/43)
 
 <table>
   <tr><th>Name</th><th>Student #</th><th>Username</th></tr>
