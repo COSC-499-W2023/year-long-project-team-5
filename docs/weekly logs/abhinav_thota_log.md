@@ -1,5 +1,29 @@
+# Personal log (Jan 22-28)
+![T2 W3 work done](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/59943893/4434c4b7-112d-4393-b49b-60430817a469)
+## Issue [#96](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/96) As dev, extend default theme:
+Please add context to why this is needed
+We need a theme for our site and this can be done through fonts and colour palettes
+
+List requirements of what the solution should look like
+
+    Pick a colour palette and font to use on the site
+    Colour palette should have a dark mode counterpart
+    Implement colour palette in site
+
+Progress made:
+- got a basic Theme object created to hold the stylings and overrides for the Theme Provider we currently have.
+
+Challenges:
+- I'm finding it very tough to do the testing in a way that can accurately determine if themes are being applied correctly.
+- It's lot of work to ensure the new theming is consistent across the website.
+
+Other notes:
+- I was very busy this week, didn't have much time, I tried to do some code reviews, but it was a week that I hope I can compensate for in the coming days.
+
 # Personal log (Jan 14-21)
 ## Weekly tasks worked on from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/35/student/evaluated/1569/)
+
+
 ![T2 W2 work done](https://i.imgur.com/4lJlFXk.png)
 
 ## Feature work done this week:
