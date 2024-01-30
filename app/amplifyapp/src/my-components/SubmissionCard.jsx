@@ -16,8 +16,8 @@ export const SubmissionCard = (props) => {
     const {tokens} = useTheme();
     return(
         <View padding={tokens.space.large}>
-            <Card variation="elevated">
-                <Flex color={tokens.colors.background.secondary} justifyContent="space-between" wrap="wrap">
+            <Card variation="elevated" backgroundColor={tokens.colors.background.secondary}>
+                <Flex justifyContent="space-between" wrap="wrap">
                     <Heading level = {4}> {props.name === undefined || props.name === null ? "N/A" : props.name}</Heading>
                     <Text fontWeight={"light"}>Sent: {props.dateSent}</Text>
                 </Flex>
