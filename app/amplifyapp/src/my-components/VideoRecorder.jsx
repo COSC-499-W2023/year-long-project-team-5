@@ -1,9 +1,10 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
-import { Flex, View, Button } from "@aws-amplify/ui-react";
+import { Flex, View, Button, Heading, Card, Divider, ButtonGroup } from "@aws-amplify/ui-react";
 
 import {Amplify, Auth, API, Storage } from 'aws-amplify';
-
+import { BsFillRecordFill } from "react-icons/bs";
+import { FaCircleStop } from "react-icons/fa6";
 import {
   createVideo as createVideoMutation
 } from "../graphql/mutations";
@@ -25,6 +26,7 @@ export default function WebcamVideo() {
     },
     [setRecordedChunks]
   );
+  
   useEffect(() => {
     if (recordedChunks.length > 0 && !capturing) {
       const blob = new Blob(recordedChunks, {
@@ -141,50 +143,57 @@ export default function WebcamVideo() {
     animation: pulseAnimation 3s infinite;
     border: 10px solid red;
     border-radius: 8px;
-    margin: 20px;
     padding: 0px;
   }`:
   `.recorder {
-    margin: 30px;
     padding: 0px;
     border-radius: 8px;
   }`;
-
   return (
     <View>
       <Flex justifyContent={"center"}>
         <style>{styles}</style>
         {recordedChunks.length > 0 ? (
-            <div>
+            <Card backgroundColor={'background.secondary'} padding={'1em 2em'} variation="elevated">
+              <Heading level={3} textAlign={'left'}>Preview</Heading>
+              <Divider orientation="horizontal" marginBottom={'0.5em'}/>
               <div justifyContent={"center"}>
-                <h1>Video Capture Success!</h1>
                 {renderVideoPreview()}
               </div>
-              {/* <Flex justifyContent={"center"} margin={'5px'}> */}
-              {/* <Button onClick = {handleRecordingStop}>View Preview</Button> */}
-              {/* </Flex> */}
-              <Button onClick={handleDownload}>Download</Button>
-              <Button onClick={handleUpload}>Submit Video</Button>
-              <Button onClick={handleRetakeClick }>Retake</Button>
-            </div>
+              <Flex justifyContent={"space-evenly"} marginTop={'0.5em'}>
+                <ButtonGroup>
+                  <Button onClick={handleDownload}>Download</Button>
+                  <Button onClick={handleUpload}>Submit</Button>
+                  <Button onClick={handleRetakeClick }>Retake</Button>
+                </ButtonGroup>
+              </Flex>
+            </Card>
         ):
-        <Webcam
-          className="recorder"
-          muted={true}
-          audio={true}
-          mirrored={true}
-          ref={webcamRef}
-          videoConstraints={videoConstraints}
-        />
+        <Card backgroundColor={'background.secondary'} padding={'1em 2em'} variation="elevated">
+          {capturing ? 
+              (<Heading level={3} textAlign={'left'}> Recording...</Heading>)
+            : ( <Heading level={3} textAlign={'left'}>Record video</Heading>)
+          }
+          
+          <Divider orientation="horizontal"/>
+          <View>
+            <Webcam
+            className="recorder"
+            muted={true}
+            audio={true}
+            mirrored={true}
+            ref={webcamRef}
+            videoConstraints={videoConstraints}
+            />
+          </View> 
+          {capturing ? (
+            <Button onClick={handleStopCaptureClick} variation='warning' minWidth={"100%"}><FaCircleStop style={{ marginRight: '4px', color: 'red' }}/> Finish</Button>
+            ) : recordedChunks.length === 0 ? (
+              <Button onClick={handleStartCaptureClick} variation='outline' minWidth={'100%'}><BsFillRecordFill style={{ marginRight: '4px', color: 'red'}}/> Record</Button>
+            ) : null}
+        </Card>
         }
       </Flex>
-      <div justifyContent={"center"}>
-        {capturing ? (
-            <Button onClick={handleStopCaptureClick}>Stop Capture</Button>
-            ) : recordedChunks.length === 0 ? (
-              <Button onClick={handleStartCaptureClick}>Start Capture</Button>
-            ) : null}
-      </div>
     </View>
   );
 }

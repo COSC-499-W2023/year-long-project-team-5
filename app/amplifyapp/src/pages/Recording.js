@@ -36,7 +36,7 @@ export function Recording(){
                         <Text> <b>Instructions:</b></Text>
                         <Text> Please take a video of the areas of your body affected by the rash.</Text>
                     </Flex>
-                </Card>
+                </Card> 
                 <VideoRecorder/>
             </Flex>
         </div>
