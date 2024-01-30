@@ -11,6 +11,7 @@ import { FaCircleStop } from "react-icons/fa6";
 import {
   createVideo as createVideoMutation
 } from "../graphql/mutations";
+import { useNavigate } from "react-router-dom";
 
 export default function WebcamVideo() {
   const webcamRef = useRef(null);
@@ -18,6 +19,7 @@ export default function WebcamVideo() {
   const [capturing, setCapturing] = useState(false);
   const [recordedChunks, setRecordedChunks] = useState([]);
   const [videoPreviewUrl, setVideoPreviewUrl] = useState(null);
+  const navigate = useNavigate();
 
   const handleDataAvailable = useCallback(
     ({ data }) => {
