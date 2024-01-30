@@ -4,6 +4,9 @@ import { Flex, View, Button, Heading, Card, Divider, ButtonGroup } from "@aws-am
 
 import {Amplify, Auth, API, Storage } from 'aws-amplify';
 import { BsFillRecordFill } from "react-icons/bs";
+import { MdDownloadForOffline } from "react-icons/md";
+import { FaRedoAlt } from "react-icons/fa";
+import { RiVideoUploadFill } from "react-icons/ri";
 import { FaCircleStop } from "react-icons/fa6";
 import {
   createVideo as createVideoMutation
@@ -161,10 +164,10 @@ export default function WebcamVideo() {
                 {renderVideoPreview()}
               </div>
               <Flex justifyContent={"space-evenly"} marginTop={'0.5em'}>
-                <ButtonGroup>
-                  <Button onClick={handleDownload}>Download</Button>
-                  <Button onClick={handleUpload}>Submit</Button>
-                  <Button onClick={handleRetakeClick }>Retake</Button>
+                <ButtonGroup size="small">
+                  <Button onClick={handleDownload}> <MdDownloadForOffline style={{marginRight: '4px'}}/> Download</Button>
+                  <Button onClick={handleUpload}> <RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</Button>
+                  <Button onClick={handleRetakeClick }> <FaRedoAlt style={{marginRight: '4px'}}/> Retake</Button>
                 </ButtonGroup>
               </Flex>
             </Card>
@@ -176,7 +179,7 @@ export default function WebcamVideo() {
           }
           
           <Divider orientation="horizontal"/>
-          <View>
+          <View marginTop={'1em'}>
             <Webcam
             className="recorder"
             muted={true}
