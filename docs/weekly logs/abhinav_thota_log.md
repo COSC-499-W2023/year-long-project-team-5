@@ -1,3 +1,16 @@
+# Personal log (Jan 29-Feb 05)
+![T2 W4 work done]
+
+Features worked on:
+## Issue [#103](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/103)
+
+- UI tweaks; videos recorder and preview now appear in cards. 
+- changed elements to be amplify <Text> tags so that color changes with the theme. 
+- added icons.
+- made it so that video can be previewed without using a button. Using react useEffect() instead so it automatically renders
+
+
+
 # Personal log (Jan 22-28)
 ![T2 W3 work done](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/59943893/4434c4b7-112d-4393-b49b-60430817a469)
 ## Issue [#96](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/96) As dev, extend default theme:
