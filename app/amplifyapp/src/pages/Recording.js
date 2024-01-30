@@ -3,8 +3,6 @@ import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
 import VideoRecorder from "../my-components/VideoRecorder";
-import Webcam from "react-webcam";
-import {Amplify, Auth, API, Storage } from 'aws-amplify';
 
 import {
     Button,
@@ -12,11 +10,10 @@ import {
     TextField,
     View,
     Heading,
+    Card,
+    Text,
+    Divider
   } from '@aws-amplify/ui-react';
-  import { listNotes } from "../graphql/queries";
-import {
-  createNote as createNoteMutation,
-} from "../graphql/mutations";
 
 /**
  * Recording TODO: finish docs
@@ -26,50 +23,22 @@ import {
  * <Recording></Recording>
  */
 export function Recording(){
-    const [notes, setNotes] = useState([]);
-    const [filteredNotes, setFilteredNotes] = useState([])
-    useEffect(() => {
-      fetchNotes();
-    }, []);
-    async function fetchNotes() {
-        const apiData = await API.graphql({ query: listNotes });
-        const notesFromAPI = apiData.data.listNotes.items;
-        await Promise.all(
-          notesFromAPI.map(async (note) => {
-            if (note.image) {
-              const url = await Storage.get(note.name);
-              note.image = url;
-            }
-            return note;
-          })
-        );
-        setNotes(notesFromAPI);
-        setFilteredNotes(notesFromAPI);
-      }
-      async function createNote(event) {
-        event.preventDefault();
-        const form = new FormData(event.target);
-        const image = form.get("image");
-        const data = {
-          name: form.get("name"),
-          description: form.get("description"),
-          image: image.name,
-        };
-        if (!!data.image) await Storage.put(data.name, image);
-        await API.graphql({
-          query: createNoteMutation,
-          variables: { input: data },
-        });
-        fetchNotes();
-        event.target.reset();
-      }
-
     return(
-        <div>
-            <div>
-                <h1>Video Recording</h1>
+        <div className="App">
+            <Flex direction='column' alignItems={'center'} justifyContent={'space-evenly'}>
+                <Card variation="elevated" backgroundColor={'background.secondary'} margin={'2em'} padding={'2em 3em'} textAlign={'left'} >
+                    <Flex direction="row" justifyContent='space-between'>
+                        <Text> <b>To:</b> John Doe</Text>
+                        <Text> <b>From:</b> Dr. Jim </Text>
+                    </Flex>
+                    <Divider orientation="horizontal" marginBottom={'0.5em'}/>
+                    <Flex direction="column">
+                        <Text> <b>Instructions:</b></Text>
+                        <Text> Please take a video of the areas of your body affected by the rash.</Text>
+                    </Flex>
+                </Card> 
                 <VideoRecorder/>
-            </div>
+            </Flex>
         </div>
     )
 }

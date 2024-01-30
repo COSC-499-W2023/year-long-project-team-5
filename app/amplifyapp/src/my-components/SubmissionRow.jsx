@@ -1,6 +1,5 @@
 import * as React from "react";
-import {TableRow,TableCell, Text, Link, Button } from "@aws-amplify/ui-react";
-import {useNavigate} from 'react-router-dom';
+import {TableRow,TableCell, Text, Button } from "@aws-amplify/ui-react";
 
 /**
  * SubmissionRow is intended to be the data row for each submission (to display info better on larger screens)
@@ -32,11 +31,11 @@ export const SubmissionRow = (props) => {
         <TableRow className='subRow'>
             <TableCell className  = 'subClientName' width='15%'> {props.name === undefined || props.name === null ? <Text variation='tertiary'>N/A</Text> :  <Text> {props.name} </Text> }</TableCell>
             <TableCell className = 'subEmail' width='15%'> {props.email}</TableCell>
-            <TableCell className="description" width='50%'>{props.description}</TableCell>
+            <TableCell numberOfLines={1} style={{ flex: 1 }} className="description" width='50%'>{props.description}</TableCell>
             <TableCell className = 'subDS' width='10%'> {props.dateSent}</TableCell>
             <TableCell className = 'subDR' width='10%'> {props.videoLink===null || props.dateReceived ==null ?  <Text variation='tertiary'>N/A</Text> : <Text>{props.dateReceived}</Text>}</TableCell>
             {/* need to change the onclick function in line 38 to be able to address issue 102 */}
-            <TableCell className='subLink' width='5%'> {props.videoLink===null || props.dateReceived ==null ? <Button variation= 'link' size='small' disabled> no video</Button> : <Button variation="primary" size='small' width='100%' onClick={()=>{window.open(props.videoLink)}}> Video</Button>}</TableCell>
+            <TableCell className='subLink' width='5%'> {props.videoLink===null || props.dateReceived ==null ? <Button variation="primary" size='small' disabled>No Video Received</Button> : <Button variation="primary" size='small' width='100%' onClick={()=>{window.open(props.videoLink)}}>Video</Button>}</TableCell>
         </TableRow>
     );
 }
