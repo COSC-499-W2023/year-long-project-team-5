@@ -35,7 +35,7 @@ import {
 	return (
 		<div>
 			{/*video banner*/}
-				<video src = {videoBG2} autoPlay loop muted width = "75%" pointer-events = "none;"/>
+				<video src = {videoBG2} controlsList="nofullscreen nodownload" playsInline autoPlay loop muted width = "75%" pointerEvents = "none"/>
 			{/*main three calls - with animation*/}
 			<motion.div
 				initial = {{opacity: 0}}
