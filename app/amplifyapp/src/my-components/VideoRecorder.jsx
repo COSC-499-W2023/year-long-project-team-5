@@ -12,6 +12,7 @@ import {
   createVideo as createVideoMutation
 } from "../graphql/mutations";
 import { useNavigate } from "react-router-dom";
+import "./VideoRecorder.css"
 
 export default function WebcamVideo() {
   const webcamRef = useRef(null);
@@ -127,35 +128,9 @@ export default function WebcamVideo() {
     height: 480,
     facingMode: "user",
   };
-
-  const styles = 
-  capturing ?
-  `@keyframes pulseAnimation {
-    0% {
-      border-color: red;
-    }
-    50% {
-      border-color: darkred;
-    }
-    100% {
-      border-color: red;
-    }
-  }
-
-  .recorder {
-    animation: pulseAnimation 3s infinite;
-    border: 10px solid red;
-    border-radius: 8px;
-    padding: 0px;
-  }`:
-  `.recorder {
-    padding: 0px;
-    border-radius: 8px;
-  }`;
   return (
     <View>
       <Flex justifyContent={"center"}>
-        <style>{styles}</style>
         {recordedChunks.length > 0 ? (
             <Card backgroundColor={'background.secondary'} padding={'1em 2em'} variation="elevated">
               <Heading level={3} textAlign={'left'}>Preview</Heading>
@@ -181,7 +156,7 @@ export default function WebcamVideo() {
           <Divider orientation="horizontal"/>
           <View marginTop={'1em'}>
             <Webcam
-            className="recorder"
+            className= {capturing ? "recorderOn" : "recorderOff"}
             muted={true}
             audio={true}
             mirrored={true}

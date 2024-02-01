@@ -1,0 +1,22 @@
+@keyframes pulseAnimation {
+    0% {
+      border-color: red;
+    }
+    50% {
+      border-color: darkred;
+    }
+    100% {
+      border-color: red;
+    }
+  }
+
+  .recorderOn {
+    animation: pulseAnimation 3s infinite;
+    border: 10px solid red;
+    border-radius: 8px;
+    padding: 0px;
+  }
+  .recorderOff {
+    padding: 0px;
+    border-radius: 8px;
+  }
