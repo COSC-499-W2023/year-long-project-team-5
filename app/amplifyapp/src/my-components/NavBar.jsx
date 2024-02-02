@@ -49,7 +49,7 @@ export const NavBar = (props) => {
                  ):
                  <Menu>       
                      <MenuItem onClick={()=> navigate('/')}> Home</MenuItem>
-                     <MenuItem onClick={()=> navigate('/Dashboard')}>Dashboard</MenuItem>
+                     <MenuItem onClick={()=> navigate('/Dashboard')}>Video Submissions</MenuItem>
                      <MenuItem onClick={()=> navigate('/Submission')}>Request a video</MenuItem>
                  </Menu>
                  }
@@ -76,7 +76,7 @@ export const NavBar = (props) => {
                     ):
                         <Flex>
                             <AmplifyLink onClick={()=> navigate('/')}>Home</AmplifyLink>
-                            <AmplifyLink onClick={()=> navigate('/Dashboard')}> Dashboard</AmplifyLink>
+                            <AmplifyLink onClick={()=> navigate('/Dashboard')}> Video Submissions</AmplifyLink>
                             <AmplifyLink onClick={()=> navigate('/Submission')}> Request a video</AmplifyLink>
                         </Flex>
                     }
