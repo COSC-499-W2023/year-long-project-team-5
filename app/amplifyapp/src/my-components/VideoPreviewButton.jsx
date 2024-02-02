@@ -14,9 +14,6 @@ export const VideoPreviewButton = ({ videoUrl, name, description }) => {
     setIsOpen(false);
   };
 
-  const doesNothing = () => {
-  }
-
   return (
     <View>
         <Button variation="primary" size='small' width='100%' onClick={openVideo} cursor='pointer'>Video</Button>
