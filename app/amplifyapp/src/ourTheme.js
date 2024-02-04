@@ -20,6 +20,7 @@ const ourTheme = {
         colorMode: 'dark',
         tokens: {
             colors: {
+                // primary is shades of violet/purple
                 primary:{
                     10: { value: "#8a92be"},
                     20: { value: "#5a64a2"},
@@ -28,6 +29,7 @@ const ourTheme = {
                     90: { value: "#3f4671" },
                     100: { value: "#363c61"},
                 },
+                //secondary is shades of pink
                 secondary:{
                     10: { value: "#e9b6c6" },
                     20: { value: "#dc92aa" },
@@ -38,8 +40,8 @@ const ourTheme = {
                 },
                 font: {
                     primary: {value: "#faedf0" },
-                    secondary:{value: "#424769"},
-                    tertiary: {value: "#7077A1"},
+                    secondary:{value: "#7077A1"},
+                    tertiary: {value: "#424769"},
                     quaternary: {},
                     interactive: {value: "#e3a4b8"},
                     disabled:{},
@@ -88,10 +90,19 @@ const ourTheme = {
                         color: {value: "{colors.white}"},
                         hover: {
                             color:{value: "{colors.white}"} ,
-                            backgroundColor:{value: "{colors.secondary.10}"} 
+                            backgroundColor:{value: "{colors.secondary.40}"} 
                         }
                     },
-                }
+                //styling for generic button i.e default: (comment out if you want to see)
+                //     backgroundColor: {value: "{colors.background.primary}"},
+                //     color: {value: "{colors.secondary.20}"},
+                //     borderColor: {value: "{colors.secondary.20}"},
+                //     hover: {
+                //         color:{value: "{colors.secondary.10}"} ,
+                //         backgroundColor: {value: "{colors.neutral.10}"},
+                //         borderColor:{value: "{colors.secondary.20}"} 
+                //     }
+                // }
             }
         },
     },
