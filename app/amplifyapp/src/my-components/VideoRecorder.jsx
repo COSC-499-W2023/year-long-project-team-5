@@ -49,9 +49,17 @@ export default function WebcamVideo() {
   const handleStartCaptureClick = useCallback(() => {
     setCapturing(true);
     setVideoPreviewUrl(null);
-    mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
-      mimeType: "video/webm",
-    });
+    try {
+      mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
+        mimeType: "video/webm",
+      });
+    }
+    catch{
+      mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
+        mimeType: "video/mp4",
+      });
+    }
+   
     mediaRecorderRef.current.addEventListener(
       "dataavailable",
       handleDataAvailable
