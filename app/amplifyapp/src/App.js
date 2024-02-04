@@ -10,6 +10,7 @@ import {Dashboard} from './pages/Dashboard'
 import {Login} from './pages/Login'
 import {Submission} from './pages/Submission'
 import {Recording} from './pages/Recording'
+import { Confirmation } from "./pages/Confirmation";
 import {Profile} from './pages/Profile'
 import { Authenticator } from "@aws-amplify/ui-react";
 import {RequireAuth} from "./RequireAuth"
@@ -42,6 +43,7 @@ function MyRoutes({ colorMode, setColorMode }){
             <Profile/>
             </RequireAuth>
           }/>
+          <Route path = "/confirmation" element = {<Confirmation />}/>
         </Route>
         
       </Routes> 

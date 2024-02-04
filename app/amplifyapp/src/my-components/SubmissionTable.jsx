@@ -8,11 +8,14 @@ import {Table, TableRow, TableHead, TableCell, TableBody, useTheme} from '@aws-a
  *
  * @param {Object} rowsToDisplay - takes in rows to display (can take multiple through array or map function)
  * @returns JSX.Element
-*/
+ */
+
+  
+
 export const SubmissionTable = (props) => {
   let {tokens} = useTheme();
     return(
-      <Table variation = "striped" highlightOnHover backgroundColor={tokens.colors.neutral[10]}>
+      <Table variation = "striped" highlightOnHover backgroundColor={tokens.colors.neutral[80]}>
           <TableHead>
               <TableRow textAlign="left">
                   <TableCell as='th' className='tableHeader'>Name</TableCell>

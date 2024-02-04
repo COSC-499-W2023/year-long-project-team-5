@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
-import {API, Storage } from 'aws-amplify';
+import {API, Storage, Auth } from 'aws-amplify';
 import {
     Button,
     Flex,
@@ -12,54 +12,16 @@ import {
     Card, 
     useTheme
   } from '@aws-amplify/ui-react';
-  import { listNotes } from "../graphql/queries";
+  import { listSubmissions } from "../graphql/queries";
 import {
   createVideo as createVideoMutation,
   createUser as createUserMutation,
   createSubmission as createSubmissionMutation
 } from "../graphql/mutations";
 export function VideoRequestForm(){
-    const [notes, setNotes] = useState([]);
-    const [filteredNotes, setFilteredNotes] = useState([])
-    useEffect(() => {
-      fetchNotes();
-    }, []);
     
     const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
     
-
-    // potential for these functions to be a utility function? 
-    async function fetchNotes() {
-        const apiData = await API.graphql({ query: listNotes });
-        const notesFromAPI = apiData.data.listNotes.items;
-        await Promise.all(
-          notesFromAPI.map(async (note) => {
-            if (note.image) {
-              const url = await Storage.get(note.name);
-              note.image = url;
-            }
-            return note;
-          })
-        );
-        setNotes(notesFromAPI);
-        setFilteredNotes(notesFromAPI);
-      }
-    async function createNote(event) {
-      event.preventDefault();
-      const form = new FormData(event.target);
-      const image = form.get("image");
-      const data = {
-        videoURL: image.name,
-      };
-      if (!!data.image) await Storage.put(image.name, image);
-      await API.graphql({
-        query: createVideoMutation,
-        variables: { input: data },
-      });
-      fetchNotes();
-      event.target.reset();
-    }
-
     async function createUser(email,name) {
       const data = {
         email: email,
@@ -77,7 +39,7 @@ export function VideoRequestForm(){
       let user = await createUser(form.get("email"),form.get("name"));
       let userId = user.data.createUser.id
       const data = {
-        adminId: "testadminID",
+        adminId: Auth.user.username,
         note: form.get("description"),
         submissionUserId: userId
       };
@@ -85,7 +47,6 @@ export function VideoRequestForm(){
         query: createSubmissionMutation,
         variables: { input: data },
       });
-      fetchNotes();
       event.target.reset();
       setIsFormSubmitted(true); // Set the form submission state to true
     }

@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, {  } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
-import { Outlet, useNavigate } from "react-router-dom";
-import { Authenticator, useAuthenticator} from "@aws-amplify/ui-react"
+import { useNavigate } from "react-router-dom";
+import { useAuthenticator} from "@aws-amplify/ui-react"
 
-import {Amplify, Auth, API, Storage } from 'aws-amplify';
 
 import {
     Button,

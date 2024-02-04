@@ -1,6 +1,30 @@
 # Weekly Personal Log S2 Week 2 (Jan 15 - Jan 21) 
 
 ## Screenshot from peer eval
+<img src="https://i.imgur.com/5aTlQLT.png">
+
+## Non-feature work
+- Team meetings
+- Reviewing PRs
+
+## All of my features for **this milestone**
+### **Feature**: Filter submissions by admin
+- **Description**: Aim to have more description backend variable and function names, less code reuse and prettier overall code
+- **Issue number**: #132
+- **Context**: Currently a PR in review
+
+## Status of work for the week
+- Backend tests (in progress)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/132]
+  
+## Other notes
+- We had a hackathon this week!
+
+# Weekly Personal Log S2 Week 2 (Jan 15 - Jan 21) 
+
+## Screenshot from peer eval
 <img src="https://i.imgur.com/GcmTQ9n.png">
 
 ## Non-feature work

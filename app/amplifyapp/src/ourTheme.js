@@ -39,9 +39,9 @@ const ourTheme = {
                     100: { value: "#b22d69"},
                 },
                 font: {
-                    primary: {value: "#faedf0" },
-                    secondary:{value: "#7077A1"},
-                    tertiary: {value: "#424769"},
+                    primary: {value: "#faedf0" },  // white-pink
+                    secondary:{value: "#424769"},
+                    tertiary: {value: "#7077A1"},
                     quaternary: {},
                     interactive: {value: "#e3a4b8"},
                     disabled:{},
@@ -75,12 +75,12 @@ const ourTheme = {
                     warning: {value: "#c8513a"}
                 },
                 neutral: {
-                  100: { value: "#ebebf0" },
-                  90: { value: "#d8d8e1" },
-                  80: { value: "#7c7d98"},
-                  40: { value: "#6a6c8a" },
-                  20: { value: "#585b7c" },
-                  10: { value: "#474b6e" },
+                  10: { value: "#ebebf0" },
+                  20: { value: "#d8d8e1" },
+                  40: { value: "#7c7d98"},
+                  80: { value: "#6a6c8a" },
+                  90: { value: "#585b7c" },
+                  100: { value: "#474b6e" },
                 },
             },
             components: {

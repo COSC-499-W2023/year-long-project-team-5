@@ -1,3 +1,50 @@
+# Weekly Personal Log (January 22nd-28th)
+
+## Screenshot from peer eval
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/2b511b4b-3e5a-415d-86fb-5c504fc9b2c9)
+
+## Non-feature work
+- team meetings
+- Peer evaluation planning
+- team log
+
+## All of my features for **this milestone**
+
+### **Feature**: Video re-record and preview
+- **Description**: Add functionality for the patient (user) to be able to preview their recorded video and re-take it
+- **Issue number**: issue #51
+- **Context**: N/A
+
+### **Feature**: Confirmation message after video submission
+- **Description**: added a confirmation page that appears for the patient (user) after successful submission of a video
+- **Issue number**: issue #104
+- **Context**: Shell and error handling is completed, improving UI of the page will be completed at a later date
+
+### **Feature**: Home page
+- **Description**: Improve the UI of the home page (including animations)
+- **Issue number**: issue #99
+- **Context**: Most of the work was completed last week, final decisions were made this week and were merged
+
+### **Feature**: Profile page backend
+- **Description**: Connect backend to the profile page front end
+- **Issue number**: issue #92
+- **Context**: backend queries are set up but erroring due to database settings that have to be fixed
+- 
+## Status of work for the **last week** (in-progress or completed)
+- Home page improved UI finalized and merged (completed)
+- Video re-record and preview functionality implemented (completed)
+- Confirmation page and error handling completed, UI improvements to be made at a later date (complete)
+- Navbar - finalized and merged dark/light mode changes made by Abhinav (completed)
+- animations continue to be implemented
+- Profile page backend (blocked)
+
+## Issue number reference
+- Issue #51 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/51)
+- Issue #98 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/99)
+- Issue #99 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/99)
+- Issue #104 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/104)
+- Issue #92 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/92)
+
 # Weekly Personal Log (January 15-21st)
 
 ## Screenshot from peer eval
