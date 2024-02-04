@@ -71,7 +71,6 @@ export default function WebcamVideo() {
       a.download = "react-webcam-stream-capture.webm";
       a.click();
       window.URL.revokeObjectURL(url);
-      setRecordedChunks([]);
     }
   }, [recordedChunks]);
 
