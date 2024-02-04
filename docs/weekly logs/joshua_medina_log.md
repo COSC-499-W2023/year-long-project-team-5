@@ -309,3 +309,31 @@
 - Issue #103 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/103)
 - Issue #101 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/101)
 - Issue #114 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/114)
+
+---
+
+# Weekly Personal Log (January 29 - Feb 4th)
+
+## Screenshot from peer eval
+<img width="1010" alt="Screenshot 2024-01-28 at 4 27 55 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/a75f2d76-b8a0-4388-875c-7888d08659be">
+
+## Non-feature work
+- Met on Jan 30, Feb 1 for meeting
+- making MORE UI decisions with the team
+
+## All of my features for **this milestone**
+
+### **Feature**: Recording page UI overhaul
+- **Description**: Improved the UI of the recording page, added border, fixed video preview with Abby, fixed flow
+- **Issue number**: issue #103, issue #101 issue #114
+- **Context**: Worked on style-video-recordings branch which needs to be merged, will probably be merged for peer-testing
+
+## Status of work for the **last week** (in-progress or completed)
+- improvements made on recording page, video is now clearer and has a red border, and navigation is cleaner
+- Accordion dropdown for clients in-progress. (blocked, accordion component is not found)
+- Description shorteners in-progress. (blocked, did not have enough time this week)
+
+## Issue number reference
+- Issue #103 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/103)
+- Issue #101 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/101)
+- Issue #114 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/114)
