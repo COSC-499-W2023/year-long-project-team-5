@@ -33,16 +33,9 @@ export default function WebcamVideo() {
   
   useEffect(() => {
     if (recordedChunks.length > 0 && !capturing) {
-      const blob = null;
-      try{
-        blob = new Blob(recordedChunks, {
-          type: "video/webm",
-        });
-      }catch{
-        blob = new Blob(recordedChunks, {
-          type: "video/mp4",
-        });
-      }
+      const blob = new Blob(recordedChunks, {
+        type: "video/webm",
+      });
       const url = URL.createObjectURL(blob);
       setVideoPreviewUrl(url);
     }
@@ -56,17 +49,9 @@ export default function WebcamVideo() {
   const handleStartCaptureClick = useCallback(() => {
     setCapturing(true);
     setVideoPreviewUrl(null);
-    try {
-      mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
-        mimeType: "video/webm",
-      });
-    }
-    catch{
-      mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
-        mimeType: "video/mp4",
-      });
-    }
-   
+    mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
+      mimeType: "video/webm",
+    });
     mediaRecorderRef.current.addEventListener(
       "dataavailable",
       handleDataAvailable
@@ -76,16 +61,9 @@ export default function WebcamVideo() {
 
   const handleDownload = useCallback(() => {
     if (recordedChunks.length) {
-      const blob = null;
-      try{
-        blob = new Blob(recordedChunks, {
-          type: "video/webm",
-        });
-      }catch{
-        blob = new Blob(recordedChunks, {
-          type: "video/mp4",
-        });
-      }
+      const blob = new Blob(recordedChunks, {
+        type: "video/webm",
+      });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       document.body.appendChild(a);
