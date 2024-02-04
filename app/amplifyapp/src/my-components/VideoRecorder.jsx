@@ -21,6 +21,17 @@ export default function WebcamVideo() {
   const [videoPreviewUrl, setVideoPreviewUrl] = useState(null);
   const navigate = useNavigate();
   const [videoLoaded, setVideoLoaded] = useState(false); //state variable to track if the recorded video is fully loaded and ready to upload
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1000);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
 
   const handleDataAvailable = useCallback(
     ({ data }) => {
@@ -33,9 +44,10 @@ export default function WebcamVideo() {
   
   useEffect(() => {
     if (recordedChunks.length > 0 && !capturing) {
-      const blob = new Blob(recordedChunks, {
-        type: "video/webm",
-      });
+      const blob = isMobile
+  ? new Blob(recordedChunks, { type: "video/mp4" })
+  : new Blob(recordedChunks, { type: "video/webm" });
+       
       const url = URL.createObjectURL(blob);
       setVideoPreviewUrl(url);
     }
@@ -68,15 +80,20 @@ export default function WebcamVideo() {
 
   const handleDownload = useCallback(() => {
     if (recordedChunks.length) {
-      const blob = new Blob(recordedChunks, {
-        type: "video/webm",
-      });
+      const blob = isMobile
+  ? new Blob(recordedChunks, { type: "video/mp4" })
+  : new Blob(recordedChunks, { type: "video/webm" });
+       
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       document.body.appendChild(a);
       a.style = "display: none";
       a.href = url;
-      a.download = "react-webcam-stream-capture.webm";
+      { isMobile ? (
+        a.download = "react-webcam-stream-capture.mp4"
+      ):
+        a.download = "react-webcam-stream-capture.webm";
+      }
       a.click();
       window.URL.revokeObjectURL(url);
     }
