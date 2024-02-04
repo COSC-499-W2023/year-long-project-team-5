@@ -1,3 +1,53 @@
+# Weekly Personal Log (January 29nd-February 4th)
+
+## Screenshot from peer eval
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/80f5e7b8-c486-466f-9f72-ec72c1d9682f)
+
+## Non-feature work
+- team meetings
+- Peer evaluation
+
+## All of my features for **this milestone**
+
+### **Feature**: Landing page bug fix: add dark mode logo
+- **Description**: Added a logo that fits the dark mode theme 
+- **Issue number**: issue #145
+- **Context**: logo had a white background and stood out when the website was in dark mode
+
+### **Feature**: Landing page bug fix: fix logo being displayed as video on mobile
+- **Description**: on mobile the logo showed up with video controls instead of an embedded video
+- **Issue number**: issue #146
+- **Context**: 
+
+### **Feature**: Recording bug fix: restarts recording process upon download (prevents upload)
+- **Description**: after downloading the video it erased the recording and didn't allow the user to also upload it
+- **Issue number**: issue #142
+- **Context**: Bug found in peer testing
+
+### **Feature**: Recording bug fix: upload does not always work, does not bring user to confirmation page
+- **Description**: The upload button sometimes worked, sometimes didn't
+- **Issue number**: issue #144
+- **Context**: added error handling and event listener to ensure video is fully loaded before upload is attempted
+
+### **Feature**: Recording bug fix: could not stop recording on mobile
+- **Description**: The finish recording button did not respond on mobile
+- **Issue number**: issue #147
+- **Context**: added error handling to record as mp4 on mobile as webm is not supported
+
+## Status of work for the **last week** (in-progress or completed)
+- logo no longer displays as video on home screen (bug) - completed
+- added dark mode logo (bug) - completed
+- downloading recording no longer erases it and can upload after (bug) - completed
+- added error handling to fix flaky upload error (bug) - completed
+- fixed error where video would not stop recording on mobile (bug) - completed)
+
+## Issue number reference
+- Issue #142 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/142)
+- Issue #144 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/144)
+- Issue #145 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/145)
+- Issue #146 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/146)
+- Issue #147 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/147)
+
 # Weekly Personal Log (January 22nd-28th)
 
 ## Screenshot from peer eval
@@ -39,11 +89,11 @@
 - Profile page backend (blocked)
 
 ## Issue number reference
-- Issue #51 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/51)
-- Issue #98 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/99)
-- Issue #99 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/99)
-- Issue #104 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/104)
-- Issue #92 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/92)
+- Issue #51 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/51)
+- Issue #98 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/99)
+- Issue #99 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/99)
+- Issue #104 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/104)
+- Issue #92 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/92)
 
 # Weekly Personal Log (January 15-21st)
 
@@ -73,8 +123,8 @@
   - branch 'navbar-fix'
 
 ## Issue number reference
-- Issue #98 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/97)
-- Issue #99 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/99)
+- Issue #98 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/97)
+- Issue #99 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/99)
 
 # Weekly Personal Log (January 8th - 14th)
 
@@ -105,8 +155,8 @@
   - animations for all other pages in progress
 
 ## Issue number reference
-- Issue #97 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/97)
-- Issue #99 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/99)
+- Issue #97 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/97)
+- Issue #99 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/99)
 
 # Weekly Personal Log (November 27 - Dec 3)
 
@@ -139,8 +189,8 @@
 - design document completed
 
 ## Issue number reference
-- Issue #76 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/76)
-- Issue #92 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/92)
+- Issue #76 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/76)
+- Issue #92 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/92)
 
 # Weekly Personal Log (November 13-26)
 
@@ -169,8 +219,8 @@
 - landing page in progress
 
 ## Issue number reference
-- Issue #59 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/59)
-- Issue #76 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/76)
+- Issue #59 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/59)
+- Issue #76 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/76)
 
 ## Other notes
 
