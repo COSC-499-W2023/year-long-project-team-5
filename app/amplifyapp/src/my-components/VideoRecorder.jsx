@@ -33,9 +33,16 @@ export default function WebcamVideo() {
   
   useEffect(() => {
     if (recordedChunks.length > 0 && !capturing) {
-      const blob = new Blob(recordedChunks, {
-        type: "video/webm",
-      });
+      const blob = null;
+      try{
+        blob = new Blob(recordedChunks, {
+          type: "video/webm",
+        });
+      }catch{
+        blob = new Blob(recordedChunks, {
+          type: "video/mp4",
+        });
+      }
       const url = URL.createObjectURL(blob);
       setVideoPreviewUrl(url);
     }
@@ -69,9 +76,16 @@ export default function WebcamVideo() {
 
   const handleDownload = useCallback(() => {
     if (recordedChunks.length) {
-      const blob = new Blob(recordedChunks, {
-        type: "video/webm",
-      });
+      const blob = null;
+      try{
+        blob = new Blob(recordedChunks, {
+          type: "video/webm",
+        });
+      }catch{
+        blob = new Blob(recordedChunks, {
+          type: "video/mp4",
+        });
+      }
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       document.body.appendChild(a);
