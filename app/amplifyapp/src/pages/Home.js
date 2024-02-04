@@ -1,16 +1,16 @@
 import {
 	Card,
-	Image,
 	View,
 	Heading,
 	Flex,
-	Badge,
 	Text,
 	Button,
 	useTheme,
   } from '@aws-amplify/ui-react';
+  import { useState } from 'react';
   import { Divider } from '@aws-amplify/ui-react';
-  import videoBG2 from '../assets/BG.mp4';
+  import videoBG from '../assets/BG.mp4';
+  import darkVideoBG from '../assets/darkBG.mp4'
   import amplifyLogo from '../assets/amplify.svg';
   import cognitoLogo from '../assets/cognito.svg';
   import rekognitionLogo from '../assets/rekognition.svg';
@@ -24,19 +24,25 @@ import {
   import Kael from '../assets/kael.jpg';
   import reactLogo from '../assets/reactLogo.svg';
   import {motion, useScroll} from "framer-motion";
-  import { useRef } from "react";
-  import { Outlet, useNavigate } from "react-router-dom";
+  import { useRef, useEffect } from "react";
+  import { useNavigate } from "react-router-dom";
 
-  export const Home = () => {
+  export const Home = ({colorMode}) => {
 	const { tokens } = useTheme();
 	const ref = useRef(null);
 	const { scrollXProgress } = useScroll({ container: ref });
 	const navigate = useNavigate();
+	const [videoSource, setVideoSource] = useState(colorMode === 'light' ? videoBG : darkVideoBG);
+	useEffect(() => {
+	// Update video source when colorMode changes
+	setVideoSource(colorMode === 'light' ? videoBG : darkVideoBG);
+	}, [colorMode]);
 	return (
 		<div>
 			{/*video banner*/}
-				<video src = {videoBG2} controlsList="nofullscreen nodownload" playsInline autoPlay loop muted width = "75%" pointerEvents = "none"/>
-			{/*main three calls - with animation*/}
+				<video src = {videoSource} controlsList="nofullscreen nodownload" playsInline autoPlay loop muted width = "75%" pointerEvents = "none"/>
+	
+				{/*main three calls - with animation*/}
 			<motion.div
 				initial = {{opacity: 0}}
 				whileInView = {{opacity:1}}
