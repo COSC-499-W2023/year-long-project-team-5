@@ -20,6 +20,7 @@ export default function WebcamVideo() {
   const [recordedChunks, setRecordedChunks] = useState([]);
   const [videoPreviewUrl, setVideoPreviewUrl] = useState(null);
   const navigate = useNavigate();
+  const [videoLoaded, setVideoLoaded] = useState(false); //state variable to track if the recorded video is fully loaded and ready to upload
 
   const handleDataAvailable = useCallback(
     ({ data }) => {
@@ -74,16 +75,27 @@ export default function WebcamVideo() {
     }
   }, [recordedChunks]);
 
-
+  //check that the video is fully loaded and processed before attempting upload
+  useEffect(() => {
+    const videoElement = webcamRef.current.video;
+    const handleCanPlayThrough = () => {
+      // Video is fully loaded
+      setVideoLoaded(true);
+    };
+    videoElement.addEventListener('canplaythrough', handleCanPlayThrough);
+    return () => {
+      videoElement.removeEventListener('canplaythrough', handleCanPlayThrough);
+    };
+  }, []);
+ 
   const handleUpload= useCallback(async () => {
-    if (recordedChunks.length) {
+      if (recordedChunks.length && videoLoaded) {
       const blob = new Blob(recordedChunks, {
         type: "video/webm",
       });
 
       const randNum = parseInt(Math.random() * 10000000);
       const videoNameS3 = "video" + randNum + ".webm";
-      console.log(randNum)
       const data = {
         videoURL: videoNameS3, // videoNameS3 is the key (not the url) for the s3 bucket, get video URL with Storage.get(name)
       };
@@ -104,6 +116,13 @@ export default function WebcamVideo() {
       }
     } 
   }, [recordedChunks]);
+
+  useEffect(() => {
+    // Clean up when component unmounts
+    return () => {
+      setVideoLoaded(false);
+    };
+  }, []);
 
   const handleRetakeClick = useCallback(() => {
     setRecordedChunks([]); // Reset recorded chunks when retaking the video
