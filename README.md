@@ -29,9 +29,8 @@ The purpose of our software is to allow admins (such as doctors, managers, profe
 ## Running Testing
 1. Git pull all files from the repo
 2. Change directory to `app\amplifyapp`
-3. Run `npx cypress open` (if you want just component tests or just e2e tests add `--component` or `--e2e` respectively)
-4. Open the application window and launch e2e or component testing in your preferred brower
-5. In the browser window run specs indiviudally or a full run
+3. Run `npx cypress run` (if you want just component tests or just e2e tests add `--component` or `--e2e` respectively)
+4. This will run all the specs for e2e or component respectively
 
 # Project Design Documents:
 ## Design Checkpoint (Document and Video) (Halfway-point)
