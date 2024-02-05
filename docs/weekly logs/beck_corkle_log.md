@@ -9,7 +9,7 @@
 - Peer testing on tuesday
 - Made lots of issues and requirements for all problems found during peer testing
 
-## All of my features for **this milestone**
+## All of my features for **this week**
 ### **Feature**: Automatic emailing
 - **Description**: When the admin sends a submission and types in the clients email, it should notify the client by email and send a link to the record page
 - **Issue number**: #128
@@ -32,7 +32,7 @@
 - Team meetings
 - Reviewing PRs
 
-## All of my features for **this milestone**
+## All of my features for **this week**
 ### **Feature**: Filter submissions by admin
 - **Description**: Aim to have more description backend variable and function names, less code reuse and prettier overall code
 - **Issue number**: #132
@@ -57,7 +57,7 @@
 - Reviewing PRs (PR 120)
 - Resolving problems on my PRs (PR 109 and PR 119)
 
-## All of my features for **this milestone**
+## All of my features for **this week**
 ### **Feature**: Refactor backend
 - **Description**: Aim to have more description backend variable and function names, less code reuse and prettier overall code
 - **Issue number**: #87
@@ -96,7 +96,7 @@
 - Resolving problems on my PRs (PR 109 and PR 89)
 - Solving merge conflicts for refactor-dash
 
-## All of my features for **this milestone**
+## All of my features for **this week**
 ### **Feature**: Refactor backend
 - **Description**: Aim to have more description backend variable and function names, less code reuse and prettier overall code
 - **Issue number**: #87
