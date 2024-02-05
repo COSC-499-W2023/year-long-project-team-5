@@ -20,6 +20,18 @@ export default function WebcamVideo() {
   const [recordedChunks, setRecordedChunks] = useState([]);
   const [videoPreviewUrl, setVideoPreviewUrl] = useState(null);
   const navigate = useNavigate();
+  const [videoLoaded, setVideoLoaded] = useState(false); //state variable to track if the recorded video is fully loaded and ready to upload
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1000);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
 
   const handleDataAvailable = useCallback(
     ({ data }) => {
@@ -32,9 +44,10 @@ export default function WebcamVideo() {
   
   useEffect(() => {
     if (recordedChunks.length > 0 && !capturing) {
-      const blob = new Blob(recordedChunks, {
-        type: "video/webm",
-      });
+      const blob = isMobile
+  ? new Blob(recordedChunks, { type: "video/mp4" })
+  : new Blob(recordedChunks, { type: "video/webm" });
+       
       const url = URL.createObjectURL(blob);
       setVideoPreviewUrl(url);
     }
@@ -48,9 +61,16 @@ export default function WebcamVideo() {
   const handleStartCaptureClick = useCallback(() => {
     setCapturing(true);
     setVideoPreviewUrl(null);
+    try{
     mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
       mimeType: "video/webm",
     });
+    }
+    catch{
+      mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
+        mimeType: "video/mp4",
+      });
+    }
     mediaRecorderRef.current.addEventListener(
       "dataavailable",
       handleDataAvailable
@@ -60,31 +80,46 @@ export default function WebcamVideo() {
 
   const handleDownload = useCallback(() => {
     if (recordedChunks.length) {
-      const blob = new Blob(recordedChunks, {
-        type: "video/webm",
-      });
+      const blob = isMobile
+  ? new Blob(recordedChunks, { type: "video/mp4" })
+  : new Blob(recordedChunks, { type: "video/webm" });
+       
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       document.body.appendChild(a);
       a.style = "display: none";
       a.href = url;
-      a.download = "react-webcam-stream-capture.webm";
+      { isMobile ? (
+        a.download = "react-webcam-stream-capture.mp4"
+      ):
+        a.download = "react-webcam-stream-capture.webm";
+      }
       a.click();
       window.URL.revokeObjectURL(url);
-      setRecordedChunks([]);
     }
   }, [recordedChunks]);
 
-
+  //check that the video is fully loaded and processed before attempting upload
+  useEffect(() => {
+    const videoElement = webcamRef.current.video;
+    const handleCanPlayThrough = () => {
+      // Video is fully loaded
+      setVideoLoaded(true);
+    };
+    videoElement.addEventListener('canplaythrough', handleCanPlayThrough);
+    return () => {
+      videoElement.removeEventListener('canplaythrough', handleCanPlayThrough);
+    };
+  }, []);
+ 
   const handleUpload= useCallback(async () => {
-    if (recordedChunks.length) {
+      if (recordedChunks.length && videoLoaded) {
       const blob = new Blob(recordedChunks, {
         type: "video/webm",
       });
 
       const randNum = parseInt(Math.random() * 10000000);
       const videoNameS3 = "video" + randNum + ".webm";
-      console.log(randNum)
       const data = {
         videoURL: videoNameS3, // videoNameS3 is the key (not the url) for the s3 bucket, get video URL with Storage.get(name)
       };
@@ -105,6 +140,13 @@ export default function WebcamVideo() {
       }
     } 
   }, [recordedChunks]);
+
+  useEffect(() => {
+    // Clean up when component unmounts
+    return () => {
+      setVideoLoaded(false);
+    };
+  }, []);
 
   const handleRetakeClick = useCallback(() => {
     setRecordedChunks([]); // Reset recorded chunks when retaking the video
@@ -190,7 +232,7 @@ export default function WebcamVideo() {
             />
           </View> 
           {capturing ? (
-            <Button onClick={handleStopCaptureClick} variation='warning' minWidth={"100%"}><FaCircleStop style={{ marginRight: '4px', color: 'red' }}/> Finish</Button>
+            <Button onTouchStart = {handleStopCaptureClick} onClick={handleStopCaptureClick} variation='warning' minWidth={"100%"}><FaCircleStop style={{ marginRight: '4px', color: 'red' }}/> Finish</Button>
             ) : recordedChunks.length === 0 ? (
               <Button onClick={handleStartCaptureClick} variation='outline' minWidth={'100%'}><BsFillRecordFill style={{ marginRight: '4px', color: 'red'}}/> Record</Button>
             ) : null}
