@@ -2,35 +2,25 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
-import { Amplify, Auth, API, Storage } from 'aws-amplify';
+import { getSubmissions } from "../Helpers/Getters";
+import { Auth, API, Storage } from 'aws-amplify';
 import { filterSubmissions } from "../Helpers/Search";
 import {
-  Button,
+  Grid,
   Flex,
-  Image,
-  Text,
-  TextField,
   View,
   useAuthenticator,
-  Card,
   Heading,
-  Badge,
-  Link,
   useTheme,
   SearchField,
+  ToggleButton,
+  ToggleButtonGroup
 } from '@aws-amplify/ui-react';
 import { listSubmissions } from "../graphql/queries";
-import { listNotes } from "../graphql/queries";
-import {
-  createNote as createNoteMutation,
-  deleteNote as deleteNoteMutation,
-  createVideo as createVideoMutation
-} from "../graphql/mutations";
 
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
 import { SubmissionTable } from '../my-components/SubmissionTable'
-import awsconfig from '../aws-exports';
 
 /**
  * dashboard TODO: finish docs
@@ -41,11 +31,10 @@ import awsconfig from '../aws-exports';
  */
 export function Dashboard() {
   const { user, route } = useAuthenticator((context) => [context.user, context.route]);
-  console.log(Auth.user.username)
-  const [notes, setNotes] = useState([]);
-  const [filteredNotes, setFilteredNotes] = useState([])
+  const [submissions, setSubmissions] = useState([]);
+  const [filteredsubmissions, setFilteredSubmissions] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
-
+  const [dashView, setDashView] = useState('table');
 
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
   useEffect(() => {
@@ -57,97 +46,83 @@ export function Dashboard() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  //this useEffect is used to fetch submissions data from the database: calls fetchNotes() which is below..
+  //this useEffect is used to fetch submissions data from the database: calls fetchsubmissions() which is below..
   useEffect(() => {
-    fetchNotes();
+    fetchSubmissions();
   }, []);
-  async function fetchNotes() {
-    const apiData = await API.graphql({ query: listSubmissions });
-    const submissions = apiData.data.listSubmissions.items;
-    const filteredSubmissions = submissions;
-    /*
-    const filteredSubmissions = submissions.filter((submission) => {
+  async function fetchSubmissions() {
+    let filteredSubmissions = await getSubmissions()
+    filteredSubmissions = filteredSubmissions.filter((submission) => {
       // filter admin submissions
-      console.log("Filtered submissions")
       const condition = submission.adminId === Auth.user.username;
       return condition;
     });
-    */
     // uncomment when we implement submissions
     await Promise.all(
-      filteredSubmissions.map(async (note) => {
-        if (note.Video && note.Video.videoURL) {
-          const url = await Storage.get(note.Video.videoURL);
-          note.Video.videoName = note.Video.videoURL;
-          note.Video.videoURL = url;
+      filteredSubmissions.map(async (submission) => {
+        if (submission.Video && submission.Video.videoURL) {
+          const url = await Storage.get(submission.Video.videoURL);
+          submission.Video.videoName = submission.Video.videoURL;
+          submission.Video.videoURL = url;
         }
-        return note;
+        return submission;
       })
     );
-    setNotes(filteredSubmissions);
-    setFilteredNotes(filteredSubmissions);
+    setSubmissions(filteredSubmissions);
+    setFilteredSubmissions(filteredSubmissions);
   }
 
-  async function createNote(event) {
-    event.preventDefault();
-    const form = new FormData(event.target);
-    console.log(form)
-    const image = form.get("image");
-    const data = {
-      name: form.get("name"),
-      description: form.get("description"),
-      image: image.name,
-    };
-    console.log(data)
-    if (!!data.image) await Storage.put(data.name, image);
-    await API.graphql({
-      query: createVideoMutation,
-      variables: { input: data },
-    });
-    fetchNotes();
-    event.target.reset();
-  }
-
-  async function deleteNote({ id, name }) {
-    const newNotes = notes.filter((note) => note.id !== id);
-    setNotes(newNotes);
-    await Storage.remove(name);
-    await API.graphql({
-      query: deleteNoteMutation,
-      variables: { input: { id } },
-    });
-  }
-  const { tokens } = useTheme();
-
-  return (
-    <View className="App">
-      <Heading level={2}>Video Log</Heading>
-      <SearchField padding={tokens.space.large} onChange={(e) => setFilteredNotes(filterSubmissions(e.target.value,notes))} />
-      <View padding={tokens.space.large}>
-        {/* this line is a conditional JSX expression, renders SubmissionTable if it's not mobile and SubmissionCard if it's mobile */}
-        {!isMobile ? (
-          <SubmissionTable
-            rowsToDisplay={filteredNotes.map((submission) => (
-              <SubmissionRow
-                name={submission.User.name}
-                email={submission.User.email}
-                description={submission.note}
-                dateSent={submission.createdAt}
-                dateReceived={submission.submittedAt}
-                videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
-              />
-            ))}
-          />
-        ) : (
-          filteredNotes.map((submission) => (
+  function renderSubmissions(){
+    if(!isMobile && dashView === "table"){
+      return(
+        <SubmissionTable
+          rowsToDisplay={filteredsubmissions.map((submission) => (
+            <SubmissionRow
+              name={submission.User.name}
+              email={submission.User.email}
+              description={submission.note}
+              dateSent={submission.createdAt == null ? null : new Date(submission.createdAt).toLocaleDateString()}
+              dateReceived={submission.submittedAt == null ? null : new Date(submission.submittedAt).toLocaleDateString()}
+              videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
+            />
+          ))}
+        />
+      );
+    }else{
+      const gridLayout = !isMobile ? "1fr 1fr" : "1fr";
+      return (
+        <Grid templateColumns={gridLayout} gap={tokens.space.small}>
+          {filteredsubmissions.map((submission) => (
             <SubmissionCard
               margin="1rem"
-              id={submission.id}
+              name={submission.User.name}
+              email={submission.User.email}
               description={submission.note}
-              image={submission.Video ? submission.Video.videoURL : "N/A"}
+              dateSent={submission.createdAt == null ? null : new Date(submission.createdAt).toLocaleDateString()}
+              dateReceived={submission.submittedAt == null ? null : new Date(submission.submittedAt).toLocaleDateString()}
+              videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
             />
-          ))
+          ))}
+        </Grid>
+      );
+    }
+  }
+
+  const { tokens } = useTheme();
+  return (
+    <View className="App">
+      <Heading level={2}>Your Video Submissions</Heading>
+      <Flex alignItems="center" justifyContent="center">
+        <SearchField padding={tokens.space.large} onChange={(e) => setFilteredSubmissions(filterSubmissions(e.target.value,submissions))} />
+        {!isMobile && (
+          <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
+            <ToggleButton value = "table"> Table </ToggleButton>
+            <ToggleButton value = "card"> Card </ToggleButton>
+          </ToggleButtonGroup>
         )}
+      </Flex>
+      <View padding={tokens.space.large}>
+        {renderSubmissions()}
       </View>
     </View>
   )

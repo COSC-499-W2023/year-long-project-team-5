@@ -10,6 +10,7 @@ import {Dashboard} from './pages/Dashboard'
 import {Login} from './pages/Login'
 import {Submission} from './pages/Submission'
 import {Recording} from './pages/Recording'
+import { Confirmation } from "./pages/Confirmation";
 import {Profile} from './pages/Profile'
 import { Authenticator } from "@aws-amplify/ui-react";
 import {RequireAuth} from "./RequireAuth"
@@ -18,11 +19,12 @@ import awsconfig from './aws-exports';
 
 Auth.configure(awsconfig);
 Amplify.configure(awsconfig);
-function MyRoutes(){
+
+function MyRoutes({ colorMode, setColorMode }){
   return(
     <BrowserRouter>
       <Routes>
-        <Route path = "/" element ={<Layout/>}>
+        <Route path = "/" element ={<Layout colorMode = {colorMode} setColorMode = {setColorMode} />}>
           <Route index element={<Home/>}/>
           <Route path = "/dashboard" element={
             <RequireAuth>
@@ -41,6 +43,7 @@ function MyRoutes(){
             <Profile/>
             </RequireAuth>
           }/>
+          <Route path = "/confirmation" element = {<Confirmation />}/>
         </Route>
         
       </Routes> 
@@ -48,11 +51,11 @@ function MyRoutes(){
   )
 }
 
-function App(){
+function App({colorMode, setColorMode}){
   return(
-    <Authenticator.Provider>
-      <MyRoutes/>
-    </Authenticator.Provider>
+      <Authenticator.Provider>
+        <MyRoutes colorMode={colorMode} setColorMode={setColorMode}/>
+      </Authenticator.Provider>
   )
 }
 export default App;
