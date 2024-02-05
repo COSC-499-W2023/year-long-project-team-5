@@ -33,14 +33,14 @@ query MyQuery {
 `;
 
 
-let send_email = async(body) => {
+async function send_email(thedata) {
   const command = new SendEmailCommand({
     Destination: {
       ToAddresses: ["corklebeck@gmail.com"],
     },
     Message: {
       Body: {
-        Text: { Data: "test body" },
+        Text: { Data: thedata?.data?.getSubmission?.User?.email },
       },
 
       Subject: { Data: "Test Email" },
@@ -49,6 +49,9 @@ let send_email = async(body) => {
   });
 
   try {
+    console.log(thedata?.data?.getSubmission?.User?.email)
+    console.log(thedata)
+    console.log(thedata?.data?.getSubmission?.User)
     let response = await ses.send(command);
     console.log("EMAIL RESPONSE:",response)
     // process data.
@@ -99,9 +102,11 @@ export const handler = async (event) => {
   let response;
 
   try {
-    await send_email(body)
     response = await fetch(request);
-    body = await response.json();
+    let res = await response.json();
+    console.log("RES:", res)
+    await send_email(res)
+    body = res
     if (body.errors) statusCode = 400;
   } catch (error) {
     statusCode = 500;
