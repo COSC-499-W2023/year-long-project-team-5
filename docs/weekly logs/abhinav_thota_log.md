@@ -1,5 +1,6 @@
 # Personal log (Jan 29-Feb 05)
-![T2 W4 work done]
+## Weekly work done from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/35/student/evaluated/1569/)
+![T2 W4 work done](https://i.imgur.com/oRZ78Za.png)
 
 Features worked on:
 ## Issue [#103](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/103)
@@ -9,6 +10,22 @@ Features worked on:
 - added icons.
 - made it so that video can be previewed without using a button. Using react useEffect() instead so it automatically renders
 
+## Issue [#96](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/96) Extend default theme.
+
+Work done so far:
+built the overall skeleton for theme object file, should be relatively easy to navigate and add new tokens to theme over default.
+redefine most of the token colors to suit dark/light mode theme
+
+Some thoughts:
+
+    it's quite a lot of work to theme over the default, right now it covers the basic components, but it's a lot of work to go over all the components. something to think about if we choose to go this route.
+    I haven't settled on font, colors and weight. My focus was to set up the file and structure.
+
+Additional work:
+- helped Josh and Abby with their assigned tasks and did peer reviews
+
+Notes:
+I want to move away from theming, I spent time debugging it, the UI could be overhauled, but it has its caveats worth discussing with the team. I want to focus on fixing as many bugs and improving upon the feedback we've received from peer testing next week. 
 
 
 # Personal log (Jan 22-28)
