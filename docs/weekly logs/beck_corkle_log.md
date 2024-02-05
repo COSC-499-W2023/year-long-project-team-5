@@ -1,4 +1,27 @@
-# Weekly Personal Log S2 Week 2 (Jan 15 - Jan 21) 
+# Weekly Personal Log S2 Week 4
+
+## Screenshot from peer eval
+[<img src="https://i.imgur.com/5aTlQLT.png">](https://i.imgur.com/ShHFKoC.png)
+
+## Non-feature work
+- Team meetings
+- Reviewing PRs
+
+## All of my features for **this milestone**
+### **Feature**: Automatic emailing
+- **Description**: When the admin sends a submission and types in the clients email, it should notify the client by email and send a link to the record page
+- **Issue number**: #128
+- **Context**: Currently a draft PR, most of the work for this issue is being done on the AWS dashboard, so you won't see a lot of commits here. But its hard work setting everything up trust me!
+
+## Status of work for the week
+- Automatic emailing (in progress)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/128]
+  
+## Other notes
+
+# Weekly Personal Log S2 Week 3 (Jan 22 - Jan 28) 
 
 ## Screenshot from peer eval
 <img src="https://i.imgur.com/5aTlQLT.png">
