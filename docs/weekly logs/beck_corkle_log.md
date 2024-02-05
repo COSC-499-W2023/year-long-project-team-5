@@ -6,6 +6,8 @@
 ## Non-feature work
 - Team meetings
 - Reviewing PRs
+- Peer testing on tuesday
+- Made lots of issues and requirements for all problems found during peer testing
 
 ## All of my features for **this milestone**
 ### **Feature**: Automatic emailing
