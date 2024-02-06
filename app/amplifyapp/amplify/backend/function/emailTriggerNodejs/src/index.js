@@ -19,31 +19,19 @@ const AWS_REGION = process.env.AWS_REGION || 'ca-central-1';
 const { Sha256 } = crypto;
 
 const ses = new SESClient({ region: AWS_REGION });
-const query = /* GraphQL */ `
-query MyQuery {
-  getSubmission(id: "d85e0053-19e2-49ea-98bb-f3b16bbabab8") {
-    id
-    User {
-      id
-      email
-    }
-  }
-}
-
-`;
 
 
 async function send_email(thedata) {
   const command = new SendEmailCommand({
     Destination: {
-      ToAddresses: ["corklebeck@gmail.com"],
+      ToAddresses: [thedata?.data?.getSubmission?.User?.email],
     },
     Message: {
       Body: {
-        Text: { Data: thedata?.data?.getSubmission?.User?.email },
+        Text: { Data: "Welcome to the team" },
       },
 
-      Subject: { Data: "Test Email" },
+      Subject: { Data: "Hello from Blur" },
     },
     Source: "corklebeck@gmail.com",
   });
@@ -53,7 +41,7 @@ async function send_email(thedata) {
     console.log(thedata)
     console.log(thedata?.data?.getSubmission?.User)
     let response = await ses.send(command);
-    console.log("EMAIL RESPONSE:",response)
+    console.log("EMAIL RESPONSE:", response)
     // process data.
     return response;
   }
@@ -74,6 +62,17 @@ async function send_email(thedata) {
 
 export const handler = async (event) => {
   console.log(`EVENT: ${JSON.stringify(event)}`);
+    const query = /* GraphQL */ `
+  query MyQuery {
+    getSubmission(id: "${event.Records[0].dynamodb.Keys.id.S}") {
+      id
+      User {
+        id
+        email
+      }
+    }
+  }
+  `;
   const endpoint = new URL(GRAPHQL_ENDPOINT);
 
   const signer = new SignatureV4({
