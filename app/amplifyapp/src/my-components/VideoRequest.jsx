@@ -19,9 +19,14 @@ import {
   createUser as createUserMutation,
   createSubmission as createSubmissionMutation
 } from "../graphql/mutations";
+
+import {validateForm} from '../Helpers/ValidateForm'
+
 export function VideoRequestForm(){
     
     const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
+    const [isFormWrong, setFormWrong] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("")
     const [submittedEmail, setSubmittedEmail] = useState(''); // State to store the submitted email
 
     async function createUser(email,name) {
@@ -38,6 +43,18 @@ export function VideoRequestForm(){
     async function createSubmission(event){
       event.preventDefault();
       const form = new FormData(event.target);
+      //validate form inputs
+      const validationError = validateForm({
+        emailInput: form.get("email")
+      })
+
+      if (validationError){
+        setErrorMessage(validationError)
+        setFormWrong(true)
+        return //don't submit the form and get out since inputs are wrong.
+      }
+
+
       let user = await createUser(form.get("email"),form.get("name"));
       //this should store what is submitted in the form using states:
       setSubmittedEmail(form.get("email")) // only retaining email for now.
@@ -79,10 +96,15 @@ export function VideoRequestForm(){
       // this form should have multiple breakpoints for its width: mobile & large screens
       // this form IS NOT VALIDATED!! needs testing!
       
-      <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle}>
+      <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle} >
         {isFormSubmitted && (
-          <Alert textAlign ='left' variation="success" isDismissible={true}   hasIcon={true} heading="Form Sent" marginBottom={'.5em'}>
-            Your request to {submittedEmail} has been submitted successfully!
+          <Alert textAlign ='left' variation="success" isDismissible={true} hasIcon={true} heading="Email Sent" marginBottom={'.5em'}>
+            Your video request to {submittedEmail} has been successfully sent!
+          </Alert>
+        )}
+        {isFormWrong && (
+          <Alert textAlign ='left' variation="error" isDismissible={true}   hasIcon={true} heading="Uh oh. Something went wrong." marginBottom={'.5em'}>
+            {errorMessage}
           </Alert>
         )}
         <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em'>
