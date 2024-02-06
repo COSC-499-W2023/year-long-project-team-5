@@ -43,10 +43,15 @@ export function VideoRequestForm(){
     async function createSubmission(event){
       event.preventDefault();
       const form = new FormData(event.target);
+      // reset everything
+      setIsFormSubmitted(false);
+      setFormWrong(false);
+      setErrorMessage('');
       //validate form inputs
       const validationError = validateForm({
         emailInput: form.get("email")
       })
+
 
       if (validationError){
         setErrorMessage(validationError)
@@ -68,6 +73,7 @@ export function VideoRequestForm(){
         query: createSubmissionMutation,
         variables: { input: data },
       });
+
       event.target.reset();
       setIsFormSubmitted(true);
        // Set the form submission state to true
@@ -106,7 +112,7 @@ export function VideoRequestForm(){
           <Alert textAlign ='left' variation="error" isDismissible={true}   hasIcon={true} heading="Uh oh. Something went wrong." marginBottom={'.5em'}>
             {errorMessage}
           </Alert>
-        )}
+        )} 
         <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em'>
           <TextField
             name="name"
