@@ -10,7 +10,8 @@ import {
     View,
     Heading,
     Card, 
-    useTheme
+    useTheme,
+    Alert
   } from '@aws-amplify/ui-react';
   import { listSubmissions } from "../graphql/queries";
 import {
@@ -21,7 +22,8 @@ import {
 export function VideoRequestForm(){
     
     const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
-    
+    const [submittedEmail, setSubmittedEmail] = useState(''); // State to store the submitted email
+
     async function createUser(email,name) {
       const data = {
         email: email,
@@ -37,6 +39,8 @@ export function VideoRequestForm(){
       event.preventDefault();
       const form = new FormData(event.target);
       let user = await createUser(form.get("email"),form.get("name"));
+      //this should store what is submitted in the form using states:
+      setSubmittedEmail(form.get("email")) // only retaining email for now.
       let userId = user.data.createUser.id
       const data = {
         adminId: Auth.user.username,
@@ -48,9 +52,9 @@ export function VideoRequestForm(){
         variables: { input: data },
       });
       event.target.reset();
-      setIsFormSubmitted(true); // Set the form submission state to true
+      setIsFormSubmitted(true);
+       // Set the form submission state to true
     }
-
     // these states and functions below are to help dynamically adjust the width of the parent Card component (i.e the form)
     // depending on browser width, takes less % of screen width if screen is large, and greater % when mobile.
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -74,7 +78,13 @@ export function VideoRequestForm(){
       // hardcoding the widths and heights was causing previous clipping 
       // this form should have multiple breakpoints for its width: mobile & large screens
       // this form IS NOT VALIDATED!! needs testing!
+      
       <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle}>
+        {isFormSubmitted && (
+          <Alert textAlign ='left' variation="success" isDismissible={true}   hasIcon={true} heading="Form Sent" marginBottom={'.5em'}>
+            Your request to {submittedEmail} has been submitted successfully!
+          </Alert>
+        )}
         <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em'>
           <TextField
             name="name"
@@ -97,7 +107,7 @@ export function VideoRequestForm(){
             }}
             required
           />
-        <Button type="submit" variation="primary">Request Video </Button>
+        <Button type="submit" variation="primary">Request Video</Button>
         </Flex>
       </Card>
     )
