@@ -26,7 +26,7 @@ function MyRoutes({ colorMode, setColorMode }){
       <Routes>
         <Route path = "/" element ={<Layout colorMode = {colorMode} setColorMode = {setColorMode} />}>
           <Route index element={<Home colorMode={colorMode}/>}/>
-          <Route path = "/dashboard" element={
+          <Route path = "/submissions" element={
             <RequireAuth>
             <Submissions/>
             </RequireAuth>
