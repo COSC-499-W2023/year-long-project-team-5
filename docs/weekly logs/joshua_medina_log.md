@@ -309,3 +309,32 @@
 - Issue #103 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/103)
 - Issue #101 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/101)
 - Issue #114 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/114)
+
+---
+
+# Weekly Personal Log (January 29 - Feb 4th)
+
+## Screenshot from peer eval
+<img width="1047" alt="Screenshot 2024-02-04 at 6 20 36 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/c19509d2-34ec-4b74-8f91-4f88b7c4ee1a">
+
+## Non-feature work
+- Met on Jan 30, Feb 1 for meeting
+- making MORE UI decisions with the team
+
+## All of my features for **this milestone**
+
+### **Feature**: Video Preview Button
+- **Description**: Improved the video records, now won't open a new window but instead able to be previewed on the page
+- **Issue number**: issue #102, issue #149
+- **Context**: Worked on the refactor_dash branch which has yet to be merged
+
+## Status of work for the **last week** (in-progress or completed)
+- Finished video preview for dashboard
+- Finished rename dashboard task (easy) (peer review)
+- Finished search bar fix (easy) (peer review)
+- Video request confirmation in progress
+
+## Issue number reference
+- Issue #102 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/102)
+- Issue #149 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/149)
+- Issue #106 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/106)
