@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Card, Flex, Heading, Button, useTheme, View, Text } from "@aws-amplify/ui-react";
+import { VideoPreviewButton } from "./VideoPreviewButton";
 
 export const SubmissionCard = (props) => {
 /**
@@ -33,7 +34,7 @@ export const SubmissionCard = (props) => {
                         <Button variation="primary" size='small' disabled>No Video Received</Button>
                     ) : (
                     <Flex justifyContent='center' alignItems='center'>
-                        <Button variation="primary" size='small' width='12em' onClick={()=>{window.open(props.videoLink)}}>Video</Button>
+                        <VideoPreviewButton videoUrl={props.videoLink} name = {props.name} description={props.description}></VideoPreviewButton>
                         <Text fontWeight={"light"}>Received: {props.dateReceived}</Text>
                     </Flex>
                     )}

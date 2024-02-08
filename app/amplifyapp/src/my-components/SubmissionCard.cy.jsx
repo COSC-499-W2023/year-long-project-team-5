@@ -34,16 +34,10 @@ describe('SubmissionCard loading props', () => {
   });
 
   it('opens video link in a new window when "Video" button is clicked', () => {
-
-    //Prevent window from actually opening
-    cy.window().then((win) => {
-      cy.stub(win, 'open').as('windowOpen');
-    });
-
     cy.get('.amplify-card').should('exist');
     //window should open at correct URL
     cy.contains(/video/i).click();
-    cy.get('@windowOpen').should('be.calledWith', 'http://localhost:8080/video');
+    cy.get('#overlay').should('be.visible');
   });
 });
 
