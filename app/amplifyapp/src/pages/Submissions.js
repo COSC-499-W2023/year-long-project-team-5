@@ -24,13 +24,13 @@ import { SubmissionRow } from "../my-components/SubmissionRow";
 import { SubmissionTable } from '../my-components/SubmissionTable'
 
 /**
- * dashboard TODO: finish docs
+ * Submissions TODO: finish docs
  * @param {Object} props - prop1 name
  * @returns JSX.Element
  * @example
- * <Dashboard></Dashboard>
+ * <Submissions></Submissions>
  */
-export function Dashboard() {
+export function Submissions() {
   const { user, route } = useAuthenticator((context) => [context.user, context.route]);
   const [submissions, setSubmissions] = useState([]);
   const [filteredsubmissions, setFilteredSubmissions] = useState([])
