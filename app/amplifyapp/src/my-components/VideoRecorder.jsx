@@ -20,7 +20,21 @@ export default function WebcamVideo() {
   const [capturing, setCapturing] = useState(false);
   const [recordedChunks, setRecordedChunks] = useState([]);
   const [videoPreviewUrl, setVideoPreviewUrl] = useState(null);
+  const [isCamReady, setCamReady] = useState(false);
   const navigate = useNavigate();
+  const [videoLoaded, setVideoLoaded] = useState(false); //state variable to track if the recorded video is fully loaded and ready to upload
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1000);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+
 
   const handleDataAvailable = useCallback(
     ({ data }) => {
@@ -30,16 +44,17 @@ export default function WebcamVideo() {
     },
     [setRecordedChunks]
   );
-  
+  // this useEffect checks to see if there's a video recorded and it's not currently recording (i.e time to show preview)
   useEffect(() => {
     if (recordedChunks.length > 0 && !capturing) {
-      const blob = new Blob(recordedChunks, {
-        type: "video/webm",
-      });
+      const blob = isMobile
+  ? new Blob(recordedChunks, { type: "video/mp4" })
+  : new Blob(recordedChunks, { type: "video/webm" });
+       
       const url = URL.createObjectURL(blob);
       setVideoPreviewUrl(url);
     }
-  }, [recordedChunks, capturing]);
+  }, [recordedChunks, capturing, isMobile]);
 
   const handleStopCaptureClick = useCallback(() => {
     mediaRecorderRef.current.stop();
@@ -49,9 +64,16 @@ export default function WebcamVideo() {
   const handleStartCaptureClick = useCallback(() => {
     setCapturing(true);
     setVideoPreviewUrl(null);
+    try{
     mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
       mimeType: "video/webm",
     });
+    }
+    catch{
+      mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
+        mimeType: "video/mp4",
+      });
+    }
     mediaRecorderRef.current.addEventListener(
       "dataavailable",
       handleDataAvailable
@@ -61,31 +83,42 @@ export default function WebcamVideo() {
 
   const handleDownload = useCallback(() => {
     if (recordedChunks.length) {
-      const blob = new Blob(recordedChunks, {
-        type: "video/webm",
-      });
+      const blob = isMobile
+  ? new Blob(recordedChunks, { type: "video/mp4" })
+  : new Blob(recordedChunks, { type: "video/webm" });
+       
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       document.body.appendChild(a);
       a.style = "display: none";
       a.href = url;
-      a.download = "react-webcam-stream-capture.webm";
+      {isMobile ? (a.download = "react-webcam-stream-capture.mp4"): (a.download = "react-webcam-stream-capture.webm")}
       a.click();
       window.URL.revokeObjectURL(url);
-      setRecordedChunks([]);
     }
-  }, [recordedChunks]);
+  }, [recordedChunks, isMobile]);
 
-
+  //check that the video is fully loaded and processed before attempting upload
+  useEffect(() => {
+    const videoElement = webcamRef.current.video;
+    const handleCanPlayThrough = () => {
+      // Video is fully loaded
+      setVideoLoaded(true);
+    };
+    videoElement.addEventListener('canplaythrough', handleCanPlayThrough);
+    return () => {
+      videoElement.removeEventListener('canplaythrough', handleCanPlayThrough);
+    };
+  }, []);
+ 
   const handleUpload= useCallback(async () => {
-    if (recordedChunks.length) {
+      if (recordedChunks.length && videoLoaded) {
       const blob = new Blob(recordedChunks, {
         type: "video/webm",
       });
 
       const randNum = parseInt(Math.random() * 10000000);
       const videoNameS3 = "video" + randNum + ".webm";
-      console.log(randNum)
       const data = {
         videoURL: videoNameS3, // videoNameS3 is the key (not the url) for the s3 bucket, get video URL with Storage.get(name)
       };
@@ -105,7 +138,23 @@ export default function WebcamVideo() {
         console.error("Error uploading video:", error);
       }
     } 
-  }, [recordedChunks]);
+  }, [recordedChunks, navigate, videoLoaded]);
+
+  // so the react web cam has a prop, onUserMedia. 
+  // This prop accepts functions to perform only when video stream is established
+  // so I created handleUserMedia function which has a .5 sec delay and then sets the boolean (state) to true
+  // so Record button can render.
+  const handleUserMedia = async () => {
+    await new Promise(resolve => setTimeout(resolve, 500))
+    setCamReady(true)
+   }
+ 
+  useEffect(() => {
+    // Clean up when component unmounts
+    return () => {
+      setVideoLoaded(false);
+    };
+  }, []);
 
   const handleRetakeClick = useCallback(() => {
     setRecordedChunks([]); // Reset recorded chunks when retaking the video
@@ -162,12 +211,13 @@ export default function WebcamVideo() {
             mirrored={true}
             ref={webcamRef}
             videoConstraints={videoConstraints}
+            onUserMedia={handleUserMedia} // this prop performs a function only when the video stream is established.
             />
           </View> 
           {capturing ? (
-            <Button onClick={handleStopCaptureClick} variation='warning' minWidth={"100%"}><FaCircleStop style={{ marginRight: '4px', color: 'red' }}/> Finish</Button>
-            ) : recordedChunks.length === 0 ? (
-              <Button onClick={handleStartCaptureClick} variation='outline' minWidth={'100%'}><BsFillRecordFill style={{ marginRight: '4px', color: 'red'}}/> Record</Button>
+            <Button onTouchStart = {handleStopCaptureClick} onClick={handleStopCaptureClick} variation='warning' minWidth={"100%"}><FaCircleStop style={{ marginRight: '4px', color: 'red' }}/> Finish</Button>
+            ) : recordedChunks.length === 0 && isCamReady? (
+              <Button className='recordButton' onClick={handleStartCaptureClick} variation='outline' minWidth={'100%'}><BsFillRecordFill style={{ marginRight: '4px', color: 'red'}}/> Record</Button>
             ) : null}
         </Card>
         }
