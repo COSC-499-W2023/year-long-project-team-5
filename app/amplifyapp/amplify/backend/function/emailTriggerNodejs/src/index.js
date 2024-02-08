@@ -28,18 +28,17 @@ async function send_email(thedata) {
     },
     Message: {
       Body: {
-        Text: { Data: "Welcome to the team" },
+        Text: { Data: "Hello, " + thedata?.data?.getSubmission?.User?.name + 
+        ".\n\n" + thedata?.data?.getSubmission?.adminName + " has requested a video from you. These are the notes they left:"
+      + thedata?.data?.getSubmission?.note + "\n\nYou can record the video here: https://develop.d1tz6jy97536kp.amplifyapp.com/recording/" },
       },
 
-      Subject: { Data: "Hello from Blur" },
+      Subject: { Data: "Blur: " + thedata?.data?.getSubmission?.adminName + " is requesting a video from you" },
     },
     Source: "corklebeck@gmail.com",
   });
 
   try {
-    console.log(thedata?.data?.getSubmission?.User?.email)
-    console.log(thedata)
-    console.log(thedata?.data?.getSubmission?.User)
     let response = await ses.send(command);
     console.log("EMAIL RESPONSE:", response)
     // process data.
@@ -68,11 +67,15 @@ export const handler = async (event) => {
       id
       User {
         id
+        name
         email
       }
+      note
+      adminName
     }
   }
   `;
+  console.log(`QUERY: ${query}`);
   const endpoint = new URL(GRAPHQL_ENDPOINT);
 
   const signer = new SignatureV4({

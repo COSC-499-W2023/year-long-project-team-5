@@ -5,6 +5,8 @@ type Submission @model @auth(rules: [{allow: public}, {allow: private, provider:
   User: User @hasOne
   note: String
   submittedAt: AWSDateTime
+  otpCode: String
+  adminName: String
 }
 
 type Video @model @auth(rules: [{allow: public}, {allow: private, provider: iam}]) {
@@ -24,6 +26,5 @@ type Note @model @auth(rules: [{allow: public}, {allow: private, provider: iam}]
   description: String
   image: String
   viewedStatus: Boolean
-}  
-
-
+}
+ 

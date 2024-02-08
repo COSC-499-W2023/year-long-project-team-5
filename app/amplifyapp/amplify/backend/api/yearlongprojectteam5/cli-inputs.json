@@ -6,13 +6,16 @@
     "defaultAuthType": {
       "mode": "AWS_IAM"
     },
-    "conflictResolution": {},
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "NONE"
+      }
+    },
     "additionalAuthTypes": [
       {
         "mode": "API_KEY",
-        "expirationTime": 30,
-        "apiKeyExpirationDate": "2024-03-05T03:39:38.118Z",
-        "keyDescription": "api key description"
+        "keyDescription": "api key description",
+        "expirationTime": 30
       }
     ]
   }
