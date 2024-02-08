@@ -136,6 +136,7 @@ export function VideoRequestForm(){
             name="email"
             placeholder="bilbobaggins@mordor.com"
             label="Recipient Email"
+            type="email"
             required
             onChange={handleEmailOnChange}
             hasError={isFormWrong}
