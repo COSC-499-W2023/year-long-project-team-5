@@ -14,7 +14,8 @@ import {
   useTheme,
   SearchField,
   ToggleButton,
-  ToggleButtonGroup
+  ToggleButtonGroup, 
+  SelectField
 } from '@aws-amplify/ui-react';
 import { listSubmissions } from "../graphql/queries";
 
@@ -35,6 +36,7 @@ export function Dashboard() {
   const [filteredsubmissions, setFilteredSubmissions] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
   const [dashView, setDashView] = useState('table');
+
 
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
   useEffect(() => {
@@ -71,6 +73,25 @@ export function Dashboard() {
     setSubmissions(filteredSubmissions);
     setFilteredSubmissions(filteredSubmissions);
   }
+
+  function handleVideoStatusFilterChange(filter){
+    console.log(filter);
+    if(filter == ''){
+      setFilteredSubmissions(submissions);
+    }
+    else {
+    const filtered = submissions.filter(submission => {
+      if(filter == 'all'){}
+      else if (filter === 'submitted') {
+        return submission.Video && submission.Video.videoURL;
+      } else if (filter === 'noVideo') {
+        return !submission.Video || !submission.Video.videoURL;
+      }
+    });
+    setFilteredSubmissions(filtered);
+    }
+  }
+
 
   function renderSubmissions(){
     if(!isMobile && dashView === "table"){
@@ -114,6 +135,10 @@ export function Dashboard() {
       <Heading level={2}>Your Video Submissions</Heading>
       <Flex alignItems="center" justifyContent="center">
         <SearchField textAlign="left" placeholder="Search submissions..." padding={tokens.space.large} onChange={(e) => setFilteredSubmissions(filterSubmissions(e.target.value,submissions))} />
+        <SelectField placeholder = "Filter by video submission status" onChange={(e)=> handleVideoStatusFilterChange(e.target.value)} defaultValue = {"all"}>
+          <option value = "submitted">Submitted video</option>
+          <option value = "noVideo">No video submitted</option>
+        </SelectField>
         {!isMobile && (
           <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
             <ToggleButton value = "table"> Table </ToggleButton>
