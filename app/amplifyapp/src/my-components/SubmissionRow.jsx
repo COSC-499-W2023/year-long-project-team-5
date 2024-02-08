@@ -25,8 +25,8 @@ export const SubmissionRow = (props) => {
 
     //const navigate = useNavigate();
     const handleButtonClick = () => {
-        // Navigate to the '/Submission' page when the button is clicked - should be different custom page!
-        //navigate('/Submission');
+        // Navigate to the '/Request' page when the button is clicked - should be different custom page!
+        //navigate('/Request');
     };
     return(
         <TableRow className='subRow'>
