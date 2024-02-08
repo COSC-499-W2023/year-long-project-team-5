@@ -40,6 +40,8 @@ export function VideoRequestForm(){
       });
     }
 
+
+
     async function createSubmission(event){
       event.preventDefault();
       const form = new FormData(event.target);
@@ -47,17 +49,6 @@ export function VideoRequestForm(){
       setIsFormSubmitted(false);
       setFormWrong(false);
       setErrorMessage('');
-      //validate form inputs
-      const validationError = validateForm({
-        emailInput: form.get("email")
-      })
-
-
-      if (validationError){
-        setErrorMessage(validationError)
-        setFormWrong(true)
-        return //don't submit the form and get out since inputs are wrong.
-      }
 
 
       let user = await createUser(form.get("email"),form.get("name"));
@@ -80,6 +71,7 @@ export function VideoRequestForm(){
     }
     // these states and functions below are to help dynamically adjust the width of the parent Card component (i.e the form)
     // depending on browser width, takes less % of screen width if screen is large, and greater % when mobile.
+    
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const resizeCenterComps = (windowWidth) => {
       return {
@@ -97,11 +89,28 @@ export function VideoRequestForm(){
       return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    function handleEmailOnChange(event) {
+      //validate form inputs
+      let email = event.target.value;
+      const validationError = validateForm({
+        emailInput: email
+      })
+      if (validationError){
+        setErrorMessage(validationError)
+        setFormWrong(true)
+      }else{
+        setFormWrong(false)
+        return
+      }
+    }
+
+
+
     return (
       // hardcoding the widths and heights was causing previous clipping 
       // this form should have multiple breakpoints for its width: mobile & large screens
       // this form IS NOT VALIDATED!! needs testing!
-      
+
       <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle} >
         {isFormSubmitted && (
           <Alert textAlign ='left' variation="success" isDismissible={true} hasIcon={true} heading="Email Sent" marginBottom={'.5em'}>
@@ -109,7 +118,7 @@ export function VideoRequestForm(){
           </Alert>
         )}
         {isFormWrong && (
-          <Alert textAlign ='left' variation="error" isDismissible={true}   hasIcon={true} heading="Uh oh. Something went wrong." marginBottom={'.5em'}>
+          <Alert textAlign ='left' variation="error" hasIcon={true} heading="Uh oh." marginBottom={'.5em'}>
             {errorMessage}
           </Alert>
         )} 
@@ -125,6 +134,8 @@ export function VideoRequestForm(){
             placeholder="bilbobaggins@mordor.com"
             label="Recipient Email"
             required
+            onChange={handleEmailOnChange}
+            hasError={isFormWrong}
           />
           <TextField
             name="description"

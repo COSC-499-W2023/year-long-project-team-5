@@ -15,6 +15,7 @@ import {
 } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { API } from "aws-amplify";
+import { createNote } from "../graphql/mutations";
 export default function NoteCreateForm(props) {
   const {
     clearOnSuccess = true,
@@ -113,7 +114,14 @@ export default function NoteCreateForm(props) {
               modelFields[key] = null;
             }
           });
-          
+          await API.graphql({
+            query: createNote.replaceAll("__typename", ""),
+            variables: {
+              input: {
+                ...modelFields,
+              },
+            },
+          });
           if (onSuccess) {
             onSuccess(modelFields);
           }
