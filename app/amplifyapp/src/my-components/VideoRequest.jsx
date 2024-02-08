@@ -44,6 +44,12 @@ export function VideoRequestForm(){
 
     async function createSubmission(event){
       event.preventDefault();
+      //if form is wrong, don't submit and don't reset the form
+      if (isFormWrong){
+        setIsFormSubmitted(false);
+        return
+      }
+
       const form = new FormData(event.target);
       // reset everything
       setIsFormSubmitted(false);
@@ -89,12 +95,13 @@ export function VideoRequestForm(){
       return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+
+    // this function gets called everytime email input field is being changed.
     function handleEmailOnChange(event) {
       //validate form inputs
       let email = event.target.value;
-      const validationError = validateForm({
-        emailInput: email
-      })
+      // passing email as input into validateForm() function
+      const validationError = validateForm({emailInput: email})
       if (validationError){
         setErrorMessage(validationError)
         setFormWrong(true)
@@ -107,18 +114,14 @@ export function VideoRequestForm(){
 
 
     return (
-      // hardcoding the widths and heights was causing previous clipping 
-      // this form should have multiple breakpoints for its width: mobile & large screens
-      // this form IS NOT VALIDATED!! needs testing!
-
       <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle} >
         {isFormSubmitted && (
-          <Alert textAlign ='left' variation="success" isDismissible={true} hasIcon={true} heading="Email Sent" marginBottom={'.5em'}>
+          <Alert className="successFeedback" textAlign ='left' variation="success" isDismissible={true} hasIcon={true} heading="Email Sent" marginBottom={'.5em'}>
             Your video request to {submittedEmail} has been sent!
           </Alert>
         )}
         {isFormWrong && (
-          <Alert textAlign ='left' variation="error" hasIcon={true} heading="Uh oh." marginBottom={'.5em'}>
+          <Alert className="errorFeedback" textAlign ='left' variation="error" hasIcon={true} heading="Uh oh." marginBottom={'.5em'}>
             {errorMessage}
           </Alert>
         )} 

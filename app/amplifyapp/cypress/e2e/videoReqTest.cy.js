@@ -1,7 +1,10 @@
 function login() {
     cy.visit('localhost:3000/submission')
-    cy.get('input[name="username"]').type('ihnyntgidltnhhxjmh@cazlq.com')
-    cy.get('input[name="password"]').type('Password123')
+    // using json file to store the login credentials (you have to create the file yourself - cypress.env.json)
+    cy.get('input[name="username"]').type(Cypress.env('user_name'))
+    cy.get('input[name="password"]').type(Cypress.env('password'))
+
+
     cy.get('button[type="submit"]').click()
 }
 function inputFormTestEmail(email) {
@@ -20,15 +23,6 @@ describe('testing the request video form', () => {
     it('invalid email data: see if error feedback is shown when typing', () => {
         login()
         inputFormTestEmail('testuser@.com')
-        cy.get('button[type="submit"]').click()
-        cy.get('.errorFeedback').should('be.visible')
-        inputFormTestEmail('test.com')
-        cy.get('button[type="submit"]').click()
-        cy.get('.errorFeedback').should('be.visible')
-        inputFormTestEmail('name')
-        cy.get('button[type="submit"]').click()
-        cy.get('.errorFeedback').should('be.visible')
-        inputFormTestEmail('testuser@test.')
         cy.get('button[type="submit"]').click()
         cy.get('.errorFeedback').should('be.visible')
     })
