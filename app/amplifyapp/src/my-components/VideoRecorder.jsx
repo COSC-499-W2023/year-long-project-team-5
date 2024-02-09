@@ -19,6 +19,7 @@ export default function WebcamVideo() {
   const [capturing, setCapturing] = useState(false);
   const [recordedChunks, setRecordedChunks] = useState([]);
   const [videoPreviewUrl, setVideoPreviewUrl] = useState(null);
+  const [isCamReady, setCamReady] = useState(false);
   const navigate = useNavigate();
   const [videoLoaded, setVideoLoaded] = useState(false); //state variable to track if the recorded video is fully loaded and ready to upload
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
@@ -33,6 +34,7 @@ export default function WebcamVideo() {
   }, []);
 
 
+
   const handleDataAvailable = useCallback(
     ({ data }) => {
       if (data.size > 0) {
@@ -41,7 +43,7 @@ export default function WebcamVideo() {
     },
     [setRecordedChunks]
   );
-  
+  // this useEffect checks to see if there's a video recorded and it's not currently recording (i.e time to show preview)
   useEffect(() => {
     if (recordedChunks.length > 0 && !capturing) {
       const blob = isMobile
@@ -51,7 +53,7 @@ export default function WebcamVideo() {
       const url = URL.createObjectURL(blob);
       setVideoPreviewUrl(url);
     }
-  }, [recordedChunks, capturing]);
+  }, [recordedChunks, capturing, isMobile]);
 
   const handleStopCaptureClick = useCallback(() => {
     mediaRecorderRef.current.stop();
@@ -89,15 +91,11 @@ export default function WebcamVideo() {
       document.body.appendChild(a);
       a.style = "display: none";
       a.href = url;
-      { isMobile ? (
-        a.download = "react-webcam-stream-capture.mp4"
-      ):
-        a.download = "react-webcam-stream-capture.webm";
-      }
+      {isMobile ? (a.download = "react-webcam-stream-capture.mp4"): (a.download = "react-webcam-stream-capture.webm")}
       a.click();
       window.URL.revokeObjectURL(url);
     }
-  }, [recordedChunks]);
+  }, [recordedChunks, isMobile]);
 
   //check that the video is fully loaded and processed before attempting upload
   useEffect(() => {
@@ -139,8 +137,17 @@ export default function WebcamVideo() {
         console.error("Error uploading video:", error);
       }
     } 
-  }, [recordedChunks]);
+  }, [recordedChunks, navigate, videoLoaded]);
 
+  // so the react web cam has a prop, onUserMedia. 
+  // This prop accepts functions to perform only when video stream is established
+  // so I created handleUserMedia function which has a .5 sec delay and then sets the boolean (state) to true
+  // so Record button can render.
+  const handleUserMedia = async () => {
+    await new Promise(resolve => setTimeout(resolve, 500))
+    setCamReady(true)
+   }
+ 
   useEffect(() => {
     // Clean up when component unmounts
     return () => {
@@ -229,12 +236,13 @@ export default function WebcamVideo() {
             mirrored={true}
             ref={webcamRef}
             videoConstraints={videoConstraints}
+            onUserMedia={handleUserMedia} // this prop performs a function only when the video stream is established.
             />
           </View> 
           {capturing ? (
             <Button onTouchStart = {handleStopCaptureClick} onClick={handleStopCaptureClick} variation='warning' minWidth={"100%"}><FaCircleStop style={{ marginRight: '4px', color: 'red' }}/> Finish</Button>
-            ) : recordedChunks.length === 0 ? (
-              <Button onClick={handleStartCaptureClick} variation='outline' minWidth={'100%'}><BsFillRecordFill style={{ marginRight: '4px', color: 'red'}}/> Record</Button>
+            ) : recordedChunks.length === 0 && isCamReady? (
+              <Button className='recordButton' onClick={handleStartCaptureClick} variation='outline' minWidth={'100%'}><BsFillRecordFill style={{ marginRight: '4px', color: 'red'}}/> Record</Button>
             ) : null}
         </Card>
         }
