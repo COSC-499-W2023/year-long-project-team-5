@@ -15,13 +15,14 @@ import {
   SearchField,
   ToggleButton,
   ToggleButtonGroup, 
-  SelectField
+  SelectField, 
+  Input
 } from '@aws-amplify/ui-react';
-import { listSubmissions } from "../graphql/queries";
-
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
-import { SubmissionTable } from '../my-components/SubmissionTable'
+import { SubmissionTable } from '../my-components/SubmissionTable';
+import { FaCalendarAlt } from "react-icons/fa";
+
 
 /**
  * Submissions TODO: finish docs
@@ -36,6 +37,9 @@ export function Submissions() {
   const [filteredsubmissions, setFilteredSubmissions] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
   const [dashView, setDashView] = useState('table');
+  const [startDate,setStartDate]= useState(new Date());
+  const [endDate,setEndDate]= useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false); // State to track if the date picker should be shown
 
 
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
@@ -74,8 +78,8 @@ export function Submissions() {
     setFilteredSubmissions(filteredSubmissions);
   }
 
+  //filters submissions based on video submission status
   function handleVideoStatusFilterChange(filter){
-    console.log(filter);
     if(filter == ''){
       setFilteredSubmissions(submissions);
     }
@@ -92,6 +96,20 @@ export function Submissions() {
     }
   }
 
+  //filters submissions based on selected date range (video request date)
+  function handleDateRangePicker(date){
+    console.log(date)
+    const filtered = submissions.filter(submission => {
+      const submissionDate = new Date(submission.createdAt);
+      return submissionDate.toISOString().split('T')[0] == date;
+    });
+  
+    setFilteredSubmissions(filtered);
+  }
+
+  function handleDateReceivedHeaderClick() {
+    setShowDatePicker(!showDatePicker);
+  }
 
   function renderSubmissions(){
     if(!isMobile && dashView === "table"){
@@ -129,16 +147,28 @@ export function Submissions() {
     }
   }
 
+  
+
   const { tokens } = useTheme();
+
   return (
     <View className="App">
       <Heading level={2}>Your Video Submissions</Heading>
       <Flex alignItems="center" justifyContent="center">
         <SearchField textAlign="left" placeholder="Search submissions..." padding={tokens.space.large} onChange={(e) => setFilteredSubmissions(filterSubmissions(e.target.value,submissions))} />
-        <SelectField placeholder = "Filter by video submission status" onChange={(e)=> handleVideoStatusFilterChange(e.target.value)} defaultValue = {"all"}>
+        <SelectField placeholder = "Filter by video submission status" padding={tokens.space.large} onChange={(e)=> handleVideoStatusFilterChange(e.target.value)}>
           <option value = "submitted">Submitted video</option>
           <option value = "noVideo">No video submitted</option>
         </SelectField>
+        <FaCalendarAlt
+          onClick={handleDateReceivedHeaderClick}
+        />
+        {showDatePicker && (
+          <Input
+            type='date'
+            onChange={(e) => handleDateRangePicker(e.target.value)}
+          />
+        )}
         {!isMobile && (
           <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
             <ToggleButton value = "table"> Table </ToggleButton>
