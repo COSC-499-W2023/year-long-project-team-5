@@ -1,0 +1,15 @@
+
+  aside {
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    padding:10px;
+    background-color: white;
+    transform: translate(-100%);
+    transition: 0.15s ease transform;
+  }
+
+  aside.visible {
+    transform: translateX(0);
+  }

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef} from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
+import '../my-components/filterMenu.css';
 
 import { getSubmissions } from "../Helpers/Getters";
 import { Auth, API, Storage } from 'aws-amplify';
@@ -21,7 +22,10 @@ import {
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
 import { SubmissionTable } from '../my-components/SubmissionTable';
-import { FaCalendarAlt } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
+import { CiFilter } from "react-icons/ci";
+
+
 
 
 /**
@@ -37,10 +41,8 @@ export function Submissions() {
   const [filteredsubmissions, setFilteredSubmissions] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
   const [dashView, setDashView] = useState('table');
-  const [startDate,setStartDate]= useState(new Date());
-  const [endDate,setEndDate]= useState(new Date());
-  const [showDatePicker, setShowDatePicker] = useState(false); // State to track if the date picker should be shown
-
+  const [sideBarToggled, setSideBarToggled] = useState(false);
+  const sidebarRef = useRef(null);
 
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
   useEffect(() => {
@@ -98,17 +100,12 @@ export function Submissions() {
 
   //filters submissions based on selected date range (video request date)
   function handleDateRangePicker(date){
-    console.log(date)
     const filtered = submissions.filter(submission => {
       const submissionDate = new Date(submission.createdAt);
       return submissionDate.toISOString().split('T')[0] == date;
     });
   
     setFilteredSubmissions(filtered);
-  }
-
-  function handleDateReceivedHeaderClick() {
-    setShowDatePicker(!showDatePicker);
   }
 
   function renderSubmissions(){
@@ -146,29 +143,38 @@ export function Submissions() {
       );
     }
   }
-
-  
-
   const { tokens } = useTheme();
-
   return (
     <View className="App">
       <Heading level={2}>Your Video Submissions</Heading>
       <Flex alignItems="center" justifyContent="center">
-        <SearchField textAlign="left" placeholder="Search submissions..." padding={tokens.space.large} onChange={(e) => setFilteredSubmissions(filterSubmissions(e.target.value,submissions))} />
-        <SelectField placeholder = "Filter by video submission status" padding={tokens.space.large} onChange={(e)=> handleVideoStatusFilterChange(e.target.value)}>
+        <CiFilter size = '30' className = 'sidebar-toggle' onClick={()=>setSideBarToggled(true)}/>
+      <aside ref = {sidebarRef} className ={`sidebar ${sideBarToggled ? "visible" : ""}`}>
+      <Flex alignItems={'flex-start'} alignContent={'flex-start'} direction = 'column'>
+        <IoClose size='30' onClick={()=>setSideBarToggled(false)}/>
+        <text>Filter by submission status</text>
+        <SelectField size = 'small' width = '100%' placeholder = "All" onChange={(e)=> handleVideoStatusFilterChange(e.target.value)}>
           <option value = "submitted">Submitted video</option>
           <option value = "noVideo">No video submitted</option>
         </SelectField>
-        <FaCalendarAlt
-          onClick={handleDateReceivedHeaderClick}
+        <text>Filter by date sent</text>
+        <Input
+          size = 'small'
+          width={'100%'}
+          type='date'
+          onChange={(e) => handleDateRangePicker(e.target.value)}
         />
-        {showDatePicker && (
-          <Input
-            type='date'
-            onChange={(e) => handleDateRangePicker(e.target.value)}
-          />
-        )}
+        <text>Filter by date received</text>
+        <Input
+          size = 'small'
+          width={'100%'}
+          type='date'
+          onChange={(e) => handleDateRangePicker(e.target.value)}
+        />
+          </Flex>
+      </aside>
+
+        <SearchField variation = 'quiet' textAlign="left" placeholder="Search submissions..." padding={tokens.space.large} onChange={(e) => setFilteredSubmissions(filterSubmissions(e.target.value,submissions))} />
         {!isMobile && (
           <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
             <ToggleButton value = "table"> Table </ToggleButton>
