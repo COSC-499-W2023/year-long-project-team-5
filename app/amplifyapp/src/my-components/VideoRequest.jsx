@@ -46,7 +46,7 @@ export function VideoRequestForm(){
         adminName: Auth.user.attributes.name,
         note: form.get("description"),
         submissionUserId: userId,
-        otp: otp
+        otpCode: otp
       };
       await API.graphql({
         query: createSubmissionMutation,

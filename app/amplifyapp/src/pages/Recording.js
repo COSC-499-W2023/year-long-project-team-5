@@ -4,6 +4,7 @@ import "@aws-amplify/ui-react/styles.css";
 
 import {API, Storage, Auth} from 'aws-amplify';
 import VideoRecorder from "../my-components/VideoRecorder";
+import { getSubmissionByOTP } from "../Helpers/Getters";
 
 import {
     Button,
@@ -14,7 +15,8 @@ import {
     Card,
     Text,
     Divider,
-    useTheme
+    useTheme,
+    Alert
   } from '@aws-amplify/ui-react';
 
 /**
@@ -39,6 +41,8 @@ export function Recording(){
     const { tokens } = useTheme();
     const [isAuthCodeGiven, setIsAuthCodeGiven] = useState(false);
     const [value, setValue] = useState('');
+    const [userData, setUserData] = useState(false);
+    const [errorCode, setErrorCode] = useState(false);
 
     //This function removes non-digit characters and limits input to 5 digits
     const handleChange = (e) => {
@@ -49,19 +53,33 @@ export function Recording(){
       };
 
     //This call to the backend to validate an OTP
-    async function validateOTP(event){
+    async function checkOTP(event){
         event.preventDefault();
         const form = new FormData(event.target);
         let unValidatedOTP = form.get("code");
 
-        
+        let data = getSubmissionByOTP(unValidatedOTP);
+        if (data == null) {
+            setErrorCode(true);
+            event.target.reset();
+            return
+        } else {
+            setErrorCode(false);
+            setUserData(data);
+            setIsAuthCodeGiven(true);
+        }
     }
 
     function renderRecordingPage(){
         if(!isAuthCodeGiven) {
             return(
                 <Flex justifyContent = "center" alignContent={"center"}>
-                    <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={validateOTP} style={cardStyle}>
+                    {errorCode && (
+                        <Alert textAlign ='left' variation="error" hasIcon={true} heading="Uh oh." marginBottom={'.5em'}>
+                            Invalid code! Please try again.
+                        </Alert>
+                    )}
+                    <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={checkOTP} style={cardStyle}>
                         <Flex justifyContent = "center" textAlign = "left" gap='2em'>
                             <Heading>Please enter your unique code given by the one requesting the video</Heading>
                             <Input
