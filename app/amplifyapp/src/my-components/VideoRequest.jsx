@@ -43,6 +43,7 @@ export function VideoRequestForm(){
 
       const data = {
         adminId: Auth.user.username,
+        adminName: Auth.user.attributes.name,
         note: form.get("description"),
         submissionUserId: userId,
         otp: otp
