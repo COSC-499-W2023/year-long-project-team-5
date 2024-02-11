@@ -21,6 +21,7 @@ import {
 export function VideoRequestForm(){
     
     const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
+    const [otp, setOtp] = useState(false);
     
     async function createUser(email,name) {
       const data = {
@@ -38,10 +39,13 @@ export function VideoRequestForm(){
       const form = new FormData(event.target);
       let user = await createUser(form.get("email"),form.get("name"));
       let userId = user.data.createUser.id
+      let otp = generateOTP()
+
       const data = {
         adminId: Auth.user.username,
         note: form.get("description"),
-        submissionUserId: userId
+        submissionUserId: userId,
+        otp: otp
       };
       await API.graphql({
         query: createSubmissionMutation,
@@ -69,6 +73,12 @@ export function VideoRequestForm(){
       window.addEventListener('resize', handleResize);
       return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    async function generateOTP() {
+      const data = await API.get('OTP API', '/generate', {})
+      otp = JSON.parse(data.body.otp);
+      setOtp(otp);
+    }
 
     return (
       // hardcoding the widths and heights was causing previous clipping 
