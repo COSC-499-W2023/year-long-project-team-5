@@ -47,14 +47,13 @@ export const listSubmissions = /* GraphQL */ `
         submittedAt
         otpCode
         adminName
-        createdAt
-        updatedAt
-        submissionVideoId
-        submissionUserId
-        __typename
-      }
-      nextToken
-      __typename
+        User {
+          id
+          email
+          name
+          createdAt
+          updatedAt
+          __typename
     }
   }
 `;
