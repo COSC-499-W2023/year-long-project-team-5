@@ -26,6 +26,8 @@ export const createSubmission = /* GraphQL */ `
       }
       note
       submittedAt
+      otpCode
+      adminName
       createdAt
       updatedAt
       submissionVideoId
@@ -59,6 +61,8 @@ export const updateSubmission = /* GraphQL */ `
       }
       note
       submittedAt
+      otpCode
+      adminName
       createdAt
       updatedAt
       submissionVideoId
@@ -92,6 +96,8 @@ export const deleteSubmission = /* GraphQL */ `
       }
       note
       submittedAt
+      otpCode
+      adminName
       createdAt
       updatedAt
       submissionVideoId
@@ -181,6 +187,57 @@ export const deleteUser = /* GraphQL */ `
       id
       email
       name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createNote = /* GraphQL */ `
+  mutation CreateNote(
+    $input: CreateNoteInput!
+    $condition: ModelNoteConditionInput
+  ) {
+    createNote(input: $input, condition: $condition) {
+      id
+      name
+      description
+      image
+      viewedStatus
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateNote = /* GraphQL */ `
+  mutation UpdateNote(
+    $input: UpdateNoteInput!
+    $condition: ModelNoteConditionInput
+  ) {
+    updateNote(input: $input, condition: $condition) {
+      id
+      name
+      description
+      image
+      viewedStatus
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteNote = /* GraphQL */ `
+  mutation DeleteNote(
+    $input: DeleteNoteInput!
+    $condition: ModelNoteConditionInput
+  ) {
+    deleteNote(input: $input, condition: $condition) {
+      id
+      name
+      description
+      image
+      viewedStatus
       createdAt
       updatedAt
       __typename
