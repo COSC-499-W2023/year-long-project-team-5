@@ -37,12 +37,12 @@ export function VideoRequestForm(){
       event.preventDefault();
       const form = new FormData(event.target);
       let user = await createUser(form.get("email"),form.get("name"));
-      console.log(Auth.user)
       let userId = user.data.createUser.id
       const data = {
         adminId: Auth.user.username,
         adminName: Auth.user.attributes.name,
         note: form.get("description"),
+        User: user,
         submissionUserId: userId
       };
       await API.graphql({
