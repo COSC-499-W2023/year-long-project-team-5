@@ -23,6 +23,8 @@ export const getSubmission = /* GraphQL */ `
       }
       note
       submittedAt
+      otpCode
+      adminName
       createdAt
       updatedAt
       submissionVideoId
@@ -43,16 +45,10 @@ export const listSubmissions = /* GraphQL */ `
         adminId
         note
         submittedAt
+        otpCode
+        adminName
         createdAt
         updatedAt
-        User {
-          id
-          email
-          name
-          createdAt
-          updatedAt
-          __typename
-        }
         submissionVideoId
         submissionUserId
         __typename
@@ -115,6 +111,42 @@ export const listUsers = /* GraphQL */ `
         id
         email
         name
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getNote = /* GraphQL */ `
+  query GetNote($id: ID!) {
+    getNote(id: $id) {
+      id
+      name
+      description
+      image
+      viewedStatus
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listNotes = /* GraphQL */ `
+  query ListNotes(
+    $filter: ModelNoteFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listNotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        description
+        image
+        viewedStatus
         createdAt
         updatedAt
         __typename

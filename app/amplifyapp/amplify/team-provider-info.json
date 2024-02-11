@@ -26,7 +26,7 @@
       "function": {
         "emailTriggerNodejs": {
           "deploymentBucketName": "amplify-amplify7a9bf65e88944-staging-233251-deployment",
-          "s3Key": "amplify-builds/emailTriggerNodejs-6b6c6b575a466152506a-build.zip"
+          "s3Key": "amplify-builds/emailTriggerNodejs-314b6763595a70597363-build.zip"
         }
       }
     }
