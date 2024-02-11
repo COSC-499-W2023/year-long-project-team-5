@@ -32,6 +32,15 @@
     "@aws-sdk/util-utf8-browser" "^3.0.0"
     tslib "^1.11.1"
 
+"@aws-crypto/sha256-js@3.0.0", "@aws-crypto/sha256-js@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/@aws-crypto/sha256-js/-/sha256-js-3.0.0.tgz"
+  integrity sha512-PnNN7os0+yd1XvXAy23CFOmTbMaDxgxXtTKHybrJ39Y8kGzBATgBFibWJKH6BhytLI/Zyszs87xCOBNyBig6vQ==
+  dependencies:
+    "@aws-crypto/util" "^3.0.0"
+    "@aws-sdk/types" "^3.222.0"
+    tslib "^1.11.1"
+
 "@aws-crypto/sha256-js@^2.0.1":
   version "2.0.2"
   resolved "https://registry.npmjs.org/@aws-crypto/sha256-js/-/sha256-js-2.0.2.tgz"
@@ -39,24 +48,6 @@
   dependencies:
     "@aws-crypto/util" "^2.0.2"
     "@aws-sdk/types" "^3.110.0"
-    tslib "^1.11.1"
-
-"@aws-crypto/sha256-js@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/@aws-crypto/sha256-js/-/sha256-js-3.0.0.tgz"
-  integrity sha512-PnNN7os0+yd1XvXAy23CFOmTbMaDxgxXtTKHybrJ39Y8kGzBATgBFibWJKH6BhytLI/Zyszs87xCOBNyBig6vQ==
-  dependencies:
-    "@aws-crypto/util" "^3.0.0"
-    "@aws-sdk/types" "^3.222.0"
-    tslib "^1.11.1"
-
-"@aws-crypto/sha256-js@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/@aws-crypto/sha256-js/-/sha256-js-3.0.0.tgz"
-  integrity sha512-PnNN7os0+yd1XvXAy23CFOmTbMaDxgxXtTKHybrJ39Y8kGzBATgBFibWJKH6BhytLI/Zyszs87xCOBNyBig6vQ==
-  dependencies:
-    "@aws-crypto/util" "^3.0.0"
-    "@aws-sdk/types" "^3.222.0"
     tslib "^1.11.1"
 
 "@aws-crypto/supports-web-crypto@^3.0.0":
@@ -319,7 +310,7 @@
     "@smithy/types" "^2.9.1"
     tslib "^2.5.0"
 
-"@aws-sdk/credential-provider-node@^3.504.0", "@aws-sdk/credential-provider-node@^3.76.0", "@aws-sdk/credential-provider-node@3.504.0":
+"@aws-sdk/credential-provider-node@3.504.0", "@aws-sdk/credential-provider-node@^3.76.0":
   version "3.504.0"
   resolved "https://registry.npmjs.org/@aws-sdk/credential-provider-node/-/credential-provider-node-3.504.0.tgz"
   integrity sha512-6+V5hIh+tILmUjf2ZQWQINR3atxQVgH/bFrGdSR/sHSp/tEgw3m0xWL3IRslWU1e4/GtXrfg1iYnMknXy68Ikw==
@@ -465,7 +456,7 @@
     "@smithy/types" "^2.9.1"
     tslib "^2.5.0"
 
-"@aws-sdk/types@^3.110.0", "@aws-sdk/types@^3.222.0", "@aws-sdk/types@3.502.0":
+"@aws-sdk/types@3.502.0", "@aws-sdk/types@^3.110.0", "@aws-sdk/types@^3.222.0":
   version "3.502.0"
   resolved "https://registry.npmjs.org/@aws-sdk/types/-/types-3.502.0.tgz"
   integrity sha512-M0DSPYe/gXhwD2QHgoukaZv5oDxhW3FfvYIrJptyqUq3OnPJBcDbihHjrE0PBtfh/9kgMZT60/fQ2NVFANfa2g==
@@ -985,6 +976,11 @@
     "@smithy/abort-controller" "^2.1.1"
     "@smithy/types" "^2.9.1"
     tslib "^2.5.0"
+
+"@types/aws-lambda@^8.10.92":
+  version "8.10.133"
+  resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.133.tgz#cc21de2edc623f0fd9a5290674c4b9f30971bc58"
+  integrity sha512-sr852MAL/79rjDelXP6ZuJ6GwOvXIRrFAoC8a+w91mZ5XR71CuzSgo1d0+pG1qgfPhjFgaibu7SWaoC5BA7pyQ==
 
 bowser@^2.11.0:
   version "2.11.0"
