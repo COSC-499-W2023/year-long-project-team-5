@@ -91,24 +91,6 @@
       "service": "Lambda"
     }
   },
-  "parameters": {
-    "AMPLIFY_function_emailTriggerNodejs_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "emailTriggerNodejs"
-        }
-      ]
-    },
-    "AMPLIFY_function_emailTriggerNodejs_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "emailTriggerNodejs"
-        }
-      ]
-    }
-  },
   "storage": {
     "s3099e82d9": {
       "dependsOn": [],

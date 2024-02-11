@@ -42,7 +42,6 @@ export function VideoRequestForm(){
         adminId: Auth.user.username,
         adminName: Auth.user.attributes.name,
         note: form.get("description"),
-        User: user,
         submissionUserId: userId
       };
       await API.graphql({
