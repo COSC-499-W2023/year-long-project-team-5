@@ -1,4 +1,4 @@
-# Personal log (Jan 29-Feb 05)
+# Personal log (Jan 05-Feb 11)
 ## Weekly work done from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/35/student/evaluated/1569/)
 ![T2 W4 work done](https://i.imgur.com/tQE59PZ.png)
 
