@@ -99,14 +99,29 @@ export function Submissions() {
   }
 
   //filters submissions based on selected date range (video request date)
-  function handleDateRangePicker(date){
-    const filtered = submissions.filter(submission => {
-      const submissionDate = new Date(submission.createdAt);
-      return submissionDate.toISOString().split('T')[0] == date;
-    });
-  
-    setFilteredSubmissions(filtered);
+  function handleDatePickerSRequested(date) {
+  const selectedDate = new Date(date);
+  const filtered = submissions.filter(submission => {
+    const submissionDate = new Date(submission.createdAt);
+    return (selectedDate.getUTCDate() === submissionDate.getDate() &&
+      selectedDate.getUTCMonth() === submissionDate.getMonth() &&
+      selectedDate.getUTCFullYear() === submissionDate.getFullYear()
+    ); 
+  });
+  setFilteredSubmissions(filtered);
   }
+
+  function handleDatePickerSubmitted(date) {
+    const selectedDate = new Date(date);
+    const filtered = submissions.filter(submission => {
+      const submissionDate = new Date(submission.submittedAt);
+      return (selectedDate.getUTCDate() === submissionDate.getDate() &&
+        selectedDate.getUTCMonth() === submissionDate.getMonth() &&
+        selectedDate.getUTCFullYear() === submissionDate.getFullYear()
+      ); 
+    });
+    setFilteredSubmissions(filtered);
+    }
 
   function renderSubmissions(){
     if(!isMobile && dashView === "table"){
@@ -146,9 +161,6 @@ export function Submissions() {
   const { tokens } = useTheme();
   return (
     <View className="App">
-      <Heading level={2}>Your Video Submissions</Heading>
-      <Flex alignItems="center" justifyContent="center">
-        <CiFilter size = '30' className = 'sidebar-toggle' onClick={()=>setSideBarToggled(true)}/>
       <aside ref = {sidebarRef} className ={`sidebar ${sideBarToggled ? "visible" : ""}`}>
       <Flex alignItems={'flex-start'} alignContent={'flex-start'} direction = 'column'>
         <IoClose size='30' onClick={()=>setSideBarToggled(false)}/>
@@ -162,18 +174,21 @@ export function Submissions() {
           size = 'small'
           width={'100%'}
           type='date'
-          onChange={(e) => handleDateRangePicker(e.target.value)}
+          onChange={(e) => handleDatePickerSRequested(e.target.value)}
         />
         <text>Filter by date received</text>
         <Input
           size = 'small'
           width={'100%'}
           type='date'
-          onChange={(e) => handleDateRangePicker(e.target.value)}
+          onChange={(e) => handleDatePickerSubmitted(e.target.value)}
         />
           </Flex>
       </aside>
 
+      <Heading level={2}>Your Video Submissions</Heading>
+      <Flex alignItems="center" justifyContent="center">
+        <CiFilter size = '30' className = 'sidebar-toggle' onClick={()=>setSideBarToggled(true)}/>
         <SearchField variation = 'quiet' textAlign="left" placeholder="Search submissions..." padding={tokens.space.large} onChange={(e) => setFilteredSubmissions(filterSubmissions(e.target.value,submissions))} />
         {!isMobile && (
           <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
