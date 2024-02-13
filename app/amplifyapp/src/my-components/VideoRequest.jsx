@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
-import {API, Storage, Auth } from 'aws-amplify';
+import {API, Storage, Auth, Amplify } from 'aws-amplify';
 import {
     Button,
     Flex,
@@ -12,7 +12,9 @@ import {
     Card, 
     useTheme
   } from '@aws-amplify/ui-react';
-  import { listSubmissions } from "../graphql/queries";
+import { listSubmissions } from "../graphql/queries";
+import { getSubmissionByOTP } from "../Helpers/Getters"
+
 import {
   createVideo as createVideoMutation,
   createUser as createUserMutation,
@@ -21,7 +23,6 @@ import {
 export function VideoRequestForm(){
     
     const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
-    const [otp, setOtp] = useState(false);
     
     async function createUser(email,name) {
       const data = {
@@ -39,7 +40,7 @@ export function VideoRequestForm(){
       const form = new FormData(event.target);
       let user = await createUser(form.get("email"),form.get("name"));
       let userId = user.data.createUser.id
-      let otp = generateOTP()
+      let otp = await generateOTP()
 
       const data = {
         adminId: Auth.user.username,
@@ -76,9 +77,28 @@ export function VideoRequestForm(){
     }, []);
 
     async function generateOTP() {
-      const data = await API.get('OTP API', '/generate', {})
-      otp = JSON.parse(data.body.otp);
-      setOtp(otp);
+      //Some gross config code for the generation API since v5 sucks:(
+      Amplify.configure({
+        API: {
+          endpoints: [
+            {
+              name: 'OTP API',
+              endpoint: 'https://bl8n32nbn5.execute-api.ca-central-1.amazonaws.com/otp_test'
+            }
+          ]
+        }
+      });
+      let tempOTP = ['null']
+      let dataJSON = ''
+      do {
+        let data = await API.post('OTP API', '/generate', {})
+        dataJSON = JSON.parse(data.body);
+        //Search and thus compare OTP against database
+        tempOTP = await getSubmissionByOTP(dataJSON.otp);
+        //keep looping if comparison comes back with a results
+      } while (tempOTP.length !== 0)
+
+      return(dataJSON.otp);
     }
 
     return (
