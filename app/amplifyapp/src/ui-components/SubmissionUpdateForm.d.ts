@@ -25,11 +25,15 @@ export declare type SubmissionUpdateFormInputValues = {
     adminId?: string;
     note?: string;
     submittedAt?: string;
+    otpCode?: string;
+    adminName?: string;
 };
 export declare type SubmissionUpdateFormValidationValues = {
     adminId?: ValidationFunction<string>;
     note?: ValidationFunction<string>;
     submittedAt?: ValidationFunction<string>;
+    otpCode?: ValidationFunction<string>;
+    adminName?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type SubmissionUpdateFormOverridesProps = {
@@ -37,6 +41,8 @@ export declare type SubmissionUpdateFormOverridesProps = {
     adminId?: PrimitiveOverrideProps<TextFieldProps>;
     note?: PrimitiveOverrideProps<TextFieldProps>;
     submittedAt?: PrimitiveOverrideProps<TextFieldProps>;
+    otpCode?: PrimitiveOverrideProps<TextFieldProps>;
+    adminName?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type SubmissionUpdateFormProps = React.PropsWithChildren<{
     overrides?: SubmissionUpdateFormOverridesProps | undefined | null;

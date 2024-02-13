@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "testAuthIdentityPool",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "yearloe23b94fc",
     "userPoolName": "yearlongprojectteam5",
     "autoVerifiedAttributes": [
@@ -36,7 +36,7 @@
     "usernameAttributes": [
       "email"
     ],
-    "useDefault": "default",
+    "useDefault": "manual",
     "userPoolGroups": false,
     "userPoolGroupList": [
       "Doctor",
@@ -60,6 +60,12 @@
     "breakCircularDependency": true,
     "dependsOn": [],
     "hostedUI": false,
-    "authProviders": []
+    "authProviders": [],
+    "thirdPartyAuth": true,
+    "triggers": {},
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "permissions": []
   }
 }

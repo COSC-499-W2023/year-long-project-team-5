@@ -40,6 +40,7 @@ export function VideoRequestForm(){
       let userId = user.data.createUser.id
       const data = {
         adminId: Auth.user.username,
+        adminName: Auth.user.attributes.name,
         note: form.get("description"),
         submissionUserId: userId
       };
