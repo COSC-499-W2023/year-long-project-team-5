@@ -35,8 +35,8 @@ export default function WebcamVideo() {
       const mobile = window.innerWidth <= 1000;
       setIsMobile(mobile);
       setVideoConstraints({
-        width: mobile ? 480 : 800,
-        height: mobile ? 360 : 480,
+        width: mobile && 480,
+        height: mobile && 360,
         facingMode: "user",
       });
     };
@@ -178,7 +178,7 @@ export default function WebcamVideo() {
     if(videoPreviewUrl) {
       return (
         <div>
-          <video controls width = {620} height = {480} src = {videoPreviewUrl} />
+          <video controls className={"responsive-video"} src = {videoPreviewUrl} />
         </div>
       );
     }
@@ -213,7 +213,7 @@ export default function WebcamVideo() {
           <Divider orientation="horizontal"/>
           <View marginTop={'1em'}>
             <Webcam
-            className = {clsx('webcam', { 'mobile-webcam': isMobile })}
+            className = {clsx('webcam', { 'mobile-webcam': isMobile }, { "recorderOn": capturing }, { "recorderOff": !capturing })}
             muted={true}
             audio={true}
             mirrored={true}

@@ -27,6 +27,11 @@
   height: 480px;
 }
 
+.responsive-video{
+  width: 100%;
+  height: auto;
+}
+
 /* Mobile styles */
 .mobile-webcam {
   height: auto; /* Adjust height automatically */
