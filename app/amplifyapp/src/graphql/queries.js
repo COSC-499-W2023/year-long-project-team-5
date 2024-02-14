@@ -54,6 +54,8 @@ export const listSubmissions = /* GraphQL */ `
           createdAt
           updatedAt
           __typename
+        }
+      }
     }
   }
 `;
