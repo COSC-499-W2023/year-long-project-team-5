@@ -110,7 +110,7 @@ export function Submissions() {
   });
   setFilteredSubmissions(filtered);
   }
-
+  //filter submission based on selected date (submitted date)
   function handleDatePickerSubmitted(date) {
     const selectedDate = new Date(date);
     const filtered = submissions.filter(submission => {
@@ -163,9 +163,9 @@ export function Submissions() {
     <View className="App">
       <aside ref = {sidebarRef} className ={`sidebar ${sideBarToggled ? "visible" : ""}`}>
       <Flex alignItems={'flex-start'} alignContent={'flex-start'} direction = 'column'>
-        <IoClose className = 'filter_button' size='30' onClick={()=>setSideBarToggled(false)}/>
+        <IoClose className = 'filter_closeButton' size='30' onClick={()=>setSideBarToggled(false)}/>
         <text>Filter by submission status</text>
-        <SelectField size = 'small' width = '100%' placeholder = "All" onChange={(e)=> handleVideoStatusFilterChange(e.target.value)}>
+        <SelectField id = 'videoStatusFilter' size = 'small' width = '100%' placeholder = "All" onChange={(e)=> handleVideoStatusFilterChange(e.target.value)}>
           <option value = "submitted">Submitted video</option>
           <option value = "noVideo">No video submitted</option>
         </SelectField>
@@ -174,6 +174,7 @@ export function Submissions() {
           size = 'small'
           width={'100%'}
           type='date'
+          id = 'dateSent'
           onChange={(e) => handleDatePickerSRequested(e.target.value)}
         />
         <text>Filter by date received</text>
@@ -181,6 +182,7 @@ export function Submissions() {
           size = 'small'
           width={'100%'}
           type='date'
+          id = 'dateReceived'
           onChange={(e) => handleDatePickerSubmitted(e.target.value)}
         />
           </Flex>
@@ -197,7 +199,7 @@ export function Submissions() {
           </ToggleButtonGroup>
         )}
       </Flex>
-      <View padding={tokens.space.large}>
+      <View id = 'submissions' padding={tokens.space.large}>
         {renderSubmissions()}
       </View>
     </View>
