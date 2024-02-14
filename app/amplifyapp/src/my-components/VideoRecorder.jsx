@@ -13,6 +13,7 @@ import {
 } from "../graphql/mutations";
 import { useNavigate } from "react-router-dom";
 import "./VideoRecorder.css"
+import {clsx} from "clsx";
 
 export default function WebcamVideo() {
   const webcamRef = useRef(null);
@@ -24,10 +25,22 @@ export default function WebcamVideo() {
   const navigate = useNavigate();
   const [videoLoaded, setVideoLoaded] = useState(false); //state variable to track if the recorded video is fully loaded and ready to upload
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
+  const [videoConstraints, setVideoConstraints] = useState({
+    width: isMobile && 480,
+    height: isMobile && 360,
+    facingMode: "user",
+  });
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1000);
+      const mobile = window.innerWidth <= 1000;
+      setIsMobile(mobile);
+      setVideoConstraints({
+        width: mobile ? 480 : 800,
+        height: mobile ? 360 : 480,
+        facingMode: "user",
+      });
     };
+  
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -172,11 +185,6 @@ export default function WebcamVideo() {
     return null;
   };
 
-  const videoConstraints = {
-    width: 720,
-    height: 480,
-    facingMode: "user",
-  };
   return (
     <View>
       <Flex justifyContent={"center"}>
@@ -205,7 +213,7 @@ export default function WebcamVideo() {
           <Divider orientation="horizontal"/>
           <View marginTop={'1em'}>
             <Webcam
-            className= {capturing ? "recorderOn" : "recorderOff"}
+            className = {clsx('webcam', { 'mobile-webcam': isMobile })}
             muted={true}
             audio={true}
             mirrored={true}
@@ -217,7 +225,7 @@ export default function WebcamVideo() {
           {capturing ? (
             <Button onTouchStart = {handleStopCaptureClick} onClick={handleStopCaptureClick} variation='warning' minWidth={"100%"}><FaCircleStop style={{ marginRight: '4px', color: 'red' }}/> Finish</Button>
             ) : recordedChunks.length === 0 && isCamReady? (
-              <Button className='recordButton' onClick={handleStartCaptureClick} variation='outline' minWidth={'100%'}><BsFillRecordFill style={{ marginRight: '4px', color: 'red'}}/> Record</Button>
+              <Button onClick={handleStartCaptureClick} variation='outline' minWidth={'100%'}><BsFillRecordFill style={{ marginRight: '4px', color: 'red'}}/> Record</Button>
             ) : null}
         </Card>
         }
