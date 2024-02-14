@@ -163,7 +163,7 @@ export function Submissions() {
     <View className="App">
       <aside ref = {sidebarRef} className ={`sidebar ${sideBarToggled ? "visible" : ""}`}>
       <Flex alignItems={'flex-start'} alignContent={'flex-start'} direction = 'column'>
-        <IoClose size='30' onClick={()=>setSideBarToggled(false)}/>
+        <IoClose className = 'filter_button' size='30' onClick={()=>setSideBarToggled(false)}/>
         <text>Filter by submission status</text>
         <SelectField size = 'small' width = '100%' placeholder = "All" onChange={(e)=> handleVideoStatusFilterChange(e.target.value)}>
           <option value = "submitted">Submitted video</option>
