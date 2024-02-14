@@ -1,4 +1,4 @@
-import { listSubmissions, submissionByOtp } from "../graphql/queries";
+import { listSubmissions, submissionByOtp, getUser } from "../graphql/queries";
 import {API} from 'aws-amplify';
 
 // fetches submissions from the database
@@ -11,4 +11,9 @@ export async function getSubmissions() {
 export async function getSubmissionByOTP(givenOTP) {
       const apiData = await API.graphql({ query: submissionByOtp, variables: { otpCode: givenOTP }});
       return apiData.data.submissionByOtp.items
+}
+
+export async function getUserByID(queryID) {
+      const apiData = await API.graphql({ query: getUser, variables: { id: queryID }});
+      return apiData.data.getUser
 }

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
 import {API, Storage, Auth} from 'aws-amplify';
 import VideoRecorder from "../my-components/VideoRecorder";
-import { getSubmissionByOTP } from "../Helpers/Getters";
+import { getSubmissionByOTP, getUserByID } from "../Helpers/Getters";
 
 import {
     Button,
@@ -41,7 +41,8 @@ export function Recording(){
     const { tokens } = useTheme();
     const [isAuthCodeGiven, setIsAuthCodeGiven] = useState(false);
     const [value, setValue] = useState('');
-    const [userData, setUserData] = useState(false);
+    const [userData, setUserData] = useState([]);
+    const [submissionData, setSubmissionData] = useState([]);
     const [errorCode, setErrorCode] = useState(false);
 
     //This function removes non-digit characters and limits input to 5 digits
@@ -52,20 +53,22 @@ export function Recording(){
         }
       };
 
-    //This call to the backend to validate an OTP
+    //This is a call to the backend to validate an OTP and sets session data for user and submission
     async function checkOTP(event){
         event.preventDefault();
         const form = new FormData(event.target);
         let unValidatedOTP = form.get("code");
 
-        let data = getSubmissionByOTP(unValidatedOTP);
-        if (data == null) {
+        let data = await getSubmissionByOTP(unValidatedOTP);
+        if (data.length == 0) {
             setErrorCode(true);
             event.target.reset();
             return
         } else {
             setErrorCode(false);
-            setUserData(data);
+            setSubmissionData(data[0]);
+            let queriedUserData = await getUserByID(data[0].submissionUserId);
+            setUserData(queriedUserData);
             setIsAuthCodeGiven(true);
         }
     }
@@ -102,13 +105,13 @@ export function Recording(){
                 <Flex direction='column' alignItems={'center'} justifyContent={'space-evenly'}>
                     <Card variation="elevated" backgroundColor={'background.secondary'} margin={'2em'} padding={'2em 3em'} textAlign={'left'} >
                         <Flex direction="row" justifyContent='space-between'>
-                            <Text> <b>To:</b> John Doe</Text>
-                            <Text> <b>From:</b> Dr. Jim </Text>
+                            <Text> <b>To: </b> {userData.name}</Text>
+                            <Text> <b>From: </b>{submissionData.adminName}</Text>
                         </Flex>
                         <Divider orientation="horizontal" marginBottom={'0.5em'}/>
                         <Flex direction="column">
                             <Text> <b>Instructions:</b></Text>
-                            <Text> Please take a video of the areas of your body affected by the rash.</Text>
+                            <Text>{submissionData.note}</Text>
                         </Flex>
                     </Card> 
                     <VideoRecorder/>
