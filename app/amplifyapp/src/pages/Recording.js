@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
 import VideoRecorder from "../my-components/VideoRecorder";
 
 import {
-    Button,
     Flex,
-    TextField,
-    View,
-    Heading,
     Card,
     Text,
     Divider

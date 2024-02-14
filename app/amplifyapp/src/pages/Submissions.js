@@ -3,20 +3,18 @@ import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
 import { getSubmissions } from "../Helpers/Getters";
-import { Auth, API, Storage } from 'aws-amplify';
+import { Auth, Storage } from 'aws-amplify';
 import { filterSubmissions } from "../Helpers/Search";
 import {
   Grid,
   Flex,
   View,
-  useAuthenticator,
   Heading,
   useTheme,
   SearchField,
   ToggleButton,
   ToggleButtonGroup
 } from '@aws-amplify/ui-react';
-import { listSubmissions } from "../graphql/queries";
 
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
@@ -30,7 +28,6 @@ import { SubmissionTable } from '../my-components/SubmissionTable'
  * <Submissions></Submissions>
  */
 export function Submissions() {
-  const { user, route } = useAuthenticator((context) => [context.user, context.route]);
   const [submissions, setSubmissions] = useState([]);
   const [filteredsubmissions, setFilteredSubmissions] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
