@@ -1,6 +1,6 @@
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
-import { View, Badge } from '@aws-amplify/ui-react';
+import { View, Badge, Text } from '@aws-amplify/ui-react';
 
 export function Confirmation(){
    return( 

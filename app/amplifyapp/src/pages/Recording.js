@@ -76,15 +76,17 @@ export function Recording(){
     function renderRecordingPage(){
         if(!isAuthCodeGiven) {
             return(
-                <Flex justifyContent = "center" alignContent={"center"}>
-                    {errorCode && (
-                        <Alert textAlign ='left' variation="error" hasIcon={true} heading="Uh oh." marginBottom={'.5em'}>
-                            Invalid code! Please try again.
-                        </Alert>
-                    )}
+                <Flex direction = "column" alignItems = "center" justifyContent = "center" height = "100%">
+                    <Flex height="25vh"> 
+                        {errorCode && (
+                            <Alert textAlign ='left' height = "10vh" width = "20em" variation="error" hasIcon={true} heading="Uh oh." marginBottom={'.5em'}>
+                                Invalid code! Please try again.
+                            </Alert>
+                        )}
+                    </Flex>
                     <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={checkOTP} style={cardStyle}>
                         <Flex justifyContent = "center" textAlign = "left" gap='2em'>
-                            <Heading>Please enter your unique code given by the one requesting the video</Heading>
+                            <Heading>Please enter your unique five digit code.</Heading>
                             <Input
                                 width={'6em'}
                                 name="code"
@@ -105,8 +107,8 @@ export function Recording(){
                 <Flex direction='column' alignItems={'center'} justifyContent={'space-evenly'}>
                     <Card variation="elevated" backgroundColor={'background.secondary'} margin={'2em'} padding={'2em 3em'} textAlign={'left'} >
                         <Flex direction="row" justifyContent='space-between'>
-                            <Text> <b>To: </b> {userData.name}</Text>
-                            <Text> <b>From: </b>{submissionData.adminName}</Text>
+                            <Text><b>To: </b> { userData.name } </Text>
+                            <Text><b>From: </b> { submissionData.adminName }</Text>
                         </Flex>
                         <Divider orientation="horizontal" marginBottom={'0.5em'}/>
                         <Flex direction="column">
