@@ -88,7 +88,7 @@ export function Recording(){
                         <Flex justifyContent = "center" textAlign = "left" gap='2em'>
                             <Heading>Please enter your unique seven digit code.</Heading>
                             <Input
-                                width={'6em'}
+                                width={'8em'}
                                 name="code"
                                 type="text"
                                 placeholder="_ _ _ _ _ _ _"
