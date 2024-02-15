@@ -48,7 +48,7 @@ export function Recording(){
     //This function removes non-digit characters and limits input to 5 digits
     const handleChange = (e) => {
         const inputValue = e.target.value.replace(/\D/g, '');
-        if (inputValue.length <= 5) {
+        if (inputValue.length <= 6) {
           setValue(inputValue);
         }
       };
