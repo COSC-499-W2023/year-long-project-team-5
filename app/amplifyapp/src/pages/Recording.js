@@ -86,12 +86,12 @@ export function Recording(){
                     </Flex>
                     <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={checkOTP} style={cardStyle}>
                         <Flex justifyContent = "center" textAlign = "left" gap='2em'>
-                            <Heading>Please enter your unique five digit code.</Heading>
+                            <Heading>Please enter your unique seven digit code.</Heading>
                             <Input
                                 width={'6em'}
                                 name="code"
                                 type="text"
-                                placeholder="_ _ _ _ _"
+                                placeholder="_ _ _ _ _ _ _"
                                 label="Unique Code:"
                                 onChange={handleChange}
                                 value={value}
