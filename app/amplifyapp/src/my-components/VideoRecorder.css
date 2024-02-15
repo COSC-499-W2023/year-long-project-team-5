@@ -34,5 +34,6 @@
 
 /* Mobile styles */
 .mobile-webcam {
+  width: 100%;
   height: auto; /* Adjust height automatically */
 }

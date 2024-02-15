@@ -189,7 +189,7 @@ export default function WebcamVideo() {
     <View>
       <Flex justifyContent={"center"}>
         {recordedChunks.length > 0 ? (
-            <Card backgroundColor={'background.secondary'} padding={'1em 2em'} variation="elevated">
+            <Card backgroundColor={'background.secondary'} padding={'1em 1em'} variation="elevated">
               <Heading level={3} textAlign={'left'}>Preview</Heading>
               <Divider orientation="horizontal" marginBottom={'0.5em'}/>
               <div justifyContent={"center"}>
@@ -197,14 +197,14 @@ export default function WebcamVideo() {
               </div>
               <Flex justifyContent={"space-evenly"} marginTop={'0.5em'}>
                 <ButtonGroup size="small">
-                  <Button onClick={handleDownload}> <MdDownloadForOffline style={{marginRight: '4px'}}/> Download</Button>
-                  <Button onClick={handleUpload}> <RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</Button>
-                  <Button onClick={handleRetakeClick }> <FaRedoAlt style={{marginRight: '4px'}}/> Retake</Button>
+                  <Button className = "downloadButton" onClick={handleDownload}> <MdDownloadForOffline style={{marginRight: '4px'}}/> Download</Button>
+                  <Button className = "submitButton" onClick={handleUpload}> <RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</Button>
+                  <Button className = "retakeButton" onClick={handleRetakeClick }> <FaRedoAlt style={{marginRight: '4px'}}/> Retake</Button>
                 </ButtonGroup>
               </Flex>
             </Card>
         ):
-        <Card backgroundColor={'background.secondary'} padding={'1em 2em'} variation="elevated">
+        <Card backgroundColor={'background.secondary'} padding={'1em 1em'} variation="elevated">
           {capturing ? 
               (<Heading level={3} textAlign={'left'}> Recording...</Heading>)
             : ( <Heading level={3} textAlign={'left'}>Record video</Heading>)
@@ -213,7 +213,7 @@ export default function WebcamVideo() {
           <Divider orientation="horizontal"/>
           <View marginTop={'1em'}>
             <Webcam
-            className = {clsx('webcam', { 'mobile-webcam': isMobile }, { "recorderOn": capturing }, { "recorderOff": !capturing })}
+            className = {clsx( { 'mobile-webcam' : isMobile }, {'webcam': !isMobile}, { "recorderOn": capturing }, { "recorderOff": !capturing })}
             muted={true}
             audio={true}
             mirrored={true}
@@ -223,9 +223,9 @@ export default function WebcamVideo() {
             />
           </View> 
           {capturing ? (
-            <Button onTouchStart = {handleStopCaptureClick} onClick={handleStopCaptureClick} variation='warning' minWidth={"100%"}><FaCircleStop style={{ marginRight: '4px', color: 'red' }}/> Finish</Button>
+            <Button className = "stopButton" onTouchStart = {handleStopCaptureClick} onClick={handleStopCaptureClick} variation='warning' minWidth={"100%"}><FaCircleStop style={{ marginRight: '4px', color: 'red' }}/> Finish</Button>
             ) : recordedChunks.length === 0 && isCamReady? (
-              <Button onClick={handleStartCaptureClick} variation='outline' minWidth={'100%'}><BsFillRecordFill style={{ marginRight: '4px', color: 'red'}}/> Record</Button>
+              <Button className = "recordButton" onClick={handleStartCaptureClick} variation='outline' minWidth={'100%'}><BsFillRecordFill style={{ marginRight: '4px', color: 'red'}}/> Record</Button>
             ) : null}
         </Card>
         }
