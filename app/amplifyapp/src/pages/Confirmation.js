@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
+import { View, Badge } from '@aws-amplify/ui-react';
 
 export function Confirmation(){
    return( 
-   <view className="App">
-    <h1>Thank you for your submission!</h1>
-    <p>You can now safely close this browser</p>
-    </view>
+   <View className="App">
+      <Badge variation="success">Thank you for your submission!</Badge>
+      <Text>You can now safely close this browser</Text>
+   </View>
    )
 }
