@@ -29,9 +29,13 @@ describe('test filter menu', () => {
     })
     it('check to see if filtering by date sent and received works', () => {
         cy.get('.sidebar-toggle').click()
-        cy.get('#dateSent').type('2024-01-30')
+        cy.get('#dateSent').type('2024-01-30').click()
         .then(() => 
-            cy.get('#submissions').should('contains.text', '2024-01-30')
+            cy.get('#submissions').should('contains.text', 'Sent: 1/30/2024')
+        )
+        cy.get('#dateReceived').type('2024-01-31').click()
+        .then(() =>
+            cy.get('#submissions').should('contains.text', 'Received: 1/31/2024')     
         )
     })
     

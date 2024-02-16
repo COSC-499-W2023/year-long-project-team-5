@@ -17,7 +17,9 @@ import {
   ToggleButton,
   ToggleButtonGroup, 
   SelectField, 
-  Input
+  Input,
+  Text, 
+  Button
 } from '@aws-amplify/ui-react';
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
@@ -151,7 +153,7 @@ export function Submissions() {
               description={submission.note}
               dateSent={submission.createdAt == null ? null : new Date(submission.createdAt).toLocaleDateString()}
               dateReceived={submission.submittedAt == null ? null : new Date(submission.submittedAt).toLocaleDateString()}
-              videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
+                videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
             />
           ))}
         </Grid>
@@ -159,17 +161,24 @@ export function Submissions() {
     }
   }
   const { tokens } = useTheme();
+
   return (
     <View className="App">
-      <aside ref = {sidebarRef} className ={`sidebar ${sideBarToggled ? "visible" : ""}`}>
-      <Flex alignItems={'flex-start'} alignContent={'flex-start'} direction = 'column'>
-        <IoClose className = 'filter_closeButton' size='30' onClick={()=>setSideBarToggled(false)}/>
-        <text>Filter by submission status</text>
-        <SelectField id = 'videoStatusFilter' size = 'small' width = '100%' placeholder = "All" onChange={(e)=> handleVideoStatusFilterChange(e.target.value)}>
+      <Flex direction = 'row' id = 'aside' ref = {sidebarRef} className ={`sidebar ${sideBarToggled ? "visible" : ""} `} backgroundColor={tokens.colors.background.secondary}>
+      <Flex alignItems={'flex-start'} alignContent={'flex-start'} direction = 'column' backgroundColor={tokens.colors.background.secondary}>
+        <Text><IoClose className = 'filter_closeButton' size='30' onClick={()=>setSideBarToggled(false)}/></Text>
+        <Text>Filter by submission status</Text>
+        <SelectField 
+          id = 'videoStatusFilter' 
+          size = 'small' width = '100%' 
+          placeholder = "All" 
+          onChange={(e)=> handleVideoStatusFilterChange(e.target.value)} 
+          inputStyles={{backgroundColor:`${tokens.colors.background.secondary}`}}
+        >
           <option value = "submitted">Submitted video</option>
-          <option value = "noVideo">No video submitted</option>
+          <option value = "noVideo" >No video submitted</option>
         </SelectField>
-        <text>Filter by date sent</text>
+        <Text>Filter by date sent</Text>
         <Input
           size = 'small'
           width={'100%'}
@@ -177,20 +186,23 @@ export function Submissions() {
           id = 'dateSent'
           onChange={(e) => handleDatePickerSRequested(e.target.value)}
         />
-        <text>Filter by date received</text>
-        <Input
+        <Text>Filter by date received</Text>
+        <Input 
           size = 'small'
           width={'100%'}
           type='date'
           id = 'dateReceived'
           onChange={(e) => handleDatePickerSubmitted(e.target.value)}
         />
-          </Flex>
-      </aside>
-
+        <Button >Clear filters</Button>
+      </Flex>
+      </Flex>
+      <Flex className ={`content ${sideBarToggled ? "pushed" : ""} `} direction={'column'}>
       <Heading level={2}>Your Video Submissions</Heading>
       <Flex alignItems="center" justifyContent="center">
-        <CiFilter size = '30' className = 'sidebar-toggle' onClick={()=>setSideBarToggled(true)}/>
+      <Text>
+        <CiFilter size = '30' className = 'sidebar-toggle' onClick={()=>setSideBarToggled(!sideBarToggled)}/>
+      </Text>
         <SearchField variation = 'quiet' textAlign="left" placeholder="Search submissions..." padding={tokens.space.large} onChange={(e) => setFilteredSubmissions(filterSubmissions(e.target.value,submissions))} />
         {!isMobile && (
           <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
@@ -202,6 +214,7 @@ export function Submissions() {
       <View id = 'submissions' padding={tokens.space.large}>
         {renderSubmissions()}
       </View>
+      </Flex>
     </View>
   )
 }
