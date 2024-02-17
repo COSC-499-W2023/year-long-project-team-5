@@ -55,6 +55,32 @@ export const listSubmissions = /* GraphQL */ `
           updatedAt
           __typename
         }
+      }
+    }
+  }
+`;
+export const submissionByOtp = /* GraphQL */ `
+  query SubmissionByOtp(
+    $otpCode: String!
+    $sortDirection: ModelSortDirection
+    $filter: ModelSubmissionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    submissionByOtp(
+      otpCode: $otpCode
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        adminId
+        note
+        submittedAt
+        otpCode
+        adminName
         createdAt
         updatedAt
         submissionVideoId
