@@ -1,8 +1,6 @@
 import React, { useState} from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
-
-import {API, Storage, Auth} from 'aws-amplify';
 import VideoRecorder from "../my-components/VideoRecorder";
 import { getSubmissionByOTP, getUserByID } from "../Helpers/Getters";
 
