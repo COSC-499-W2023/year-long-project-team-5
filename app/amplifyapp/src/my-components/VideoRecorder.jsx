@@ -147,7 +147,8 @@ export default function WebcamVideo(props) {
       const data2 = {
         id: submissionId,
         submissionVideoId: videoId,
-        otpCode: null
+        otpCode: null,
+        submittedAt: new Date().toISOString(),
       };
 
 
