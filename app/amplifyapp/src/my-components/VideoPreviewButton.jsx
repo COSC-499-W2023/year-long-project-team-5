@@ -25,7 +25,9 @@ export const VideoPreviewButton = ({ videoUrl, name, description }) => {
                 <IoMdCloseCircleOutline cursor='pointer' size='4%' onClick={closeVideo}/>
               </Flex>
               <Text>{description}</Text>
-              <video controls width = {720} height = {480} src = {videoUrl}/>
+              <video controls width = {720} height = {480}>
+                <source src={videoUrl} type="video/webm" />
+              </video>
             </Card>
           </Flex>
         )}

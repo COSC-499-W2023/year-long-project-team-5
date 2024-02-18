@@ -67,7 +67,7 @@ export default function WebcamVideo(props) {
     setVideoPreviewUrl(null);
     try{
     mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
-      mimeType: "video/webm",
+      mimeType: "video/mp4",
     });
     }
     catch{
