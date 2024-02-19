@@ -30,6 +30,7 @@
 ## Other notes
 Apart from features, a tough bug has come up and I've spent enough time on it that I should list it here (videos wont render on submissions table only on firefox but it works fine on chrome):
 https://github.com/COSC-499-W2023/year-long-project-team-5/issues/178
+- Made the blur logo have a transparent background and put it on our readme!
 
 # Weekly Personal Log S2 Week 5
 
