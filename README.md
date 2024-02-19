@@ -1,5 +1,5 @@
 # Team 5 Project Github (Option 3)
-[Current Week: Term 2 Week 7 (Reading Break)](https://github.com/orgs/COSC-499-W2023/projects/43)
+[Current Week: Term 2 Week 7 & Week 8 (Reading Break)](https://github.com/orgs/COSC-499-W2023/projects/43)
 
 ![logo-dark-bg](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/36575231/09d7017e-7226-40fe-bf3d-62fef6d73d0e)
 
