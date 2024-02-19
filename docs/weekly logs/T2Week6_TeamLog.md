@@ -32,23 +32,24 @@
 - Admin dashboard is effective and usable
 
 ## Tasks from Project Board
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/174] - The authentication code isnt very secure (Complete)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/170] - Refactor code to remove warnings (Complete)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/128] - email the client once a submission is sent (Complete)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/111] - As Dev, I want a Lambda triggers on S3 Bucket video input (Complete)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/64] - As Dev, I want to generate verification codes for doctors to send to patients (Complete)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/163] - As Dev, I want a shell for the patient code to be entered before accessing the patient portal (Complete)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/65] - As Dev, I want verification codes to expire (Complete)
-
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/162] - As dev, I want to filter submissions by video received status (in-review)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/150] - Mobile view for recording page should be refined (in-review)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/147] - As Dev, extend default theme (in-review)
-
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/125] - As dev, implement mov and other video formats to Lambda trigger (in-progress)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/63] - I want to implement WebRTC face blur into our application (in-progress)
-
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/124] - As dev, fix lambda issue on name (Available)
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/114] - As Dev, I want to make the notes field in dashboard responsive (Available)
+### Complete
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/174] - The authentication code isnt very secure 
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/170] - Refactor code to remove warnings
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/128] - email the client once a submission is sent
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/111] - As Dev, I want a Lambda triggers on S3 Bucket video input
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/64] - As Dev, I want to generate verification codes for doctors to send to patients
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/163] - As Dev, I want a shell for the patient code to be entered before accessing the patient portal
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/65] - As Dev, I want verification codes to expire
+### In-Review
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/162] - As dev, I want to filter submissions by video received status
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/150] - Mobile view for recording page should be refined
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/147] - As Dev, extend default theme
+### In-Progress
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/125] - As dev, implement mov and other video formats to Lambda trigger
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/63] - I want to implement WebRTC face blur into our application
+### Available
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/124] - As dev, fix lambda issue on name
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/114] - As Dev, I want to make the notes field in dashboard responsive
 
 
 ## Burn Up Chart
