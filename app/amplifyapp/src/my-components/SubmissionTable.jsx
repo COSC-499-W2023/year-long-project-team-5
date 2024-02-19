@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Table, TableRow, TableHead, TableCell, TableBody, ThemeProvider} from '@aws-amplify/ui-react'
+import { Table, TableRow, TableHead, TableCell, TableBody } from '@aws-amplify/ui-react'
 
 /**
  * @component {Object} SubmissionTable
