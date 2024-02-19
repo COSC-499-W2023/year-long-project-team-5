@@ -1,7 +1,7 @@
 #aside {
   height: 100%;  
   position:absolute;
-  width: 20%;
+  width: fit-content;
   z-index: 1;
   left:0;
   top:65px;

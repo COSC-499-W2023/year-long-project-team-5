@@ -27,9 +27,6 @@ import { SubmissionTable } from '../my-components/SubmissionTable';
 import { IoClose } from "react-icons/io5";
 import { CiFilter } from "react-icons/ci";
 
-
-
-
 /**
  * Submissions TODO: finish docs
  * @param {Object} props - prop1 name
@@ -82,48 +79,54 @@ export function Submissions() {
     setFilteredSubmissions(filteredSubmissions);
   }
 
-  //filters submissions based on video submission status
-  function handleVideoStatusFilterChange(filter){
-    if(filter == ''){
-      setFilteredSubmissions(submissions);
-    }
-    else {
-    const filtered = submissions.filter(submission => {
-      if(filter == 'all'){}
-      else if (filter === 'submitted') {
+  function handleFilteringSubmissions(received, sent, videoStatus){
+    const selectedReceivedDate = new Date(received);
+    const selectedSentDate = new Date(sent);
+
+    let filteredSubmissions = submissions;
+
+    //filter based on video status (submitted or not)
+    filteredSubmissions = submissions.filter(submission => {
+      if(videoStatus == ''){return submissions;}
+      else if (videoStatus === 'submitted') {
         return submission.Video && submission.Video.videoURL;
-      } else if (filter === 'noVideo') {
+      } else if (videoStatus === 'noVideo') {
         return !submission.Video || !submission.Video.videoURL;
       }
     });
-    setFilteredSubmissions(filtered);
-    }
-  }
 
-  //filters submissions based on selected date range (video request date)
-  function handleDatePickerSRequested(date) {
-  const selectedDate = new Date(date);
-  const filtered = submissions.filter(submission => {
-    const submissionDate = new Date(submission.createdAt);
-    return (selectedDate.getUTCDate() === submissionDate.getDate() &&
-      selectedDate.getUTCMonth() === submissionDate.getMonth() &&
-      selectedDate.getUTCFullYear() === submissionDate.getFullYear()
-    ); 
-  });
-  setFilteredSubmissions(filtered);
-  }
-  //filter submission based on selected date (submitted date)
-  function handleDatePickerSubmitted(date) {
-    const selectedDate = new Date(date);
-    const filtered = submissions.filter(submission => {
-      const submissionDate = new Date(submission.submittedAt);
-      return (selectedDate.getUTCDate() === submissionDate.getDate() &&
-        selectedDate.getUTCMonth() === submissionDate.getMonth() &&
-        selectedDate.getUTCFullYear() === submissionDate.getFullYear()
-      ); 
+    //filter based on date request was sent
+    filteredSubmissions = filteredSubmissions.filter(submission => {
+      if (selectedSentDate.toLocaleDateString() == 'Invalid Date') return submissions; // If no date is selected, return all submissions
+      const submissionDate = new Date(submission.createdAt);
+      return (
+        selectedSentDate.getUTCDate() === submissionDate.getDate() &&
+        selectedSentDate.getUTCMonth() === submissionDate.getMonth() &&
+        selectedSentDate.getUTCFullYear() === submissionDate.getFullYear()
+      );
     });
-    setFilteredSubmissions(filtered);
-    }
+  
+    // Filter submissions based on date submission was received
+    filteredSubmissions = filteredSubmissions.filter(submission => {
+      if (selectedReceivedDate.toLocaleDateString() === 'Invalid Date') return submissions; // If no date is selected, return all submissions
+      const submissionDate = new Date(submission.submittedAt);
+      return (
+        selectedReceivedDate.getUTCDate() === submissionDate.getDate() &&
+        selectedReceivedDate.getUTCMonth() === submissionDate.getMonth() &&
+        selectedReceivedDate.getUTCFullYear() === submissionDate.getFullYear()
+      );
+    });
+    
+    setFilteredSubmissions(filteredSubmissions);
+
+  }
+  //clear filters and the current filter values
+  function clearFilters(){
+    setFilteredSubmissions(submissions);
+    setSentDate('');
+    setReceivedDate('');
+    setVideoStatus('');
+  }
 
   function renderSubmissions(){
     if(!isMobile && dashView === "table"){
@@ -161,19 +164,24 @@ export function Submissions() {
     }
   }
   const { tokens } = useTheme();
+  const [sentDate, setSentDate] = useState('');
+  const [receivedDate, setReceivedDate] = useState('');
+  const [videoStatus, setVideoStatus] = useState('');
 
   return (
     <View className="App">
       <Flex direction = 'row' id = 'aside' ref = {sidebarRef} className ={`sidebar ${sideBarToggled ? "visible" : ""} `} backgroundColor={tokens.colors.background.secondary}>
-      <Flex alignItems={'flex-start'} alignContent={'flex-start'} direction = 'column' backgroundColor={tokens.colors.background.secondary}>
-        <Text><IoClose className = 'filter_closeButton' size='30' onClick={()=>setSideBarToggled(false)}/></Text>
+      <Flex alignItems={'center'} alignContent={'flex-start'}  direction = 'column' backgroundColor={tokens.colors.background.secondary}>
+      <Flex alignItems = {'flex-end'} justifyContent={'flex-end'}><Text><IoClose className = 'filter_closeButton' size='30' onClick={()=>setSideBarToggled(false)}/></Text></Flex>
+
         <Text>Filter by submission status</Text>
         <SelectField 
-          id = 'videoStatusFilter' 
           size = 'small' width = '100%' 
           placeholder = "All" 
-          onChange={(e)=> handleVideoStatusFilterChange(e.target.value)} 
-          inputStyles={{backgroundColor:`${tokens.colors.background.secondary}`}}
+          id = "videoStatusFilter"
+          value = {videoStatus}
+          onChange={(e)=> setVideoStatus(e.target.value)} 
+          color={tokens.colors.background.secondary}
         >
           <option value = "submitted">Submitted video</option>
           <option value = "noVideo" >No video submitted</option>
@@ -183,18 +191,21 @@ export function Submissions() {
           size = 'small'
           width={'100%'}
           type='date'
-          id = 'dateSent'
-          onChange={(e) => handleDatePickerSRequested(e.target.value)}
+          id = "dateSent"
+          value = {sentDate}
+          onChange={(e) => setSentDate(e.target.value)}
         />
         <Text>Filter by date received</Text>
         <Input 
           size = 'small'
           width={'100%'}
           type='date'
-          id = 'dateReceived'
-          onChange={(e) => handleDatePickerSubmitted(e.target.value)}
+          id = "dateReceived"
+          value = {receivedDate}
+          onChange={(e) => setReceivedDate(e.target.value)}
         />
-        <Button >Clear filters</Button>
+      <Button id = "submitFilters" onClick={() => handleFilteringSubmissions(receivedDate, sentDate, videoStatus)}>Apply Filters</Button>
+      <Button variation = {'warning'} id = "clearFilters" onClick = {() => clearFilters()}>Clear Filters</Button>
       </Flex>
       </Flex>
       <Flex className ={`content ${sideBarToggled ? "pushed" : ""} `} direction={'column'}>
