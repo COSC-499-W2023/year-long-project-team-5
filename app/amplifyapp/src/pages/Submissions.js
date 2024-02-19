@@ -4,13 +4,12 @@ import "@aws-amplify/ui-react/styles.css";
 import '../my-components/filterMenu.css';
 
 import { getSubmissions } from "../Helpers/Getters";
-import { Auth, API, Storage } from 'aws-amplify';
+import { Auth, Storage } from 'aws-amplify';
 import { filterSubmissions } from "../Helpers/Search";
 import {
   Grid,
   Flex,
   View,
-  useAuthenticator,
   Heading,
   useTheme,
   SearchField,
@@ -35,7 +34,6 @@ import { CiFilter } from "react-icons/ci";
  * <Submissions></Submissions>
  */
 export function Submissions() {
-  const { user, route } = useAuthenticator((context) => [context.user, context.route]);
   const [submissions, setSubmissions] = useState([]);
   const [filteredsubmissions, setFilteredSubmissions] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);

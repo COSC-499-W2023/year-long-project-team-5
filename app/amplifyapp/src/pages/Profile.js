@@ -1,7 +1,5 @@
-import React, {  } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
-import { useNavigate } from "react-router-dom";
 import { useAuthenticator} from "@aws-amplify/ui-react"
 
 
@@ -11,18 +9,15 @@ import {
     TextField,
     View,
     Heading,
-    Card, 
-    useTheme
+    Card
   } from '@aws-amplify/ui-react';
 
 export function Profile(){
-    const { tokens } = useTheme();
-    const {user, route, signOut} = useAuthenticator((context) => [
+    const { user } = useAuthenticator((context) => [
         context.user,
         context.route,
         context.signOut,
     ]);
-    const navigate = useNavigate();
     return(
         <View className="App">
         <Heading level={1}>Welcome, {user.attributes.name}!</Heading>
