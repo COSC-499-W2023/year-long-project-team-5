@@ -27,6 +27,8 @@ export const VideoPreviewButton = ({ videoUrl, name, description }) => {
               <Text>{description}</Text>
               <video controls width = {720} height = {480}>
                 <source src={videoUrl} type="video/webm" />
+                <source src={videoUrl} type="video/mp4" />
+                Your browser does not support the video tag.
               </video>
             </Card>
           </Flex>
