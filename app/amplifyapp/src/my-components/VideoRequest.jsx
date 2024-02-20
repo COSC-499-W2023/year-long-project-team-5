@@ -9,7 +9,8 @@ import {
     TextField,
     Card, 
     useTheme,
-    Alert
+    Alert,
+    TextAreaField
   } from '@aws-amplify/ui-react';
 import { getSubmissionByOTP } from "../Helpers/Getters"
 
@@ -18,7 +19,7 @@ import {
   createSubmission as createSubmissionMutation
 } from "../graphql/mutations";
 
-import {validateForm} from '../Helpers/ValidateForm'
+import {validateEmail} from '../Helpers/ValidateEmail'
 
 export function VideoRequestForm(){
     
@@ -102,8 +103,7 @@ export function VideoRequestForm(){
     function handleEmailOnChange(event) {
       //validate form inputs
       let email = event.target.value;
-      // passing email as input into validateForm() function
-      const validationError = validateForm({emailInput: email})
+      const validationError = validateEmail({emailInput: email})
       if (validationError){
         setErrorMessage(validationError)
         setFormWrong(true)
@@ -113,6 +113,18 @@ export function VideoRequestForm(){
       }
     }
 
+    function handleMinLength(event){
+      let description = event.target.value;
+      // if description is less than 20 characters, set form to wrong
+      if (description.length < 20){
+        setErrorMessage("Description must be at least 20 characters")
+        setFormWrong(true)
+      }
+      else{
+        setFormWrong(false)
+        return
+      }
+    }
 
 
     async function generateOTP() {
@@ -168,13 +180,15 @@ export function VideoRequestForm(){
             onChange={handleEmailOnChange}
             hasError={isFormWrong}
           />
-          <TextField
+          <TextAreaField
             name="description"
             placeholder="Instructions/notes"
             label="Video Instructions"
             inputStyles={{
-              paddingBottom: "5em",
+              paddingBottom: "3em",
             }}
+            onChange = {handleMinLength}
+            hasError = {isFormWrong}
             required
           />
         <Button type="submit" variation="primary">Request Video</Button>

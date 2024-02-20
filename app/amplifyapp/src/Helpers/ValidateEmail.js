@@ -1,4 +1,4 @@
-export function validateForm({ emailInput}){
+export function validateEmail({emailInput}){
     // something fishy with email input
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailRegex.test(emailInput) === false) {
