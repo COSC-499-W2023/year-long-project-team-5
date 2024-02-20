@@ -22,15 +22,29 @@ const ses = new SESClient({ region: AWS_REGION });
 
 
 async function send_email(thedata) {
+  let recipientName = thedata?.data?.getSubmission?.User?.name;
+  let adminName = thedata?.data?.getSubmission?.adminName;
+  let adminNote = thedata?.data?.getSubmission?.note
+  let otpCode = thedata?.data?.getSubmission?.otpCode
+  let email = `
+    Hello ${recipientName},
+
+    ${adminName} has requested you record a video to send them. These are the notes they left:
+
+    ${adminNote}
+
+    You can use the following link to record and send an email to ${adminName}: https://develop.d1tz6jy97536kp.amplifyapp.com/recording/
+    Your verification code for entering the platform is ${otpCode}.
+  `;
   const command = new SendEmailCommand({
     Destination: {
       ToAddresses: [thedata?.data?.getSubmission?.User?.email],
     },
     Message: {
       Body: {
-        Text: { Data: "Hello, " + thedata?.data?.getSubmission?.User?.name + 
-        ".\n\n" + thedata?.data?.getSubmission?.adminName + " has requested a video from you. These are the notes they left:"
-      + thedata?.data?.getSubmission?.note + "\n\nYou can record the video here: https://develop.d1tz6jy97536kp.amplifyapp.com/recording/" },
+        Text: {
+          Data: email,
+        },
       },
 
       Subject: { Data: "Blur: " + thedata?.data?.getSubmission?.adminName + " is requesting a video from you" },
@@ -61,7 +75,7 @@ async function send_email(thedata) {
 
 export const handler = async (event) => {
   console.log(`EVENT: ${JSON.stringify(event)}`);
-    const query = /* GraphQL */ `
+  const query = /* GraphQL */ `
   query MyQuery {
     getSubmission(id: "${event.Records[0].dynamodb.Keys.id.S}") {
       id
@@ -72,6 +86,7 @@ export const handler = async (event) => {
       }
       note
       adminName
+      otpCode
     }
   }
   `;
