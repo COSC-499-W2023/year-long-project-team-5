@@ -21,6 +21,8 @@ import {
   Text, 
   Button
 } from '@aws-amplify/ui-react';
+import { listSubmissions } from "../graphql/queries";
+
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
 import { SubmissionTable } from '../my-components/SubmissionTable';

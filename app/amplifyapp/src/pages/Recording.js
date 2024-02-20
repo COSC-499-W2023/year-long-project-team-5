@@ -5,6 +5,7 @@ import VideoRecorder from "../my-components/VideoRecorder";
 import { getSubmissionByOTP, getUserByID } from "../Helpers/Getters";
 
 import {
+    Button,
     Flex,
     Input,
     View,
