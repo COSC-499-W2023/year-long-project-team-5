@@ -23,14 +23,12 @@ import {
   import Beck from '../assets/beck.jpg';
   import Kael from '../assets/kael.jpg';
   import reactLogo from '../assets/reactLogo.svg';
-  import {motion, useScroll} from "framer-motion";
-  import { useRef, useEffect } from "react";
+  import { motion } from "framer-motion";
+  import { useEffect } from "react";
   import { useNavigate } from "react-router-dom";
 
   export const Home = ({colorMode}) => {
 	const { tokens } = useTheme();
-	const ref = useRef(null);
-	const { scrollXProgress } = useScroll({ container: ref });
 	const navigate = useNavigate();
 	const [videoSource, setVideoSource] = useState(colorMode === 'light' ? videoBG : darkVideoBG);
 	useEffect(() => {
@@ -175,7 +173,7 @@ import {
 				
 			<Flex alignItems = 'center' direction = 'row' justifyContent = 'center' wrap = "nowrap" margin = '1rem 0rem 1rem 0rem'>
 					<div className='headerText'>
-					<img className = "profile" src = {Abby} width = '100%'/>
+					<img className = "profile" alt = "Abby" src = {Abby} width = '100%'/>
 					<motion.div
 						initial = {{opacity: 0}}
 						whileHover = {{
@@ -191,7 +189,7 @@ import {
 					</div>
 						
 				<div className='headerText'>
-				<img className = "profile" src = {Josh} width = '100%'/>
+				<img className = "profile" alt = "Josh" src = {Josh} width = '100%'/>
 				<motion.div
 					initial = {{opacity: 0}}
 					whileHover = {{
@@ -206,7 +204,7 @@ import {
 				</motion.div>
 				</div>
 				<div className='headerText'>
-				<img className = "profile" src = {Abhinav} width = '100%'/>
+				<img className = "profile" alt = "Abhinav" src = {Abhinav} width = '100%'/>
 				<motion.div
 					initial = {{opacity: 0}}
 					whileHover = {{
@@ -221,7 +219,7 @@ import {
 				</motion.div>
 				</div>
 				<div className='headerText'>
-				<img className = "profile" src = {Beck} width = '100%'/>
+				<img className = "profile" alt = "Beck" src = {Beck} width = '100%'/>
 				<motion.div
 					initial = {{opacity: 0}}
 					whileHover = {{
@@ -236,7 +234,7 @@ import {
 				</motion.div>
 				</div>
 				<div className='headerText'>
-				<img className = "profile" src = {Kael} width = '100%'/>
+				<img className = "profile" alt = "Kael" src = {Kael} width = '100%'/>
 				<motion.div
 					initial = {{opacity: 0}}
 					whileHover = {{

@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import { Flex, View, Button, Heading, Card, Divider, ButtonGroup } from "@aws-amplify/ui-react";
 
-import {Amplify, Auth, API, Storage } from 'aws-amplify';
+import { API, Storage } from 'aws-amplify';
 import { BsFillRecordFill } from "react-icons/bs";
 import { MdDownloadForOffline } from "react-icons/md";
 import { FaRedoAlt } from "react-icons/fa";
@@ -105,7 +105,7 @@ export default function WebcamVideo() {
       document.body.appendChild(a);
       a.style = "display: none";
       a.href = url;
-      {isMobile ? (a.download = "react-webcam-stream-capture.mp4"): (a.download = "react-webcam-stream-capture.webm")}
+      isMobile ? (a.download = "react-webcam-stream-capture.mp4"): (a.download = "react-webcam-stream-capture.webm")
       a.click();
       window.URL.revokeObjectURL(url);
     }
@@ -134,6 +134,7 @@ export default function WebcamVideo() {
       const videoNameS3 = "video" + randNum + ".webm";
       const data = {
         videoURL: videoNameS3, // videoNameS3 is the key (not the url) for the s3 bucket, get video URL with Storage.get(name)
+        otpCode: null //otp code will be erased upon upload
       };
       
       try {

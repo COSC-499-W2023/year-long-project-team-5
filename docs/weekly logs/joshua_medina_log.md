@@ -371,3 +371,36 @@
 - Issue #64 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/64)
 - Issue #65 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/65)
 - Issue #163 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/163)
+
+# Weekly Personal Log (Feb 12 - Feb 18)
+
+## Screenshot from peer eval
+![Capture3](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/f56d05ac-4458-4338-860d-045554d1bed8)
+
+## Non-feature work
+- Met on Feb 15 for meeting
+
+## All of my features for **this milestone**
+
+### **Feature**: One Time Password (OTP)
+- **Description**: One time password that lets users access the recording page
+- **Issue number**: issue #64, #163, #65, #174
+- **Context**: Had to do some last minute fixes, wrapped up feature, merged, changed to 7 digits
+
+### **Feature**: Build warnings
+- **Description**: Our builds were full of warnings
+- **Issue number**: issue #170
+- **Context**: Had to do some last minute fixes, wrapped up feature
+
+## Status of work for the **last week** (in-progress or completed)
+- OTP merged
+- Build warnings merged
+- Picking up new tasks
+
+## Issue number reference
+- Issue #64 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/64)
+- Issue #65 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/65)
+- Issue #163 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/163)
+- Issue #174 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/174)
+- Issue #170 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/170)
+
