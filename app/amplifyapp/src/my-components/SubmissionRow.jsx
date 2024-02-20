@@ -23,6 +23,11 @@ export const SubmissionRow = (props) => {
  * @returns {JSX.Element}
  */
 
+    //const navigate = useNavigate();
+    const handleButtonClick = () => {
+        // Navigate to the '/Request' page when the button is clicked - should be different custom page!
+        //navigate('/Request');
+    };
     return(
         <TableRow className='subRow'>
             <TableCell className  = 'subClientName' width='15%'> {props.name === undefined || props.name === null ? <Text variation='tertiary'>N/A</Text> :  <Text> {props.name} </Text> }</TableCell>

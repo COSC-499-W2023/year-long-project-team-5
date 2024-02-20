@@ -2,21 +2,27 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
-import {API, Auth, Amplify } from 'aws-amplify';
+import {API, Storage, Auth, Amplify } from 'aws-amplify';
 import {
     Button,
     Flex,
     TextField,
+    View,
+    Heading,
     Card, 
     useTheme
   } from '@aws-amplify/ui-react';
+import { listSubmissions } from "../graphql/queries";
 import { getSubmissionByOTP } from "../Helpers/Getters"
 
 import {
+  createVideo as createVideoMutation,
   createUser as createUserMutation,
   createSubmission as createSubmissionMutation
 } from "../graphql/mutations";
 export function VideoRequestForm(){
+    
+    const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
     
     async function createUser(email,name) {
       const data = {
@@ -48,6 +54,7 @@ export function VideoRequestForm(){
         variables: { input: data },
       });
       event.target.reset();
+      setIsFormSubmitted(true); // Set the form submission state to true
     }
 
     // these states and functions below are to help dynamically adjust the width of the parent Card component (i.e the form)

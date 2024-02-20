@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, View, Flex, Card, Heading, Text } from "@aws-amplify/ui-react";
 import "./VideoPreviewButton.css"
 import { IoMdCloseCircleOutline } from "react-icons/io";
