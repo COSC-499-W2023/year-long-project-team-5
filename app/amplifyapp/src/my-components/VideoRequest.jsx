@@ -10,7 +10,8 @@ import {
     Card, 
     useTheme,
     Alert,
-    TextAreaField
+    TextAreaField,
+    Text
   } from '@aws-amplify/ui-react';
 import { getSubmissionByOTP } from "../Helpers/Getters"
 
@@ -19,65 +20,94 @@ import {
   createSubmission as createSubmissionMutation
 } from "../graphql/mutations";
 
-import {validateEmail} from '../Helpers/ValidateEmail'
-
 export function VideoRequestForm(){
     
-    const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
-    const [isFormWrong, setFormWrong] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("")
-    const [submittedEmail, setSubmittedEmail] = useState(''); // State to store the submitted email
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
+  const [isFormWrong, setFormWrong] = useState(false);
+  const [errorMessages, setErrorMessages] = useState(new Set());
+  const [submittedEmail, setSubmittedEmail] = useState(''); // State to store the submitted email
 
-    async function createUser(email,name) {
-      const data = {
-        email: email,
-        name: name
-      };
-      return await API.graphql({
-        query: createUserMutation,
-        variables: { input: data },
-      });
+  const validateEmail = (emailInput) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(emailInput);
+  };
+
+  const handleEmailOnChange = (event) => {
+    const emailValue = event.target.value;
+    let newErrors = new Set(errorMessages);
+
+    if (!validateEmail(emailValue)) {
+        newErrors.add("Please enter a valid email address.");
+    } else {
+        newErrors.delete("Please enter a valid email address.");
     }
 
+    setErrorMessages(newErrors);
+    setFormWrong(newErrors.size > 0);
+  };
 
+  const handleDescriptionOnChange = (event) => {
+    const descriptionValue = event.target.value;
+    let newErrors = new Set(errorMessages);
 
-    async function createSubmission(event){
-      event.preventDefault();
-      //if form is wrong, don't submit and don't reset the form
-      if (isFormWrong){
-        setIsFormSubmitted(false);
-        return
-      }
+    if (descriptionValue.length < 20) {
+        newErrors.add("Description must be at least 20 characters.");
+    } else {
+        newErrors.delete("Description must be at least 20 characters.");
+    }
 
-      const form = new FormData(event.target);
-      // reset everything
+    setErrorMessages(newErrors);
+    setFormWrong(newErrors.size > 0);
+  };
+
+  async function createUser(email,name) {
+    const data = {
+      email: email,
+      name: name
+    };
+    return await API.graphql({
+      query: createUserMutation,
+      variables: { input: data },
+    });
+  }
+
+  async function createSubmission(event){
+    event.preventDefault();
+    //if form is wrong, don't submit and don't reset the form
+    if (isFormWrong){
       setIsFormSubmitted(false);
-      setFormWrong(false);
-      setErrorMessage('');
-
-
-      let user = await createUser(form.get("email"),form.get("name"));
-      //this should store what is submitted in the form using states:
-      setSubmittedEmail(form.get("email")) // only retaining email for now.
-      let userId = user.data.createUser.id
-      let otp = await generateOTP()
-
-      const data = {
-        adminId: Auth.user.username,
-        adminName: Auth.user.attributes.name,
-        note: form.get("description"),
-        submissionUserId: userId,
-        otpCode: otp
-      };
-      await API.graphql({
-        query: createSubmissionMutation,
-        variables: { input: data },
-      });
-
-      event.target.reset();
-      setIsFormSubmitted(true);
-       // Set the form submission state to true
+      return
     }
+
+    const form = new FormData(event.target);
+    // reset everything
+    setIsFormSubmitted(false);
+    setFormWrong(false);
+    setErrorMessages([]);
+
+
+    let user = await createUser(form.get("email"),form.get("name"));
+    //this should store what is submitted in the form using states:
+    setSubmittedEmail(form.get("email")) // only retaining email for now.
+    let userId = user.data.createUser.id
+    let otp = await generateOTP()
+
+    const data = {
+      adminId: Auth.user.username,
+      adminName: Auth.user.attributes.name,
+      note: form.get("description"),
+      submissionUserId: userId,
+      otpCode: otp
+    };
+    await API.graphql({
+      query: createSubmissionMutation,
+      variables: { input: data },
+    });
+
+    event.target.reset();
+    setIsFormSubmitted(true);
+      // Set the form submission state to true
+  }
     // these states and functions below are to help dynamically adjust the width of the parent Card component (i.e the form)
     // depending on browser width, takes less % of screen width if screen is large, and greater % when mobile.
     
@@ -97,35 +127,6 @@ export function VideoRequestForm(){
       window.addEventListener('resize', handleResize);
       return () => window.removeEventListener('resize', handleResize);
     }, []);
-
-
-    // this function gets called everytime email input field is being changed.
-    function handleEmailOnChange(event) {
-      //validate form inputs
-      let email = event.target.value;
-      const validationError = validateEmail({emailInput: email})
-      if (validationError){
-        setErrorMessage(validationError)
-        setFormWrong(true)
-      }else{
-        setFormWrong(false)
-        return
-      }
-    }
-
-    function handleMinLength(event){
-      let description = event.target.value;
-      // if description is less than 20 characters, set form to wrong
-      if (description.length < 20){
-        setErrorMessage("Description must be at least 20 characters")
-        setFormWrong(true)
-      }
-      else{
-        setFormWrong(false)
-        return
-      }
-    }
-
 
     async function generateOTP() {
       //Some gross config code for the generation API since v5 sucks:(
@@ -152,6 +153,19 @@ export function VideoRequestForm(){
       return(dataJSON.otp);
     }
 
+    const renderErrorMessages = () =>
+    <Alert
+     className="errorFeedback"
+     textAlign='left'
+     variation="error"
+     hasIcon={true} 
+     heading={errorMessages.size > 1 ? `Uh oh. Please address these ${errorMessages.size} issues:` : 'Uh oh.'} 
+     marginBottom={'.5em'} >
+      {Array.from(errorMessages).map((message, index) => (
+        <Text as="p" variation="error" key={index}>{errorMessages.size > 1 ? `${index+1}. ${message}`: `${message}`}</Text>
+      ))}
+    </Alert>;
+
     return (
       <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle} >
         {isFormSubmitted && (
@@ -159,11 +173,7 @@ export function VideoRequestForm(){
             Your video request to {submittedEmail} has been sent!
           </Alert>
         )}
-        {isFormWrong && (
-          <Alert className="errorFeedback" textAlign ='left' variation="error" hasIcon={true} heading="Uh oh." marginBottom={'.5em'}>
-            {errorMessage}
-          </Alert>
-        )} 
+        {isFormWrong && renderErrorMessages()} 
         <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em'>
           <TextField
             name="name"
@@ -178,7 +188,7 @@ export function VideoRequestForm(){
             type="email"
             required
             onChange={handleEmailOnChange}
-            hasError={isFormWrong}
+            hasError={isFormWrong && errorMessages.has("Please enter a valid email address.")}
           />
           <TextAreaField
             name="description"
@@ -187,8 +197,8 @@ export function VideoRequestForm(){
             inputStyles={{
               paddingBottom: "3em",
             }}
-            onChange = {handleMinLength}
-            hasError = {isFormWrong}
+            onChange = {handleDescriptionOnChange}
+            hasError = {isFormWrong && errorMessages.has("Description must be at least 20 characters.")}
             required
           />
         <Button type="submit" variation="primary">Request Video</Button>
