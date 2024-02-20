@@ -1,3 +1,25 @@
+# Personal log (Feb 12 -Feb 18)
+## Weekly work done from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/39/student/results/)
+![T2 W5 work done](https://i.imgur.com/IkSmtgg.png)
+
+Features worked on:
+## Issue [#150](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/150)
+
+**Feature:** Fix UI of recording page on mobile
+
+**Description of Changes:**
+   - installed clsx library to conditionally apply classnames in React (pls run npm install  . on initial review )
+   - useEffect to resize the card based on width, takes full width in smaller widths
+   - applies appropriate styling to card, video preview and webcam using clsx and the .css file
+
+
+**Status:** completed, with automated testing to see if the right styling has been applied. Might be a better way to check for validation.
+Lot's of new merge conflicts due to developments to backend. Will need to be resolved. 
+
+**Additional Notes:**
+Hoping to do that over reading break. Hoping to also work on other feature (cleaning up the submission table) over the break.
+
+
 # Personal log (Jan 05-Feb 11)
 ## Weekly work done from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/35/student/evaluated/1569/)
 ![T2 W4 work done](https://i.imgur.com/tQE59PZ.png)
