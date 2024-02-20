@@ -3,7 +3,7 @@
 // { "login_email": "your_email", "login_password": "your_password" }
 
 function login() {
-    cy.visit('localhost:3000/submissions')
+    cy.visit('localhost:3000/submission')
     cy.get('input[name="username"]').type(Cypress.env('login_email'))
     cy.get('input[name="password"]').type(Cypress.env('login_password'), { log: false }) // Hide password from logs
     cy.get('button[type="submit"]').click()
