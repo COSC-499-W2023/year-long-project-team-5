@@ -1,0 +1,15 @@
+{
+  "lambdaLayers": [],
+  "permissions": {
+    "api": {
+      "yearlongprojectteam5": [
+        "Query"
+      ]
+    },
+    "auth": {
+      "yearlongprojectteam5": [
+        "read"
+      ]
+    }
+  }
+}

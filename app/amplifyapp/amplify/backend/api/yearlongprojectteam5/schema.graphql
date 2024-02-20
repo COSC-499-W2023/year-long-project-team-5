@@ -1,24 +1,26 @@
-type Submission @model @auth(rules: [{allow: public}]) {
+type Submission @model @auth(rules: [{allow: public}, {allow: private, provider: iam}]) {
   id: ID!
   adminId: ID
   Video: Video @hasOne
   User: User @hasOne
   note: String
   submittedAt: AWSDateTime
+  otpCode: String @index(name: "byOtp", queryField: "submissionByOtp")
+  adminName: String
 }
 
-type Video @model @auth(rules: [{allow: public}]) {
+type Video @model @auth(rules: [{allow: public}, {allow: private, provider: iam}]) {
   id: ID!
   videoURL: String
 }
 
-type User @model @auth(rules: [{allow: public}]) {
+type User @model @auth(rules: [{allow: public}, {allow: private, provider: iam}]) {
   id: ID!
   email: AWSEmail
   name: String
 }
 
-type Note @model @auth(rules: [{allow: public}]) {
+type Note @model @auth(rules: [{allow: public}, {allow: private, provider: iam}]) {
   id: ID!
   name: String!
   description: String
