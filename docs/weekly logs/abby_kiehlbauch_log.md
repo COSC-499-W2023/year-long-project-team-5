@@ -1,3 +1,50 @@
+# Weekly Personal Log (February 12th-18th)
+
+## Screenshot from peer eval
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/68ae724d-60b0-4fb8-85dc-3857b64014dc)
+
+
+## Non-feature work
+- team meetings
+
+## All of my features for **this milestone**
+
+### **Feature**: Filtering submissions 
+- **Description**: Filter submissions based on date sent/received, and video submission status (submitted or not)
+- **Issue number**: issue #162
+- **Context**: still working on this from last week as I had to change the way I originally filtered to enable stackable filters and complete the sidebar UI
+
+## Status of work for the **last week** (in-progress or completed)
+- feature complete (needs reviews to be merged)
+
+## Issue number reference
+- Issue #162 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/162)
+
+# Weekly Personal Log (February 5th-11th)
+
+## Screenshot from peer eval
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/a05d7908-0da6-46eb-90f9-a062517c54ac)
+
+## Non-feature work
+- team meetings
+- Peer evaluation
+
+## All of my features for **this milestone**
+
+### **Feature**: Filtering submissions 
+- **Description**: Filter submissions based on date sent/received, and video submission status (submitted or not)
+- **Issue number**: issue #162
+- **Context**: see draft pull request for my work this week
+
+## Status of work for the **last week** (in-progress or completed)
+- filtering by video submission status complete
+- working on a minor bug for date filtering
+- working on UI of filtering sidebar menu
+- overall feature still in progress
+
+## Issue number reference
+- Issue #162 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/162)
+
 # Weekly Personal Log (January 29nd-February 4th)
 
 ## Screenshot from peer eval
