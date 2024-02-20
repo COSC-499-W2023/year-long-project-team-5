@@ -62,7 +62,6 @@ export function Submissions() {
       const condition = submission.adminId === Auth.user.username;
       return condition;
     });
-    // uncomment when we implement submissions
     await Promise.all(
       filteredSubmissions.map(async (submission) => {
         if (submission.Video && submission.Video.videoURL) {
@@ -85,14 +84,12 @@ export function Submissions() {
 
     //filter based on video status (submitted or not)
     filteredSubmissions = submissions.filter(submission => {
-      if(videoStatus === ''){
-        return submissions;
-      } else if (videoStatus === 'submitted') {
+      if (videoStatus === 'submitted') {
         return submission.Video && submission.Video.videoURL;
       } else if (videoStatus === 'noVideo') {
         return !submission.Video || !submission.Video.videoURL;
       } else {
-        return null;
+        return submissions;
       }
     });
 
