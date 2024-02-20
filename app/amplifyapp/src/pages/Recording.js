@@ -26,7 +26,7 @@ import {
  */
 
 export function Recording(){
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [windowWidth] = useState(window.innerWidth);
     const resizeCenterComps = (windowWidth) => {
       return {
           width: (windowWidth > 1024) ? '50%' : (windowWidth > 600) ? '80%' : '100%',
