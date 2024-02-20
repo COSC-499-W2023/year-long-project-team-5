@@ -2,20 +2,18 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
-import {API, Storage, Auth } from 'aws-amplify';
+import {API, Auth, Amplify } from 'aws-amplify';
 import {
     Button,
     Flex,
     TextField,
-    View,
-    Heading,
     Card, 
     useTheme,
     Alert
   } from '@aws-amplify/ui-react';
-  import { listSubmissions } from "../graphql/queries";
+import { getSubmissionByOTP } from "../Helpers/Getters"
+
 import {
-  createVideo as createVideoMutation,
   createUser as createUserMutation,
   createSubmission as createSubmissionMutation
 } from "../graphql/mutations";
@@ -61,10 +59,14 @@ export function VideoRequestForm(){
       //this should store what is submitted in the form using states:
       setSubmittedEmail(form.get("email")) // only retaining email for now.
       let userId = user.data.createUser.id
+      let otp = await generateOTP()
+
       const data = {
         adminId: Auth.user.username,
+        adminName: Auth.user.attributes.name,
         note: form.get("description"),
-        submissionUserId: userId
+        submissionUserId: userId,
+        otpCode: otp
       };
       await API.graphql({
         query: createSubmissionMutation,
@@ -112,6 +114,31 @@ export function VideoRequestForm(){
     }
 
 
+
+    async function generateOTP() {
+      //Some gross config code for the generation API since v5 sucks:(
+      Amplify.configure({
+        API: {
+          endpoints: [
+            {
+              name: 'OTP API',
+              endpoint: 'https://bl8n32nbn5.execute-api.ca-central-1.amazonaws.com/otp_test'
+            }
+          ]
+        }
+      });
+      let tempOTP = ['null']
+      let dataJSON = ''
+      do {
+        let data = await API.post('OTP API', '/generate', {})
+        dataJSON = JSON.parse(data.body);
+        //Search and thus compare OTP against database
+        tempOTP = await getSubmissionByOTP(dataJSON.otp);
+        //keep looping if comparison comes back with a results
+      } while (tempOTP.length !== 0)
+
+      return(dataJSON.otp);
+    }
 
     return (
       <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle} >

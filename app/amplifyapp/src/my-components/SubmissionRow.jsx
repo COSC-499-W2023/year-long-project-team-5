@@ -1,5 +1,6 @@
 import * as React from "react";
 import {TableRow,TableCell, Text, Button } from "@aws-amplify/ui-react";
+import { VideoPreviewButton } from "./VideoPreviewButton";
 
 /**
  * SubmissionRow is intended to be the data row for each submission (to display info better on larger screens)
@@ -22,11 +23,6 @@ export const SubmissionRow = (props) => {
  * @returns {JSX.Element}
  */
 
-    //const navigate = useNavigate();
-    const handleButtonClick = () => {
-        // Navigate to the '/Submission' page when the button is clicked - should be different custom page!
-        //navigate('/Submission');
-    };
     return(
         <TableRow className='subRow'>
             <TableCell className  = 'subClientName' width='15%'> {props.name === undefined || props.name === null ? <Text variation='tertiary'>N/A</Text> :  <Text> {props.name} </Text> }</TableCell>
@@ -35,7 +31,7 @@ export const SubmissionRow = (props) => {
             <TableCell className = 'subDS' width='10%'> {props.dateSent}</TableCell>
             <TableCell className = 'subDR' width='10%'> {props.videoLink===null || props.dateReceived ==null ?  <Text variation='tertiary'>N/A</Text> : <Text>{props.dateReceived}</Text>}</TableCell>
             {/* need to change the onclick function in line 38 to be able to address issue 102 */}
-            <TableCell className='subLink' width='5%'> {props.videoLink===null || props.dateReceived ==null ? <Button variation="primary" size='small' disabled>No Video Received</Button> : <Button variation="primary" size='small' width='100%' onClick={()=>{window.open(props.videoLink)}}>Video</Button>}</TableCell>
+            <TableCell className='subLink' width='5%'> {props.videoLink===null || props.dateReceived ==null ? <Button variation="primary" size='small' disabled>No Video Received</Button> : <VideoPreviewButton videoUrl={props.videoLink} name = {props.name} description={props.description}></VideoPreviewButton>}</TableCell>
         </TableRow>
     );
 }

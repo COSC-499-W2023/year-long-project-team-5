@@ -3,34 +3,31 @@ import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
 import { getSubmissions } from "../Helpers/Getters";
-import { Auth, API, Storage } from 'aws-amplify';
+import { Auth, Storage } from 'aws-amplify';
 import { filterSubmissions } from "../Helpers/Search";
 import {
   Grid,
   Flex,
   View,
-  useAuthenticator,
   Heading,
   useTheme,
   SearchField,
   ToggleButton,
   ToggleButtonGroup
 } from '@aws-amplify/ui-react';
-import { listSubmissions } from "../graphql/queries";
 
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
 import { SubmissionTable } from '../my-components/SubmissionTable'
 
 /**
- * dashboard TODO: finish docs
+ * Submissions TODO: finish docs
  * @param {Object} props - prop1 name
  * @returns JSX.Element
  * @example
- * <Dashboard></Dashboard>
+ * <Submissions></Submissions>
  */
-export function Dashboard() {
-  const { user, route } = useAuthenticator((context) => [context.user, context.route]);
+export function Submissions() {
   const [submissions, setSubmissions] = useState([]);
   const [filteredsubmissions, setFilteredSubmissions] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);

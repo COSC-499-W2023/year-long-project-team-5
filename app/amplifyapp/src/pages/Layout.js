@@ -1,6 +1,6 @@
 import {NavBar} from '../my-components/NavBar';
 import React from "react";
-import {useTheme,  View, Link as AmplifyLink} from '@aws-amplify/ui-react';
+import { useTheme, View  } from '@aws-amplify/ui-react';
 
 /**
  * Layout TODO: finish docs

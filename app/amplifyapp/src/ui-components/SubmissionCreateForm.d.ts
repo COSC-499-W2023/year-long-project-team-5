@@ -25,11 +25,15 @@ export declare type SubmissionCreateFormInputValues = {
     adminId?: string;
     note?: string;
     submittedAt?: string;
+    otpCode?: string;
+    adminName?: string;
 };
 export declare type SubmissionCreateFormValidationValues = {
     adminId?: ValidationFunction<string>;
     note?: ValidationFunction<string>;
     submittedAt?: ValidationFunction<string>;
+    otpCode?: ValidationFunction<string>;
+    adminName?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type SubmissionCreateFormOverridesProps = {
@@ -37,6 +41,8 @@ export declare type SubmissionCreateFormOverridesProps = {
     adminId?: PrimitiveOverrideProps<TextFieldProps>;
     note?: PrimitiveOverrideProps<TextFieldProps>;
     submittedAt?: PrimitiveOverrideProps<TextFieldProps>;
+    otpCode?: PrimitiveOverrideProps<TextFieldProps>;
+    adminName?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type SubmissionCreateFormProps = React.PropsWithChildren<{
     overrides?: SubmissionCreateFormOverridesProps | undefined | null;
