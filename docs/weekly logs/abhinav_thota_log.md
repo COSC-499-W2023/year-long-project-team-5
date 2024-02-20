@@ -1,22 +1,3 @@
-# Personal log (Jan 05-Feb 11)
-## Weekly work done from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/35/student/evaluated/1569/)
-![T2 W4 work done](https://i.imgur.com/tQE59PZ.png)
-
-Features worked on:
-## Issue [#161](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/161)
-
-Feature: Status alerts rendered on form to show success/error messages
-
-Description of Changes:
-(Write a brief description of your changes.)
-
-    wrote a helper function that currently validates email by checking it against a RegEx expression
-    renders either a success alert or error alert when user submits the form.
-
-Status: completed, with automated testing to see if the email validation works. Might be a better way to check for validation. But ready to be pushed and merged as there is more feedback in the form.
-
-Next week's goal is to make recording page repsonsive and functional on mobile.
-
 # Personal log (Jan 29-Feb 05)
 ## Weekly work done from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/35/student/evaluated/1569/)
 ![T2 W4 work done](https://i.imgur.com/oRZ78Za.png)

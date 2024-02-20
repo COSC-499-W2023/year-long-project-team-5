@@ -1,4 +1,4 @@
-# Team 5 Weekly Checkpoint (Term 2 Week 4)
+# Team 5 Weekly Checkpoint (Term 2 Week 3)
 ## January 29 - February 4
 <table>
   <tr><th>Name</th><th>Student #</th><th>Username</th></tr>

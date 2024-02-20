@@ -121,7 +121,6 @@ export default function WebcamVideo() {
       const videoNameS3 = "video" + randNum + ".webm";
       const data = {
         videoURL: videoNameS3, // videoNameS3 is the key (not the url) for the s3 bucket, get video URL with Storage.get(name)
-        otpCode: null //otp code will be erased upon upload
       };
       
       try {

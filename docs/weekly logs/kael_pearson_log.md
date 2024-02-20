@@ -1,34 +1,3 @@
-# Weekly Personal Log S2 Week 5
-
-## Screenshot from peer eval
-<img src="https://i.imgur.com/4tPTLgj.png">
-
-## Non-feature work
-- Team meetings
-- AWS Config
-
-## All of my features for **this week**
-### **Feature**: Automatic emailing
-- **Description**: Submission into emailing 
-- **Issue number**: #128
-- **Context**: Merged this week!
-- 
-### **Feature**: Lambda triggers on S3 Bucket video input
-- **Description**: Video needs to prompt a trigger so that the videos get processed by the blur function
-- **Issue number**: #11
-- **Context**: Completed triggers and uploading, need to improve video blur from rekognition
-
-
-## Status of work for the week
-- Automatic emailing (done)
-- Video Blur (In progess)
-
-## Issue number reference
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/63]
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/124]
-## Other notes
-
-
 # Weekly Personal Log S2 Week 4 (Jan 29-Feb 05) 
 
 ## Screenshot from peer eval

@@ -27,16 +27,12 @@ export default function SubmissionUpdateForm(props) {
     adminId: "",
     note: "",
     submittedAt: "",
-    otpCode: "",
-    adminName: "",
   };
   const [adminId, setAdminId] = React.useState(initialValues.adminId);
   const [note, setNote] = React.useState(initialValues.note);
   const [submittedAt, setSubmittedAt] = React.useState(
     initialValues.submittedAt
   );
-  const [otpCode, setOtpCode] = React.useState(initialValues.otpCode);
-  const [adminName, setAdminName] = React.useState(initialValues.adminName);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = submissionRecord
@@ -45,8 +41,6 @@ export default function SubmissionUpdateForm(props) {
     setAdminId(cleanValues.adminId);
     setNote(cleanValues.note);
     setSubmittedAt(cleanValues.submittedAt);
-    setOtpCode(cleanValues.otpCode);
-    setAdminName(cleanValues.adminName);
     setErrors({});
   };
   const [submissionRecord, setSubmissionRecord] =
@@ -70,8 +64,6 @@ export default function SubmissionUpdateForm(props) {
     adminId: [],
     note: [],
     submittedAt: [],
-    otpCode: [],
-    adminName: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -119,8 +111,6 @@ export default function SubmissionUpdateForm(props) {
           adminId: adminId ?? null,
           note: note ?? null,
           submittedAt: submittedAt ?? null,
-          otpCode: otpCode ?? null,
-          adminName: adminName ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -184,8 +174,6 @@ export default function SubmissionUpdateForm(props) {
               adminId: value,
               note,
               submittedAt,
-              otpCode,
-              adminName,
             };
             const result = onChange(modelFields);
             value = result?.adminId ?? value;
@@ -212,8 +200,6 @@ export default function SubmissionUpdateForm(props) {
               adminId,
               note: value,
               submittedAt,
-              otpCode,
-              adminName,
             };
             const result = onChange(modelFields);
             value = result?.note ?? value;
@@ -242,8 +228,6 @@ export default function SubmissionUpdateForm(props) {
               adminId,
               note,
               submittedAt: value,
-              otpCode,
-              adminName,
             };
             const result = onChange(modelFields);
             value = result?.submittedAt ?? value;
@@ -257,62 +241,6 @@ export default function SubmissionUpdateForm(props) {
         errorMessage={errors.submittedAt?.errorMessage}
         hasError={errors.submittedAt?.hasError}
         {...getOverrideProps(overrides, "submittedAt")}
-      ></TextField>
-      <TextField
-        label="Otp code"
-        isRequired={false}
-        isReadOnly={false}
-        value={otpCode}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              adminId,
-              note,
-              submittedAt,
-              otpCode: value,
-              adminName,
-            };
-            const result = onChange(modelFields);
-            value = result?.otpCode ?? value;
-          }
-          if (errors.otpCode?.hasError) {
-            runValidationTasks("otpCode", value);
-          }
-          setOtpCode(value);
-        }}
-        onBlur={() => runValidationTasks("otpCode", otpCode)}
-        errorMessage={errors.otpCode?.errorMessage}
-        hasError={errors.otpCode?.hasError}
-        {...getOverrideProps(overrides, "otpCode")}
-      ></TextField>
-      <TextField
-        label="Admin name"
-        isRequired={false}
-        isReadOnly={false}
-        value={adminName}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              adminId,
-              note,
-              submittedAt,
-              otpCode,
-              adminName: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.adminName ?? value;
-          }
-          if (errors.adminName?.hasError) {
-            runValidationTasks("adminName", value);
-          }
-          setAdminName(value);
-        }}
-        onBlur={() => runValidationTasks("adminName", adminName)}
-        errorMessage={errors.adminName?.errorMessage}
-        hasError={errors.adminName?.hasError}
-        {...getOverrideProps(overrides, "adminName")}
       ></TextField>
       <Flex
         justifyContent="space-between"

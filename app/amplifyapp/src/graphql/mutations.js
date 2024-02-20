@@ -26,8 +26,6 @@ export const createSubmission = /* GraphQL */ `
       }
       note
       submittedAt
-      otpCode
-      adminName
       createdAt
       updatedAt
       submissionVideoId
@@ -61,8 +59,6 @@ export const updateSubmission = /* GraphQL */ `
       }
       note
       submittedAt
-      otpCode
-      adminName
       createdAt
       updatedAt
       submissionVideoId
@@ -96,8 +92,6 @@ export const deleteSubmission = /* GraphQL */ `
       }
       note
       submittedAt
-      otpCode
-      adminName
       createdAt
       updatedAt
       submissionVideoId

@@ -1,32 +1,3 @@
-# Weekly Personal Log S2 Week 5
-
-## Screenshot from peer eval
-<img src="https://i.imgur.com/bg5b7ku.png">
-
-## Non-feature work
-- Team meetings
-- Reviewing PRs
-
-## All of my features for **this week**
-### **Feature**: Automatic emailing
-- **Description**: When the admin sends a submission and types in the clients email, it should notify the client by email and send a link to the record page
-- **Issue number**: #128
-- **Context**: Merged this week!
-
-### **Feature**: OTP Codes
-- **Description**: We need unique codes on the email to allow patients to access the patient portal
-- **Issue number**: #64
-- **Context**: Josh is mainly working on this issue, but we are collaborating as the codes need to be emailed and IM working on emails
-
-## Status of work for the week
-- Automatic emailing (done)
-- OTP Codes (in progress)
-
-## Issue number reference
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/128]
-- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/64]
-## Other notes
-
 # Weekly Personal Log S2 Week 4
 
 ## Screenshot from peer eval

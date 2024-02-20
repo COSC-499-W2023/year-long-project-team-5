@@ -1,7 +1,6 @@
 # Team 5 Project Github (Option 3)
-![darkBG-ezgif com-effects(1)](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/36575231/09d7017e-7226-40fe-bf3d-62fef6d73d0e)
 
-[Current Week: Term 2 Week 6](https://github.com/orgs/COSC-499-W2023/projects/43)
+[Current Week: Term 2 Week 5](https://github.com/orgs/COSC-499-W2023/projects/43)
 
 <table>
   <tr><th>Name</th><th>Student #</th><th>Username</th></tr>
