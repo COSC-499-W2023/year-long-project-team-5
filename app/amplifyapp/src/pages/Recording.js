@@ -58,7 +58,7 @@ export function Recording(){
         let unValidatedOTP = form.get("code");
 
         let data = await getSubmissionByOTP(unValidatedOTP);
-        if (data.length == 0) {
+        if (data.length === 0) {
             setErrorCode(true);
             event.target.reset();
             return
