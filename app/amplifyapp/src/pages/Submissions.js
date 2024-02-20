@@ -4,12 +4,13 @@ import "@aws-amplify/ui-react/styles.css";
 import '../my-components/filterMenu.css';
 
 import { getSubmissions } from "../Helpers/Getters";
-import { Auth, Storage } from 'aws-amplify';
+import { Auth, API, Storage } from 'aws-amplify';
 import { filterSubmissions } from "../Helpers/Search";
 import {
   Grid,
   Flex,
   View,
+  useAuthenticator,
   Heading,
   useTheme,
   SearchField,
@@ -20,6 +21,8 @@ import {
   Text, 
   Button
 } from '@aws-amplify/ui-react';
+import { listSubmissions } from "../graphql/queries";
+
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
 import { SubmissionTable } from '../my-components/SubmissionTable';
@@ -34,6 +37,7 @@ import { CiFilter } from "react-icons/ci";
  * <Submissions></Submissions>
  */
 export function Submissions() {
+  const { user, route } = useAuthenticator((context) => [context.user, context.route]);
   const [submissions, setSubmissions] = useState([]);
   const [filteredsubmissions, setFilteredSubmissions] = useState([])
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
@@ -85,19 +89,17 @@ export function Submissions() {
 
     //filter based on video status (submitted or not)
     filteredSubmissions = submissions.filter(submission => {
-      if(videoStatus === ''){return submissions;}
+      if(videoStatus == ''){return submissions;}
       else if (videoStatus === 'submitted') {
         return submission.Video && submission.Video.videoURL;
       } else if (videoStatus === 'noVideo') {
         return !submission.Video || !submission.Video.videoURL;
-      } else {
-        return null
       }
     });
 
     //filter based on date request was sent
     filteredSubmissions = filteredSubmissions.filter(submission => {
-      if (selectedSentDate.toLocaleDateString() === 'Invalid Date') return submissions; // If no date is selected, return all submissions
+      if (selectedSentDate.toLocaleDateString() == 'Invalid Date') return submissions; // If no date is selected, return all submissions
       const submissionDate = new Date(submission.createdAt);
       return (
         selectedSentDate.getUTCDate() === submissionDate.getDate() &&
