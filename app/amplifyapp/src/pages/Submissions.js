@@ -85,17 +85,20 @@ export function Submissions() {
 
     //filter based on video status (submitted or not)
     filteredSubmissions = submissions.filter(submission => {
-      if(videoStatus == ''){return submissions;}
-      else if (videoStatus === 'submitted') {
+      if(videoStatus === ''){
+        return submissions;
+      } else if (videoStatus === 'submitted') {
         return submission.Video && submission.Video.videoURL;
       } else if (videoStatus === 'noVideo') {
         return !submission.Video || !submission.Video.videoURL;
+      } else {
+        return null;
       }
     });
 
     //filter based on date request was sent
     filteredSubmissions = filteredSubmissions.filter(submission => {
-      if (selectedSentDate.toLocaleDateString() == 'Invalid Date') return submissions; // If no date is selected, return all submissions
+      if (selectedSentDate.toLocaleDateString() === 'Invalid Date') return submissions; // If no date is selected, return all submissions
       const submissionDate = new Date(submission.createdAt);
       return (
         selectedSentDate.getUTCDate() === submissionDate.getDate() &&
@@ -131,7 +134,7 @@ export function Submissions() {
       return(
         <SubmissionTable
           rowsToDisplay={filteredsubmissions.map((submission) => (
-            <SubmissionRow
+            <SubmissionRow key={submission.User.id}
               name={submission.User.name}
               email={submission.User.email}
               description={submission.note}
