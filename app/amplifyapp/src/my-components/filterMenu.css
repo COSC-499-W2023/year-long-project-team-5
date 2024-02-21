@@ -1,0 +1,34 @@
+#aside {
+  height: 100%;  
+  position:absolute;
+  width: fit-content;
+  z-index: 1;
+  left:0;
+  top:65px;
+  padding:10px;
+  transform: translate(-100%);
+  transition: 0.15s ease transform;
+}
+
+  #aside.visible {
+    transform: translateX(0);
+  }
+
+  .content.pushed{
+    position:absolute;
+    width: 80%;
+    transition: 0.15s ease transform;
+    transform: translateX(25%);
+  }
+
+  .content{
+    transition: 0.15s ease transform;
+    transform: translateX(0);
+  } 
+
+  .filter_closeButton{
+    cursor:pointer;
+  }
+  .sidebar-toggle{
+    cursor:pointer;
+  }
