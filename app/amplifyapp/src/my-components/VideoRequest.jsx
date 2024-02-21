@@ -32,33 +32,27 @@ export function VideoRequestForm(){
     return emailRegex.test(emailInput);
   };
 
-  const handleEmailOnChange = (event) => {
-    const emailValue = event.target.value;
+  const handleFieldOnBlur = (validationFunction, errorMessage, event) => {
+    const fieldValue = event.target.value;
     let newErrors = new Set(errorMessages);
-
-    if (!validateEmail(emailValue)) {
-        newErrors.add("Please enter a valid email address.");
+  
+    if (!validationFunction(fieldValue)) {
+      newErrors.add(errorMessage);
     } else {
-        newErrors.delete("Please enter a valid email address.");
+      newErrors.delete(errorMessage);
     }
-
+  
     setErrorMessages(newErrors);
     setFormWrong(newErrors.size > 0);
   };
 
-  const handleDescriptionOnChange = (event) => {
-    const descriptionValue = event.target.value;
-    let newErrors = new Set(errorMessages);
+  const handleEmailOnBlur = (event) => {
+    handleFieldOnBlur(validateEmail, "Please enter a valid email address.", event);
+  }
 
-    if (descriptionValue.length < 20) {
-        newErrors.add("Description must be at least 20 characters.");
-    } else {
-        newErrors.delete("Description must be at least 20 characters.");
-    }
-
-    setErrorMessages(newErrors);
-    setFormWrong(newErrors.size > 0);
-  };
+  const handleDescriptionOnBlur = (event) => {
+    handleFieldOnBlur((description) => description.length >= 20, "Description must be at least 20 characters.", event);
+  }
 
   async function createUser(email,name) {
     const data = {
@@ -187,7 +181,7 @@ export function VideoRequestForm(){
             label="Recipient Email"
             type="email"
             required
-            onChange={handleEmailOnChange}
+            onBlur ={handleEmailOnBlur}
             hasError={isFormWrong && errorMessages.has("Please enter a valid email address.")}
           />
           <TextAreaField
@@ -197,7 +191,7 @@ export function VideoRequestForm(){
             inputStyles={{
               paddingBottom: "3em",
             }}
-            onChange = {handleDescriptionOnChange}
+            onBlur = {handleDescriptionOnBlur}
             hasError = {isFormWrong && errorMessages.has("Description must be at least 20 characters.")}
             required
           />
