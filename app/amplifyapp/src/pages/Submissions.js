@@ -57,11 +57,6 @@ export function Submissions() {
   }, []);
   async function fetchSubmissions() {
     let filteredSubmissions = await getSubmissions()
-    filteredSubmissions = filteredSubmissions.filter((submission) => {
-      // filter admin submissions
-      const condition = submission.adminId === Auth.user.username;
-      return condition;
-    });
     await Promise.all(
       filteredSubmissions.map(async (submission) => {
         if (submission.Video && submission.Video.videoURL) {
