@@ -4,7 +4,7 @@ import "@aws-amplify/ui-react/styles.css";
 import '../my-components/filterMenu.css';
 
 import { getSubmissions } from "../Helpers/Getters";
-import { Auth, Storage } from 'aws-amplify';
+import {  Storage } from 'aws-amplify';
 import { filterSubmissions } from "../Helpers/Search";
 import {
   Grid,
@@ -40,6 +40,10 @@ export function Submissions() {
   const [dashView, setDashView] = useState('table');
   const [sideBarToggled, setSideBarToggled] = useState(false);
   const sidebarRef = useRef(null);
+  const { tokens } = useTheme();
+  const [sentDate, setSentDate] = useState('');
+  const [receivedDate, setReceivedDate] = useState('');
+  const [videoStatus, setVideoStatus] = useState('');
 
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
   useEffect(() => {
@@ -51,10 +55,12 @@ export function Submissions() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
   //this useEffect is used to fetch submissions data from the database: calls fetchsubmissions() which is below..
   useEffect(() => {
     fetchSubmissions();
   }, []);
+
   async function fetchSubmissions() {
     let filteredSubmissions = await getSubmissions()
     await Promise.all(
@@ -109,9 +115,9 @@ export function Submissions() {
         selectedReceivedDate.getUTCFullYear() === submissionDate.getFullYear()
       );
     });
-    
     setFilteredSubmissions(filteredSubmissions);
   }
+
   //clear filters and the current filter values
   function clearFilters(){
     setFilteredSubmissions(submissions);
@@ -155,17 +161,12 @@ export function Submissions() {
       );
     }
   }
-  const { tokens } = useTheme();
-  const [sentDate, setSentDate] = useState('');
-  const [receivedDate, setReceivedDate] = useState('');
-  const [videoStatus, setVideoStatus] = useState('');
 
   return (
     <View className="App">
       <Flex direction = 'row' id = 'aside' ref = {sidebarRef} className ={`sidebar ${sideBarToggled ? "visible" : ""} `} backgroundColor={tokens.colors.background.secondary}>
       <Flex alignItems={'center'} alignContent={'flex-start'}  direction = 'column' backgroundColor={tokens.colors.background.secondary}>
       <Flex alignItems = {'flex-end'} justifyContent={'flex-end'}><Text><IoClose className = 'filter_closeButton' size='30' onClick={()=>setSideBarToggled(false)}/></Text></Flex>
-
         <Text>Filter by submission status</Text>
         <SelectField 
           size = 'small' width = '100%' 
@@ -196,27 +197,27 @@ export function Submissions() {
           value = {receivedDate}
           onChange={(e) => setReceivedDate(e.target.value)}
         />
-      <Button id = "submitFilters" onClick={() => handleFilteringSubmissions(receivedDate, sentDate, videoStatus)}>Apply Filters</Button>
-      <Button variation = {'warning'} id = "clearFilters" onClick = {() => clearFilters()}>Clear Filters</Button>
+        <Button id = "submitFilters" onClick={() => handleFilteringSubmissions(receivedDate, sentDate, videoStatus)}>Apply Filters</Button>
+        <Button variation = {'warning'} id = "clearFilters" onClick = {() => clearFilters()}>Clear Filters</Button>
       </Flex>
       </Flex>
       <Flex className ={`content ${sideBarToggled ? "pushed" : ""} `} direction={'column'}>
-      <Heading level={2}>Your Video Submissions</Heading>
-      <Flex alignItems="center" justifyContent="center">
-      <Text>
-        <CiFilter size = '30' className = 'sidebar-toggle' onClick={()=>setSideBarToggled(!sideBarToggled)}/>
-      </Text>
-        <SearchField variation = 'quiet' textAlign="left" placeholder="Search submissions..." padding={tokens.space.large} onChange={(e) => setFilteredSubmissions(filterSubmissions(e.target.value,submissions))} />
-        {!isMobile && (
-          <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
-            <ToggleButton value = "table"> Table </ToggleButton>
-            <ToggleButton value = "card"> Card </ToggleButton>
-          </ToggleButtonGroup>
-        )}
-      </Flex>
-      <View id = 'submissions' padding={tokens.space.large}>
-        {renderSubmissions()}
-      </View>
+        <Heading level={2}>Your Video Submissions</Heading>
+          <Flex alignItems="center" justifyContent="center">
+            <Text>
+              <CiFilter size = '30' className = 'sidebar-toggle' onClick={()=>setSideBarToggled(!sideBarToggled)}/>
+            </Text>
+            <SearchField variation = 'quiet' textAlign="left" placeholder="Search submissions..." padding={tokens.space.large} onChange={(e) => setFilteredSubmissions(filterSubmissions(e.target.value,submissions))} />
+            {!isMobile && (
+              <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
+                <ToggleButton value = "table"> Table </ToggleButton>
+                <ToggleButton value = "card"> Card </ToggleButton>
+              </ToggleButtonGroup>
+            )}
+          </Flex>
+        <View id = 'submissions' padding={tokens.space.large}>
+          {renderSubmissions()}
+        </View>
       </Flex>
     </View>
   )
