@@ -45,8 +45,13 @@ export const listSubmissions = /* GraphQL */ `
         adminId
         note
         submittedAt
+        createdAt
         otpCode
         adminName
+        updatedAt
+        submissionVideoId
+        submissionUserId
+        __typename
         User {
           id
           email
