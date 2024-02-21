@@ -4,7 +4,13 @@ import { GRAPHQL_AUTH_MODE } from "@aws-amplify/auth"
 
 // fetches submissions from the database
 export async function getSubmissions() {
-      const apiData = await API.graphql({ query: listSubmissions });
+      const apiData = await API.graphql(graphqlOperation(listSubmissions,
+            {
+                  filter: {
+                        adminId: { eq: Auth.userAttributes.username }
+                  }, limit: 1000
+            }
+      ));
       return apiData.data.listSubmissions.items;
 }
 
