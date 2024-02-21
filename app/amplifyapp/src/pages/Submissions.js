@@ -116,7 +116,6 @@ export function Submissions() {
     });
     
     setFilteredSubmissions(filteredSubmissions);
-
   }
   //clear filters and the current filter values
   function clearFilters(){
