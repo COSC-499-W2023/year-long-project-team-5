@@ -147,7 +147,7 @@ export function Submissions() {
       return (
         <Grid templateColumns={gridLayout} gap={tokens.space.small}>
           {filteredsubmissions.map((submission) => (
-            <SubmissionCard
+            <SubmissionCard key={submission.User.id}
               margin="1rem"
               name={submission.User.name}
               email={submission.User.email}

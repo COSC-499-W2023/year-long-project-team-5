@@ -45,6 +45,7 @@ export const listSubmissions = /* GraphQL */ `
         adminId
         note
         submittedAt
+        createdAt
         otpCode
         adminName
         User {
