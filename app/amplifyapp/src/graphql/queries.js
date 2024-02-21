@@ -60,6 +60,13 @@ export const listSubmissions = /* GraphQL */ `
           updatedAt
           __typename
         }
+        Video {
+          id
+          videoURL
+          createdAt
+          updatedAt
+          __typename
+        }
       }
     }
   }
