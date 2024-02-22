@@ -31,21 +31,23 @@ export function VideoRequestForm(){
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(emailInput);
   };
+  const validateDescription = (description) => description.length >= 20;
 
   const handleFieldOnBlur = (validationFunction, errorMessage, event) => {
     const fieldValue = event.target.value;
+    let newErrors = new Set(errorMessages);
     if (fieldValue === "") {
-      setFormWrong(false);
+      newErrors.delete(errorMessage);
+      newErrors.size === 0 && setFormWrong(false);
+      setErrorMessages(newErrors);
       return;
     }
-    let newErrors = new Set(errorMessages);
   
-    if (!validationFunction(fieldValue)) {
-      newErrors.add(errorMessage);
-    } else {
+    if (validationFunction(fieldValue) === true) {
       newErrors.delete(errorMessage);
+    } else {
+      newErrors.add(errorMessage);
     }
-  
     setErrorMessages(newErrors);
     setFormWrong(newErrors.size > 0);
   };
@@ -55,7 +57,7 @@ export function VideoRequestForm(){
   }
 
   const handleDescriptionOnBlur = (event) => {
-    handleFieldOnBlur((description) => description.length >= 20, "Description must be at least 20 characters.", event);
+    handleFieldOnBlur(validateDescription, "Description must be at least 20 characters.", event);
   }
 
   async function createUser(email,name) {
