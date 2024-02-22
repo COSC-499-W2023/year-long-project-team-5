@@ -14,8 +14,13 @@ import {
 } from "../graphql/mutations";
 import { useNavigate } from "react-router-dom";
 import "./VideoRecorder.css"
+import { getSupportedMimeTypes, getFileExtensionForMimeType } from "../Helpers/Other";
+
+const bestMimeType = getSupportedMimeTypes("video")[0];
+const fileExt = getFileExtensionForMimeType(bestMimeType);
 
 export default function WebcamVideo(props) {
+  
   const webcamRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const [capturing, setCapturing] = useState(false);
@@ -50,7 +55,7 @@ export default function WebcamVideo(props) {
     if (recordedChunks.length > 0 && !capturing) {
       const blob = isMobile
   ? new Blob(recordedChunks, { type: "video/mp4" })
-  : new Blob(recordedChunks, { type: 'video/webm;codecs=vp8' });
+  : new Blob(recordedChunks, { type: bestMimeType });
        
       const url = URL.createObjectURL(blob);
       setVideoPreviewUrl(url);
@@ -67,7 +72,7 @@ export default function WebcamVideo(props) {
     setVideoPreviewUrl(null);
     try{
     mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
-      mimeType: 'video/webm;codecs=vp8'
+      mimeType: bestMimeType
     });
     }
     catch{
@@ -86,14 +91,14 @@ export default function WebcamVideo(props) {
     if (recordedChunks.length) {
       const blob = isMobile
   ? new Blob(recordedChunks, { type: "video/mp4" })
-  : new Blob(recordedChunks, { type: 'video/webm;codecs=vp8' });
+  : new Blob(recordedChunks, { type: bestMimeType });
        
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       document.body.appendChild(a);
       a.style = "display: none";
       a.href = url;
-      isMobile ? (a.download = "react-webcam-stream-capture.mp4"): (a.download = "react-webcam-stream-capture.webm")
+      isMobile ? (a.download = "react-webcam-stream-capture.mp4"): (a.download = "react-webcam-stream-capture" + fileExt)
       a.click();
       window.URL.revokeObjectURL(url);
     }
@@ -117,12 +122,12 @@ export default function WebcamVideo(props) {
       let videoId;
       if (recordedChunks.length && videoLoaded) {
       const blob = new Blob(recordedChunks, {
-        type: 'video/webm;codecs=vp8',
+        type: bestMimeType,
       });
 
       //UPLOAD VIDEO TO S3 DB, also make a entry in  the graphql videos table
       const randNum = parseInt(Math.random() * 10000000);
-      const videoNameS3 = "video" + randNum + ".webm";
+      const videoNameS3 = "video" + randNum + fileExt;
       const data = {
         videoURL: videoNameS3, // videoNameS3 is the key (not the url) for the s3 bucket, get video URL with Storage.get(name)
       };
