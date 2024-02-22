@@ -30,7 +30,7 @@ export function VideoRequestForm(){
   const [isFieldBeingEdited, setIsFieldBeingEdited] = useState(false); // New state variable
   const [errorMessages, setErrorMessages] = useState(new Set());
   const [submittedEmail, setSubmittedEmail] = useState(''); // State to store the submitted email
-
+  const [isSubmitting, setIsSubmitting] = useState(false); // New state variable
   
 
   const handleFieldEvent = (event, fieldType, eventAction) => {
@@ -77,7 +77,7 @@ export function VideoRequestForm(){
   
   const debounceHandleFieldEvent = debounce((event, fieldType, eventAction) => {
     handleFieldEvent(event, fieldType, eventAction);
-  }, 200);
+  }, 250);
 
   const debounceFieldBeingEdited = debounce(() => {
     setIsFieldBeingEdited(false);
@@ -102,33 +102,39 @@ export function VideoRequestForm(){
       return
     }
 
+    setIsSubmitting(true);
     const form = new FormData(event.target);
     // reset everything
     setIsFormSubmitted(false);
     setFormWrong(false);
     setErrorMessages([]);
 
+    try {
+      const user = await createUser(form.get("email"),form.get("name"));
+      //this should store what is submitted in the form using states:
+      setSubmittedEmail(form.get("email")) // only retaining email for now.
+      const userId = user.data.createUser.id
+      const otp = await generateOTP()
 
-    let user = await createUser(form.get("email"),form.get("name"));
-    //this should store what is submitted in the form using states:
-    setSubmittedEmail(form.get("email")) // only retaining email for now.
-    let userId = user.data.createUser.id
-    let otp = await generateOTP()
+      const data = {
+        adminId: Auth.user.username,
+        adminName: Auth.user.attributes.name,
+        note: form.get("description"),
+        submissionUserId: userId,
+        otpCode: otp
+      };
+      await API.graphql({
+        query: createSubmissionMutation,
+        variables: { input: data },
+      });
 
-    const data = {
-      adminId: Auth.user.username,
-      adminName: Auth.user.attributes.name,
-      note: form.get("description"),
-      submissionUserId: userId,
-      otpCode: otp
-    };
-    await API.graphql({
-      query: createSubmissionMutation,
-      variables: { input: data },
-    });
-
-    event.target.reset();
-    setIsFormSubmitted(true);
+      event.target.reset();
+      setIsFormSubmitted(true);
+    } catch (error) {
+      console.log('error creating submission:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
       // Set the form submission state to true
   }
     // these states and functions below are to help dynamically adjust the width of the parent Card component (i.e the form)
@@ -247,7 +253,13 @@ export function VideoRequestForm(){
             hasError = {isFormWrong && errorMessages.has("Description must be at least 20 characters.")}
             required
           />
-        <Button type="submit" variation="primary">Request Video</Button>
+        {/* change the rendering below so that it renders disabled button with loading while waiting for createSubmission (async) */}
+          <Button type="submit" variation="primary" isDisabled={isSubmitting}>
+            <Flex direction="row" gap="0.5em">
+              {isSubmitting && <Loader/>}
+              {isSubmitting ? "Sending...": "Send Request"}
+            </Flex>
+          </Button>
         </Flex>
       </Card>
     )
