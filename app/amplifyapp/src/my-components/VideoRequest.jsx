@@ -255,7 +255,7 @@ export function VideoRequestForm(){
           />
         {/* change the rendering below so that it renders disabled button with loading while waiting for createSubmission (async) */}
           <Button type="submit" variation="primary" isDisabled={isSubmitting}>
-            <Flex direction="row" gap="0.5em">
+            <Flex direction="row" alignItems = "center" gap="0.5em">
               {isSubmitting && <Loader/>}
               {isSubmitting ? "Sending...": "Send Request"}
             </Flex>
