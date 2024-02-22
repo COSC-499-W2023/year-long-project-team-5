@@ -11,7 +11,9 @@ import {
     useTheme,
     Alert,
     TextAreaField,
-    Text
+    Text,
+    Placeholder,
+    Loader
   } from '@aws-amplify/ui-react';
 import { getSubmissionByOTP } from "../Helpers/Getters"
 
@@ -24,6 +26,7 @@ export function VideoRequestForm(){
     
   const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
   const [isFormWrong, setFormWrong] = useState(false);
+  const [isFieldBeingEdited, setIsFieldBeingEdited] = useState(false); // New state variable
   const [errorMessages, setErrorMessages] = useState(new Set());
   const [submittedEmail, setSubmittedEmail] = useState(''); // State to store the submitted email
 
@@ -34,6 +37,7 @@ export function VideoRequestForm(){
   const validateDescription = (description) => description.length >= 20;
 
   const handleFieldOnBlur = (validationFunction, errorMessage, event) => {
+    setIsFieldBeingEdited(false);
     const fieldValue = event.target.value;
     let newErrors = new Set(errorMessages);
     if (fieldValue === "") {
@@ -58,6 +62,10 @@ export function VideoRequestForm(){
 
   const handleDescriptionOnBlur = (event) => {
     handleFieldOnBlur(validateDescription, "Description must be at least 20 characters.", event);
+  }
+
+  const handleOnChange = (event) => {
+    setIsFieldBeingEdited(true);
   }
 
   async function createUser(email,name) {
@@ -154,32 +162,43 @@ export function VideoRequestForm(){
     }
 
     const renderMessages = () => {
-      const errorHeading = errorMessages.size > 1 ? `There are ${errorMessages.size} issues` : 'Uh oh.';
-      const defaultHeading = 'Video Request Form';
-      const headingToDisplay = isFormWrong ? errorHeading : defaultHeading;
-      return(
-        <Alert
-      className={isFormWrong && "errorFeedback"}
-      textAlign='left'
-      variation={isFormWrong ? "error" : "info"} 
-      hasIcon={true} 
-      heading={headingToDisplay} 
-      marginBottom={'.5em'}
-      minHeight={'6em'}
-      >
-        {
-        isFormWrong ?
-          Array.from(errorMessages).map((message, index) => (
-            <Text as="p" variation="error" key={index}>{errorMessages.size > 1 ? `${index+1}. ${message}`: `${message}`}</Text>
-          ))
-        :
-            <Text as = "p" variation= "info">Sends an email with link to upload video.{<br></br>}</Text>      
+      // Determine the error heading based on the number of error messages.
+      const errorHeading = errorMessages.size > 1 ? `There are ${errorMessages.size} issues` : 'Uh oh.';     
+      const defaultHeading = isFieldBeingEdited && isFormWrong ? (
+        <Flex direction={'row'}><Loader/> <Text as="h3">Checking...</Text></Flex>
+      ) : 'Video Request Form';
+      const headingToDisplay = isFormWrong && !isFieldBeingEdited ? errorHeading : defaultHeading;
+      const className = isFormWrong ? (isFieldBeingEdited ? "infoFeedback" : "errorFeedback") : null;
+      const variation = isFormWrong ? (isFieldBeingEdited ? "default" : "error") : "info";
+    
+      // Function to determine which message content to display.
+      const messageContent = () => {
+        if (isFormWrong && !isFieldBeingEdited) {
+          return Array.from(errorMessages).map((message, index) => (
+            <Text as="p" variation="error" key={index}>{errorMessages.size > 1 ? `${index + 1}. ${message}` : message}</Text>
+          ));
+        } else if (!isFieldBeingEdited || (isFieldBeingEdited && !isFormWrong)) {
+          return <Text as="p" variation="info">Sends an email with a link to upload the video.</Text>;
         }
-      </Alert>
-      )
+      };
+    
+      return (
+        <Alert
+          className={className}
+          textAlign="left"
+          variation={variation}
+          hasIcon={true}
+          heading={headingToDisplay}
+          marginBottom={'.5em'}
+          minHeight={'6em'}
+        >
+          {messageContent()}
+        </Alert>
+      );
     }
     
-
+    
+    
     return (
       <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle} >
         {isFormSubmitted && (
@@ -202,7 +221,8 @@ export function VideoRequestForm(){
             type="email"
             required
             onBlur ={handleEmailOnBlur}
-            hasError={isFormWrong && errorMessages.has("Please enter a valid email address.")}
+            onChange={handleOnChange}
+            hasError={isFormWrong && errorMessages.has("Invalid email address.")}
           />
           <TextAreaField
             name="description"
@@ -212,6 +232,7 @@ export function VideoRequestForm(){
               paddingBottom: "3em",
             }}
             onBlur = {handleDescriptionOnBlur}
+            onChange = {handleOnChange}
             hasError = {isFormWrong && errorMessages.has("Description must be at least 20 characters.")}
             required
           />
