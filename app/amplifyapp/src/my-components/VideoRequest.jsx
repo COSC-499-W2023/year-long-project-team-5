@@ -12,7 +12,6 @@ import {
     Alert,
     TextAreaField,
     Text,
-    Placeholder,
     Loader
   } from '@aws-amplify/ui-react';
 import { getSubmissionByOTP } from "../Helpers/Getters"
@@ -36,36 +35,41 @@ export function VideoRequestForm(){
   };
   const validateDescription = (description) => description.length >= 20;
 
-  const handleFieldOnBlur = (validationFunction, errorMessage, event) => {
-    setIsFieldBeingEdited(false);
+  const handleFieldEvent = (event, fieldType, eventAction) => {
     const fieldValue = event.target.value;
+
     let newErrors = new Set(errorMessages);
-    if (fieldValue === "") {
-      newErrors.delete(errorMessage);
-      newErrors.size === 0 && setFormWrong(false);
-      setErrorMessages(newErrors);
-      return;
-    }
-  
-    if (validationFunction(fieldValue) === true) {
-      newErrors.delete(errorMessage);
-    } else {
-      newErrors.add(errorMessage);
+    const validationMap = {
+      email: {
+        validate: validateEmail,
+        errorMessage: "Invalid email address."
+      },
+      description: {
+        validate: validateDescription,
+        errorMessage: "Description must be at least 20 characters."
+      }
+    };
+    const { validate, errorMessage } = validationMap[fieldType];
+    const updateErrors = () => {
+      if (validate(fieldValue)) {
+        newErrors.delete(errorMessage);
+      } else {
+        newErrors.add(errorMessage);
+      }
+    };
+      if (eventAction === 'change') {
+      setIsFieldBeingEdited(true);
+      updateErrors();
+    } else if (eventAction === 'blur') {
+      setIsFieldBeingEdited(false);
+      if (fieldValue === "") {
+        newErrors.delete(errorMessage);
+      } else {
+        updateErrors();
+      }
     }
     setErrorMessages(newErrors);
     setFormWrong(newErrors.size > 0);
-  };
-
-  const handleEmailOnBlur = (event) => {
-    handleFieldOnBlur(validateEmail, "Invalid email address.", event);
-  }
-
-  const handleDescriptionOnBlur = (event) => {
-    handleFieldOnBlur(validateDescription, "Description must be at least 20 characters.", event);
-  }
-
-  const handleOnChange = (event) => {
-    setIsFieldBeingEdited(true);
   }
 
   async function createUser(email,name) {
@@ -162,16 +166,14 @@ export function VideoRequestForm(){
     }
 
     const renderMessages = () => {
-      // Determine the error heading based on the number of error messages.
       const errorHeading = errorMessages.size > 1 ? `There are ${errorMessages.size} issues` : 'Uh oh.';     
       const defaultHeading = isFieldBeingEdited && isFormWrong ? (
         <Flex direction={'row'}><Loader/> <Text as="h3">Checking...</Text></Flex>
       ) : 'Video Request Form';
       const headingToDisplay = isFormWrong && !isFieldBeingEdited ? errorHeading : defaultHeading;
-      const className = isFormWrong ? (isFieldBeingEdited ? "infoFeedback" : "errorFeedback") : null;
+      const className = isFormWrong ? (isFieldBeingEdited ? "checkingFeedback" : "errorFeedback") : "infoFeedback";
       const variation = isFormWrong ? (isFieldBeingEdited ? "default" : "error") : "info";
     
-      // Function to determine which message content to display.
       const messageContent = () => {
         if (isFormWrong && !isFieldBeingEdited) {
           return Array.from(errorMessages).map((message, index) => (
@@ -220,8 +222,8 @@ export function VideoRequestForm(){
             label="Recipient Email"
             type="email"
             required
-            onBlur ={handleEmailOnBlur}
-            onChange={handleOnChange}
+            onBlur ={(event) => handleFieldEvent(event, 'email', 'blur')}
+            onChange={(event) => handleFieldEvent(event, 'email', 'change')}
             hasError={isFormWrong && errorMessages.has("Invalid email address.")}
           />
           <TextAreaField
@@ -231,8 +233,8 @@ export function VideoRequestForm(){
             inputStyles={{
               paddingBottom: "3em",
             }}
-            onBlur = {handleDescriptionOnBlur}
-            onChange = {handleOnChange}
+            onBlur = {(event) => handleFieldEvent(event, 'description', 'blur')}
+            onChange = {(event) => handleFieldEvent(event, 'description', 'change')}
             hasError = {isFormWrong && errorMessages.has("Description must be at least 20 characters.")}
             required
           />
