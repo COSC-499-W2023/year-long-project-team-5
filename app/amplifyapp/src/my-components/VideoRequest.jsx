@@ -34,6 +34,10 @@ export function VideoRequestForm(){
 
   const handleFieldOnBlur = (validationFunction, errorMessage, event) => {
     const fieldValue = event.target.value;
+    if (fieldValue === "") {
+      setFormWrong(false);
+      return;
+    }
     let newErrors = new Set(errorMessages);
   
     if (!validationFunction(fieldValue)) {
@@ -47,7 +51,7 @@ export function VideoRequestForm(){
   };
 
   const handleEmailOnBlur = (event) => {
-    handleFieldOnBlur(validateEmail, "Please enter a valid email address.", event);
+    handleFieldOnBlur(validateEmail, "Invalid email address.", event);
   }
 
   const handleDescriptionOnBlur = (event) => {
@@ -147,18 +151,32 @@ export function VideoRequestForm(){
       return(dataJSON.otp);
     }
 
-    const renderErrorMessages = () =>
-    <Alert
-     className="errorFeedback"
-     textAlign='left'
-     variation="error"
-     hasIcon={true} 
-     heading={errorMessages.size > 1 ? `Uh oh. Please address these ${errorMessages.size} issues:` : 'Uh oh.'} 
-     marginBottom={'.5em'} >
-      {Array.from(errorMessages).map((message, index) => (
-        <Text as="p" variation="error" key={index}>{errorMessages.size > 1 ? `${index+1}. ${message}`: `${message}`}</Text>
-      ))}
-    </Alert>;
+    const renderMessages = () => {
+      const errorHeading = errorMessages.size > 1 ? `There are ${errorMessages.size} issues` : 'Uh oh.';
+      const defaultHeading = 'Video Request Form';
+      const headingToDisplay = isFormWrong ? errorHeading : defaultHeading;
+      return(
+        <Alert
+      className={isFormWrong && "errorFeedback"}
+      textAlign='left'
+      variation={isFormWrong ? "error" : "info"} 
+      hasIcon={true} 
+      heading={headingToDisplay} 
+      marginBottom={'.5em'}
+      minHeight={'6em'}
+      >
+        {
+        isFormWrong ?
+          Array.from(errorMessages).map((message, index) => (
+            <Text as="p" variation="error" key={index}>{errorMessages.size > 1 ? `${index+1}. ${message}`: `${message}`}</Text>
+          ))
+        :
+            <Text as = "p" variation= "info">Sends an email with link to upload video.{<br></br>}</Text>      
+        }
+      </Alert>
+      )
+    }
+    
 
     return (
       <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle} >
@@ -167,7 +185,7 @@ export function VideoRequestForm(){
             Your video request to {submittedEmail} has been sent!
           </Alert>
         )}
-        {isFormWrong && renderErrorMessages()} 
+        {renderMessages()} 
         <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em'>
           <TextField
             name="name"
