@@ -50,7 +50,7 @@ export default function WebcamVideo(props) {
     if (recordedChunks.length > 0 && !capturing) {
       const blob = isMobile
   ? new Blob(recordedChunks, { type: "video/mp4" })
-  : new Blob(recordedChunks, { type: "video/webm" });
+  : new Blob(recordedChunks, { type: 'video/webm;codecs=vp8' });
        
       const url = URL.createObjectURL(blob);
       setVideoPreviewUrl(url);
@@ -67,7 +67,7 @@ export default function WebcamVideo(props) {
     setVideoPreviewUrl(null);
     try{
     mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
-      mimeType: 'video/webm; codecs=vp9'
+      mimeType: 'video/webm;codecs=vp8'
     });
     }
     catch{
@@ -86,7 +86,7 @@ export default function WebcamVideo(props) {
     if (recordedChunks.length) {
       const blob = isMobile
   ? new Blob(recordedChunks, { type: "video/mp4" })
-  : new Blob(recordedChunks, { type: "video/webm" });
+  : new Blob(recordedChunks, { type: 'video/webm;codecs=vp8' });
        
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -117,7 +117,7 @@ export default function WebcamVideo(props) {
       let videoId;
       if (recordedChunks.length && videoLoaded) {
       const blob = new Blob(recordedChunks, {
-        type: "video/webm",
+        type: 'video/webm;codecs=vp8',
       });
 
       //UPLOAD VIDEO TO S3 DB, also make a entry in  the graphql videos table
