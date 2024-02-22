@@ -21,6 +21,8 @@ import {
   createSubmission as createSubmissionMutation
 } from "../graphql/mutations";
 
+import {debounce} from 'lodash';
+
 export function VideoRequestForm(){
     
   const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
@@ -29,15 +31,15 @@ export function VideoRequestForm(){
   const [errorMessages, setErrorMessages] = useState(new Set());
   const [submittedEmail, setSubmittedEmail] = useState(''); // State to store the submitted email
 
-  const validateEmail = (emailInput) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(emailInput);
-  };
-  const validateDescription = (description) => description.length >= 20;
+  
 
   const handleFieldEvent = (event, fieldType, eventAction) => {
     const fieldValue = event.target.value;
-
+    const validateEmail = (emailInput) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(emailInput);
+    };
+    const validateDescription = (description) => description.length >= 20;
     let newErrors = new Set(errorMessages);
     const validationMap = {
       email: {
@@ -60,6 +62,7 @@ export function VideoRequestForm(){
       if (eventAction === 'change') {
       setIsFieldBeingEdited(true);
       updateErrors();
+      debounceFieldBeingEdited();
     } else if (eventAction === 'blur') {
       setIsFieldBeingEdited(false);
       if (fieldValue === "") {
@@ -71,6 +74,14 @@ export function VideoRequestForm(){
     setErrorMessages(newErrors);
     setFormWrong(newErrors.size > 0);
   }
+  
+  const debounceHandleFieldEvent = debounce((event, fieldType, eventAction) => {
+    handleFieldEvent(event, fieldType, eventAction);
+  }, 200);
+
+  const debounceFieldBeingEdited = debounce(() => {
+    setIsFieldBeingEdited(false);
+  }, 3000);
 
   async function createUser(email,name) {
     const data = {
@@ -82,7 +93,7 @@ export function VideoRequestForm(){
       variables: { input: data },
     });
   }
-
+  
   async function createSubmission(event){
     event.preventDefault();
     //if form is wrong, don't submit and don't reset the form
@@ -199,8 +210,6 @@ export function VideoRequestForm(){
       );
     }
     
-    
-    
     return (
       <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle} >
         {isFormSubmitted && (
@@ -223,7 +232,7 @@ export function VideoRequestForm(){
             type="email"
             required
             onBlur ={(event) => handleFieldEvent(event, 'email', 'blur')}
-            onChange={(event) => handleFieldEvent(event, 'email', 'change')}
+            onChange={(event) => debounceHandleFieldEvent(event, 'email', 'change')}
             hasError={isFormWrong && errorMessages.has("Invalid email address.")}
           />
           <TextAreaField
@@ -234,7 +243,7 @@ export function VideoRequestForm(){
               paddingBottom: "3em",
             }}
             onBlur = {(event) => handleFieldEvent(event, 'description', 'blur')}
-            onChange = {(event) => handleFieldEvent(event, 'description', 'change')}
+            onChange = {(event) => debounceHandleFieldEvent(event, 'description', 'change')}
             hasError = {isFormWrong && errorMessages.has("Description must be at least 20 characters.")}
             required
           />
