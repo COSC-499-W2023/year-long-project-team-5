@@ -56,9 +56,7 @@ export function Submissions() {
     });
     await Promise.all(
       filteredSubmissions.map(async (submission) => {
-        console.log(submission.Video)
         if (submission.Video && submission.Video.videoURL) {
-          console.log(submission.Video)
           const url = await Storage.get(submission.Video.videoURL);
           submission.Video.videoName = submission.Video.videoURL;
           submission.Video.videoURL = url;
@@ -66,7 +64,6 @@ export function Submissions() {
         return submission;
       })
     );
-    console.log(filteredSubmissions)
     setSubmissions(filteredSubmissions);
     setFilteredSubmissions(filteredSubmissions);
   }
