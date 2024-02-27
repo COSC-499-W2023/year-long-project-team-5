@@ -48,7 +48,6 @@ export default function WebcamVideo() {
   }, []);
 
 
-
   const handleDataAvailable = useCallback(
     ({ data }) => {
       if (data.size > 0) {
