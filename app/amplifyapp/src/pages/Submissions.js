@@ -165,41 +165,41 @@ export function Submissions() {
   return (
     <View className="App">
       <Flex direction = 'row' id = 'aside' ref = {sidebarRef} className ={`sidebar ${sideBarToggled ? "visible" : ""} `} backgroundColor={tokens.colors.background.secondary}>
-      <Flex alignItems={'center'} alignContent={'flex-start'}  direction = 'column' backgroundColor={tokens.colors.background.secondary}>
-      <Flex alignItems = {'flex-end'} justifyContent={'flex-end'}><Text><IoClose className = 'filter_closeButton' size='30' onClick={()=>setSideBarToggled(false)}/></Text></Flex>
-        <Text>Filter by submission status</Text>
-        <SelectField 
-          size = 'small' width = '100%' 
-          placeholder = "All" 
-          id = "videoStatusFilter"
-          value = {videoStatus}
-          onChange={(e)=> setVideoStatus(e.target.value)} 
-          color={tokens.colors.background.secondary}
-        >
-          <option value = "submitted">Submitted video</option>
-          <option value = "noVideo" >No video submitted</option>
-        </SelectField>
-        <Text>Filter by date sent</Text>
-        <Input
-          size = 'small'
-          width={'100%'}
-          type='date'
-          id = "dateSent"
-          value = {sentDate}
-          onChange={(e) => setSentDate(e.target.value)}
-        />
-        <Text>Filter by date received</Text>
-        <Input 
-          size = 'small'
-          width={'100%'}
-          type='date'
-          id = "dateReceived"
-          value = {receivedDate}
-          onChange={(e) => setReceivedDate(e.target.value)}
-        />
-        <Button id = "submitFilters" onClick={() => handleFilteringSubmissions(receivedDate, sentDate, videoStatus)}>Apply Filters</Button>
-        <Button variation = {'warning'} id = "clearFilters" onClick = {() => clearFilters()}>Clear Filters</Button>
-      </Flex>
+        <Flex alignItems={'center'} alignContent={'flex-start'}  direction = 'column' backgroundColor={tokens.colors.background.secondary}>
+        <Flex alignItems = {'flex-end'} justifyContent={'flex-end'}><Text><IoClose className = 'filter_closeButton' size='30' onClick={()=>setSideBarToggled(false)}/></Text></Flex>
+          <Text>Filter by submission status</Text>
+          <SelectField 
+            size = 'small' width = '100%' 
+            placeholder = "All" 
+            id = "videoStatusFilter"
+            value = {videoStatus}
+            onChange={(e)=> setVideoStatus(e.target.value)} 
+            color={tokens.colors.background.secondary}
+          >
+            <option value = "submitted">Submitted video</option>
+            <option value = "noVideo" >No video submitted</option>
+          </SelectField>
+          <Text>Filter by date sent</Text>
+          <Input
+            size = 'small'
+            width={'100%'}
+            type='date'
+            id = "dateSent"
+            value = {sentDate}
+            onChange={(e) => setSentDate(e.target.value)}
+          />
+          <Text>Filter by date received</Text>
+          <Input 
+            size = 'small'
+            width={'100%'}
+            type='date'
+            id = "dateReceived"
+            value = {receivedDate}
+            onChange={(e) => setReceivedDate(e.target.value)}
+          />
+          <Button id = "submitFilters" onClick={() => handleFilteringSubmissions(receivedDate, sentDate, videoStatus)}>Apply Filters</Button>
+          <Button variation = {'warning'} id = "clearFilters" onClick = {() => clearFilters()}>Clear Filters</Button>
+        </Flex>
       </Flex>
       <Flex className ={`content ${sideBarToggled ? "pushed" : ""} `} direction={'column'}>
         <Heading level={2}>Your Video Submissions</Heading>
@@ -209,10 +209,10 @@ export function Submissions() {
             </Text>
             <SearchField variation = 'quiet' textAlign="left" placeholder="Search submissions..." padding={tokens.space.large} onChange={(e) => setFilteredSubmissions(filterSubmissions(e.target.value,submissions))} />
             {!isMobile && (
-              <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
-                <ToggleButton value = "table"> Table </ToggleButton>
-                <ToggleButton value = "card"> Card </ToggleButton>
-              </ToggleButtonGroup>
+            <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
+              <ToggleButton value = "table"> Table </ToggleButton>
+              <ToggleButton value = "card"> Card </ToggleButton>
+            </ToggleButtonGroup>
             )}
           </Flex>
         <View id = 'submissions' padding={tokens.space.large}>

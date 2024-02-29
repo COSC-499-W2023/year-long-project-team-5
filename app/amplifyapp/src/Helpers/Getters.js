@@ -1,5 +1,5 @@
 import { listSubmissions, submissionByOtp, getUser } from "../graphql/queries";
-import {API} from 'aws-amplify';
+import { API, graphqlOperation, Auth } from 'aws-amplify';
 import { GRAPHQL_AUTH_MODE } from "@aws-amplify/auth"
 
 // fetches submissions from the database
