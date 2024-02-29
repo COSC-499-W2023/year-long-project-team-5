@@ -18,7 +18,8 @@ import {
   SelectField, 
   Input,
   Text, 
-  Button
+  Button,
+  Pagination
 } from '@aws-amplify/ui-react';
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
@@ -44,6 +45,8 @@ export function Submissions() {
   const [sentDate, setSentDate] = useState('');
   const [receivedDate, setReceivedDate] = useState('');
   const [videoStatus, setVideoStatus] = useState('');
+  const [currentPageIndex, setCurrentPageIndex] = useState(0);
+  const [totalPageNum, setTotalPageNum] = useState(Math.ceil(filteredsubmissions.length/5));
 
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
   useEffect(() => {
@@ -131,6 +134,18 @@ export function Submissions() {
     setReceivedDate('');
     setVideoStatus('');
   }
+
+  const handleNextPage = () => {
+    setCurrentPageIndex(currentPageIndex + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPageIndex(currentPageIndex - 1);
+  };
+
+  const handleOnChange = (newPageIndex, prevPageIndex) => {
+    setCurrentPageIndex(newPageIndex);
+  };
 
   function renderSubmissions(){
     if(!isMobile && dashView === "table"){
@@ -224,6 +239,13 @@ export function Submissions() {
         </Flex>
         <View id = 'submissions' padding={tokens.space.large}>
           {renderSubmissions()}
+          <Pagination
+            currentPage={currentPageIndex}
+            totalPages={totalPageNum}
+            onNext={handleNextPage}
+            onPrevious={handlePreviousPage}
+            onChange={handleOnChange}
+          />
         </View>
       </Flex>
     </View>
