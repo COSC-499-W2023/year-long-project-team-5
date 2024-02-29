@@ -18,7 +18,8 @@ import {
   SelectField, 
   Input,
   Text, 
-  Button
+  Button,
+  Pagination
 } from '@aws-amplify/ui-react';
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
@@ -44,6 +45,8 @@ export function Submissions() {
   const [sentDate, setSentDate] = useState('');
   const [receivedDate, setReceivedDate] = useState('');
   const [videoStatus, setVideoStatus] = useState('');
+  const [currentPageIndex, setCurrentPageIndex] = useState(0);
+  const [totalPageNum, setTotalPageNum] = useState(Math.ceil(filteredsubmissions.length/5));
 
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
   useEffect(() => {
@@ -97,23 +100,23 @@ export function Submissions() {
     //filter based on date request was sent
     filteredSubmissions = filteredSubmissions.filter(submission => {
       if (selectedSentDate.toLocaleDateString() === 'Invalid Date') return submissions; // If no date is selected, return all submissions
-      const submissionDate = new Date(submission.createdAt);
-      return (
-        selectedSentDate.getUTCDate() === submissionDate.getDate() &&
-        selectedSentDate.getUTCMonth() === submissionDate.getMonth() &&
-        selectedSentDate.getUTCFullYear() === submissionDate.getFullYear()
-      );
+        const submissionDate = new Date(submission.createdAt);
+        return (
+          selectedSentDate.getUTCDate() === submissionDate.getDate() &&
+          selectedSentDate.getUTCMonth() === submissionDate.getMonth() &&
+          selectedSentDate.getUTCFullYear() === submissionDate.getFullYear()
+        );
     });
   
     // Filter submissions based on date submission was received
     filteredSubmissions = filteredSubmissions.filter(submission => {
       if (selectedReceivedDate.toLocaleDateString() === 'Invalid Date') return submissions; // If no date is selected, return all submissions
-      const submissionDate = new Date(submission.submittedAt);
-      return (
-        selectedReceivedDate.getUTCDate() === submissionDate.getDate() &&
-        selectedReceivedDate.getUTCMonth() === submissionDate.getMonth() &&
-        selectedReceivedDate.getUTCFullYear() === submissionDate.getFullYear()
-      );
+        const submissionDate = new Date(submission.submittedAt);
+        return (
+          selectedReceivedDate.getUTCDate() === submissionDate.getDate() &&
+          selectedReceivedDate.getUTCMonth() === submissionDate.getMonth() &&
+          selectedReceivedDate.getUTCFullYear() === submissionDate.getFullYear()
+        );
     });
     setFilteredSubmissions(filteredSubmissions);
   }
@@ -125,6 +128,18 @@ export function Submissions() {
     setReceivedDate('');
     setVideoStatus('');
   }
+
+  const handleNextPage = () => {
+    setCurrentPageIndex(currentPageIndex + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPageIndex(currentPageIndex - 1);
+  };
+
+  const handleOnChange = (newPageIndex, prevPageIndex) => {
+    setCurrentPageIndex(newPageIndex);
+  };
 
   function renderSubmissions(){
     if(!isMobile && dashView === "table"){
@@ -142,7 +157,7 @@ export function Submissions() {
           ))}
         />
       );
-    }else{
+    } else {
       const gridLayout = !isMobile ? "1fr 1fr" : "1fr";
       return (
         <Grid templateColumns={gridLayout} gap={tokens.space.small}>
@@ -217,6 +232,13 @@ export function Submissions() {
           </Flex>
         <View id = 'submissions' padding={tokens.space.large}>
           {renderSubmissions()}
+          <Pagination
+            currentPage={currentPageIndex}
+            totalPages={totalPageNum}
+            onNext={handleNextPage}
+            onPrevious={handlePreviousPage}
+            onChange={handleOnChange}
+          />
         </View>
       </Flex>
     </View>
