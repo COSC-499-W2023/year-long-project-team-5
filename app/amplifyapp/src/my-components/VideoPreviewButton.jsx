@@ -25,7 +25,11 @@ export const VideoPreviewButton = ({ videoUrl, name, description }) => {
                 <IoMdCloseCircleOutline cursor='pointer' size='4%' onClick={closeVideo}/>
               </Flex>
               <Text>{description}</Text>
-              <video controls width = {720} height = {480} src = {videoUrl}/>
+              <video controls width = {720} height = {480}>
+                <source src={videoUrl} type="video/webm" />
+                <source src={videoUrl} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </Card>
           </Flex>
         )}

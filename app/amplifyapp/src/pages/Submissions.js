@@ -54,7 +54,6 @@ export function Submissions() {
       const condition = submission.adminId === Auth.user.username;
       return condition;
     });
-    // uncomment when we implement submissions
     await Promise.all(
       filteredSubmissions.map(async (submission) => {
         if (submission.Video && submission.Video.videoURL) {
