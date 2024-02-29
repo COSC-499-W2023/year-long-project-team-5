@@ -6,10 +6,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import {Layout} from './pages/Layout'
 import {Home} from './pages/Home'
-import {Dashboard} from './pages/Dashboard'
+import {Submissions} from './pages/Submissions'
 import {Login} from './pages/Login'
-import {Submission} from './pages/Submission'
+import {Request} from './pages/Request'
 import {Recording} from './pages/Recording'
+import { Confirmation } from "./pages/Confirmation";
 import {Profile} from './pages/Profile'
 import { Authenticator } from "@aws-amplify/ui-react";
 import {RequireAuth} from "./RequireAuth"
@@ -24,16 +25,16 @@ function MyRoutes({ colorMode, setColorMode }){
     <BrowserRouter>
       <Routes>
         <Route path = "/" element ={<Layout colorMode = {colorMode} setColorMode = {setColorMode} />}>
-          <Route index element={<Home/>}/>
-          <Route path = "/dashboard" element={
+          <Route index element={<Home colorMode={colorMode}/>}/>
+          <Route path = "/submissions" element={
             <RequireAuth>
-            <Dashboard/>
+            <Submissions/>
             </RequireAuth>
           }/>
           <Route path = "/login" element = {<Login/>}/>
-          <Route path = "/submission" element = {
+          <Route path = "/request" element = {
             <RequireAuth>
-            <Submission/>
+            <Request/>
             </RequireAuth>
           }/>
           <Route path = "/recording" element = {<Recording/>}/>
@@ -42,6 +43,7 @@ function MyRoutes({ colorMode, setColorMode }){
             <Profile/>
             </RequireAuth>
           }/>
+          <Route path = "/confirmation" element = {<Confirmation />}/>
         </Route>
         
       </Routes> 

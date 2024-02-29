@@ -22,6 +22,12 @@
       },
       "storage": {
         "s3099e82d9": {}
+      },
+      "function": {
+        "emailTriggerNodejs": {
+          "deploymentBucketName": "amplify-amplify7a9bf65e88944-staging-233251-deployment",
+          "s3Key": "amplify-builds/emailTriggerNodejs-466d3554723231644f69-build.zip"
+        }
       }
     }
   }

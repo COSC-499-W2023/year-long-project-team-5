@@ -281,3 +281,126 @@
 - Issue #100 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/100)
 - Issue #101 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/101)
 - Issue #114 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/114)
+
+---
+
+# Weekly Personal Log (January 22-28th)
+
+## Screenshot from peer eval
+<img width="1010" alt="Screenshot 2024-01-28 at 4 27 55 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/a75f2d76-b8a0-4388-875c-7888d08659be">
+
+## Non-feature work
+- Met on Jan 25 for meeting
+- making UI decisions with the team
+
+## All of my features for **this milestone**
+
+### **Feature**: Recording page UI overhaul
+- **Description**: Improved the UI of the recording page, added border, fixed video preview with Abby, fixed flow
+- **Issue number**: issue #103, issue #101 issue #114
+- **Context**: Worked on style-video-recordings branch which needs to be merged, will probably be merged for peer-testing
+
+## Status of work for the **last week** (in-progress or completed)
+- improvements made on recording page, video is now clearer and has a red border, and navigation is cleaner
+- Accordion dropdown for clients in-progress. (blocked, accordion component is not found)
+- Description shorteners in-progress. (blocked, did not have enough time this week)
+
+## Issue number reference
+- Issue #103 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/103)
+- Issue #101 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/101)
+- Issue #114 (https://github.com/COSC-499-W2023/word-chain-exercise-team-5/issues/114)
+
+---
+
+# Weekly Personal Log (January 29 - Feb 4th)
+
+## Screenshot from peer eval
+<img width="1047" alt="Screenshot 2024-02-04 at 6 20 36 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/c19509d2-34ec-4b74-8f91-4f88b7c4ee1a">
+
+## Non-feature work
+- Met on Jan 30, Feb 1 for meeting
+- making MORE UI decisions with the team
+
+## All of my features for **this milestone**
+
+### **Feature**: Video Preview Button
+- **Description**: Improved the video records, now won't open a new window but instead able to be previewed on the page
+- **Issue number**: issue #102, issue #149
+- **Context**: Worked on the refactor_dash branch which has yet to be merged
+
+## Status of work for the **last week** (in-progress or completed)
+- Finished video preview for dashboard
+- Finished rename dashboard task (easy) (peer review)
+- Finished search bar fix (easy) (peer review)
+- Video request confirmation in progress
+
+## Issue number reference
+- Issue #102 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/102)
+- Issue #149 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/149)
+- Issue #106 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/106)
+
+---
+
+# Weekly Personal Log (Feb 4 - Feb 11)
+
+## Screenshot from peer eval
+![Capture](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/fed77ef0-51b3-43fe-a633-bc121f70bdef)
+
+## Non-feature work
+- Met on Feb 8 for meeting
+
+## All of my features for **this milestone**
+
+### **Feature**: Video Preview Button
+- **Description**: Previews video in page
+- **Issue number**: issue #102, issue #149
+- **Context**: Merged finally!!
+
+### **Feature**: One Time Password (OTP)
+- **Description**: One time password that lets users access the recording page
+- **Issue number**: issue #102, issue #149
+- **Context**: Created a shell for entry of the password and worked in the backend mostly for configuring the password storage
+
+## Status of work for the **last week** (in-progress or completed)
+- Finished video preview merge
+- OTP shell done
+- OTP implementation in progress
+- OTP needs testing as the usage cases are in place
+
+## Issue number reference
+- Issue #64 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/64)
+- Issue #65 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/65)
+- Issue #163 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/163)
+
+# Weekly Personal Log (Feb 12 - Feb 18)
+
+## Screenshot from peer eval
+![Capture3](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/f56d05ac-4458-4338-860d-045554d1bed8)
+
+## Non-feature work
+- Met on Feb 15 for meeting
+
+## All of my features for **this milestone**
+
+### **Feature**: One Time Password (OTP)
+- **Description**: One time password that lets users access the recording page
+- **Issue number**: issue #64, #163, #65, #174
+- **Context**: Had to do some last minute fixes, wrapped up feature, merged, changed to 7 digits
+
+### **Feature**: Build warnings
+- **Description**: Our builds were full of warnings
+- **Issue number**: issue #170
+- **Context**: Had to do some last minute fixes, wrapped up feature
+
+## Status of work for the **last week** (in-progress or completed)
+- OTP merged
+- Build warnings merged
+- Picking up new tasks
+
+## Issue number reference
+- Issue #64 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/64)
+- Issue #65 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/65)
+- Issue #163 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/163)
+- Issue #174 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/174)
+- Issue #170 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/170)
+

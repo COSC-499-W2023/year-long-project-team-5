@@ -1,16 +1,16 @@
 import {
 	Card,
-	Image,
 	View,
 	Heading,
 	Flex,
-	Badge,
 	Text,
 	Button,
 	useTheme,
   } from '@aws-amplify/ui-react';
+  import { useState } from 'react';
   import { Divider } from '@aws-amplify/ui-react';
-  import videoBG2 from '../assets/BG.mp4';
+  import videoBG from '../assets/BG.mp4';
+  import darkVideoBG from '../assets/darkBG.mp4'
   import amplifyLogo from '../assets/amplify.svg';
   import cognitoLogo from '../assets/cognito.svg';
   import rekognitionLogo from '../assets/rekognition.svg';
@@ -23,20 +23,24 @@ import {
   import Beck from '../assets/beck.jpg';
   import Kael from '../assets/kael.jpg';
   import reactLogo from '../assets/reactLogo.svg';
-  import {motion, useScroll} from "framer-motion";
-  import { useRef } from "react";
-  import { Outlet, useNavigate } from "react-router-dom";
+  import { motion } from "framer-motion";
+  import { useEffect } from "react";
+  import { useNavigate } from "react-router-dom";
 
-  export const Home = () => {
+  export const Home = ({colorMode}) => {
 	const { tokens } = useTheme();
-	const ref = useRef(null);
-	const { scrollXProgress } = useScroll({ container: ref });
 	const navigate = useNavigate();
+	const [videoSource, setVideoSource] = useState(colorMode === 'light' ? videoBG : darkVideoBG);
+	useEffect(() => {
+	// Update video source when colorMode changes
+	setVideoSource(colorMode === 'light' ? videoBG : darkVideoBG);
+	}, [colorMode]);
 	return (
 		<div>
 			{/*video banner*/}
-				<video src = {videoBG2} autoPlay loop muted width = "75%"/>
-			{/*main three calls - with animation*/}
+				<video src = {videoSource} controlsList="nofullscreen nodownload" playsInline autoPlay loop muted width = "75%" pointerEvents = "none"/>
+	
+				{/*main three calls - with animation*/}
 			<motion.div
 				initial = {{opacity: 0}}
 				whileInView = {{opacity:1}}
@@ -169,7 +173,7 @@ import {
 				
 			<Flex alignItems = 'center' direction = 'row' justifyContent = 'center' wrap = "nowrap" margin = '1rem 0rem 1rem 0rem'>
 					<div className='headerText'>
-					<img className = "profile" src = {Abby} width = '100%'/>
+					<img className = "profile" alt = "Abby" src = {Abby} width = '100%'/>
 					<motion.div
 						initial = {{opacity: 0}}
 						whileHover = {{
@@ -185,7 +189,7 @@ import {
 					</div>
 						
 				<div className='headerText'>
-				<img className = "profile" src = {Josh} width = '100%'/>
+				<img className = "profile" alt = "Josh" src = {Josh} width = '100%'/>
 				<motion.div
 					initial = {{opacity: 0}}
 					whileHover = {{
@@ -200,7 +204,7 @@ import {
 				</motion.div>
 				</div>
 				<div className='headerText'>
-				<img className = "profile" src = {Abhinav} width = '100%'/>
+				<img className = "profile" alt = "Abhinav" src = {Abhinav} width = '100%'/>
 				<motion.div
 					initial = {{opacity: 0}}
 					whileHover = {{
@@ -215,7 +219,7 @@ import {
 				</motion.div>
 				</div>
 				<div className='headerText'>
-				<img className = "profile" src = {Beck} width = '100%'/>
+				<img className = "profile" alt = "Beck" src = {Beck} width = '100%'/>
 				<motion.div
 					initial = {{opacity: 0}}
 					whileHover = {{
@@ -230,7 +234,7 @@ import {
 				</motion.div>
 				</div>
 				<div className='headerText'>
-				<img className = "profile" src = {Kael} width = '100%'/>
+				<img className = "profile" alt = "Kael" src = {Kael} width = '100%'/>
 				<motion.div
 					initial = {{opacity: 0}}
 					whileHover = {{

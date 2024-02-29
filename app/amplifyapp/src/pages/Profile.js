@@ -1,7 +1,6 @@
 import React, { Auth } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
-import { useNavigate } from "react-router-dom";
 import { useAuthenticator} from "@aws-amplify/ui-react"
 import ProfileInfo from "../my-components/Profile";
 
@@ -11,12 +10,11 @@ import {
     TextField,
     View,
     Heading,
-    Card, 
-    useTheme
+    Card
   } from '@aws-amplify/ui-react';
 
 export function Profile(){
-    const {user, route, signOut} = useAuthenticator((context) => [
+    const { user } = useAuthenticator((context) => [
         context.user,
         context.route,
         context.signOut

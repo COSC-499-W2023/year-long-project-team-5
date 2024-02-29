@@ -1,3 +1,115 @@
+# Weekly Personal Log S2 Week 6
+
+## Screenshot from peer eval
+<img src="https://i.imgur.com/R6YRl6L.png">
+
+## Non-feature work
+- Team meetings
+- Reviewing PRs
+
+## All of my features for **this week**
+### **Feature**: connect videos to a submission when they are recorded
+- **Description**: When a video is recorded, it makes a entry in the graphql DB. This entry is not connected to the corresponding submission in the graphQL DB. Currently the video page has no way of knowing what submission it is being recorded for, josh made a lamba function for generating one time codes which will connect the video page to the submission
+- **Issue number**: #164
+- **Context**: Almost implemented, currently blocked due to a bug
+
+### **Feature**: email OTP codes when submission is made
+- **Description**: We need unique codes on the email to allow patients to access the patient portal
+- **Issue number**: #179
+- **Context**: in-progress, blocked until #164 is completely finished
+
+## Status of work for the week
+- Connect submission to video after recording (done, with a seperate bug making it not work compeltely)
+- OTP Codes (done)
+- email OTP Codes (in progress)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/179]
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/164]
+  
+## Other notes
+Apart from features, a tough bug has come up and I've spent enough time on it that I should list it here (videos wont render on submissions table only on firefox but it works fine on chrome):
+https://github.com/COSC-499-W2023/year-long-project-team-5/issues/178
+- Made the blur logo have a transparent background and put it on our readme!
+
+# Weekly Personal Log S2 Week 5
+
+## Screenshot from peer eval
+<img src="https://i.imgur.com/bg5b7ku.png">
+
+## Non-feature work
+- Team meetings
+- Reviewing PRs
+
+## All of my features for **this week**
+### **Feature**: Automatic emailing
+- **Description**: When the admin sends a submission and types in the clients email, it should notify the client by email and send a link to the record page
+- **Issue number**: #128
+- **Context**: Merged this week!
+
+### **Feature**: OTP Codes
+- **Description**: We need unique codes on the email to allow patients to access the patient portal
+- **Issue number**: #64
+- **Context**: Josh is mainly working on this issue, but we are collaborating as the codes need to be emailed and IM working on emails
+
+## Status of work for the week
+- Automatic emailing (done)
+- OTP Codes (in progress)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/128]
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/64]
+## Other notes
+
+# Weekly Personal Log S2 Week 4
+
+## Screenshot from peer eval
+[<img src="https://i.imgur.com/5aTlQLT.png">](https://i.imgur.com/ShHFKoC.png)
+
+## Non-feature work
+- Team meetings
+- Reviewing PRs
+- Peer testing on tuesday
+- Made lots of issues and requirements for all problems found during peer testing
+
+## All of my features for **this week**
+### **Feature**: Automatic emailing
+- **Description**: When the admin sends a submission and types in the clients email, it should notify the client by email and send a link to the record page
+- **Issue number**: #128
+- **Context**: Currently a draft PR, most of the work for this issue is being done on the AWS dashboard, so you won't see a lot of commits here. But its hard work setting everything up trust me!
+
+## Status of work for the week
+- Automatic emailing (in progress)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/128]
+  
+## Other notes
+
+# Weekly Personal Log S2 Week 3 (Jan 22 - Jan 28) 
+
+## Screenshot from peer eval
+<img src="https://i.imgur.com/5aTlQLT.png">
+
+## Non-feature work
+- Team meetings
+- Reviewing PRs
+
+## All of my features for **this week**
+### **Feature**: Filter submissions by admin
+- **Description**: Aim to have more description backend variable and function names, less code reuse and prettier overall code
+- **Issue number**: #132
+- **Context**: Currently a PR in review
+
+## Status of work for the week
+- Backend tests (in progress)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/132]
+  
+## Other notes
+- We had a hackathon this week!
+
 # Weekly Personal Log S2 Week 2 (Jan 15 - Jan 21) 
 
 ## Screenshot from peer eval
@@ -8,7 +120,7 @@
 - Reviewing PRs (PR 120)
 - Resolving problems on my PRs (PR 109 and PR 119)
 
-## All of my features for **this milestone**
+## All of my features for **this week**
 ### **Feature**: Refactor backend
 - **Description**: Aim to have more description backend variable and function names, less code reuse and prettier overall code
 - **Issue number**: #87
@@ -47,7 +159,7 @@
 - Resolving problems on my PRs (PR 109 and PR 89)
 - Solving merge conflicts for refactor-dash
 
-## All of my features for **this milestone**
+## All of my features for **this week**
 ### **Feature**: Refactor backend
 - **Description**: Aim to have more description backend variable and function names, less code reuse and prettier overall code
 - **Issue number**: #87
