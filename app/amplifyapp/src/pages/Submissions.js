@@ -46,7 +46,7 @@ export function Submissions() {
   const [receivedDate, setReceivedDate] = useState('');
   const [videoStatus, setVideoStatus] = useState('');
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
-  const [totalPageNum, setTotalPageNum] = useState(Math.ceil(filteredsubmissions.length/5));
+  const [totalPageNum, setTotalPageNum] = useState(1);
 
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
   useEffect(() => {
@@ -83,6 +83,7 @@ export function Submissions() {
     );
     setSubmissions(filteredSubmissions);
     setFilteredSubmissions(filteredSubmissions);
+    setTotalPageNum(Math.ceil(filteredSubmissions.length/5));
   }
 
   function handleFilteringSubmissions(received, sent, videoStatus){
@@ -123,7 +124,6 @@ export function Submissions() {
         selectedReceivedDate.getUTCFullYear() === submissionDate.getFullYear()
       );
     });
-    
     setFilteredSubmissions(filteredSubmissions);
   }
 
@@ -135,15 +135,19 @@ export function Submissions() {
     setVideoStatus('');
   }
 
-  const handleNextPage = () => {
-    setCurrentPageIndex(currentPageIndex + 1);
+  const handleNextPage = async () => {
+    if(currentPageIndex !== totalPageNum) {
+      setCurrentPageIndex(currentPageIndex + 1);
+    }
   };
 
-  const handlePreviousPage = () => {
-    setCurrentPageIndex(currentPageIndex - 1);
+  const handlePreviousPage = async () => {
+    if(currentPageIndex !== 0) {
+      setCurrentPageIndex(currentPageIndex - 1);
+    }
   };
 
-  const handleOnChange = (newPageIndex, prevPageIndex) => {
+  const handleOnChange = async (newPageIndex, prevPageIndex) => {
     setCurrentPageIndex(newPageIndex);
   };
 
