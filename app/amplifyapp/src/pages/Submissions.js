@@ -36,7 +36,8 @@ import { CiFilter } from "react-icons/ci";
  */
 export function Submissions() {
   const [submissions, setSubmissions] = useState([]);
-  const [filteredsubmissions, setFilteredSubmissions] = useState([])
+  const [filteredsubmissions, setFilteredSubmissions] = useState([]);
+  const [displayedSubmissions, setDisplayedSubmissions] = useState([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
   const [dashView, setDashView] = useState('table');
   const [sideBarToggled, setSideBarToggled] = useState(false);
@@ -82,9 +83,10 @@ export function Submissions() {
       })
     );
     setSubmissions(filteredSubmissions);
+    setFilteredSubmissions(filteredSubmissions)
     setTotalPageNum(Math.ceil((filteredSubmissions.length + 1)/6));
     setCurrentPageIndex(1);
-    setFilteredSubmissions(filteredSubmissions.slice((currentPageIndex-1)*6, (currentPageIndex*6)-1));
+    setDisplayedSubmissions(filteredSubmissions.slice((currentPageIndex-1)*6, (currentPageIndex*6)-1));
   }
 
   function handleFilteringSubmissions(received, sent, videoStatus){
@@ -125,6 +127,7 @@ export function Submissions() {
         selectedReceivedDate.getUTCFullYear() === submissionDate.getFullYear()
       );
     });
+    setCurrentPageIndex(1);
     setFilteredSubmissions(filteredSubmissions);
   }
 
@@ -148,25 +151,25 @@ export function Submissions() {
     }
   };
 
-  function handleOnChange (newPageIndex, prevPageIndex) {
+  function handleOnChange (newPageIndex) {
     setCurrentPageIndex(newPageIndex);
   };
 
   useEffect(() => {
-    let filteredSubmissions = submissions;
+    let filteredSubmissions = filteredsubmissions;
+    setTotalPageNum(Math.ceil((filteredSubmissions.length + 1)/6));
     
-    let lowerBound = (currentPageIndex-1)*6
+    let lowerBound = Math.min((currentPageIndex-1)*6, filteredSubmissions.length - 1)
     let upperBound = Math.min((currentPageIndex*6)-1, filteredSubmissions.length)
     filteredSubmissions = filteredSubmissions.slice(lowerBound, upperBound);
-    console.log("Now on range " + lowerBound + "," + upperBound + ": out of " + submissions.length)
-    setFilteredSubmissions(filteredSubmissions);
-  }, [currentPageIndex]);
+    setDisplayedSubmissions(filteredSubmissions);
+  }, [currentPageIndex, filteredsubmissions]);
 
   function renderSubmissions () {
     if(!isMobile && dashView === "table"){
       return(
         <SubmissionTable
-          rowsToDisplay={filteredsubmissions.map((submission) => (
+          rowsToDisplay={displayedSubmissions.map((submission) => (
             <SubmissionRow key={submission.User.id}
               name={submission.User.name}
               email={submission.User.email}
@@ -182,7 +185,7 @@ export function Submissions() {
       const gridLayout = !isMobile ? "1fr 1fr" : "1fr";
       return (
         <Grid templateColumns={gridLayout} gap={tokens.space.small}>
-          {filteredsubmissions.map((submission) => (
+          {displayedSubmissions.map((submission) => (
             <SubmissionCard key={submission.User.id}
               margin="1rem"
               name={submission.User.name}
