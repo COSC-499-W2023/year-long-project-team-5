@@ -137,6 +137,7 @@ export function Submissions() {
     setSentDate('');
     setReceivedDate('');
     setVideoStatus('');
+    setCurrentPageIndex(1);
   }
 
   function handleNextPage () {
@@ -247,7 +248,10 @@ export function Submissions() {
           <Text>
             <CiFilter size = '30' className = 'sidebar-toggle' onClick={()=>setSideBarToggled(!sideBarToggled)}/>
           </Text>
-          <SearchField variation = 'quiet' textAlign="left" placeholder="Search submissions..." padding={tokens.space.large} onChange={(e) => setFilteredSubmissions(filterSubmissions(e.target.value,submissions))} />
+          <SearchField variation = 'quiet' textAlign="left" placeholder="Search submissions..." padding={tokens.space.large} onChange={(e) => {
+            setCurrentPageIndex(1);
+            setFilteredSubmissions(filterSubmissions(e.target.value,submissions))}
+            } />
           {!isMobile && (
           <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
             <ToggleButton value = "table"> Table </ToggleButton>
