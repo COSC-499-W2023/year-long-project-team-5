@@ -1,11 +1,10 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 import VideoRecorder from "../my-components/VideoRecorder";
 import { getSubmissionByOTP, getUserByID } from "../Helpers/Getters";
 
 import {
-    Button,
     Flex,
     Input,
     View,
