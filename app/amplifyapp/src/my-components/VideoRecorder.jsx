@@ -111,7 +111,7 @@ export default function WebcamVideo() {
     };
   }, []);
  
-  const handleUpload= useCallback(async () => {
+  const handleUpload = useCallback(async () => {
       if (recordedChunks.length && videoLoaded) {
       const blob = new Blob(recordedChunks, {
         type: "video/webm",

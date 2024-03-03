@@ -45,7 +45,7 @@ export function Submissions() {
   const [sentDate, setSentDate] = useState('');
   const [receivedDate, setReceivedDate] = useState('');
   const [videoStatus, setVideoStatus] = useState('');
-  const [currentPageIndex, setCurrentPageIndex] = useState(0);
+  const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [totalPageNum, setTotalPageNum] = useState(1);
 
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
@@ -82,8 +82,9 @@ export function Submissions() {
       })
     );
     setSubmissions(filteredSubmissions);
-    setFilteredSubmissions(filteredSubmissions);
-    setTotalPageNum(Math.ceil(filteredSubmissions.length/5));
+    setTotalPageNum(Math.ceil((filteredSubmissions.length + 1)/6));
+    setCurrentPageIndex(1);
+    setFilteredSubmissions(filteredSubmissions.slice((currentPageIndex-1)*6, (currentPageIndex*6)-1));
   }
 
   function handleFilteringSubmissions(received, sent, videoStatus){
@@ -128,30 +129,40 @@ export function Submissions() {
   }
 
   //clear filters and the current filter values
-  function clearFilters(){
+  function clearFilters () {
     setFilteredSubmissions(submissions);
     setSentDate('');
     setReceivedDate('');
     setVideoStatus('');
   }
 
-  const handleNextPage = async () => {
+  function handleNextPage () {
     if(currentPageIndex !== totalPageNum) {
       setCurrentPageIndex(currentPageIndex + 1);
     }
   };
 
-  const handlePreviousPage = async () => {
+  function handlePreviousPage () {
     if(currentPageIndex !== 0) {
       setCurrentPageIndex(currentPageIndex - 1);
     }
   };
 
-  const handleOnChange = async (newPageIndex, prevPageIndex) => {
+  function handleOnChange (newPageIndex, prevPageIndex) {
     setCurrentPageIndex(newPageIndex);
   };
 
-  function renderSubmissions(){
+  useEffect(() => {
+    let filteredSubmissions = submissions;
+    
+    let lowerBound = (currentPageIndex-1)*6
+    let upperBound = Math.min((currentPageIndex*6)-1, filteredSubmissions.length)
+    filteredSubmissions = filteredSubmissions.slice(lowerBound, upperBound);
+    console.log("Now on range " + lowerBound + "," + upperBound + ": out of " + submissions.length)
+    setFilteredSubmissions(filteredSubmissions);
+  }, [currentPageIndex]);
+
+  function renderSubmissions () {
     if(!isMobile && dashView === "table"){
       return(
         <SubmissionTable
