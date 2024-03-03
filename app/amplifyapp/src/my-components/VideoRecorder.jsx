@@ -9,12 +9,18 @@ import { FaRedoAlt } from "react-icons/fa";
 import { RiVideoUploadFill } from "react-icons/ri";
 import { FaCircleStop } from "react-icons/fa6";
 import {
-  createVideo as createVideoMutation
+  createVideo as createVideoMutation,
+  updateSubmission as updateSubmissionMutation
 } from "../graphql/mutations";
 import { useNavigate } from "react-router-dom";
 import "./VideoRecorder.css"
+import { getSupportedMimeTypes, getFileExtensionForMimeType } from "../Helpers/Other";
 
-export default function WebcamVideo() {
+const bestMimeType = getSupportedMimeTypes("video")[0];
+const fileExt = getFileExtensionForMimeType(bestMimeType);
+
+export default function WebcamVideo(props) {
+  
   const webcamRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const [capturing, setCapturing] = useState(false);
@@ -49,7 +55,7 @@ export default function WebcamVideo() {
     if (recordedChunks.length > 0 && !capturing) {
       const blob = isMobile
   ? new Blob(recordedChunks, { type: "video/mp4" })
-  : new Blob(recordedChunks, { type: "video/webm" });
+  : new Blob(recordedChunks, { type: bestMimeType });
        
       const url = URL.createObjectURL(blob);
       setVideoPreviewUrl(url);
@@ -66,7 +72,7 @@ export default function WebcamVideo() {
     setVideoPreviewUrl(null);
     try{
     mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
-      mimeType: "video/webm",
+      mimeType: bestMimeType
     });
     }
     catch{
@@ -85,14 +91,14 @@ export default function WebcamVideo() {
     if (recordedChunks.length) {
       const blob = isMobile
   ? new Blob(recordedChunks, { type: "video/mp4" })
-  : new Blob(recordedChunks, { type: "video/webm" });
+  : new Blob(recordedChunks, { type: bestMimeType });
        
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       document.body.appendChild(a);
       a.style = "display: none";
       a.href = url;
-      isMobile ? (a.download = "react-webcam-stream-capture.mp4"): (a.download = "react-webcam-stream-capture.webm")
+      isMobile ? (a.download = "react-webcam-stream-capture.mp4"): (a.download = "react-webcam-stream-capture" + fileExt)
       a.click();
       window.URL.revokeObjectURL(url);
     }
@@ -111,25 +117,28 @@ export default function WebcamVideo() {
     };
   }, []);
  
-  const handleUpload = useCallback(async () => {
+  const handleUpload= useCallback(async (props) => {
+      const submissionId = props.submissionData.id
+      let videoId;
       if (recordedChunks.length && videoLoaded) {
       const blob = new Blob(recordedChunks, {
-        type: "video/webm",
+        type: bestMimeType,
       });
 
+      //UPLOAD VIDEO TO S3 DB, also make a entry in  the graphql videos table
       const randNum = parseInt(Math.random() * 10000000);
-      const videoNameS3 = "video" + randNum + ".webm";
+      const videoNameS3 = "video" + randNum + fileExt;
       const data = {
         videoURL: videoNameS3, // videoNameS3 is the key (not the url) for the s3 bucket, get video URL with Storage.get(name)
-        otpCode: null //otp code will be erased upon upload
       };
       
       try {
         await Storage.put(videoNameS3, blob); // store video in s3 bucket under the key
-        await API.graphql({ // store the key for the video in DynamoDB
+        const result_video = await API.graphql({ // store the key for the video in DynamoDB
           query: createVideoMutation,
           variables: { input: data },
         });
+        videoId = result_video.data.createVideo.id;
 
         setRecordedChunks([]);
         
@@ -138,6 +147,26 @@ export default function WebcamVideo() {
       } catch (error) {
         console.error("Error uploading video:", error);
       }
+
+      // now we want to associate the video with the submission
+      const data2 = {
+        id: submissionId,
+        submissionVideoId: videoId,
+        otpCode: null,
+        submittedAt: new Date().toISOString(),
+      };
+
+
+      try {
+        await API.graphql({
+          query: updateSubmissionMutation,
+          variables: { input: data2 },
+        });
+      } catch(error){
+        console.error("Error associating video with submission:", error);
+      }
+
+
     } 
   }, [recordedChunks, navigate, videoLoaded]);
 
@@ -191,7 +220,7 @@ export default function WebcamVideo() {
               <Flex justifyContent={"space-evenly"} marginTop={'0.5em'}>
                 <ButtonGroup size="small">
                   <Button onClick={handleDownload}> <MdDownloadForOffline style={{marginRight: '4px'}}/> Download</Button>
-                  <Button onClick={handleUpload}> <RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</Button>
+                  <Button onClick={function(){ handleUpload(props)}}> <RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</Button>
                   <Button onClick={handleRetakeClick }> <FaRedoAlt style={{marginRight: '4px'}}/> Retake</Button>
                 </ButtonGroup>
               </Flex>
