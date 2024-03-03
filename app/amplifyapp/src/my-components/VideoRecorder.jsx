@@ -14,6 +14,7 @@ import {
 } from "../graphql/mutations";
 import { useNavigate } from "react-router-dom";
 import "./VideoRecorder.css"
+import {clsx} from "clsx";
 import { getSupportedMimeTypes, getFileExtensionForMimeType } from "../Helpers/Other";
 
 const bestMimeType = getSupportedMimeTypes("video")[0];
@@ -30,16 +31,27 @@ export default function WebcamVideo(props) {
   const navigate = useNavigate();
   const [videoLoaded, setVideoLoaded] = useState(false); //state variable to track if the recorded video is fully loaded and ready to upload
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
+  const [videoConstraints, setVideoConstraints] = useState({
+    width: isMobile && 480,
+    height: isMobile && 360,
+    facingMode: "user",
+  });
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1000);
+      const mobile = window.innerWidth <= 1000;
+      setIsMobile(mobile);
+      setVideoConstraints({
+        width: mobile && 480,
+        height: mobile && 360,
+        facingMode: "user",
+      });
     };
+  
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
 
 
   const handleDataAvailable = useCallback(
@@ -195,23 +207,18 @@ export default function WebcamVideo(props) {
     if(videoPreviewUrl) {
       return (
         <div>
-          <video controls width = {620} height = {480} src = {videoPreviewUrl} />
+          <video controls className={"responsive-video"} src = {videoPreviewUrl} />
         </div>
       );
     }
     return null;
   };
 
-  const videoConstraints = {
-    width: 720,
-    height: 480,
-    facingMode: "user",
-  };
   return (
     <View>
       <Flex justifyContent={"center"}>
         {recordedChunks.length > 0 ? (
-            <Card backgroundColor={'background.secondary'} padding={'1em 2em'} variation="elevated">
+            <Card backgroundColor={'background.secondary'} padding={'1em 1em'} variation="elevated">
               <Heading level={3} textAlign={'left'}>Preview</Heading>
               <Divider orientation="horizontal" marginBottom={'0.5em'}/>
               <div justifyContent={"center"}>
@@ -219,14 +226,14 @@ export default function WebcamVideo(props) {
               </div>
               <Flex justifyContent={"space-evenly"} marginTop={'0.5em'}>
                 <ButtonGroup size="small">
-                  <Button onClick={handleDownload}> <MdDownloadForOffline style={{marginRight: '4px'}}/> Download</Button>
-                  <Button onClick={function(){ handleUpload(props)}}> <RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</Button>
-                  <Button onClick={handleRetakeClick }> <FaRedoAlt style={{marginRight: '4px'}}/> Retake</Button>
+                  <Button className = "downloadButton" onClick={handleDownload}> <MdDownloadForOffline style={{marginRight: '4px'}}/> Download</Button>
+                  <Button className = "submitButton" onClick={handleUpload}> <RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</Button>
+                  <Button className = "retakeButton" onClick={handleRetakeClick }> <FaRedoAlt style={{marginRight: '4px'}}/> Retake</Button>
                 </ButtonGroup>
               </Flex>
             </Card>
         ):
-        <Card backgroundColor={'background.secondary'} padding={'1em 2em'} variation="elevated">
+        <Card backgroundColor={'background.secondary'} padding={'1em 1em'} variation="elevated">
           {capturing ? 
               (<Heading level={3} textAlign={'left'}> Recording...</Heading>)
             : ( <Heading level={3} textAlign={'left'}>Record video</Heading>)
@@ -235,7 +242,7 @@ export default function WebcamVideo(props) {
           <Divider orientation="horizontal"/>
           <View marginTop={'1em'}>
             <Webcam
-            className= {capturing ? "recorderOn" : "recorderOff"}
+            className = {clsx( { 'mobile-webcam' : isMobile }, {'webcam': !isMobile}, { "recorderOn": capturing }, { "recorderOff": !capturing })}
             muted={true}
             audio={true}
             mirrored={true}
@@ -245,9 +252,9 @@ export default function WebcamVideo(props) {
             />
           </View> 
           {capturing ? (
-            <Button onTouchStart = {handleStopCaptureClick} onClick={handleStopCaptureClick} variation='warning' minWidth={"100%"}><FaCircleStop style={{ marginRight: '4px', color: 'red' }}/> Finish</Button>
+            <Button className = "stopButton" onTouchStart = {handleStopCaptureClick} onClick={handleStopCaptureClick} variation='warning' minWidth={"100%"}><FaCircleStop style={{ marginRight: '4px', color: 'red' }}/> Finish</Button>
             ) : recordedChunks.length === 0 && isCamReady? (
-              <Button className='recordButton' onClick={handleStartCaptureClick} variation='outline' minWidth={'100%'}><BsFillRecordFill style={{ marginRight: '4px', color: 'red'}}/> Record</Button>
+              <Button className = "recordButton" onClick={handleStartCaptureClick} variation='outline' minWidth={'100%'}><BsFillRecordFill style={{ marginRight: '4px', color: 'red'}}/> Record</Button>
             ) : null}
         </Card>
         }
