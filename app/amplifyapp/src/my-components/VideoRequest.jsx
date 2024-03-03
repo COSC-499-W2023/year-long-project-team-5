@@ -8,7 +8,11 @@ import {
     Flex,
     TextField,
     Card, 
-    useTheme
+    useTheme,
+    Alert,
+    TextAreaField,
+    Text,
+    Loader
   } from '@aws-amplify/ui-react';
 import { getSubmissionByOTP } from "../Helpers/Getters"
 
@@ -16,25 +20,101 @@ import {
   createUser as createUserMutation,
   createSubmission as createSubmissionMutation
 } from "../graphql/mutations";
+
+import {debounce} from 'lodash';
+
 export function VideoRequestForm(){
     
-    async function createUser(email,name) {
-      const data = {
-        email: email,
-        name: name
-      };
-      return await API.graphql({
-        query: createUserMutation,
-        variables: { input: data },
-      });
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
+  const [isFormWrong, setFormWrong] = useState(false);
+  const [isFieldBeingEdited, setIsFieldBeingEdited] = useState(false); // New state variable
+  const [errorMessages, setErrorMessages] = useState(new Set());
+  const [submittedEmail, setSubmittedEmail] = useState(''); // State to store the submitted email
+  const [isSubmitting, setIsSubmitting] = useState(false); // New state variable
+  
+
+  const handleFieldEvent = (event, fieldType, eventAction) => {
+    const fieldValue = event.target.value;
+    const validateEmail = (emailInput) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(emailInput);
+    };
+    const validateDescription = (description) => description.length >= 20;
+    let newErrors = new Set(errorMessages);
+    const validationMap = {
+      email: {
+        validate: validateEmail,
+        errorMessage: "Invalid email address."
+      },
+      description: {
+        validate: validateDescription,
+        errorMessage: "Description must be at least 20 characters."
+      }
+    };
+    const { validate, errorMessage } = validationMap[fieldType];
+    const updateErrors = () => {
+      if (validate(fieldValue)) {
+        newErrors.delete(errorMessage);
+      } else {
+        newErrors.add(errorMessage);
+      }
+    };
+      if (eventAction === 'change') {
+      setIsFieldBeingEdited(true);
+      updateErrors();
+      debounceFieldBeingEdited();
+    } else if (eventAction === 'blur') {
+      setIsFieldBeingEdited(false);
+      if (fieldValue === "") {
+        newErrors.delete(errorMessage);
+      } else {
+        updateErrors();
+      }
+    }
+    setErrorMessages(newErrors);
+    setFormWrong(newErrors.size > 0);
+  }
+  
+  const debounceHandleFieldEvent = debounce((event, fieldType, eventAction) => {
+    handleFieldEvent(event, fieldType, eventAction);
+  }, 250);
+
+  const debounceFieldBeingEdited = debounce(() => {
+    setIsFieldBeingEdited(false);
+  }, 3000);
+
+  async function createUser(email,name) {
+    const data = {
+      email: email,
+      name: name
+    };
+    return await API.graphql({
+      query: createUserMutation,
+      variables: { input: data },
+    });
+  }
+  
+  async function createSubmission(event){
+    event.preventDefault();
+    //if form is wrong, don't submit and don't reset the form
+    if (isFormWrong){
+      setIsFormSubmitted(false);
+      return
     }
 
-    async function createSubmission(event){
-      event.preventDefault();
-      const form = new FormData(event.target);
-      let user = await createUser(form.get("email"),form.get("name"));
-      let userId = user.data.createUser.id
-      let otp = await generateOTP()
+    setIsSubmitting(true);
+    const form = new FormData(event.target);
+    // reset everything
+    setIsFormSubmitted(false);
+    setFormWrong(false);
+    setErrorMessages([]);
+
+    try {
+      const user = await createUser(form.get("email"),form.get("name"));
+      //this should store what is submitted in the form using states:
+      setSubmittedEmail(form.get("email")) // only retaining email for now.
+      const userId = user.data.createUser.id
+      const otp = await generateOTP()
 
       const data = {
         adminId: Auth.user.username,
@@ -47,11 +127,19 @@ export function VideoRequestForm(){
         query: createSubmissionMutation,
         variables: { input: data },
       });
-      event.target.reset();
-    }
 
+      event.target.reset();
+      setIsFormSubmitted(true);
+    } catch (error) {
+      console.log('error creating submission:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+      // Set the form submission state to true
+  }
     // these states and functions below are to help dynamically adjust the width of the parent Card component (i.e the form)
     // depending on browser width, takes less % of screen width if screen is large, and greater % when mobile.
+    
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const resizeCenterComps = (windowWidth) => {
       return {
@@ -94,11 +182,48 @@ export function VideoRequestForm(){
       return(dataJSON.otp);
     }
 
+    const renderMessages = () => {
+      const errorHeading = errorMessages.size > 1 ? `There are ${errorMessages.size} issues` : 'Uh oh.';     
+      const defaultHeading = isFieldBeingEdited && isFormWrong ? (
+        <Flex direction={'row'}><Loader/> <Text as="h3">Checking...</Text></Flex>
+      ) : 'Video Request Form';
+      const headingToDisplay = isFormWrong && !isFieldBeingEdited ? errorHeading : defaultHeading;
+      const className = isFormWrong ? (isFieldBeingEdited ? "checkingFeedback" : "errorFeedback") : "infoFeedback";
+      const variation = isFormWrong ? (isFieldBeingEdited ? "default" : "error") : "info";
+    
+      const messageContent = () => {
+        if (isFormWrong && !isFieldBeingEdited) {
+          return Array.from(errorMessages).map((message, index) => (
+            <Text as="p" variation="error" key={index}>{errorMessages.size > 1 ? `${index + 1}. ${message}` : message}</Text>
+          ));
+        } else if (!isFieldBeingEdited || (isFieldBeingEdited && !isFormWrong)) {
+          return <Text as="p" variation="info">Sends an email with a link to upload the video.</Text>;
+        }
+      };
+    
+      return (
+        <Alert
+          className={className}
+          textAlign="left"
+          variation={variation}
+          hasIcon={true}
+          heading={headingToDisplay}
+          marginBottom={'.5em'}
+          minHeight={'6em'}
+        >
+          {messageContent()}
+        </Alert>
+      );
+    }
+    
     return (
-      // hardcoding the widths and heights was causing previous clipping 
-      // this form should have multiple breakpoints for its width: mobile & large screens
-      // this form IS NOT VALIDATED!! needs testing!
-      <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle}>
+      <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle} >
+        {isFormSubmitted && (
+          <Alert className="successFeedback" textAlign ='left' variation="success" isDismissible={true} hasIcon={true} heading="Email Sent" marginBottom={'.5em'}>
+            Your video request to {submittedEmail} has been sent!
+          </Alert>
+        )}
+        {renderMessages()} 
         <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em'>
           <TextField
             name="name"
@@ -110,18 +235,31 @@ export function VideoRequestForm(){
             name="email"
             placeholder="bilbobaggins@mordor.com"
             label="Recipient Email"
+            type="email"
             required
+            onBlur ={(event) => handleFieldEvent(event, 'email', 'blur')}
+            onChange={(event) => debounceHandleFieldEvent(event, 'email', 'change')}
+            hasError={isFormWrong && errorMessages.has("Invalid email address.")}
           />
-          <TextField
+          <TextAreaField
             name="description"
             placeholder="Instructions/notes"
             label="Video Instructions"
             inputStyles={{
-              paddingBottom: "5em",
+              paddingBottom: "3em",
             }}
+            onBlur = {(event) => handleFieldEvent(event, 'description', 'blur')}
+            onChange = {(event) => debounceHandleFieldEvent(event, 'description', 'change')}
+            hasError = {isFormWrong && errorMessages.has("Description must be at least 20 characters.")}
             required
           />
-        <Button type="submit" variation="primary">Request Video </Button>
+        {/* change the rendering below so that it renders disabled button with loading while waiting for createSubmission (async) */}
+          <Button type="submit" variation="primary" isDisabled={isSubmitting}>
+            <Flex direction="row" alignItems = "center" gap="0.5em">
+              {isSubmitting && <Loader/>}
+              {isSubmitting ? "Sending...": "Send Request"}
+            </Flex>
+          </Button>
         </Flex>
       </Card>
     )
