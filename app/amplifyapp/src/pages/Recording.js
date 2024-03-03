@@ -114,7 +114,7 @@ export function Recording(){
                             <Text>{submissionData.note}</Text>
                         </Flex>
                     </Card> 
-                    <VideoRecorder/>
+                    <VideoRecorder submissionData={submissionData}/>
                 </Flex>
             )
         }
