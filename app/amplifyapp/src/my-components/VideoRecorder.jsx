@@ -129,7 +129,7 @@ export default function WebcamVideo(props) {
     };
   }, []);
  
-  const handleUpload= useCallback(async (props) => {
+  const handleUpload = useCallback( async () => {
       const submissionId = props.submissionData.id
       let videoId;
       if (recordedChunks.length && videoLoaded) {
