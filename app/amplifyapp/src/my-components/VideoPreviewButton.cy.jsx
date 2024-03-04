@@ -39,7 +39,7 @@ describe('VideoPreviewButton Component', () => {
         .within(() => {
           cy.get('h3').should('contain', mockProps.name);
           cy.get('p').should('contain', mockProps.description);
-          cy.get('video').should('have.attr', 'src', mockProps.videoUrl);
+          cy.get('source').should('have.attr', 'src', mockProps.videoUrl);
         });
     });
 });

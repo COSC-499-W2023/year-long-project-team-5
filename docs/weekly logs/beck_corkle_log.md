@@ -1,3 +1,34 @@
+# Weekly Personal Log (February 26th-March 3rd)
+## Screenshot from peer eval
+<img src="https://i.imgur.com/QDF7UD0.png">
+
+## Non-feature work
+- Team meetings
+- Reviewing PRs
+
+## All of my features for **this week**
+### **Feature**: connect videos to a submission when they are recorded
+- **Description**: When a video is recorded, it makes a entry in the graphql DB. This entry is not connected to the corresponding submission in the graphQL DB. Currently the video page has no way of knowing what submission it is being recorded for, josh made a lamba function for generating one time codes which will connect the video page to the submission
+- **Issue number**: #164
+- **Context**: Implemented! Got past the blocker
+
+### **Feature**: email OTP codes when submission is made
+- **Description**: We need unique codes on the email to allow patients to access the patient portal
+- **Issue number**: #179
+- **Context**: Implemented, last weeks block was dropped #164 is completely finished
+
+## Status of work for the week
+- Connect submission to video after recording (done)
+- OTP Codes (done)
+- email OTP Codes (done)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/179]
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/164]
+  
+## Other notes
+- This log includes things I coded during reading break
+
 # Weekly Personal Log S2 Week 6
 
 ## Screenshot from peer eval
