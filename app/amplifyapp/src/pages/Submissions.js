@@ -262,6 +262,7 @@ export function Submissions() {
         <View id = 'submissions' padding={tokens.space.large}>
           {renderSubmissions()}
           <Pagination
+            padding={tokens.space.large}
             currentPage={currentPageIndex}
             totalPages={totalPageNum}
             onNext={handleNextPage}
