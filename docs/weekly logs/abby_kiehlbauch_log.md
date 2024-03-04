@@ -1,3 +1,28 @@
+# Weekly Personal Log (February 26th-March 3rd)
+
+## Screenshot from peer eval
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/33412cdd-cdff-409b-b620-0c53b5312c6b)
+
+## Non-feature work
+- team meetings
+- peer evaluation prep
+    - decided on meaningful tasks and workflow
+    - prep questionnaire 
+- PR reviews
+
+## All of my features for **this milestone**
+
+### **Feature**: Filtering submissions 
+- **Description**: Filter submissions based on date sent/received, and video submission status (submitted or not)
+- **Issue number**: issue #162
+- **Context**: finished filtering and implemented testing
+
+## Status of work for the **last week** (in-progress or completed)
+- filtering completed 
+
+## Issue number reference
+- Issue #162 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/162)
+
 # Weekly Personal Log (February 12th-18th)
 
 ## Screenshot from peer eval
