@@ -17,6 +17,7 @@ export const SubmissionRow = (props) => {
  * @param {number} props.id - customer/patient ID
  * @param {string} props.email - customer email
  * @param {string} props.dateSent - date sent
+ * @param {string} props.description - description of submission
  * @param {string} props.dateReceived - date received
  * @param {string} props.videoLink - video link
  * @param {string} [props.subLink] - full submission link (optional)

@@ -1,8 +1,16 @@
 import React from 'react'
 import { SubmissionRow } from './SubmissionRow'
 const expVidURL = 'https://www.w3schools.com/howto/howto_website_static.asp'
-const fakeSubmission = {name: "Keena", email: 'kenaa@example.com', dateSent: '2020-01-01T00:00:00', dateReceived: '2020-01-03T00:00:00',videoLink: expVidURL}
+const fakeSubmission = {name: "Keena", email: 'kenaa@example.com', description: 'this is a description', dateSent: '2020-01-01T00:00:00', dateReceived: '2020-01-03T00:00:00',videoLink: expVidURL}
+
+function setViewPortToDesktop(){
+  cy.viewport(1280, 720)
+}
+
 describe('<SubmissionRow/>', () => {
+    beforeEach(() => {
+      setViewPortToDesktop()
+    })
 
     it('renders SubmissionRow', () => {
       // first thing is to check if the component is rendered
@@ -10,7 +18,6 @@ describe('<SubmissionRow/>', () => {
        dateSent = {fakeSubmission.dateSent} dateReceived = {fakeSubmission.dateReceived} videoLink = {fakeSubmission.videoLink} />)
     })
 
-    // write assertions with .get to using className assigned in React..
     it('check if component renders with correct data being passed through props..', () => {
       cy.mount(<SubmissionRow name = {fakeSubmission.name} email = {fakeSubmission.email} 
       dateSent = {fakeSubmission.dateSent} dateReceived = {fakeSubmission.dateReceived} videoLink = {fakeSubmission.videoLink} />)
@@ -25,7 +32,6 @@ describe('<SubmissionRow/>', () => {
       cy.mount(<SubmissionRow id = {fakeSubmission.id} email = {fakeSubmission.email} 
         dateSent = {fakeSubmission.dateSent} dateReceived = {fakeSubmission.dateReceived} videoLink = {null} />)
       cy.get('.subLink').eq(0).should('exist').and('contains.text', ' No Video Received')
-
     })
 
     it("check if component renders 'NA' text message instead of date if there's no link", ()=> {
@@ -36,6 +42,15 @@ describe('<SubmissionRow/>', () => {
     it("check if component renders 'NA' text message instead of date if there's no date", ()=> {
       cy.mount(<SubmissionRow id = {fakeSubmission.id} email = {fakeSubmission.email} 
         dateSent = {fakeSubmission.dateSent} dateReceived = {null} videoLink = {null}  ></SubmissionRow>)
+    })
+
+    it('check if description renders properly', () => {
+      cy.mount(<SubmissionRow id = {fakeSubmission.id} email = {fakeSubmission.email} 
+        dateSent = {fakeSubmission.dateSent} dateReceived = {fakeSubmission.dateReceived} videoLink = {fakeSubmission.videoLink} description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu" />)
+      // get the description and check if the length of text is greater than 10
+      cy.get('.description').invoke('text').then((text) => {
+        expect(text.length).to.be.lessThan(150);
+      });
     })
   })
 
