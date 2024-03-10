@@ -179,6 +179,7 @@ export function Submissions() {
               dateSent={submission.createdAt == null ? null : new Date(submission.createdAt).toLocaleDateString()}
               dateReceived={submission.submittedAt == null ? null : new Date(submission.submittedAt).toLocaleDateString()}
               videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
+              submissionID={submission.id}
             />
           ))}
         />
@@ -195,7 +196,7 @@ export function Submissions() {
               description={submission.note}
               dateSent={submission.createdAt == null ? null : new Date(submission.createdAt).toLocaleDateString()}
               dateReceived={submission.submittedAt == null ? null : new Date(submission.submittedAt).toLocaleDateString()}
-                videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
+              videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
             />
           ))}
         </Grid>

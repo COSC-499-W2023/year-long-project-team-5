@@ -1,6 +1,7 @@
 import * as React from "react";
 import {TableRow,TableCell, Text, Button } from "@aws-amplify/ui-react";
 import { VideoPreviewButton } from "./VideoPreviewButton";
+import { SubmissionDeletionButton } from "./SubmissionDeletionButton";
 
 /**
  * SubmissionRow is intended to be the data row for each submission (to display info better on larger screens)
@@ -32,6 +33,7 @@ export const SubmissionRow = (props) => {
             <TableCell className = 'subDR' width='10%'> {props.videoLink===null || props.dateReceived ==null ?  <Text variation='tertiary'>N/A</Text> : <Text>{props.dateReceived}</Text>}</TableCell>
             {/* need to change the onclick function in line 38 to be able to address issue 102 */}
             <TableCell className='subLink' width='5%'> {props.videoLink===null || props.dateReceived ==null ? <Button variation="primary" size='small' disabled>No Video Received</Button> : <VideoPreviewButton videoUrl={props.videoLink} name = {props.name} description={props.description}></VideoPreviewButton>}</TableCell>
+            <TableCell className='subLink' width='5%'> <SubmissionDeletionButton submissionID={props.submissionID}></SubmissionDeletionButton></TableCell>
         </TableRow>
     );
 }
