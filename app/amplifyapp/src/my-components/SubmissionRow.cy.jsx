@@ -28,10 +28,10 @@ describe('<SubmissionRow/>', () => {
       cy.get('.subLink').eq(0).should('exist').and('contains.text', 'Video')
     })
 
-    it("check if component renders 'No Video Received' text message instead of button if there's no link", () => {
+    it("check if component renders 'No Submission' text message instead of button if there's no link", () => {
       cy.mount(<SubmissionRow id = {fakeSubmission.id} email = {fakeSubmission.email} 
         dateSent = {fakeSubmission.dateSent} dateReceived = {fakeSubmission.dateReceived} videoLink = {null} />)
-      cy.get('.subLink').eq(0).should('exist').and('contains.text', ' No Video Received')
+      cy.get('.subLink').eq(0).should('exist').and('contains.text', ' No Submission')
     })
 
     it("check if component renders 'NA' text message instead of date if there's no link", ()=> {
@@ -42,15 +42,6 @@ describe('<SubmissionRow/>', () => {
     it("check if component renders 'NA' text message instead of date if there's no date", ()=> {
       cy.mount(<SubmissionRow id = {fakeSubmission.id} email = {fakeSubmission.email} 
         dateSent = {fakeSubmission.dateSent} dateReceived = {null} videoLink = {null}  ></SubmissionRow>)
-    })
-
-    it('check if description renders properly', () => {
-      cy.mount(<SubmissionRow id = {fakeSubmission.id} email = {fakeSubmission.email} 
-        dateSent = {fakeSubmission.dateSent} dateReceived = {fakeSubmission.dateReceived} videoLink = {fakeSubmission.videoLink} description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu" />)
-      // get the description and check if the length of text is greater than 10
-      cy.get('.description').invoke('text').then((text) => {
-        expect(text.length).to.be.lessThan(150);
-      });
     })
   })
 

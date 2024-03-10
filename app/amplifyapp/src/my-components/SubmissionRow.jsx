@@ -1,5 +1,5 @@
 import * as React from "react";
-import {TableRow,TableCell, Text, Button } from "@aws-amplify/ui-react";
+import {TableRow,TableCell, Text, Button, Flex } from "@aws-amplify/ui-react";
 import { VideoPreviewButton } from "./VideoPreviewButton";
 
 /**
@@ -25,13 +25,29 @@ export const SubmissionRow = (props) => {
  */
 
     return(
-        <TableRow className='subRow'>
-            <TableCell className  = 'subClientName' width='15%'> {props.name === undefined || props.name === null ? <Text variation='tertiary'>N/A</Text> :  <Text> {props.name} </Text> }</TableCell>
-            <TableCell className = 'subEmail' width='15%'> {props.email}</TableCell>
-            <TableCell style={{ flex: 1 }} className="description" width='50%'>{props.description}</TableCell>
-            <TableCell className = 'subDS' width='10%'> {props.dateSent}</TableCell>
-            <TableCell className = 'subDR' width='10%'> {props.videoLink===null || props.dateReceived ==null ?  <Text variation='tertiary'>N/A</Text> : <Text>{props.dateReceived}</Text>}</TableCell>
-            <TableCell className='subLink' width='5%'> {props.videoLink===null || props.dateReceived ==null ? <Button variation="primary" size='small' disabled>No Video Received</Button> : <VideoPreviewButton videoUrl={props.videoLink} name = {props.name} description={props.description}></VideoPreviewButton>}</TableCell>
+        <TableRow className='subRow' width={'100%'}>
+            <TableCell className  = 'subClientName' width={'15%'}> {props.name === undefined || props.name === null ? <Text variation='tertiary' isTruncated>N/A</Text> :  <Text isTruncated> {props.name} </Text> }</TableCell>
+            <TableCell className = 'subEmail' width={'15%'}> 
+                <Text isTruncated>{props.email}</Text>
+            </TableCell>
+            <TableCell className="subDesc" width="40%">
+                <Text 
+                variation="primary"
+                as="p"
+                lineHeight="1.5em"
+                fontWeight={500}
+                fontSize="1em"
+                fontStyle="normal"
+                textDecoration="none"
+                textAlign="left"
+                isTruncated
+                >
+                    {props.description}
+                </Text>         
+            </TableCell>
+            <TableCell className = 'subDS' width={'10%'}><Text isTruncated>{props.dateSent}</Text> </TableCell>
+            <TableCell className = 'subDR' width={'10%'}> {props.videoLink===null || props.dateReceived ==null ?  <Text variation='tertiary' isTruncated>N/A</Text> : <Text isTruncated>{props.dateReceived}</Text>}</TableCell>
+            <TableCell className='subLink' width={'10%'}> {props.videoLink===null || props.dateReceived ==null ? <Button variation="primary" size='small' disabled>No Submission</Button> : <VideoPreviewButton videoUrl={props.videoLink} name = {props.name} description={props.description}></VideoPreviewButton>}</TableCell>
         </TableRow>
     );
 }
