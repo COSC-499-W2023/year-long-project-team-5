@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Card, Flex, Heading, Button, useTheme, View, Text } from "@aws-amplify/ui-react";
 import { VideoPreviewButton } from "./VideoPreviewButton";
+import { FaVideoSlash } from "react-icons/fa";
 
 export const SubmissionCard = (props) => {
 /**
@@ -28,10 +29,10 @@ export const SubmissionCard = (props) => {
                     <Text as='span' style={{ flex: 1 }}>
                         {props.description}
                     </Text>
-                    <span>&nbsp;&nbsp;</span>
+                    <Text>&nbsp;&nbsp;</Text>
                 </Flex>
                     {props.videoLink===null || props.dateReceived==null ? (
-                        <Button variation="primary" size='small' disabled>No Video Received</Button>
+                        <Button variation="primary" width='25%' disabled><FaVideoSlash /></Button>
                     ) : (
                     <Flex justifyContent='center' alignItems='center'>
                         <VideoPreviewButton videoUrl={props.videoLink} name = {props.name} description={props.description}></VideoPreviewButton>
