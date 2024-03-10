@@ -1,5 +1,6 @@
 import * as React from "react";
 import {TableRow,TableCell, Text, Button, Flex } from "@aws-amplify/ui-react";
+import { PopupText } from "./PopupText";
 import { VideoPreviewButton } from "./VideoPreviewButton";
 
 /**
@@ -26,12 +27,12 @@ export const SubmissionRow = (props) => {
 
     return(
         <TableRow className='subRow' width={'100%'}>
-            <TableCell className  = 'subClientName' width={'15%'}> {props.name === undefined || props.name === null ? <Text variation='tertiary' isTruncated>N/A</Text> :  <Text isTruncated> {props.name} </Text> }</TableCell>
-            <TableCell className = 'subEmail' width={'15%'}> 
-                <Text isTruncated>{props.email}</Text>
+            <TableCell className  = 'subClientName' width={'12%'}> {props.name === undefined || props.name === null ? <PopupText variation='tertiary' isTruncated>N/A</PopupText> :  <PopupText isTruncated> {props.name} </PopupText> }</TableCell>
+            <TableCell className = 'subEmail' width={'20%'}> 
+                <PopupText isTruncated>{props.email}</PopupText>
             </TableCell>
             <TableCell className="subDesc" width="40%">
-                <Text 
+                <PopupText 
                 variation="primary"
                 as="p"
                 lineHeight="1.5em"
@@ -43,11 +44,11 @@ export const SubmissionRow = (props) => {
                 isTruncated
                 >
                     {props.description}
-                </Text>         
+                </PopupText>         
             </TableCell>
-            <TableCell className = 'subDS' width={'10%'}><Text isTruncated>{props.dateSent}</Text> </TableCell>
-            <TableCell className = 'subDR' width={'10%'}> {props.videoLink===null || props.dateReceived ==null ?  <Text variation='tertiary' isTruncated>N/A</Text> : <Text isTruncated>{props.dateReceived}</Text>}</TableCell>
-            <TableCell className='subLink' width={'10%'}> {props.videoLink===null || props.dateReceived ==null ? <Button variation="primary" size='small' disabled>No Submission</Button> : <VideoPreviewButton videoUrl={props.videoLink} name = {props.name} description={props.description}></VideoPreviewButton>}</TableCell>
+            <TableCell className = 'subDS' width={'10%'}><PopupText isTruncated>{props.dateSent}</PopupText> </TableCell>
+            <TableCell className = 'subDR' width={'10%'}> {props.videoLink===null || props.dateReceived ==null ?  <PopupText variation='tertiary' isTruncated>N/A</PopupText> : <PopupText isTruncated>{props.dateReceived}</PopupText>}</TableCell>
+            <TableCell className='subLink' width={'8%'}> {props.videoLink===null || props.dateReceived ==null ? <Button variation="primary" size='small'  width='100%' disabled>No Video</Button> : <VideoPreviewButton videoUrl={props.videoLink} name = {props.name} description={props.description}></VideoPreviewButton>}</TableCell>
         </TableRow>
     );
 }

@@ -17,12 +17,12 @@ export const SubmissionTable = (props) => {
     <Table variation = "striped" highlightOnHover width={'100%'} style={{tableLayout: 'fixed'}}>
         <TableHead>
             <TableRow textAlign="left" width={"100%"}>
-                <TableCell as='th' className='tableHeader' width={'15%'}>Name</TableCell>
-                <TableCell as='th' className='tableHeader' width={'15%'}>Email</TableCell>
+                <TableCell as='th' className='tableHeader' width={'12%'}>Name</TableCell>
+                <TableCell as='th' className='tableHeader' width={'20%'}>Email</TableCell>
                 <TableCell as='th' className='tableHeader' width={'40%'}>Note/Description</TableCell>
                 <TableCell as='th' className='tableHeader' width={'10%'}>Date Sent</TableCell>
                 <TableCell as='th' className='tableHeader' width={'10%'}>Date Received</TableCell>
-                <TableCell as='th' className='tableHeader' width={'10%'}>Video</TableCell>
+                <TableCell as='th' className='tableHeader' width={'8%'}>Video</TableCell>
             </TableRow>
         </TableHead>
         <TableBody textAlign="left" width={"100%"}>
