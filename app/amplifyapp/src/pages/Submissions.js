@@ -63,7 +63,8 @@ export function Submissions() {
   //this useEffect is used to fetch submissions data from the database: calls fetchsubmissions() which is below..
   useEffect(() => {
     fetchSubmissions();
-  });
+  }, []);
+  //This dependency array is needed to stop constant refreshing
 
   async function fetchSubmissions() {
     let filteredSubmissions = await getSubmissions()
