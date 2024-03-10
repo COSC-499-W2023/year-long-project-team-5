@@ -31,9 +31,8 @@ export const SubmissionRow = (props) => {
             <TableCell style={{ flex: 1 }} className="description" width='50%'>{props.description}</TableCell>
             <TableCell className = 'subDS' width='10%'> {props.dateSent}</TableCell>
             <TableCell className = 'subDR' width='10%'> {props.videoLink===null || props.dateReceived ==null ?  <Text variation='tertiary'>N/A</Text> : <Text>{props.dateReceived}</Text>}</TableCell>
-            {/* need to change the onclick function in line 38 to be able to address issue 102 */}
             <TableCell className='subLink' width='5%'> {props.videoLink===null || props.dateReceived ==null ? <Button variation="primary" size='small' disabled>No Video Received</Button> : <VideoPreviewButton videoUrl={props.videoLink} name = {props.name} description={props.description}></VideoPreviewButton>}</TableCell>
-            <TableCell className='subLink' width='5%'> <SubmissionDeletionButton submissionID={props.submissionID}></SubmissionDeletionButton></TableCell>
+            <TableCell className='subLink' width='5%'> <SubmissionDeletionButton submissionID={props.submissionID} refresh={props.refresh}></SubmissionDeletionButton></TableCell>
         </TableRow>
     );
 }

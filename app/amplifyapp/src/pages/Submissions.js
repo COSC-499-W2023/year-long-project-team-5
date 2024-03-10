@@ -180,6 +180,7 @@ export function Submissions() {
               dateReceived={submission.submittedAt == null ? null : new Date(submission.submittedAt).toLocaleDateString()}
               videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
               submissionID={submission.id}
+              refresh={fetchSubmissions}
             />
           ))}
         />
