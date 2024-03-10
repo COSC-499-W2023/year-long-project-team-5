@@ -91,6 +91,12 @@ export function Submissions() {
     setDisplayedSubmissions(filteredSubmissions.slice((currentPageIndex-1)*6, (currentPageIndex*6)-1));
   }
 
+  async function refreshAndKeepPage() {
+    let temp = currentPageIndex;
+    await fetchSubmissions();
+    setCurrentPageIndex(temp);
+  }
+
   function handleFilteringSubmissions(received, sent, videoStatus){
     const selectedReceivedDate = new Date(received);
     const selectedSentDate = new Date(sent);
@@ -181,7 +187,7 @@ export function Submissions() {
               dateReceived={submission.submittedAt == null ? null : new Date(submission.submittedAt).toLocaleDateString()}
               videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
               submissionID={submission.id}
-              refresh={fetchSubmissions}
+              refresh={refreshAndKeepPage}
             />
           ))}
         />
