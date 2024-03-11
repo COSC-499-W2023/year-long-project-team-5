@@ -56,6 +56,7 @@
 - Tooltips for recording and dashboard [Stretch Goal] [#191](https://github.com/username/repository/issues/191)
 - Progress bar for recording page [Stretch Goal] [#194](https://github.com/username/repository/issues/194)
 - [BUG] Video Preview Exit Button in Dark Mode needs Fixing [#203](https://github.com/username/repository/issues/203)
+- Responsive request form for request page (form preview)  [#192](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/192)
 
 ## Burn Up Chart
 <img src="https://i.imgur.com/RaQ2Bl0.png">
