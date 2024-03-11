@@ -430,4 +430,26 @@
 ## Issue number reference
 - Issue #176 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/176)
 
+---
 
+# Weekly Personal Log (Mar 4 - Mar 10)
+
+## Screenshot from peer eval
+![eval](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/42fb5534-4fb6-402d-bd4b-a0ee1fd0282f)
+
+## Non-feature work
+- Met on March 7 for meeting
+
+## All of my features for **this milestone**
+
+### **Feature**: Pagination for dashboard
+- **Description**: submissions page needs to be paginated for easier viewing of all the submissions
+- **Issue number**: issue #176
+- **Context**: Completed the entire feature! Works with filtering and all of the submissions I tested
+
+## Status of work for the **last week** (in-progress or completed)
+- Pagination merged
+- Taking up finishing tasks for next sprint
+
+## Issue number reference
+- Issue #176 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/176)
