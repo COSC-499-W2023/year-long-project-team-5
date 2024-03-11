@@ -25,7 +25,7 @@ Reason for Changes:
     Huge notes/descriptions would render in really large blocks of text that would not only ruin the look of our website but made it harder to navigate.
 
 **Status:** 
-The PR is ready for review. I spent a lot of time having to write tests for this, it was annoying but it did help me write better, more robust code.
+The PR is ready for review. I spent a lot of time having to write tests for this, it was annoying but it did help me write better, more robust code. And now the entire table looks so much cleaner and is more responsive.
 
 # Personal Log (Feb 18 - Mar 3)
 ![T2 W8](https://i.imgur.com/uJ3HvRP.png)
