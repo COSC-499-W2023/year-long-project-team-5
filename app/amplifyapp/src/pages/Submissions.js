@@ -212,6 +212,48 @@ export function Submissions() {
     }
   }
 
+  function renderDash () {
+    if(displayedSubmissions.length === 0) {
+      return (
+        <View >
+          <Flex height='25vh'/>
+          <Text lineHeight='40px'>No Submissions Found!</Text>
+          <Text>Click "Request a Video" to make a new submission!</Text>
+        </View>
+      );
+    } else {
+      return (
+        <View>
+          <Flex alignItems="center" justifyContent="center">
+            <Text>
+              <CiFilter size = '30' className = 'sidebar-toggle' onClick={()=>setSideBarToggled(!sideBarToggled)}/>
+            </Text>
+            <SearchField variation = 'quiet' textAlign="left" placeholder="Search submissions..." padding={tokens.space.large} onChange={(e) => {
+              setCurrentPageIndex(1);
+              setFilteredSubmissions(filterSubmissions(e.target.value,submissions))}
+              } />
+            {!isMobile && (
+            <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
+              <ToggleButton value = "table"> Table </ToggleButton>
+              <ToggleButton value = "card"> Card </ToggleButton>
+            </ToggleButtonGroup>
+            )}
+          </Flex>
+          <View id = 'submissions' padding={tokens.space.large}>
+            {renderSubmissions()}
+            <Pagination
+              padding={tokens.space.large}
+              currentPage={currentPageIndex}
+              totalPages={totalPageNum}
+              onNext={handleNextPage}
+              onPrevious={handlePreviousPage}
+              onChange={handleOnChange}
+            />
+          </View>
+        </View>
+      );
+    }
+  }
   return (
     <View className="App">
       <Flex direction = 'row' id = 'aside' ref = {sidebarRef} className ={`sidebar ${sideBarToggled ? "visible" : ""} `} backgroundColor={tokens.colors.background.secondary}>
@@ -254,32 +296,7 @@ export function Submissions() {
         </Flex>
       <Flex className ={`content ${sideBarToggled ? "pushed" : ""} `} direction={'column'}>
         <Heading level={2}>Your Video Submissions</Heading>
-        <Flex alignItems="center" justifyContent="center">
-          <Text>
-            <CiFilter size = '30' className = 'sidebar-toggle' onClick={()=>setSideBarToggled(!sideBarToggled)}/>
-          </Text>
-          <SearchField variation = 'quiet' textAlign="left" placeholder="Search submissions..." padding={tokens.space.large} onChange={(e) => {
-            setCurrentPageIndex(1);
-            setFilteredSubmissions(filterSubmissions(e.target.value,submissions))}
-            } />
-          {!isMobile && (
-          <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
-            <ToggleButton value = "table"> Table </ToggleButton>
-            <ToggleButton value = "card"> Card </ToggleButton>
-          </ToggleButtonGroup>
-          )}
-        </Flex>
-        <View id = 'submissions' padding={tokens.space.large}>
-          {renderSubmissions()}
-          <Pagination
-            padding={tokens.space.large}
-            currentPage={currentPageIndex}
-            totalPages={totalPageNum}
-            onNext={handleNextPage}
-            onPrevious={handlePreviousPage}
-            onChange={handleOnChange}
-          />
-        </View>
+        {renderDash()}
       </Flex>
     </View>
   )
