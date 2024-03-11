@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, View, Flex, Card, Heading, Text } from "@aws-amplify/ui-react";
-import "./VideoPreviewButton.css"
+import "./overlay.css"
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { FaVideo } from "react-icons/fa";
 
