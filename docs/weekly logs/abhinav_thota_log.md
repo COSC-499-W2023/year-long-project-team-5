@@ -1,5 +1,5 @@
 # Personal Log (Mar 3 - Mar 10)
-![T2 W9](https://imgur.com/a/1M3T7RN)
+![T2W9](https://i.imgur.com/ca4FIVc.png)
 
 ## Non feature work:
 - Team meetings
