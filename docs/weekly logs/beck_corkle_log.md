@@ -1,3 +1,34 @@
+# Weekly Personal Log (March 4th-March 10th)
+## Screenshot from peer eval
+<img src="https://i.imgur.com/LOWniSS.png">
+
+## Non-feature work
+- Peer testing Tuesday, Team meeting Thursday
+
+## All of my features for **this week**
+### **Feature**: Emailing improvements
+- **Description**: Since we got the logic for emailing down, I refined the process more this week. The emails look beautiful now and I squashed some bugs to do with the OTP code being sent to the email
+- **Issue number**: #200, #199, #193
+- **Context**: This was all backend stuff so no PR
+
+### **Feature**: Video Rendering Bugs
+- **Description**: I was having a lot of trouble with certain video formats not rendering correctly on certain browsers, it's really inconsistent, but I think I mostly have it all fixed. I'm monitoring to see if they come up again.
+- **Issue number**: #178
+- **Context**:
+
+
+## Status of work for the week
+- Emailing improvements (mostly done)
+- Video Rendering Bugs (done for now)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/200]
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/199]
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/193]
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/178]
+  
+## Other notes
+
 # Weekly Personal Log (February 26th-March 3rd)
 ## Screenshot from peer eval
 <img src="https://i.imgur.com/QDF7UD0.png">
