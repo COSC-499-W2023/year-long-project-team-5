@@ -1,8 +1,6 @@
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 import { useAuthenticator} from "@aws-amplify/ui-react"
-
-
 import {
     Button,
     Flex,
@@ -21,8 +19,8 @@ export function Profile(){
     return(
         <View className="App">
         <Heading level={1}>Welcome, {user.attributes.name}!</Heading>
- <Flex direction = 'column' width = '100%' justifyContent='space-evenly' alignItems='center' marginTop = '2rem' rowGap='2.5rem'>
-        <View as="form" minWidth ='80%'>
+        <Flex direction = 'column' width = '100%' justifyContent='space-evenly' alignItems='center' marginTop = '2rem' rowGap='2.5rem'>
+        <View as="form" minWidth='80%'>
         <Heading textAlign = 'left' marginBottom='1rem' level={4}>Edit Profile</Heading>
           <Card variation="elevated">
           <Flex direction="column" justifyContent = "center" textAlign = "left">
