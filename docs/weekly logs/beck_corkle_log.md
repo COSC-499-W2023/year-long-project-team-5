@@ -25,6 +25,7 @@
 - [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/200]
 - [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/199]
 - [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/193]
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/178]
   
 ## Other notes
 
