@@ -149,6 +149,7 @@ export default function WebcamVideo(props) {
         const result_video = await API.graphql({ // store the key for the video in DynamoDB
           query: createVideoMutation,
           variables: { input: data },
+          authMode: "API_KEY"
         });
         videoId = result_video.data.createVideo.id;
 
@@ -164,7 +165,7 @@ export default function WebcamVideo(props) {
       const data2 = {
         id: submissionId,
         submissionVideoId: videoId,
-        otpCode: null,
+        otpCode: 0,
         submittedAt: new Date().toISOString(),
       };
 
@@ -173,6 +174,7 @@ export default function WebcamVideo(props) {
         await API.graphql({
           query: updateSubmissionMutation,
           variables: { input: data2 },
+          authMode: "API_KEY"
         });
       } catch(error){
         console.error("Error associating video with submission:", error);
