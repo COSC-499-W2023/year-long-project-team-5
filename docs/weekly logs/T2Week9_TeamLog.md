@@ -1,6 +1,6 @@
 
 # Team 5 Weekly Checkpoint (Term 2 Week 9)
-## March 4 - March 11
+## March 4 - March 10
 <table>
   <tr><th>Name</th><th>Student #</th><th>Username</th></tr>
   <tr><td>Abhinav Thota</td><td>38811428</td><td>@abeeto</td></tr>
