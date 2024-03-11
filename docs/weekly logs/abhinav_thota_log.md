@@ -1,3 +1,32 @@
+# Personal Log (Mar 3 - Mar 10)
+![T2 W9](https://imgur.com/a/1M3T7RN)
+
+## Non feature work:
+- Team meetings
+- Peer testing
+
+## Feature worked on:
+### Issue [#114](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/114)
+
+-Feature: Make the notes field in the dashboard responsive
+
+Description of Changes:
+(Write a brief description of your changes.)
+   - created a new custom component based on Amplify Text called PopupText.jsx (found in my-components folder)
+   - This component will check whenever the content of its text is too long and then truncates it, also renders an option to trigger a pop up which then shows the full content
+   - had to mess around with the Table component to find out why CSS wasn't working as expected. It was down to "tableLayout" not being fixed.
+   - All the fields in table are now "responsive" in the sense that it will truncate if its contents exceed the column's width.
+   - Using lodash library to debounce the useEffect, fixed my tests and reduces load on browser.
+
+Reason for Changes:
+(Write a brief reason for why these changes were made.)
+
+    The UI of our table was being messed up with varying lengths of text, resulting in weird widths for each column on each page.
+    Huge notes/descriptions would render in really large blocks of text that would not only ruin the look of our website but made it harder to navigate.
+
+**Status:** 
+The PR is ready for review. I spent a lot of time having to write tests for this, it was annoying but it did help me write better, more robust code.
+
 # Personal Log (Feb 18 - Mar 3)
 ![T2 W8](https://i.imgur.com/uJ3HvRP.png)
 
