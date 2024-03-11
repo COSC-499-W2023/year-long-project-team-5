@@ -1,34 +1,52 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState, useEffect } from "react";
 import { Text } from "@aws-amplify/ui-react";
+import { debounce } from "lodash";
 
 export const PopupText = ({ variation, children, ...rest }) => {
-    const [toTruncate, setToTruncate] = useState(false);
-    const textRef = useRef(null); // Ref for the text container div
-    const contentRef = useRef(null); // Ref for the span to measure content
+    const [toTruncate, setToTruncate] = useState(true);
+    const textRef = useRef(null);
+    const contentRef = useRef(null);
 
-    useLayoutEffect(() => {
+    // A function to check and update truncation state
+    const checkTruncation = () => {
         if (textRef.current && contentRef.current) {
-            // Compare the width of the content with the width of the parent container
             const containerWidth = textRef.current.offsetWidth;
             const contentWidth = contentRef.current.scrollWidth;
-            // Set toTruncate true if contentWidth exceeds containerWidth
             setToTruncate(contentWidth > containerWidth);
         }
+    };
+
+    const debouncedCheckTruncation = debounce(checkTruncation, 300)
+
+    useLayoutEffect(() => {
+        debouncedCheckTruncation();
     }, []);
 
+    // Respond to window resize events
+    useEffect(() => {
+        window.addEventListener('resize', debouncedCheckTruncation);
+
+        return () => {
+            window.removeEventListener('resize', debouncedCheckTruncation);
+        };
+    }, []); // Empty dependency array means this effect runs only on mount and unmount
+
     const showPopup = () => {
-        if(toTruncate) {
+        if (toTruncate) {
             alert(children);
         }
     };
 
     return (
-        <div ref={textRef} style={{ width: '100%' }}>
-            {/* Use a span inside Text to measure, since Text might not expose scrollWidth directly */}
-            <Text className="textContent" variation={variation} isTruncated={toTruncate} {...rest}>
+        <div>
+            <Text ref={textRef} className="textContent" variation={variation} isTruncated={toTruncate} width={toTruncate ? "95%" : "auto"} {...rest}>
                 <span ref={contentRef}>{children}</span>
             </Text>
-            {toTruncate && <Text className="textPopupOption" variation="tertiary" onClick={showPopup} style={{cursor: 'pointer'}} fontSize="0.8em">Click to see full text</Text>}
+            {toTruncate === true && (
+                <Text className="textPopupOption" variation="tertiary" onClick={showPopup} style={{cursor: 'pointer'}} fontSize="0.8em">
+                    Click to see full text
+                </Text>
+            )}
         </div>
     );
 };

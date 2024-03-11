@@ -45,7 +45,7 @@ export const SubmissionRow = (props) => {
                     {props.description}
                 </PopupText>         
             </TableCell>
-            <TableCell className = 'subDS' width={'10%'}><PopupText isTruncated>{props.dateSent}</PopupText> </TableCell>
+            <TableCell className = 'subDS' width={'10%'}><PopupText>{props.dateSent}</PopupText> </TableCell>
             <TableCell className = 'subDR' width={'10%'}> {props.videoLink===null || props.dateReceived ==null ?  <PopupText variation='tertiary'>N/A</PopupText> : <PopupText>{props.dateReceived}</PopupText>}</TableCell>
             <TableCell className='subLink' width={'8%'}> {props.videoLink===null || props.dateReceived ==null ? <Button variation="primary" size='small'  width='100%' disabled>No Video</Button> : <VideoPreviewButton videoUrl={props.videoLink} name = {props.name} description={props.description}></VideoPreviewButton>}</TableCell>
         </TableRow>
