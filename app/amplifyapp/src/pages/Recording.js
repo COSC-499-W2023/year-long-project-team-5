@@ -13,7 +13,8 @@ import {
     Text,
     Divider,
     useTheme,
-    Alert
+    Alert, 
+    Button
   } from '@aws-amplify/ui-react';
 
 /**
@@ -25,7 +26,7 @@ import {
  */
 
 export function Recording(){
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [windowWidth] = useState(window.innerWidth);
     const resizeCenterComps = (windowWidth) => {
       return {
           width: (windowWidth > 1024) ? '50%' : (windowWidth > 600) ? '80%' : '100%',
@@ -57,7 +58,7 @@ export function Recording(){
         let unValidatedOTP = form.get("code");
 
         let data = await getSubmissionByOTP(unValidatedOTP);
-        if (data.length == 0) {
+        if (data.length === 0) {
             setErrorCode(true);
             event.target.reset();
             return
@@ -113,7 +114,7 @@ export function Recording(){
                             <Text>{submissionData.note}</Text>
                         </Flex>
                     </Card> 
-                    <VideoRecorder/>
+                    <VideoRecorder submissionData={submissionData}/>
                 </Flex>
             )
         }

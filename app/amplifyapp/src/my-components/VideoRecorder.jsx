@@ -9,12 +9,19 @@ import { FaRedoAlt } from "react-icons/fa";
 import { RiVideoUploadFill } from "react-icons/ri";
 import { FaCircleStop } from "react-icons/fa6";
 import {
-  createVideo as createVideoMutation
+  createVideo as createVideoMutation,
+  updateSubmission as updateSubmissionMutation
 } from "../graphql/mutations";
 import { useNavigate } from "react-router-dom";
 import "./VideoRecorder.css"
+import {clsx} from "clsx";
+import { getSupportedMimeTypes, getFileExtensionForMimeType } from "../Helpers/Other";
 
-export default function WebcamVideo() {
+const bestMimeType = getSupportedMimeTypes("video")[0];
+const fileExt = getFileExtensionForMimeType(bestMimeType);
+
+export default function WebcamVideo(props) {
+  
   const webcamRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const [capturing, setCapturing] = useState(false);
@@ -24,16 +31,27 @@ export default function WebcamVideo() {
   const navigate = useNavigate();
   const [videoLoaded, setVideoLoaded] = useState(false); //state variable to track if the recorded video is fully loaded and ready to upload
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
+  const [videoConstraints, setVideoConstraints] = useState({
+    width: isMobile && 480,
+    height: isMobile && 360,
+    facingMode: "user",
+  });
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1000);
+      const mobile = window.innerWidth <= 1000;
+      setIsMobile(mobile);
+      setVideoConstraints({
+        width: mobile && 480,
+        height: mobile && 360,
+        facingMode: "user",
+      });
     };
+  
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
 
 
   const handleDataAvailable = useCallback(
@@ -49,7 +67,7 @@ export default function WebcamVideo() {
     if (recordedChunks.length > 0 && !capturing) {
       const blob = isMobile
   ? new Blob(recordedChunks, { type: "video/mp4" })
-  : new Blob(recordedChunks, { type: "video/webm" });
+  : new Blob(recordedChunks, { type: bestMimeType });
        
       const url = URL.createObjectURL(blob);
       setVideoPreviewUrl(url);
@@ -66,7 +84,7 @@ export default function WebcamVideo() {
     setVideoPreviewUrl(null);
     try{
     mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
-      mimeType: "video/webm",
+      mimeType: bestMimeType
     });
     }
     catch{
@@ -85,14 +103,14 @@ export default function WebcamVideo() {
     if (recordedChunks.length) {
       const blob = isMobile
   ? new Blob(recordedChunks, { type: "video/mp4" })
-  : new Blob(recordedChunks, { type: "video/webm" });
+  : new Blob(recordedChunks, { type: bestMimeType });
        
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       document.body.appendChild(a);
       a.style = "display: none";
       a.href = url;
-      isMobile ? (a.download = "react-webcam-stream-capture.mp4"): (a.download = "react-webcam-stream-capture.webm")
+      isMobile ? (a.download = "react-webcam-stream-capture.mp4"): (a.download = "react-webcam-stream-capture" + fileExt)
       a.click();
       window.URL.revokeObjectURL(url);
     }
@@ -111,25 +129,28 @@ export default function WebcamVideo() {
     };
   }, []);
  
-  const handleUpload= useCallback(async () => {
+  const handleUpload = useCallback( async () => {
+      const submissionId = props.submissionData.id
+      let videoId;
       if (recordedChunks.length && videoLoaded) {
       const blob = new Blob(recordedChunks, {
-        type: "video/webm",
+        type: bestMimeType,
       });
 
+      //UPLOAD VIDEO TO S3 DB, also make a entry in  the graphql videos table
       const randNum = parseInt(Math.random() * 10000000);
-      const videoNameS3 = "video" + randNum + ".webm";
+      const videoNameS3 = "video" + randNum + fileExt;
       const data = {
         videoURL: videoNameS3, // videoNameS3 is the key (not the url) for the s3 bucket, get video URL with Storage.get(name)
-        otpCode: null //otp code will be erased upon upload
       };
       
       try {
         await Storage.put(videoNameS3, blob); // store video in s3 bucket under the key
-        await API.graphql({ // store the key for the video in DynamoDB
+        const result_video = await API.graphql({ // store the key for the video in DynamoDB
           query: createVideoMutation,
           variables: { input: data },
         });
+        videoId = result_video.data.createVideo.id;
 
         setRecordedChunks([]);
         
@@ -138,6 +159,26 @@ export default function WebcamVideo() {
       } catch (error) {
         console.error("Error uploading video:", error);
       }
+
+      // now we want to associate the video with the submission
+      const data2 = {
+        id: submissionId,
+        submissionVideoId: videoId,
+        otpCode: null,
+        submittedAt: new Date().toISOString(),
+      };
+
+
+      try {
+        await API.graphql({
+          query: updateSubmissionMutation,
+          variables: { input: data2 },
+        });
+      } catch(error){
+        console.error("Error associating video with submission:", error);
+      }
+
+
     } 
   }, [recordedChunks, navigate, videoLoaded]);
 
@@ -166,23 +207,18 @@ export default function WebcamVideo() {
     if(videoPreviewUrl) {
       return (
         <div>
-          <video controls width = {620} height = {480} src = {videoPreviewUrl} />
+          <video controls className={"responsive-video"} src = {videoPreviewUrl} />
         </div>
       );
     }
     return null;
   };
 
-  const videoConstraints = {
-    width: 720,
-    height: 480,
-    facingMode: "user",
-  };
   return (
     <View>
       <Flex justifyContent={"center"}>
         {recordedChunks.length > 0 ? (
-            <Card backgroundColor={'background.secondary'} padding={'1em 2em'} variation="elevated">
+            <Card backgroundColor={'background.secondary'} padding={'1em 1em'} variation="elevated">
               <Heading level={3} textAlign={'left'}>Preview</Heading>
               <Divider orientation="horizontal" marginBottom={'0.5em'}/>
               <div justifyContent={"center"}>
@@ -190,14 +226,14 @@ export default function WebcamVideo() {
               </div>
               <Flex justifyContent={"space-evenly"} marginTop={'0.5em'}>
                 <ButtonGroup size="small">
-                  <Button onClick={handleDownload}> <MdDownloadForOffline style={{marginRight: '4px'}}/> Download</Button>
-                  <Button onClick={handleUpload}> <RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</Button>
-                  <Button onClick={handleRetakeClick }> <FaRedoAlt style={{marginRight: '4px'}}/> Retake</Button>
+                  <Button className = "downloadButton" onClick={handleDownload}> <MdDownloadForOffline style={{marginRight: '4px'}}/> Download</Button>
+                  <Button className = "submitButton" onClick={handleUpload}> <RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</Button>
+                  <Button className = "retakeButton" onClick={handleRetakeClick }> <FaRedoAlt style={{marginRight: '4px'}}/> Retake</Button>
                 </ButtonGroup>
               </Flex>
             </Card>
         ):
-        <Card backgroundColor={'background.secondary'} padding={'1em 2em'} variation="elevated">
+        <Card backgroundColor={'background.secondary'} padding={'1em 1em'} variation="elevated">
           {capturing ? 
               (<Heading level={3} textAlign={'left'}> Recording...</Heading>)
             : ( <Heading level={3} textAlign={'left'}>Record video</Heading>)
@@ -206,7 +242,7 @@ export default function WebcamVideo() {
           <Divider orientation="horizontal"/>
           <View marginTop={'1em'}>
             <Webcam
-            className= {capturing ? "recorderOn" : "recorderOff"}
+            className = {clsx( { 'mobile-webcam' : isMobile }, {'webcam': !isMobile}, { "recorderOn": capturing }, { "recorderOff": !capturing })}
             muted={true}
             audio={true}
             mirrored={true}
@@ -216,9 +252,9 @@ export default function WebcamVideo() {
             />
           </View> 
           {capturing ? (
-            <Button onTouchStart = {handleStopCaptureClick} onClick={handleStopCaptureClick} variation='warning' minWidth={"100%"}><FaCircleStop style={{ marginRight: '4px', color: 'red' }}/> Finish</Button>
+            <Button className = "stopButton" onTouchStart = {handleStopCaptureClick} onClick={handleStopCaptureClick} variation='warning' minWidth={"100%"}><FaCircleStop style={{ marginRight: '4px', color: 'red' }}/> Finish</Button>
             ) : recordedChunks.length === 0 && isCamReady? (
-              <Button className='recordButton' onClick={handleStartCaptureClick} variation='outline' minWidth={'100%'}><BsFillRecordFill style={{ marginRight: '4px', color: 'red'}}/> Record</Button>
+              <Button className = "recordButton" onClick={handleStartCaptureClick} variation='outline' minWidth={'100%'}><BsFillRecordFill style={{ marginRight: '4px', color: 'red'}}/> Record</Button>
             ) : null}
         </Card>
         }

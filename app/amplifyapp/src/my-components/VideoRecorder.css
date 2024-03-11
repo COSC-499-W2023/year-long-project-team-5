@@ -20,3 +20,20 @@
     padding: 0px;
     border-radius: 8px;
   }
+
+  /* Default styles */
+.webcam {
+  width: 100%;
+  height: 480px;
+}
+
+.responsive-video{
+  width: 100%;
+  height: auto;
+}
+
+/* Mobile styles */
+.mobile-webcam {
+  width: 100%;
+  height: auto; /* Adjust height automatically */
+}
