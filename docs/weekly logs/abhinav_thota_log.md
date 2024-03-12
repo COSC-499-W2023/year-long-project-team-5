@@ -1,3 +1,67 @@
+# Personal Log (Mar 3 - Mar 10)
+![T2W9](https://i.imgur.com/ca4FIVc.png)
+
+## Non feature work:
+- Team meetings
+- Peer testing
+
+## Feature worked on:
+### Issue [#114](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/114)
+
+-Feature: Make the notes field in the dashboard responsive
+
+Description of Changes:
+(Write a brief description of your changes.)
+   - created a new custom component based on Amplify Text called PopupText.jsx (found in my-components folder)
+   - This component will check whenever the content of its text is too long and then truncates it, also renders an option to trigger a pop up which then shows the full content
+   - had to mess around with the Table component to find out why CSS wasn't working as expected. It was down to "tableLayout" not being fixed.
+   - All the fields in table are now "responsive" in the sense that it will truncate if its contents exceed the column's width.
+   - Using lodash library to debounce the useEffect, fixed my tests and reduces load on browser.
+
+Reason for Changes:
+(Write a brief reason for why these changes were made.)
+
+    The UI of our table was being messed up with varying lengths of text, resulting in weird widths for each column on each page.
+    Huge notes/descriptions would render in really large blocks of text that would not only ruin the look of our website but made it harder to navigate.
+
+**Status:** 
+The PR is ready for review. I spent a lot of time having to write tests for this, it was annoying but it did help me write better, more robust code. And now the entire table looks so much cleaner and is more responsive.
+
+# Personal Log (Feb 18 - Mar 3)
+![T2 W8](https://i.imgur.com/uJ3HvRP.png)
+
+## Non feature work
+- PR reviews
+- Team meetings
+## Feature worked on
+
+### Issue [#161](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/161)
+
+- My teammate requested changes on this implemented feature worked on before reading break, in summary:
+
+      "warnings are super jarring because they appear when you first start typing, doesn't even give you a chance to put in a valid email or 20 chars"
+
+      "apply the warning after a user leaves focus of the email input? Or even upon submission if that's too hard." 
+
+      "Especially because it moves the field down so you slightly lose track of where you're typing. Might be worth making it animated or filling out a space for it so it doesn't move down everything else."
+
+**Feature:** Fix UI of warning/account feedback
+
+**Description of Changes:** (Over reading break)
+FEB 21, 2024: addressed feedback by @joshmed27 and @Namesnipes :
+
+    installed lodash library to write debounce functions to render in messages with delay/save cost on client side
+    checks and updates states as user types, when typing goes idle and when user leaves a field
+    adding conditional rendering for all fields and error messages but also to use submitting button
+    Now validates email, description and only allows one submission click at a time.
+
+
+**Status:** 
+Fully done, tested and merged. Teammate's requirements were fully considered and I think my solution was well implemented.
+
+**Additional Notes:**
+Was a busy week. Hoping that the work done from reading break will suffice. I'm really proud of how I approached this feature over the break it was one that I'm excited to see how users use for peer test. 
+
 # Personal log (Feb 12 -Feb 18)
 ## Weekly work done from [peer eval](https://prod.teamableanalytics.ok.ubc.ca/courses/128571/peer_evaluations/39/student/results/)
 ![T2 W5 work done](https://i.imgur.com/IkSmtgg.png)

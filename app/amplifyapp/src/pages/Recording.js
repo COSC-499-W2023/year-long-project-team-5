@@ -13,7 +13,7 @@ import {
     Text,
     Divider,
     useTheme,
-    Alert,
+    Alert, 
     Button
   } from '@aws-amplify/ui-react';
 
@@ -114,7 +114,7 @@ export function Recording(){
                             <Text>{submissionData.note}</Text>
                         </Flex>
                     </Card> 
-                    <VideoRecorder/>
+                    <VideoRecorder submissionData={submissionData}/>
                 </Flex>
             )
         }

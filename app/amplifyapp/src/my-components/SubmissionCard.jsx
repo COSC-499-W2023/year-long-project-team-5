@@ -25,7 +25,7 @@ export const SubmissionCard = (props) => {
                 <Flex direction='column' alignItems='flex-start'>
                     <Text fontWeight={"light"}>Email: {props.email}</Text>
                     <Text fontWeight={"semibold"}>Instructions:</Text>
-                    <Text numberOfLines={1} as='span' style={{ flex: 1 }}>
+                    <Text as='span' style={{ flex: 1 }}>
                         {props.description}
                     </Text>
                     <span>&nbsp;&nbsp;</span>

@@ -3,7 +3,6 @@ import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 import { useAuthenticator} from "@aws-amplify/ui-react"
 import ProfileInfo from "../my-components/Profile";
-
 import {
     Button,
     Flex,

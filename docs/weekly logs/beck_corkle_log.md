@@ -1,3 +1,65 @@
+# Weekly Personal Log (March 4th-March 10th)
+## Screenshot from peer eval
+<img src="https://i.imgur.com/LOWniSS.png">
+
+## Non-feature work
+- Peer testing Tuesday, Team meeting Thursday
+
+## All of my features for **this week**
+### **Feature**: Emailing improvements
+- **Description**: Since we got the logic for emailing down, I refined the process more this week. The emails look beautiful now and I squashed some bugs to do with the OTP code being sent to the email
+- **Issue number**: #200, #199, #193
+- **Context**: This was all backend stuff so no PR
+
+### **Feature**: Video Rendering Bugs
+- **Description**: I was having a lot of trouble with certain video formats not rendering correctly on certain browsers, it's really inconsistent, but I think I mostly have it all fixed. I'm monitoring to see if they come up again.
+- **Issue number**: #178
+- **Context**:
+
+
+## Status of work for the week
+- Emailing improvements (mostly done)
+- Video Rendering Bugs (done for now)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/200]
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/199]
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/193]
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/178]
+  
+## Other notes
+
+# Weekly Personal Log (February 26th-March 3rd)
+## Screenshot from peer eval
+<img src="https://i.imgur.com/QDF7UD0.png">
+
+## Non-feature work
+- Team meetings
+- Reviewing PRs
+
+## All of my features for **this week**
+### **Feature**: connect videos to a submission when they are recorded
+- **Description**: When a video is recorded, it makes a entry in the graphql DB. This entry is not connected to the corresponding submission in the graphQL DB. Currently the video page has no way of knowing what submission it is being recorded for, josh made a lamba function for generating one time codes which will connect the video page to the submission
+- **Issue number**: #164
+- **Context**: Implemented! Got past the blocker
+
+### **Feature**: email OTP codes when submission is made
+- **Description**: We need unique codes on the email to allow patients to access the patient portal
+- **Issue number**: #179
+- **Context**: Implemented, last weeks block was dropped #164 is completely finished
+
+## Status of work for the week
+- Connect submission to video after recording (done)
+- OTP Codes (done)
+- email OTP Codes (done)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/179]
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/164]
+  
+## Other notes
+- This log includes things I coded during reading break
+
 # Weekly Personal Log S2 Week 6
 
 ## Screenshot from peer eval

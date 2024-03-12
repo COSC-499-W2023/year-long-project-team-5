@@ -1,3 +1,59 @@
+# Weekly Personal Log (March 4th-March 10th)
+
+## Screenshot from peer eval
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/db4579d6-44f2-43ff-b496-ac3f2c75cc13)
+
+## Non-feature work
+- team meetings
+- peer evaluation 
+    - review feedback/bugs found and make decisions on how to proceed
+- PR reviews
+
+## All of my features for **this milestone**
+
+### **Feature**: Filtering submissions [bug fix]
+- **Description**: UI errors were found during peer testing when using dark mode, had to adjust the CSS to make the filtering menu work with dark mode
+- **Issue number**: issue #202
+- **Context**: Merged
+
+### **Feature**: Profile page
+- **Description**: Finalize the profile page (remove unimplemented forms
+- **Issue number**: issue #92
+- **Context**: After quite a bit of debugging I discovered the issue behind the profile page not accepting changes, however, the solution was going to be quite complex and the team decided it was no longer a priority. I removed the change password form (decided this was unnecessary as users can do this through cognito), and removed the option to edit personal information.
+  
+## Status of work for the **last week** (in-progress or completed)
+- filtering bug fixed and merged
+- waiting on reviews for profile page PR
+
+## Issue number reference
+- Issue #202 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/202)
+- Issue #92 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/92)
+
+# Weekly Personal Log (February 26th-March 3rd)
+
+## Screenshot from peer eval
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/33412cdd-cdff-409b-b620-0c53b5312c6b)
+
+## Non-feature work
+- team meetings
+- peer evaluation prep
+    - decided on meaningful tasks and workflow
+    - prep questionnaire 
+- PR reviews
+
+## All of my features for **this milestone**
+
+### **Feature**: Filtering submissions 
+- **Description**: Filter submissions based on date sent/received, and video submission status (submitted or not)
+- **Issue number**: issue #162
+- **Context**: finished filtering and implemented testing
+
+## Status of work for the **last week** (in-progress or completed)
+- filtering completed 
+
+## Issue number reference
+- Issue #162 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/162)
+
 # Weekly Personal Log (February 12th-18th)
 
 ## Screenshot from peer eval
