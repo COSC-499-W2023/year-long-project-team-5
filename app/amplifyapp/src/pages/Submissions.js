@@ -19,7 +19,8 @@ import {
   Input,
   Text, 
   Button,
-  Pagination
+  Pagination,
+  Loader
 } from '@aws-amplify/ui-react';
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
@@ -50,6 +51,7 @@ export function Submissions() {
   const [videoStatus, setVideoStatus] = useState('');
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [totalPageNum, setTotalPageNum] = useState(1);
+  const [loading, setLoading] = useState('true');
 
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
   useEffect(() => {
@@ -69,6 +71,7 @@ export function Submissions() {
   //This dependency array is needed to stop constant refreshing
 
   async function fetchSubmissions() {
+    setLoading(true);
     let filteredSubmissions = await getSubmissions()
     filteredSubmissions = filteredSubmissions.filter((submission) => {
       // filter admin submissions
@@ -91,6 +94,7 @@ export function Submissions() {
     setTotalPageNum(Math.ceil((filteredSubmissions.length + 1)/6));
     setCurrentPageIndex(1);
     setDisplayedSubmissions(filteredSubmissions.slice((currentPageIndex-1)*6, (currentPageIndex*6)-1));
+    setLoading(false);
   }
 
   async function deletePrompt(submissionID) {
@@ -162,22 +166,26 @@ export function Submissions() {
     setCurrentPageIndex(1);
   }
 
+  //Handle user going to next page
   function handleNextPage () {
     if(currentPageIndex !== totalPageNum) {
       setCurrentPageIndex(currentPageIndex + 1);
     }
   };
 
+  //Handle user going to previous page
   function handlePreviousPage () {
     if(currentPageIndex !== 0) {
       setCurrentPageIndex(currentPageIndex - 1);
     }
   };
 
+  //Handle user changing to specific page
   function handleOnChange (newPageIndex) {
     setCurrentPageIndex(newPageIndex);
   };
 
+  //This use effect sorts all submissions into pages
   useEffect(() => {
     let filteredSubmissions = filteredsubmissions;
     setTotalPageNum(Math.ceil((filteredSubmissions.length + 1)/6));
@@ -188,6 +196,60 @@ export function Submissions() {
     setDisplayedSubmissions(filteredSubmissions);
   }, [currentPageIndex, filteredsubmissions]);
 
+  //Rendering submission and search or no submissions message
+  function renderDash () {
+    if(loading === false && displayedSubmissions.length === 0) {
+      return (
+        <View>
+          <Flex height='20vh'/>
+          <Text>No Submissions Found!</Text>
+          <Text>Click "Request a Video" to make a new submission!</Text>
+        </View>
+      );
+    } else if(loading === true && displayedSubmissions.length === 0) {
+      return (
+        <View>
+          <Flex height='20vh'/>
+          <Text>Hold on, we're loading your submissions</Text>
+          <Flex height='3vh'/>
+          <Loader width="5%" size="large"/>
+        </View>
+      );
+    } else {
+      return (
+        <View>
+          <Flex alignItems="center" justifyContent="center">
+            <Text>
+              <CiFilter size = '30' className = 'sidebar-toggle' onClick={()=>setSideBarToggled(!sideBarToggled)}/>
+            </Text>
+            <SearchField variation = 'quiet' textAlign="left" placeholder="Search submissions..." padding={tokens.space.large} onChange={(e) => {
+              setCurrentPageIndex(1);
+              setFilteredSubmissions(filterSubmissions(e.target.value,submissions))}
+              } />
+            {!isMobile && (
+            <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
+              <ToggleButton value = "table"> Table </ToggleButton>
+              <ToggleButton value = "card"> Card </ToggleButton>
+            </ToggleButtonGroup>
+            )}
+          </Flex>
+          <View id = 'submissions' padding={tokens.space.large}>
+            {renderSubmissions()}
+            <Pagination
+              padding={tokens.space.large}
+              currentPage={currentPageIndex}
+              totalPages={totalPageNum}
+              onNext={handleNextPage}
+              onPrevious={handlePreviousPage}
+              onChange={handleOnChange}
+            />
+          </View>
+        </View>
+      );
+    }
+  }
+  
+  //This renders the actual submissions whether that be table or cards
   function renderSubmissions () {
     if(!isMobile && dashView === "table"){
       return(
@@ -228,48 +290,7 @@ export function Submissions() {
     }
   }
 
-  function renderDash () {
-    if(displayedSubmissions.length === 0) {
-      return (
-        <View >
-          <Flex height='25vh'/>
-          <Text lineHeight='40px'>No Submissions Found!</Text>
-          <Text>Click "Request a Video" to make a new submission!</Text>
-        </View>
-      );
-    } else {
-      return (
-        <View>
-          <Flex alignItems="center" justifyContent="center">
-            <Text>
-              <CiFilter size = '30' className = 'sidebar-toggle' onClick={()=>setSideBarToggled(!sideBarToggled)}/>
-            </Text>
-            <SearchField variation = 'quiet' textAlign="left" placeholder="Search submissions..." padding={tokens.space.large} onChange={(e) => {
-              setCurrentPageIndex(1);
-              setFilteredSubmissions(filterSubmissions(e.target.value,submissions))}
-              } />
-            {!isMobile && (
-            <ToggleButtonGroup isSelectionRequired isExclusive value={dashView}  onChange={(newDashView) => setDashView(newDashView)}>      
-              <ToggleButton value = "table"> Table </ToggleButton>
-              <ToggleButton value = "card"> Card </ToggleButton>
-            </ToggleButtonGroup>
-            )}
-          </Flex>
-          <View id = 'submissions' padding={tokens.space.large}>
-            {renderSubmissions()}
-            <Pagination
-              padding={tokens.space.large}
-              currentPage={currentPageIndex}
-              totalPages={totalPageNum}
-              onNext={handleNextPage}
-              onPrevious={handlePreviousPage}
-              onChange={handleOnChange}
-            />
-          </View>
-        </View>
-      );
-    }
-  }
+  //Filters and main render function
   return (
     <View className="App">
       <Flex direction = 'row' id = 'aside' ref = {sidebarRef} className ={`sidebar ${sideBarToggled ? "visible" : ""} `} backgroundColor={tokens.colors.background.secondary}>
