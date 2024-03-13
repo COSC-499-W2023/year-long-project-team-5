@@ -4,10 +4,10 @@ import { debounce } from "lodash";
 
 export const DynamicText = ({ variation, children, ...rest }) => {
     const [toTruncate, setToTruncate] = useState(true);
+    const [isExtended, setIsExtended] = useState(false);
     const textRef = useRef(null);
     const contentRef = useRef(null);
 
-    // A function to check and update truncation state
     const checkTruncation = () => {
         if (textRef.current && contentRef.current) {
             const containerWidth = textRef.current.offsetWidth;
@@ -22,7 +22,6 @@ export const DynamicText = ({ variation, children, ...rest }) => {
         debouncedCheckTruncation();
     }, [debouncedCheckTruncation]);
 
-    // Respond to window resize events
     useEffect(() => {
         window.addEventListener('resize', debouncedCheckTruncation);
 
@@ -33,7 +32,12 @@ export const DynamicText = ({ variation, children, ...rest }) => {
 
     const extendText = () => {
         if (toTruncate) {
-            setToTruncate(false);
+            setIsExtended(!isExtended);
+            if (toTruncate) { 
+                setToTruncate(false); 
+            } else if (isExtended) { 
+                setToTruncate(true); 
+            }       
         }
     };
 
@@ -42,9 +46,9 @@ export const DynamicText = ({ variation, children, ...rest }) => {
             <Text ref={textRef} className="textContent" variation={variation} isTruncated={toTruncate} width={toTruncate ? "95%" : "auto"} style={{ overflowWrap: toTruncate ? "normal" : "break-word" }}  {...rest}>
                 <span ref={contentRef}>{children}</span>
             </Text>
-            {toTruncate === true && (
-                <Text className="textDynamicOption" variation="tertiary" onClick={extendText} style={{cursor: 'pointer'}} fontSize="0.8em">
-                    See more
+            {(toTruncate || isExtended)  && (
+                <Text className="textPopupOption" variation="tertiary" onClick={extendText} style={{cursor: 'pointer'}} fontSize="0.8em">
+                    {isExtended && !toTruncate ? "Hide" : "See more"}
                 </Text>
             )}
         </div>
