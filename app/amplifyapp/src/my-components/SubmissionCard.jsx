@@ -24,25 +24,27 @@ export const SubmissionCard = (props) => {
                     <Heading level = {4}> {props.name === undefined || props.name === null ? "N/A" : props.name}</Heading>
                     <Text fontWeight={"light"}>Sent: {props.dateSent}</Text>
                 </Flex>
-                <Flex direction='column' alignItems='flex-start'>
-                    <Text fontWeight={"light"}>Email: {props.email}</Text>
-                    <Text fontWeight={"semibold"}>Instructions:</Text>
-                    <Text as='span' style={{ flex: 1 }}>
+                <Flex direction='column'>
+                    <Flex justifyContent="space-between" wrap="wrap">
+                        <Text fontWeight={"light"}>Email: {props.email}</Text>
+                        {props.videoLink===null || props.dateReceived==null ? ( <Text/>) : (<Text fontWeight={"light"}>Received: {props.dateReceived}</Text>)}
+                    </Flex>
+                    <Text alignSelf="flex-start" fontWeight={"semibold"}>Instructions:</Text>
+                    <Text alignSelf="flex-start" as='span' style={{ flex: 1 }}>
                         {props.description}
                     </Text>
                     <Text>&nbsp;&nbsp;</Text>
                 </Flex>
                 <Flex justifyContent="space-between">
-                    <Flex/>
+                    <Flex width='6%'/>
                     {props.videoLink===null || props.dateReceived==null ? (
-                        <Button variation="primary" width='25%' disabled><FaVideoSlash /></Button>
+                        <Button variation="primary" width='25%' disabled><FaVideoSlash/></Button>
                     ) : (
-                    <Flex justifyContent='center' alignItems='center'>
-                        <VideoPreviewButton videoUrl={props.videoLink} name = {props.name} description={props.description}></VideoPreviewButton>
-                        <Text fontWeight={"light"}>Received: {props.dateReceived}</Text>
+                    <Flex width='25%'>
+                        <VideoPreviewButton videoUrl={props.videoLink} name={props.name} description={props.description}></VideoPreviewButton>
                     </Flex>
                     )}
-                    <Button variation="primary" width='10%' onClick={ () => props.delete(props.submissionID)} cursor='pointer'><IoTrashBin/></Button>
+                    <Button variation="primary" width='10%' onClick={ () => props.delete(props.submissionID)} cursor='pointer' backgroundColor={"#D2042D"}  borderColor={'border.error'}><IoTrashBin/></Button>
                 </Flex>
             </Card>
         </View>

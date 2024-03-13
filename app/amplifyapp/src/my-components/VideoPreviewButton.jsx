@@ -16,8 +16,8 @@ export const VideoPreviewButton = ({ videoUrl, name, description }) => {
   };
 
   return (
-    <View>
-        <Button variation="primary" width='100%' onClick={openVideo} cursor='pointer'><FaVideo /></Button>
+    <View width='100%'>
+        <Button variation="primary" width='100%' onClick={openVideo} cursor='pointer'><FaVideo/></Button>
         {isOpen && (
           <Flex id="overlay" justifyContent="center" alignItems="center">
             <Card>
