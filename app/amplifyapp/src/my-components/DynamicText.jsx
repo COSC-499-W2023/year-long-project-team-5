@@ -43,7 +43,7 @@ export const DynamicText = ({ variation, children, ...rest }) => {
                 <span ref={contentRef}>{children}</span>
             </Text>
             {toTruncate === true && (
-                <Text className="textPopupOption" variation="tertiary" onClick={extendText} style={{cursor: 'pointer'}} fontSize="0.8em">
+                <Text className="textDynamicOption" variation="tertiary" onClick={extendText} style={{cursor: 'pointer'}} fontSize="0.8em">
                     See more
                 </Text>
             )}
