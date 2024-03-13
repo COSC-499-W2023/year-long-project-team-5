@@ -31,14 +31,8 @@ export const DynamicText = ({ variation, children, ...rest }) => {
     }, [debouncedCheckTruncation]); 
 
     const extendText = () => {
-        if (toTruncate) {
-            setIsExtended(!isExtended);
-            if (toTruncate) { 
-                setToTruncate(false); 
-            } else if (isExtended) { 
-                setToTruncate(true); 
-            }       
-        }
+        setIsExtended(!isExtended);
+        setToTruncate(!toTruncate);
     };
 
     return (
@@ -47,7 +41,7 @@ export const DynamicText = ({ variation, children, ...rest }) => {
                 <span ref={contentRef}>{children}</span>
             </Text>
             {(toTruncate || isExtended)  && (
-                <Text className="textPopupOption" variation="tertiary" onClick={extendText} style={{cursor: 'pointer'}} fontSize="0.8em">
+                <Text className="textDynamicOption" variation="tertiary" onClick={extendText} style={{cursor: 'pointer'}} fontSize="0.8em">
                     {isExtended && !toTruncate ? "Hide" : "See more"}
                 </Text>
             )}
