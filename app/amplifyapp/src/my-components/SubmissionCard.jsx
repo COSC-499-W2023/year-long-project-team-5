@@ -2,6 +2,7 @@ import * as React from "react";
 import { Card, Flex, Heading, Button, useTheme, View, Text } from "@aws-amplify/ui-react";
 import { VideoPreviewButton } from "./VideoPreviewButton";
 import { FaVideoSlash } from "react-icons/fa";
+import { IoTrashBin } from "react-icons/io5";
 
 export const SubmissionCard = (props) => {
 /**
@@ -31,6 +32,8 @@ export const SubmissionCard = (props) => {
                     </Text>
                     <Text>&nbsp;&nbsp;</Text>
                 </Flex>
+                <Flex justifyContent="space-between">
+                    <Flex/>
                     {props.videoLink===null || props.dateReceived==null ? (
                         <Button variation="primary" width='25%' disabled><FaVideoSlash /></Button>
                     ) : (
@@ -39,6 +42,8 @@ export const SubmissionCard = (props) => {
                         <Text fontWeight={"light"}>Received: {props.dateReceived}</Text>
                     </Flex>
                     )}
+                    <Button variation="primary" width='10%' onClick={ () => props.delete(props.submissionID)} cursor='pointer'><IoTrashBin/></Button>
+                </Flex>
             </Card>
         </View>
     )
