@@ -11,6 +11,7 @@ describe('Video Recorder', () => {
             <WebcamVideo />
         </MemoryRouter>
         );
+        cy.wait(3000);
         cy.get('.mobile-webcam').should('exist');
         cy.get('.recordButton').click();
         cy.wait(3000);

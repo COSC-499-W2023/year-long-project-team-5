@@ -179,7 +179,7 @@ export default function WebcamVideo(props) {
         console.error("Error associating video with submission:", error);
       }
     } 
-  }, [recordedChunks, navigate, videoLoaded, props.submissionData.id]);
+  }, [recordedChunks, navigate, videoLoaded]);
 
   // so the react web cam has a prop, onUserMedia. 
   // This prop accepts functions to perform only when video stream is established
