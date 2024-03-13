@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useRef, useState, useEffect } from "react";
 import { Text } from "@aws-amplify/ui-react";
 import { debounce } from "lodash";
 
-export const PopupText = ({ variation, children, ...rest }) => {
+export const DynamicText = ({ variation, children, ...rest }) => {
     const [toTruncate, setToTruncate] = useState(true);
     const textRef = useRef(null);
     const contentRef = useRef(null);

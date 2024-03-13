@@ -1,6 +1,6 @@
 import * as React from "react";
-import {TableRow,TableCell, Text, Button, Flex } from "@aws-amplify/ui-react";
-import { PopupText } from "./PopupText";
+import {TableRow,TableCell, Button} from "@aws-amplify/ui-react";
+import { DynamicText } from "./DynamicText";
 import { VideoPreviewButton } from "./VideoPreviewButton";
 
 /**
@@ -27,12 +27,12 @@ export const SubmissionRow = (props) => {
 
     return(
         <TableRow className='subRow' width={'100%'}>
-            <TableCell className  = 'subClientName' width={'12%'}> {props.name === undefined || props.name === null ? <PopupText variation='tertiary'>N/A</PopupText> :  <PopupText> {props.name} </PopupText> }</TableCell>
+            <TableCell className  = 'subClientName' width={'12%'}> {props.name === undefined || props.name === null ? <DynamicText variation='tertiary'>N/A</DynamicText> :  <DynamicText> {props.name} </DynamicText> }</TableCell>
             <TableCell className = 'subEmail' width={'20%'}> 
-                <PopupText>{props.email}</PopupText>
+                <DynamicText>{props.email}</DynamicText>
             </TableCell>
             <TableCell className="subDesc" width="40%">
-                <PopupText 
+                <DynamicText 
                 variation="primary"
                 as="p"
                 lineHeight="1.5em"
@@ -43,10 +43,10 @@ export const SubmissionRow = (props) => {
                 textAlign="left"
                 >
                     {props.description}
-                </PopupText>         
+                </DynamicText>         
             </TableCell>
-            <TableCell className = 'subDS' width={'10%'}><PopupText>{props.dateSent}</PopupText> </TableCell>
-            <TableCell className = 'subDR' width={'10%'}> {props.videoLink===null || props.dateReceived ==null ?  <PopupText variation='tertiary'>N/A</PopupText> : <PopupText>{props.dateReceived}</PopupText>}</TableCell>
+            <TableCell className = 'subDS' width={'10%'}><DynamicText>{props.dateSent}</DynamicText> </TableCell>
+            <TableCell className = 'subDR' width={'10%'}> {props.videoLink===null || props.dateReceived ==null ?  <DynamicText variation='tertiary'>N/A</DynamicText> : <DynamicText>{props.dateReceived}</DynamicText>}</TableCell>
             <TableCell className='subLink' width={'8%'}> {props.videoLink===null || props.dateReceived ==null ? <Button variation="primary" size='small'  width='100%' disabled>No Video</Button> : <VideoPreviewButton videoUrl={props.videoLink} name = {props.name} description={props.description}></VideoPreviewButton>}</TableCell>
         </TableRow>
     );

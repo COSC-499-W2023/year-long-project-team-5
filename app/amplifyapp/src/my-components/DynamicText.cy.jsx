@@ -1,26 +1,26 @@
-// cypress test for PopupText component
-import { PopupText } from './PopupText'
+// cypress test for DynamicText component
+import { DynamicText } from './DynamicText'
 
-const TestPopUpText = ({children}) => {
+const TestDynamicText = ({children}) => {
     return (
         <div width='200px'>
-            <PopupText>{children}</PopupText>
+            <DynamicText>{children}</DynamicText>
         </div>
     )
 }
 
-describe('PopupText Render', () => {
+describe('DynamicText Render', () => {
     it('truncates as expected', () => {
         const mockContent = 'This is a super long text that should be truncated This is a super long text that should be truncated This is a super long text that should be truncated';
-        cy.mount(<TestPopUpText>{mockContent}</TestPopUpText>)
+        cy.mount(<TestDynamicText>{mockContent}</TestDynamicText>)
         cy.get('.textContent', { timeout: 1000 }).should('exist').and('have.css', 'text-overflow', 'ellipsis');
-        cy.get('.textPopupOption').should('exist');
+        cy.get('.textDynamicOption').should('exist');
     })
     
     it('does not truncate short text', () => {
         const mockContent = 'Short text';
-        cy.mount(<TestPopUpText>{mockContent}</TestPopUpText>)
+        cy.mount(<TestDynamicText>{mockContent}</TestDynamicText>)
         cy.get('.textContent', { timeout: 1000 }).should('exist').and('not.have.css', 'text-overflow', 'ellipsis');
-        cy.get('.textPopupOption').should('not.exist');
+        cy.get('.textDynamicOption').should('not.exist');
     })
 })
