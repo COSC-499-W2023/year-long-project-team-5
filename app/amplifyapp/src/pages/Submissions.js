@@ -19,7 +19,7 @@ import {
   Input,
   Text, 
   Button,
-  Pagination,
+  Pagination
 } from '@aws-amplify/ui-react';
 import { SubmissionCard } from "../my-components/SubmissionCard";
 import { SubmissionRow } from "../my-components/SubmissionRow";
