@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 import '../my-components/filterMenu.css';
 
 import { getSubmissions } from "../Helpers/Getters";
-import { Auth, Storage } from 'aws-amplify';
+import { Auth, Storage, API } from 'aws-amplify';
 import { filterSubmissions } from "../Helpers/Search";
 import {
   Grid,
@@ -26,6 +26,8 @@ import { SubmissionRow } from "../my-components/SubmissionRow";
 import { SubmissionTable } from '../my-components/SubmissionTable';
 import { IoClose } from "react-icons/io5";
 import { CiFilter } from "react-icons/ci";
+import { deleteSubmission as deleteSubmissionMutation } from "../graphql/mutations";
+
 
 /**
  * Submissions TODO: finish docs
@@ -91,10 +93,22 @@ export function Submissions() {
     setDisplayedSubmissions(filteredSubmissions.slice((currentPageIndex-1)*6, (currentPageIndex*6)-1));
   }
 
-  async function refreshAndKeepPage() {
-    let temp = currentPageIndex;
-    await fetchSubmissions();
-    setCurrentPageIndex(temp);
+  async function deletePrompt(submissionID) {
+    const shouldRemove = window.confirm("Are you sure you want to delete this submission?")
+    if(shouldRemove) {
+      try {
+        await API.graphql({
+          query: deleteSubmissionMutation,
+          variables: { input: { id: submissionID } }
+        });
+      } catch (error) {
+        console.log('error deleting submission:', error);
+      } finally {
+        let temp = currentPageIndex;
+        await fetchSubmissions();
+        setCurrentPageIndex(temp);
+      }
+    }
   }
 
   function handleFilteringSubmissions(received, sent, videoStatus){
@@ -187,7 +201,7 @@ export function Submissions() {
               dateReceived={submission.submittedAt == null ? null : new Date(submission.submittedAt).toLocaleDateString()}
               videoLink={submission.Video ? submission.Video.videoURL : "N/A"}
               submissionID={submission.id}
-              refresh={refreshAndKeepPage}
+              delete={deletePrompt}
             />
           ))}
         />

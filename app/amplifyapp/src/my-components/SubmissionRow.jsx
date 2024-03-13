@@ -1,8 +1,8 @@
 import * as React from "react";
 import {TableRow,TableCell, Text, Button } from "@aws-amplify/ui-react";
 import { VideoPreviewButton } from "./VideoPreviewButton";
-import { SubmissionDeletionButton } from "./SubmissionDeletionButton";
 import { FaVideoSlash } from "react-icons/fa";
+import { IoTrashBin } from "react-icons/io5";
 
 /**
  * SubmissionRow is intended to be the data row for each submission (to display info better on larger screens)
@@ -33,7 +33,7 @@ export const SubmissionRow = (props) => {
             <TableCell className = 'subDS' width='10%'> {props.dateSent}</TableCell>
             <TableCell className = 'subDR' width='10%'> {props.videoLink===null || props.dateReceived ==null ?  <Text variation='tertiary'>No Video Recieved</Text> : <Text>{props.dateReceived}</Text>}</TableCell>
             <TableCell className='subLink' width='5%'> {props.videoLink===null || props.dateReceived ==null ? <Button variation="primary" width='100%' disabled><FaVideoSlash /></Button> : <VideoPreviewButton videoUrl={props.videoLink} name = {props.name} description={props.description}></VideoPreviewButton>}</TableCell>
-            <TableCell className='subLink' width='5%'> <SubmissionDeletionButton submissionID={props.submissionID} refresh={props.refresh}></SubmissionDeletionButton></TableCell>
+            <TableCell className='subLink' width='5%'> <Button variation="primary" width='100%' onClick={ () => props.delete(props.submissionID)} cursor='pointer'><IoTrashBin/></Button></TableCell>
         </TableRow>
     );
 }
