@@ -41,6 +41,7 @@ export const SubmissionRow = (props) => {
                 fontStyle="normal"
                 textDecoration="none"
                 textAlign="left"
+                overflowWrap="break-word"
                 >
                     {props.description}
                 </DynamicText>         

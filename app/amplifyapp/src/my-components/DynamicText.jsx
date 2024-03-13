@@ -20,7 +20,7 @@ export const DynamicText = ({ variation, children, ...rest }) => {
 
     useLayoutEffect(() => {
         debouncedCheckTruncation();
-    }, []);
+    }, [debouncedCheckTruncation]);
 
     // Respond to window resize events
     useEffect(() => {
@@ -29,22 +29,22 @@ export const DynamicText = ({ variation, children, ...rest }) => {
         return () => {
             window.removeEventListener('resize', debouncedCheckTruncation);
         };
-    }, []); // Empty dependency array means this effect runs only on mount and unmount
+    }, [debouncedCheckTruncation]); 
 
-    const showPopup = () => {
+    const extendText = () => {
         if (toTruncate) {
-            alert(children);
+            setToTruncate(false);
         }
     };
 
     return (
         <div>
-            <Text ref={textRef} className="textContent" variation={variation} isTruncated={toTruncate} width={toTruncate ? "95%" : "auto"} {...rest}>
+            <Text ref={textRef} className="textContent" variation={variation} isTruncated={toTruncate} width={toTruncate ? "95%" : "auto"} style={{ overflowWrap: toTruncate ? "normal" : "break-word" }}  {...rest}>
                 <span ref={contentRef}>{children}</span>
             </Text>
             {toTruncate === true && (
-                <Text className="textPopupOption" variation="tertiary" onClick={showPopup} style={{cursor: 'pointer'}} fontSize="0.8em">
-                    Click to see full text
+                <Text className="textPopupOption" variation="tertiary" onClick={extendText} style={{cursor: 'pointer'}} fontSize="0.8em">
+                    See more
                 </Text>
             )}
         </div>
