@@ -33,7 +33,7 @@ export const SubmissionRow = (props) => {
             <TableCell className = 'subDS' width='10%'> {props.dateSent}</TableCell>
             <TableCell className = 'subDR' width='10%'> {props.videoLink===null || props.dateReceived ==null ?  <Text variation='tertiary'>No Video Received</Text> : <Text>{props.dateReceived}</Text>}</TableCell>
             <TableCell className='subLink' width='5%'> {props.videoLink===null || props.dateReceived ==null ? <Button variation="primary" width='100%' disabled><FaVideoSlash /></Button> : <VideoPreviewButton videoUrl={props.videoLink} name = {props.name} description={props.description}></VideoPreviewButton>}</TableCell>
-            <TableCell className='subLink' width='5%'> <Button variation="primary" width='100%' onClick={ () => props.delete(props.submissionID)} cursor='pointer'><IoTrashBin/></Button></TableCell>
+            <TableCell className='subLink' width='5%'> <Button variation="primary" width='100%' onClick={ () => props.delete(props.submissionID)} cursor='pointer' backgroundColor={"#D2042D"}  borderColor={'border.error'}><IoTrashBin/></Button></TableCell>
         </TableRow>
     );
 }
