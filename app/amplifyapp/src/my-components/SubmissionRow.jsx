@@ -30,11 +30,11 @@ export const SubmissionRow = (props) => {
     };
 
     const getVariation = (text) => {
-        return text === 'N/A' ? 'tertiary' : 'primary';
+        return text === 'No Video Received' ? 'tertiary' : 'primary';
     };
 
     const getDateReceivedText = () => {
-        return props.videoLink === null || props.dateReceived === null ? 'N/A' : props.dateReceived;
+        return props.videoLink === null || props.dateReceived === null ? 'No Video Received' : props.dateReceived;
     };
 
     return (
@@ -87,7 +87,9 @@ export const SubmissionRow = (props) => {
             </TableCell>
             <TableCell className='subLink' width={'11%'}>
                 {props.videoLink === null || props.dateReceived === null ? (
-                    <Button variation="primary" size='small' width='100%' disabled>No Video</Button>
+                    <Button variation="primary" size='small' width='100%' disabled>
+                        <FaVideoSlash/>
+                    </Button>
                 ) : (
                     <VideoPreviewButton videoUrl={props.videoLink} name={props.name} description={props.description}></VideoPreviewButton>
                 )}

@@ -32,7 +32,6 @@ describe('<SubmissionRow/>', () => {
       cy.mount(<SubmissionRow id = {fakeSubmission.id} email = {fakeSubmission.email} 
         dateSent = {fakeSubmission.dateSent} dateReceived = {fakeSubmission.dateReceived} videoLink = {null} />)
       cy.get('td.amplify-table__td:nth-child(5) > p:nth-child(1)').should('exist').and('contains.text', 'No Video Received')
-
     })
 
     it("check if component renders 'NA' text message instead of date if there's no link", ()=> {
