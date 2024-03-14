@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Card, Flex, Heading, Button, useTheme, View, Text } from "@aws-amplify/ui-react";
 import { VideoPreviewButton } from "./VideoPreviewButton";
+import { DynamicText } from "./DynamicText";
 
 export const SubmissionCard = (props) => {
 /**
@@ -22,12 +23,12 @@ export const SubmissionCard = (props) => {
                     <Heading level = {4}> {props.name === undefined || props.name === null ? "N/A" : props.name}</Heading>
                     <Text fontWeight={"light"}>Sent: {props.dateSent}</Text>
                 </Flex>
-                <Flex direction='column' alignItems='flex-start'>
+                <Flex direction='column' alignItems='flex-start' style={{ maxWidth: '800px' }}>
                     <Text fontWeight={"light"}>Email: {props.email}</Text>
                     <Text fontWeight={"semibold"}>Instructions:</Text>
-                    <Text as='span' style={{ flex: 1 }}>
+                    <DynamicText maxWidth="100%" textAlign='left' numLinesSpecified={2}>
                         {props.description}
-                    </Text>
+                    </DynamicText>
                     <span>&nbsp;&nbsp;</span>
                 </Flex>
                     {props.videoLink===null || props.dateReceived==null ? (
