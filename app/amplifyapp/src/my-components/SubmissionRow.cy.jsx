@@ -1,8 +1,16 @@
 import React from 'react'
 import { SubmissionRow } from './SubmissionRow'
 const expVidURL = 'https://www.w3schools.com/howto/howto_website_static.asp'
-const fakeSubmission = {name: "Keena", email: 'kenaa@example.com', dateSent: '2020-01-01T00:00:00', dateReceived: '2020-01-03T00:00:00',videoLink: expVidURL}
+const fakeSubmission = {name: "Keena", email: 'kenaa@example.com', description: 'this is a description', dateSent: '2020-01-01T00:00:00', dateReceived: '2020-01-03T00:00:00',videoLink: expVidURL}
+
+function setViewPortToDesktop(){
+  cy.viewport(1280, 720)
+}
+
 describe('<SubmissionRow/>', () => {
+    beforeEach(() => {
+      setViewPortToDesktop()
+    })
 
     it('renders SubmissionRow', () => {
       // first thing is to check if the component is rendered
@@ -10,7 +18,6 @@ describe('<SubmissionRow/>', () => {
        dateSent = {fakeSubmission.dateSent} dateReceived = {fakeSubmission.dateReceived} videoLink = {fakeSubmission.videoLink} />)
     })
 
-    // write assertions with .get to using className assigned in React..
     it('check if component renders with correct data being passed through props..', () => {
       cy.mount(<SubmissionRow name = {fakeSubmission.name} email = {fakeSubmission.email} 
       dateSent = {fakeSubmission.dateSent} dateReceived = {fakeSubmission.dateReceived} videoLink = {fakeSubmission.videoLink} />)
@@ -21,7 +28,7 @@ describe('<SubmissionRow/>', () => {
       cy.get('.subLink').eq(0).should('exist').and('have.descendants', 'svg');
     })
 
-    it("check if component renders 'No Video Received' text message instead of button if there's no link", () => {
+    it("check if component renders 'No Submission' text message instead of button if there's no link", () => {
       cy.mount(<SubmissionRow id = {fakeSubmission.id} email = {fakeSubmission.email} 
         dateSent = {fakeSubmission.dateSent} dateReceived = {fakeSubmission.dateReceived} videoLink = {null} />)
       cy.get('td.amplify-table__td:nth-child(5) > p:nth-child(1)').should('exist').and('contains.text', 'No Video Received')

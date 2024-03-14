@@ -11,24 +11,22 @@ import { Table, TableRow, TableHead, TableCell, TableBody } from '@aws-amplify/u
  * @returns JSX.Element
  */
 
-  
-
 export const SubmissionTable = (props) => {
     return(
       //we have to remove theme provider in the future.
-    <Table variation = "striped" highlightOnHover>
+    <Table variation = "striped" highlightOnHover width={'100%'} style={{tableLayout: 'fixed'}}>
         <TableHead>
-            <TableRow textAlign="left">
-                <TableCell as='th' className='tableHeader'>Name</TableCell>
-                <TableCell as='th' className='tableHeader'>Email</TableCell>
-                <TableCell as='th' className='tableHeader'>Note</TableCell>
-                <TableCell as='th' className='tableHeader'>Date Sent</TableCell>
-                <TableCell as='th' className='tableHeader'>Date Received</TableCell>
-                <TableCell as='th' className='tableHeader'>Submission</TableCell>
+            <TableRow textAlign="left" width={"100%"}>
+                <TableCell as='th' className='tableHeader' width={'12%'}>Name</TableCell>
+                <TableCell as='th' className='tableHeader' width={'20%'}>Email</TableCell>
+                <TableCell as='th' className='tableHeader' width={'40%'}>Note/Description</TableCell>
+                <TableCell as='th' className='tableHeader' width={'10%'}>Date Sent</TableCell>
+                <TableCell as='th' className='tableHeader' width={'10%'}>Date Received</TableCell>
+                <TableCell as='th' className='tableHeader' width={'8%'}>Video</TableCell>
                 <TableCell as='th' className='tableHeader'></TableCell>
             </TableRow>
         </TableHead>
-        <TableBody textAlign="left">
+        <TableBody textAlign="left" width={"100%"}>
             {props.rowsToDisplay}
         </TableBody>
     </Table>

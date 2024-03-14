@@ -3,6 +3,7 @@ import { Card, Flex, Heading, Button, useTheme, View, Text } from "@aws-amplify/
 import { VideoPreviewButton } from "./VideoPreviewButton";
 import { FaVideoSlash } from "react-icons/fa";
 import { IoTrashBin } from "react-icons/io5";
+import { DynamicText } from "./DynamicText";
 
 export const SubmissionCard = (props) => {
 /**
@@ -24,16 +25,16 @@ export const SubmissionCard = (props) => {
                     <Heading level = {4}> {props.name === undefined || props.name === null ? "N/A" : props.name}</Heading>
                     <Text fontWeight={"light"}>Sent: {props.dateSent}</Text>
                 </Flex>
-                <Flex direction='column'>
+                <Flex direction='column' alignItems='flex-start' style={{ maxWidth: '800px' }}>
                     <Flex justifyContent="space-between" wrap="wrap">
                         <Text fontWeight={"light"}>Email: {props.email}</Text>
                         {props.videoLink===null || props.dateReceived==null ? ( <Text/>) : (<Text fontWeight={"light"}>Received: {props.dateReceived}</Text>)}
                     </Flex>
                     <Text alignSelf="flex-start" fontWeight={"semibold"}>Instructions:</Text>
-                    <Text alignSelf="flex-start" as='span' style={{ flex: 1 }}>
+                    <DynamicText alignSelf="flex-start" maxWidth="100%" textAlign='left' numLinesSpecified={2}>
                         {props.description}
-                    </Text>
-                    <Text>&nbsp;&nbsp;</Text>
+                    </DynamicText>
+                    <span>&nbsp;&nbsp;</span>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Flex width='6%'/>

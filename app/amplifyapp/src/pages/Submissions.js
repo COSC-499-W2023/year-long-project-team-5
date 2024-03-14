@@ -296,7 +296,6 @@ export function Submissions() {
       <Flex direction = 'row' id = 'aside' ref = {sidebarRef} className ={`sidebar ${sideBarToggled ? "visible" : ""} `} backgroundColor={tokens.colors.background.secondary}>
         <Flex alignItems={'center'} alignContent={'flex-start'}  direction = 'column' backgroundColor={tokens.colors.background.secondary}>
           <Flex alignItems = {'flex-end'} justifyContent={'flex-end'}><Text><IoClose className = 'filter_closeButton' size='30' onClick={()=>setSideBarToggled(false)}/></Text></Flex>
-
             <Text>Filter by submission status</Text>
             <SelectField 
               size = 'small' width = '100%' 

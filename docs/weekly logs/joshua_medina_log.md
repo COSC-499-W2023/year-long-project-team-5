@@ -430,4 +430,27 @@
 ## Issue number reference
 - Issue #176 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/176)
 
+---
 
+# Weekly Personal Log (Mar 4 - Mar 10)
+
+## Screenshot from peer eval
+<img width="1046" alt="Screenshot 2024-03-10 at 11 57 12 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/d45ba8ac-fde3-4f99-95ef-d55f2b791e03">
+
+
+## Non-feature work
+- Met on March 7 for meeting
+
+## All of my features for **this milestone**
+
+### **Feature**: Submission Deletion
+- **Description**: submissions page needs to be have a button to delete submissions
+- **Issue number**: issue #189
+- **Context**: Completed the entire feature! Works with submissions page and in review from the submission-deletion branch
+
+## Status of work for the **last week** (in-progress or completed)
+- Submission deletion in review (complete)
+- Taking up more finishing tasks for next sprint
+
+## Issue number reference
+- Issue #189 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/189)
