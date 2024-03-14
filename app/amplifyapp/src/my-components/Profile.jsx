@@ -1,13 +1,9 @@
 import React, {  } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
-import {API, Storage, Auth } from 'aws-amplify';
-import { updateUser } from "../graphql/mutations";
-import { useNavigate } from "react-router-dom";
-import { useAuthenticator} from "@aws-amplify/ui-react"
+
 
 import {
-    Button,
     Flex,
     TextField,
     View,
@@ -22,7 +18,7 @@ export const ProfileInfo = (props) => {
     <View backgroundColor={tokens.colors.background.primary}>
         <Heading level={1}>Welcome, {props.name}!</Heading>
         <Flex direction = 'column' width = '100%' justifyContent='space-evenly' alignItems='center' marginTop = '2rem' rowGap='2.5rem'>
-                <Card variation="elevated" width = '80%'>
+                <Card variation="elevated" width = '80%' backgroundColor={tokens.colors.background.secondary} >
                 <Flex direction="column" justifyContent = "center" textAlign = "left">
                 {<TextField
                     name="name"
