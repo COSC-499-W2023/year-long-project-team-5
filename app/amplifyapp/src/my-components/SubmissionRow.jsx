@@ -1,5 +1,4 @@
-import * as React from "react";
-import {TableRow,TableCell, Button} from "@aws-amplify/ui-react";
+import {TableRow,TableCell, Button, Text} from "@aws-amplify/ui-react";
 import { DynamicText } from "./DynamicText";
 import { VideoPreviewButton } from "./VideoPreviewButton";
 
@@ -24,33 +23,73 @@ export const SubmissionRow = (props) => {
  * @param {string} [props.subLink] - full submission link (optional)
  * @returns {JSX.Element}
  */
+    const getNameText = () => {
+        return props.name || 'N/A';
+    };
 
-    return(
+    const getVariation = (text) => {
+        return text === 'N/A' ? 'tertiary' : 'primary';
+    };
+
+    const getDateReceivedText = () => {
+        return props.videoLink === null || props.dateReceived === null ? 'N/A' : props.dateReceived;
+    };
+
+    return (
         <TableRow className='subRow' width={'100%'}>
-            <TableCell className  = 'subClientName' width={'12%'}> {props.name === undefined || props.name === null ? <DynamicText variation='tertiary'>N/A</DynamicText> :  <DynamicText> {props.name} </DynamicText> }</TableCell>
-            <TableCell className = 'subEmail' width={'20%'}> 
-                <DynamicText>{props.email}</DynamicText>
+            <TableCell className='subClientName' width={'12%'}>
+                <Text 
+                    variation={getVariation(getNameText())} 
+                    style={{ overflowWrap: 'break-word' }}
+                >
+                    {getNameText()}
+                </Text>
+            </TableCell>
+            <TableCell className='subEmail' width={'20%'}>
+                <Text 
+                    variation={getVariation(props.email)} 
+                    style={{ overflowWrap: 'break-word' }}
+                >
+                    {props.email}
+                </Text>
             </TableCell>
             <TableCell className="subDesc" width="40%">
                 <DynamicText 
-                variation="primary"
-                as="p"
-                lineHeight="1.5em"
-                fontWeight={500}
-                fontSize="1em"
-                fontStyle="normal"
-                textDecoration="none"
-                textAlign="left"
-                overflowWrap="break-word"
+                    variation="primary"
+                    as="p"
+                    lineHeight="1.5em"
+                    fontWeight={500}
+                    fontSize="1em"
+                    fontStyle="normal"
+                    textDecoration="none"
+                    textAlign="left"
                 >
                     {props.description}
                 </DynamicText>         
             </TableCell>
-            <TableCell className = 'subDS' width={'10%'}><DynamicText>{props.dateSent}</DynamicText> </TableCell>
-            <TableCell className = 'subDR' width={'10%'}> {props.videoLink===null || props.dateReceived ==null ?  <DynamicText variation='tertiary'>N/A</DynamicText> : <DynamicText>{props.dateReceived}</DynamicText>}</TableCell>
-            <TableCell className='subLink' width={'8%'}> {props.videoLink===null || props.dateReceived ==null ? <Button variation="primary" size='small'  width='100%' disabled>No Video</Button> : <VideoPreviewButton videoUrl={props.videoLink} name = {props.name} description={props.description}></VideoPreviewButton>}</TableCell>
+            <TableCell className='subDS' width={'10%'}>
+                <Text 
+                    variation='primary' 
+                    style={{ overflowWrap: 'break-word' }}
+                >
+                    {props.dateSent}
+                </Text> 
+            </TableCell>
+            <TableCell className='subDR' width={'10%'}>
+                <Text 
+                    variation={getVariation(getDateReceivedText())} 
+                    style={{ overflowWrap: 'break-word' }}
+                >
+                    {getDateReceivedText()}
+                </Text>
+            </TableCell>
+            <TableCell className='subLink' width={'8%'}>
+                {props.videoLink === null || props.dateReceived === null ? (
+                    <Button variation="primary" size='small' width='100%' disabled>No Video</Button>
+                ) : (
+                    <VideoPreviewButton videoUrl={props.videoLink} name={props.name} description={props.description}></VideoPreviewButton>
+                )}
+            </TableCell>
         </TableRow>
     );
 }
-
-    

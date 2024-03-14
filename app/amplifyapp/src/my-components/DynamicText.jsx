@@ -16,7 +16,7 @@ export const DynamicText = ({ variation, children, ...rest }) => {
         }
     };
 
-    const debouncedCheckTruncation = debounce(checkTruncation, 300)
+    const debouncedCheckTruncation = debounce(checkTruncation, 10)
 
     useLayoutEffect(() => {
         debouncedCheckTruncation();
