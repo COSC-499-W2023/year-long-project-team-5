@@ -265,7 +265,7 @@ export default function WebcamVideo(props) {
                     <div className="recordingDotContainer">
                       <div className="recordingDot"></div>
                     </div>
-                    <div>{formatRecordingTime(recordingTime)}</div>
+                    <div className="recordingTimerText">{formatRecordingTime(recordingTime)}</div>
             </Flex>
             <Webcam
             className = {clsx( { 'mobile-webcam' : isMobile }, {'webcam': !isMobile}, { "recorderOn": capturing }, { "recorderOff": !capturing })}
