@@ -39,7 +39,7 @@ export const SubmissionRow = (props) => {
 
     return (
         <TableRow className='subRow' width={'100%'}>
-            <TableCell className='subClientName' width={'12%'}>
+            <TableCell className='subClientName' width={'10%'}>
                 <Text 
                     variation={getVariation(getNameText())} 
                     style={{ overflowWrap: 'break-word' }}
@@ -47,7 +47,7 @@ export const SubmissionRow = (props) => {
                     {getNameText()}
                 </Text>
             </TableCell>
-            <TableCell className='subEmail' width={'20%'}>
+            <TableCell className='subEmail' width={'16%'}>
                 <Text 
                     variation={getVariation(props.email)} 
                     style={{ overflowWrap: 'break-word' }}
@@ -55,7 +55,7 @@ export const SubmissionRow = (props) => {
                     {props.email}
                 </Text>
             </TableCell>
-            <TableCell className="subDesc" width="40%">
+            <TableCell className="subDesc" width="35%">
                 <DynamicText 
                     variation="primary"
                     as="p"
@@ -85,14 +85,14 @@ export const SubmissionRow = (props) => {
                     {getDateReceivedText()}
                 </Text>
             </TableCell>
-            <TableCell className='subLink' width={'8%'}>
+            <TableCell className='subLink' width={'11%'}>
                 {props.videoLink === null || props.dateReceived === null ? (
                     <Button variation="primary" size='small' width='100%' disabled>No Video</Button>
                 ) : (
                     <VideoPreviewButton videoUrl={props.videoLink} name={props.name} description={props.description}></VideoPreviewButton>
                 )}
             </TableCell>
-            <TableCell className='subLink' width='5%'> 
+            <TableCell className='subLink' width='7%'> 
                 <Button variation="primary" width='100%' onClick={ () => props.delete(props.submissionID)} cursor='pointer' backgroundColor={"#D2042D"}  borderColor={'border.error'}>
                     <IoTrashBin/>
                 </Button>

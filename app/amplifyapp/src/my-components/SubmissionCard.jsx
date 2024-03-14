@@ -25,7 +25,7 @@ export const SubmissionCard = (props) => {
                     <Heading level = {4}> {props.name === undefined || props.name === null ? "N/A" : props.name}</Heading>
                     <Text fontWeight={"light"}>Sent: {props.dateSent}</Text>
                 </Flex>
-                <Flex direction='column' alignItems='flex-start' style={{ maxWidth: '800px' }}>
+                <Flex direction='column' style={{ maxWidth: '800px' }}>
                     <Flex justifyContent="space-between" wrap="wrap">
                         <Text fontWeight={"light"}>Email: {props.email}</Text>
                         {props.videoLink===null || props.dateReceived==null ? ( <Text/>) : (<Text fontWeight={"light"}>Received: {props.dateReceived}</Text>)}
