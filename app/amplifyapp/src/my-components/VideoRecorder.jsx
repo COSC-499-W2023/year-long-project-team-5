@@ -3,11 +3,12 @@ import Webcam from "react-webcam";
 import { Flex, View, Button, Heading, Card, Divider, ButtonGroup } from "@aws-amplify/ui-react";
 
 import { API, Storage } from 'aws-amplify';
-import { BsFillRecordFill } from "react-icons/bs";
+import { BsFillRecordFill, BsInfoCircle } from "react-icons/bs";
 import { MdDownloadForOffline } from "react-icons/md";
 import { FaRedoAlt } from "react-icons/fa";
 import { RiVideoUploadFill } from "react-icons/ri";
 import { FaCircleStop } from "react-icons/fa6";
+import { ToolTip } from './ToolTip';
 import {
   createVideo as createVideoMutation,
   updateSubmission as updateSubmissionMutation
@@ -238,7 +239,7 @@ export default function WebcamVideo(props) {
         <Card backgroundColor={'background.secondary'} padding={'1em 1em'} variation="elevated">
           {capturing ? 
               (<Heading level={3} textAlign={'left'}> Recording...</Heading>)
-            : ( <Heading level={3} textAlign={'left'}>Record video</Heading>)
+            : ( <Heading level={3} textAlign={'left'}>Record video<ToolTip text = "Start recording your video at anytime. Once you have finished recording you will have the opportunity to: review your video, retake, download, and then submit."><BsInfoCircle style = {{width:'50%'}}/></ToolTip></Heading>)
           }
           
           <Divider orientation="horizontal"/>
