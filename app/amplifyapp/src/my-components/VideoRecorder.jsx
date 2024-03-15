@@ -222,7 +222,7 @@ export default function WebcamVideo(props) {
       <Flex justifyContent={"center"}>
         {recordedChunks.length > 0 ? (
             <Card backgroundColor={'background.secondary'} padding={'1em 1em'} variation="elevated">
-              <Heading level={3} textAlign={'left'}>Preview</Heading>
+              <Heading level={3} textAlign={'left'}>Preview <ToolTip text = "Please note that once you submit your video, you will no longer have access to it. If you would like a copy for your records please download your video BEFORE submitting."><BsInfoCircle style = {{width:'50%'}}/></ToolTip></Heading>
               <Divider orientation="horizontal" marginBottom={'0.5em'}/>
               <div justifyContent={"center"}>
                 {renderVideoPreview()}
