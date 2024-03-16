@@ -16,7 +16,7 @@
     position:relative;
     width:70%;
     transition: 0.15s ease transform;
-    transform: translateX(25%);
+    transform: translateX(30%);
   }
   .content{
     transition: 0.15s ease transform;
