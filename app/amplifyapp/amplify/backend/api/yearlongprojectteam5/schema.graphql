@@ -1,4 +1,4 @@
-type Submission @model @auth(rules: [{allow: public, operations: [create, update, read]}, {allow: private, provider: iam}]) {
+type Submission @model @searchable @auth(rules: [{allow: public, operations: [create, update, read]}, {allow: private, provider: iam}]) {
   id: ID!
   adminId: ID
   Video: Video @hasOne
@@ -18,13 +18,5 @@ type User @model @auth(rules: [{allow: public}, {allow: private, provider: iam}]
   id: ID!
   email: AWSEmail
   name: String
-}
-
-type Note @model @auth(rules: [{allow: public}, {allow: private, provider: iam}]) {
-  id: ID!
-  name: String!
-  description: String
-  image: String
-  viewedStatus: Boolean
 }
  
