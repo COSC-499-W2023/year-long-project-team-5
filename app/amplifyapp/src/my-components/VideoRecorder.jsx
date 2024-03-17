@@ -36,6 +36,9 @@ export default function WebcamVideo(props) {
     height: isMobile && 360,
     facingMode: "user",
   });
+  const [recordingTime, setRecordingTime] = useState(0);
+  const recordingIntervalRef = useRef(null);
+
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth <= 1000;
@@ -73,15 +76,21 @@ export default function WebcamVideo(props) {
       setVideoPreviewUrl(url);
     }
   }, [recordedChunks, capturing, isMobile]);
+  
 
   const handleStopCaptureClick = useCallback(() => {
     mediaRecorderRef.current.stop();
     setCapturing(false);
+    clearInterval(recordingIntervalRef.current);
   }, [mediaRecorderRef, setCapturing]);
 
   const handleStartCaptureClick = useCallback(() => {
     setCapturing(true);
     setVideoPreviewUrl(null);
+    setRecordingTime(0);
+    recordingIntervalRef.current = setInterval(() => {
+      setRecordingTime((prevTime) => prevTime + 1);
+    }, 1000);  
     try{
     mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
       mimeType: bestMimeType
@@ -98,6 +107,12 @@ export default function WebcamVideo(props) {
     );
     mediaRecorderRef.current.start();
   }, [webcamRef, setCapturing, mediaRecorderRef, handleDataAvailable]);
+
+  const formatRecordingTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+  };  
 
   const handleDownload = useCallback(() => {
     if (recordedChunks.length) {
@@ -223,7 +238,7 @@ export default function WebcamVideo(props) {
             <Card backgroundColor={'background.secondary'} padding={'1em 1em'} variation="elevated">
               <Heading level={3} textAlign={'left'}>Preview</Heading>
               <Divider orientation="horizontal" marginBottom={'0.5em'}/>
-              <div justifyContent={"center"}>
+              <div>
                 {renderVideoPreview()}
               </div>
               <Flex justifyContent={"space-evenly"} marginTop={'0.5em'}>
@@ -237,12 +252,21 @@ export default function WebcamVideo(props) {
         ):
         <Card backgroundColor={'background.secondary'} padding={'1em 1em'} variation="elevated">
           {capturing ? 
-              (<Heading level={3} textAlign={'left'}> Recording...</Heading>)
+              (
+              <Flex direction={'row'} justifyContent={'space-between'}>
+                <Heading level={3} textAlign={'left'}> Recording...</Heading>
+              </Flex>)
             : ( <Heading level={3} textAlign={'left'}>Record video</Heading>)
           }
           
           <Divider orientation="horizontal"/>
-          <View marginTop={'1em'}>
+          <View marginTop={'1em'} className="recordingOverlayContainer">
+            <Flex className={clsx("recordingOverlay", { "hidden": !capturing })}  direction={'row'}>
+                    <div className="recordingDotContainer">
+                      <div className="recordingDot"></div>
+                    </div>
+                    <div className="recordingTimerText">{formatRecordingTime(recordingTime)}</div>
+            </Flex>
             <Webcam
             className = {clsx( { 'mobile-webcam' : isMobile }, {'webcam': !isMobile}, { "recorderOn": capturing }, { "recorderOff": !capturing })}
             muted={true}
