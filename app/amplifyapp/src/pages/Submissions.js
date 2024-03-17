@@ -103,7 +103,8 @@ export function Submissions() {
       try {
         await API.graphql({
           query: deleteSubmissionMutation,
-          variables: { input: { id: submissionID } }
+          variables: { input: { id: submissionID } },
+          authMode: "AWS_IAM"
         });
       } catch (error) {
         console.log('error deleting submission:', error);
