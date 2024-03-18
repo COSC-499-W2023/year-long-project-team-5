@@ -460,12 +460,12 @@
 # Weekly Personal Log (Mar 11 - Mar 17)
 
 ## Screenshot from peer eval
+![PeerEval](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/5557d3da-453f-4bbf-a4cb-81817b1c0555)
 
 ## Non-feature work
 - Met on March 14 for meeting
 
 ## All of my features for **this milestone**
-![PeerEval](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/5557d3da-453f-4bbf-a4cb-81817b1c0555)
 
 ### **Feature**: Submission Deletion
 - **Description**: submissions page needs to be have a button to delete submissions
