@@ -1,4 +1,4 @@
-type Submission @model @searchable @auth(rules: [{allow: public, operations: [create, update, read]}, {allow: private, provider: iam}]) {
+type Submission @model @auth(rules: [{allow: public, operations: [create, update, read]}, {allow: private, provider: iam}]) {
   id: ID!
   adminId: ID
   Video: Video @hasOne

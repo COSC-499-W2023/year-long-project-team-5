@@ -91,58 +91,6 @@ export const submissionByOtp = /* GraphQL */ `
     }
   }
 `;
-export const searchSubmissions = /* GraphQL */ `
-  query SearchSubmissions(
-    $filter: SearchableSubmissionFilterInput
-    $sort: [SearchableSubmissionSortInput]
-    $limit: Int
-    $nextToken: String
-    $from: Int
-    $aggregates: [SearchableSubmissionAggregationInput]
-  ) {
-    searchSubmissions(
-      filter: $filter
-      sort: $sort
-      limit: $limit
-      nextToken: $nextToken
-      from: $from
-      aggregates: $aggregates
-    ) {
-      items {
-        id
-        adminId
-        note
-        submittedAt
-        otpCode
-        adminName
-        createdAt
-        updatedAt
-        submissionVideoId
-        submissionUserId
-        __typename
-      }
-      nextToken
-      total
-      aggregateItems {
-        name
-        result {
-          ... on SearchableAggregateScalarResult {
-            value
-          }
-          ... on SearchableAggregateBucketResult {
-            buckets {
-              key
-              doc_count
-              __typename
-            }
-          }
-        }
-        __typename
-      }
-      __typename
-    }
-  }
-`;
 export const getVideo = /* GraphQL */ `
   query GetVideo($id: ID!) {
     getVideo(id: $id) {
