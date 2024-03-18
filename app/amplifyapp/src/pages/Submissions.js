@@ -6,6 +6,9 @@ import '../my-components/filterMenu.css';
 import { getSubmissions } from "../Helpers/Getters";
 import { Auth, Storage, API } from 'aws-amplify';
 import { filterSubmissions } from "../Helpers/Search";
+import { ToolTip } from '../my-components/ToolTip';
+import {BsInfoCircle } from "react-icons/bs";
+
 import {
   Grid,
   Flex,
@@ -295,8 +298,9 @@ export function Submissions() {
   return (
     <View className="App">
       <Flex direction = 'row' id = 'aside' ref = {sidebarRef} className ={`sidebar ${sideBarToggled ? "visible" : ""} `} backgroundColor={tokens.colors.background.secondary}>
-        <Flex alignItems={'center'} alignContent={'flex-start'}  direction = 'column' backgroundColor={tokens.colors.background.secondary}>
-          <Flex alignItems = {'flex-end'} justifyContent={'flex-end'}><Text><IoClose className = 'filter_closeButton' size='30' onClick={()=>setSideBarToggled(false)}/></Text></Flex>
+        <Flex direction = 'column' backgroundColor={tokens.colors.background.secondary}>
+          <Flex alignItems = {'flex-start'} justifyContent={'flex-start'} className="filter-close-container"><Text><IoClose className = 'filter_closeButton' size='30' onClick={()=>setSideBarToggled(false)}/></Text></Flex>
+            <Heading level = {4}>Filter Submissions <ToolTip text = "You can stack as many filters as you'd like. To remove a filter, simply clear the respective filter and hit apply filters again."><BsInfoCircle style = {{width:'50%'}}/></ToolTip></Heading>
             <Text>Filter by submission status</Text>
             <SelectField 
               size = 'small' width = '100%' 
@@ -327,8 +331,10 @@ export function Submissions() {
               value = {receivedDate}
               onChange={(e) => setReceivedDate(e.target.value)}
             />
-            <Button id = "submitFilters" onClick={() => handleFilteringSubmissions(receivedDate, sentDate, videoStatus)}>Apply Filters</Button>
-            <Button variation = {'warning'} id = "clearFilters" onClick = {() => clearFilters()}>Clear Filters</Button>
+            <Flex direction = 'row'>
+              <Button variation = {'warning'} id = "clearFilters" onClick = {() => clearFilters()}>Clear Filters</Button>
+              <Button id = "submitFilters" onClick={() => handleFilteringSubmissions(receivedDate, sentDate, videoStatus)}>Apply Filters</Button>
+            </Flex>
           </Flex>
         </Flex>
       <Flex className ={`content ${sideBarToggled ? "pushed" : ""} `} direction={'column'}>
