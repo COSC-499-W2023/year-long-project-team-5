@@ -1,6 +1,55 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const deleteSubmission = /* GraphQL */ `
+  mutation DeleteSubmission(
+    $input: DeleteSubmissionInput!
+    $condition: ModelSubmissionConditionInput
+  ) {
+    deleteSubmission(input: $input, condition: $condition) {
+      id
+      adminId
+      Video {
+        id
+        videoURL
+        createdAt
+        updatedAt
+        __typename
+      }
+      User {
+        id
+        email
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
+      note
+      submittedAt
+      otpCode
+      adminName
+      createdAt
+      updatedAt
+      submissionVideoId
+      submissionUserId
+      __typename
+    }
+  }
+`;
+export const deleteVideo = /* GraphQL */ `
+  mutation DeleteVideo(
+    $input: DeleteVideoInput!
+    $condition: ModelVideoConditionInput
+  ) {
+    deleteVideo(input: $input, condition: $condition) {
+      id
+      videoURL
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const createSubmission = /* GraphQL */ `
   mutation CreateSubmission(
     $input: CreateSubmissionInput!
@@ -71,41 +120,6 @@ export const updateSubmission = /* GraphQL */ `
     }
   }
 `;
-export const deleteSubmission = /* GraphQL */ `
-  mutation DeleteSubmission(
-    $input: DeleteSubmissionInput!
-    $condition: ModelSubmissionConditionInput
-  ) {
-    deleteSubmission(input: $input, condition: $condition) {
-      id
-      adminId
-      Video {
-        id
-        videoURL
-        createdAt
-        updatedAt
-        __typename
-      }
-      User {
-        id
-        email
-        name
-        createdAt
-        updatedAt
-        __typename
-      }
-      note
-      submittedAt
-      otpCode
-      adminName
-      createdAt
-      updatedAt
-      submissionVideoId
-      submissionUserId
-      __typename
-    }
-  }
-`;
 export const createVideo = /* GraphQL */ `
   mutation CreateVideo(
     $input: CreateVideoInput!
@@ -126,20 +140,6 @@ export const updateVideo = /* GraphQL */ `
     $condition: ModelVideoConditionInput
   ) {
     updateVideo(input: $input, condition: $condition) {
-      id
-      videoURL
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteVideo = /* GraphQL */ `
-  mutation DeleteVideo(
-    $input: DeleteVideoInput!
-    $condition: ModelVideoConditionInput
-  ) {
-    deleteVideo(input: $input, condition: $condition) {
       id
       videoURL
       createdAt

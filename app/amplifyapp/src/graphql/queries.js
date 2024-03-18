@@ -45,29 +45,16 @@ export const listSubmissions = /* GraphQL */ `
         adminId
         note
         submittedAt
-        createdAt
         otpCode
         adminName
+        createdAt
         updatedAt
         submissionVideoId
         submissionUserId
         __typename
-        User {
-          id
-          email
-          name
-          createdAt
-          updatedAt
-          __typename
-        }
-        Video {
-          id
-          videoURL
-          createdAt
-          updatedAt
-          __typename
-        }
       }
+      nextToken
+      __typename
     }
   }
 `;
@@ -100,6 +87,58 @@ export const submissionByOtp = /* GraphQL */ `
         __typename
       }
       nextToken
+      __typename
+    }
+  }
+`;
+export const searchSubmissions = /* GraphQL */ `
+  query SearchSubmissions(
+    $filter: SearchableSubmissionFilterInput
+    $sort: [SearchableSubmissionSortInput]
+    $limit: Int
+    $nextToken: String
+    $from: Int
+    $aggregates: [SearchableSubmissionAggregationInput]
+  ) {
+    searchSubmissions(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+      from: $from
+      aggregates: $aggregates
+    ) {
+      items {
+        id
+        adminId
+        note
+        submittedAt
+        otpCode
+        adminName
+        createdAt
+        updatedAt
+        submissionVideoId
+        submissionUserId
+        __typename
+      }
+      nextToken
+      total
+      aggregateItems {
+        name
+        result {
+          ... on SearchableAggregateScalarResult {
+            value
+          }
+          ... on SearchableAggregateBucketResult {
+            buckets {
+              key
+              doc_count
+              __typename
+            }
+          }
+        }
+        __typename
+      }
       __typename
     }
   }
@@ -157,42 +196,6 @@ export const listUsers = /* GraphQL */ `
         id
         email
         name
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const getNote = /* GraphQL */ `
-  query GetNote($id: ID!) {
-    getNote(id: $id) {
-      id
-      name
-      description
-      image
-      viewedStatus
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const listNotes = /* GraphQL */ `
-  query ListNotes(
-    $filter: ModelNoteFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listNotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        description
-        image
-        viewedStatus
         createdAt
         updatedAt
         __typename
