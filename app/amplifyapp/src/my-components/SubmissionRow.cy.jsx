@@ -25,13 +25,13 @@ describe('<SubmissionRow/>', () => {
       cy.get('.subEmail').eq(0).should('contains.text', 'kenaa@example.com')
       cy.get('.subDS').eq(0).should('contains.text', '2020-01-01T00:00:00')
       cy.get('.subDR').eq(0).should('contains.text', '2020-01-03T00:00:00')
-      cy.get('.subLink').eq(0).should('exist').and('contains.text', 'Video')
+      cy.get('.subLink').eq(0).should('exist').and('have.descendants', 'svg');
     })
 
     it("check if component renders 'No Submission' text message instead of button if there's no link", () => {
       cy.mount(<SubmissionRow id = {fakeSubmission.id} email = {fakeSubmission.email} 
         dateSent = {fakeSubmission.dateSent} dateReceived = {fakeSubmission.dateReceived} videoLink = {null} />)
-      cy.get('.subLink').eq(0).should('exist').and('contains.text', 'No Video')
+      cy.get('td.amplify-table__td:nth-child(5) > p:nth-child(1)').should('exist').and('contains.text', 'No Video Received')
     })
 
     it("check if component renders 'NA' text message instead of date if there's no link", ()=> {

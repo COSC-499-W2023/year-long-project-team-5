@@ -184,7 +184,6 @@ export default function WebcamVideo(props) {
         submittedAt: new Date().toISOString(),
       };
 
-
       try {
         await API.graphql({
           query: updateSubmissionMutation,
@@ -194,8 +193,6 @@ export default function WebcamVideo(props) {
       } catch(error){
         console.error("Error associating video with submission:", error);
       }
-
-
     } 
   }, [recordedChunks, navigate, videoLoaded]);
 
