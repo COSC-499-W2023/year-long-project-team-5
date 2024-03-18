@@ -454,3 +454,34 @@
 
 ## Issue number reference
 - Issue #189 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/189)
+
+---
+
+# Weekly Personal Log (Mar 11 - Mar 17)
+
+## Screenshot from peer eval
+![PeerEval](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/5557d3da-453f-4bbf-a4cb-81817b1c0555)
+
+## Non-feature work
+- Met on March 14 for meeting
+
+## All of my features for **this milestone**
+
+### **Feature**: Submission Deletion
+- **Description**: submissions page needs to be have a button to delete submissions
+- **Issue number**: issue #189
+- **Context**: MERGED AFTER SO MANY ISSUES
+
+### **Feature**: Default sort
+- **Description**: submissions page needs to be have a button to delete submissions
+- **Issue number**: issue #211
+- **Context**: MERGED AFTER SO MANY ISSUES
+
+## Status of work for the **last week** (in-progress or completed)
+- Submission deletion merged (complete)
+- Default sort in review
+- Taking up more finishing tasks for next sprint
+
+## Issue number reference
+- Issue #211 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/211)
+- Issue #189 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/189)

@@ -14,9 +14,9 @@
   }
   .content.pushed{
     position:relative;
-    width: 80%;
+    width:70%;
     transition: 0.15s ease transform;
-    transform: translateX(25%);
+    transform: translateX(30%);
   }
   .content{
     transition: 0.15s ease transform;
@@ -27,4 +27,10 @@
   }
   .sidebar-toggle{
     cursor:pointer;
+    align-items: flex-start;
+  }
+
+  .filter-close-container {
+    align-self: flex-end;
+    padding-left: 10px;
   }
