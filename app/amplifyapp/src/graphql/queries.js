@@ -52,6 +52,21 @@ export const listSubmissions = /* GraphQL */ `
         submissionVideoId
         submissionUserId
         __typename
+        User {
+          id
+          email
+          name
+          createdAt
+          updatedAt
+          __typename
+        }
+        Video {
+          id
+          videoURL
+          createdAt
+          updatedAt
+          __typename
+        }
       }
       nextToken
       __typename
