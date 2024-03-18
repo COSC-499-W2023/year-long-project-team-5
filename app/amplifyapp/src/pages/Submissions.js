@@ -82,11 +82,22 @@ export function Submissions() {
         return submission;
       })
     );
+    filteredSubmissions.sort(dateSorting);
     setSubmissions(filteredSubmissions);
     setFilteredSubmissions(filteredSubmissions)
     setTotalPageNum(Math.ceil((filteredSubmissions.length + 1)/6));
     setCurrentPageIndex(1);
     setDisplayedSubmissions(filteredSubmissions.slice((currentPageIndex-1)*6, (currentPageIndex*6)-1));
+  }
+
+  function dateSorting( a, b ) {
+    if ( a.createdAt < b.createdAt ){
+      return 1;
+    }
+    if ( a.createdAt > b.createdAt ){
+      return -1;
+    }
+    return 0;
   }
 
   function handleFilteringSubmissions(received, sent, videoStatus){
@@ -217,7 +228,7 @@ export function Submissions() {
               color={tokens.colors.background.secondary}
             >
               <option value = "submitted">Submitted video</option>
-              <option value = "noVideo" >No video submitted</option>
+              <option value = "noVideo">No video submitted</option>
             </SelectField>
             <Text>Filter by date sent</Text>
             <Input
