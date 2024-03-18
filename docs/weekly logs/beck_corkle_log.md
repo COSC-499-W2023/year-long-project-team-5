@@ -1,3 +1,31 @@
+# Weekly Personal Log (March 11th-March 18th)
+## Screenshot from peer eval
+<img src="https://i.imgur.com/FHbrAOD.png">
+
+## Non-feature work
+- Class Tuesday, Team meeting Thursday
+
+## All of my features for **this week**
+### **Feature**: Push a minimal build of a lambda function using open-cv to aws
+- **Description**: We have face blurring working locally we just need to deploy it! Getting the environment set up is the hardest part
+- **Issue number**: #215
+- **Context**: This was a big blocker for us, the inability to get a simple backend build working with opencv was blocking us from having face blurring in our website for a long time, so this is a big win!
+
+### **Feature**: New email template
+- **Description**: Mostly finished this last week, I committed the backend files to github this week cause amplify was reverting my code for some reason and I dont want to lose the code!
+- **Issue number**: #193
+- **Context**:
+
+## Status of work for the week
+- Emailing improvements (small fixes finished, but done)
+- Backend AWS Lambda for face blurring (done for now, passed on to kael)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/215]
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/193]
+  
+## Other notes
+
 # Weekly Personal Log (March 4th-March 10th)
 ## Screenshot from peer eval
 <img src="https://i.imgur.com/LOWniSS.png">

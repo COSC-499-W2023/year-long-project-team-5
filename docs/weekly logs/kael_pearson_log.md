@@ -1,3 +1,25 @@
+# Weekly Personal Log (March 11th-March 17th)
+
+## Screenshot from peer eval
+<img src="https://i.imgur.com/zmHovwn.png">
+
+## Non-feature work
+- Team meetings
+
+## All of my features for **this milestone**
+
+### **Feature**: Video Blur
+- **Description**: Blur faces in video
+- **Issue number**: issue #63
+- **Context**: Worked on package deployment on AWS with Beck
+
+## Status of work for the **last week** (in-progress or completed)
+- Package on AWS (Completed)
+
+## Issue number reference
+- Issue #63 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/63)
+
+
 # Weekly Personal Log (March 4th-March 10th)
 
 ## Screenshot from peer eval
