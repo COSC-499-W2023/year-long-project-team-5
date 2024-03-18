@@ -37,3 +37,48 @@
   width: 100%;
   height: auto; /* Adjust height automatically */
 }
+
+.recordingOverlayContainer{
+  position: relative;
+}
+.recordingOverlay {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: rgba(53, 3, 3, 0.22);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  width: 15%;
+  height: 25px;
+  max-width: 70px;
+  font-size: 14px;
+  z-index: 1;
+}
+
+.recordingOverlay.hidden {
+  display: none;
+}
+
+.recordingDot {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background-color: #ff0000;
+  border-radius: 50%;
+  animation: blinkAnimation 3s infinite;
+}
+
+.recordingDotContainer{
+  height: 10px;
+  width: 10px;
+  position: relative;
+}
+
+@keyframes blinkAnimation {
+  50% {
+    opacity: 0;
+  }
+}

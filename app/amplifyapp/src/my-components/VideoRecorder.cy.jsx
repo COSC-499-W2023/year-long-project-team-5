@@ -47,3 +47,18 @@ describe('Video Recorder', () => {
         cy.wait(3000);
     });
 });
+
+describe('Video Recoring Timer', () => { 
+    it('should display the timer', () => {
+        cy.viewport('macbook-15');
+        cy.mount(
+        <MemoryRouter>
+            <WebcamVideo />
+        </MemoryRouter>
+        );
+        cy.get('.recordButton').click();
+        cy.get('.recordingTimerText').should('exist');
+        cy.wait(3000);
+        cy.get('.stopButton').click();
+    })
+ })
