@@ -15,13 +15,18 @@ export const VideoPreviewButton = ({ videoUrl, name, description }) => {
   };
 
   const handleDownload = () => {
-      const a = document.createElement("a");
-      document.body.appendChild(a);
-      a.style = "display: none";
-      a.href = videoUrl;
-      a.download = "react-webcam-stream-capture.mp4";
-      a.click();
-    };
+    fetch(videoUrl)
+      .then(response => response.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'video.mp4';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+      })
+  };
 
   return (
     <View>
@@ -34,13 +39,13 @@ export const VideoPreviewButton = ({ videoUrl, name, description }) => {
                 <IoMdCloseCircleOutline cursor='pointer' size='4%' onClick={closeVideo}/>
               </Flex>
               <Text>{description}</Text>
-              <Flex direction = 'column'>
+              <Flex direction = 'column' justifyContent={'center'} alignItems={'center'}>
               <video controls width = {720} height = {480}>
                 <source src={videoUrl} type="video/webm" />
                 <source src={videoUrl} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              <Button onClick = {handleDownload}>Download Video</Button>
+              <Button width = '25%' onClick = {handleDownload}>Download Video</Button>
               </Flex>
             </Card>
           </Flex>

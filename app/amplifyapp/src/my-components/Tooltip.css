@@ -8,11 +8,11 @@
     visibility: hidden;
     width: 20em;
     color: white;
-    background-color:darkgrey;
     font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.782);
     text-align: left;
     border-radius: 6px;
-    padding: 5px 5px;
+    padding: 10px 10px;
     position: absolute;
     z-index: 1;
     left: 100%;
