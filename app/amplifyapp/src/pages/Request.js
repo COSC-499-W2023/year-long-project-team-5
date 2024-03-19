@@ -1,7 +1,7 @@
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 import { VideoRequestForm } from "../my-components/VideoRequest";
-import { View, Heading, useTheme } from "@aws-amplify/ui-react";
+import { View, Heading, useTheme, Flex } from "@aws-amplify/ui-react";
 
 /**
  * Request TODO: finish docs
@@ -15,10 +15,18 @@ export const Request = () =>{
   const {tokens} = useTheme();
     return(
       <View className="App">
-        <Heading level={2}>Request Video</Heading>
-        <View padding={tokens.space.xxxl}>
-          <VideoRequestForm/>
-        </View>
+        <Flex direction="row" padding={tokens.space.small} gap={"8em"} justifyContent={'center'}>
+          <View>
+            <Heading level={2} marginBottom={"15px"} textAlign={"left"}>Request Video</Heading>
+            <VideoRequestForm/>
+          </View>
+          <View>
+            <Heading level={2} textAlign={'left'} marginBottom={"15px"}> Email Preview </Heading>
+            <View style={{width: "100%", justifyContent:"center", alignContent:"center", backgroundColor: "lightgrey", height: "597px"}}>
+              Form would go here blah blah blah blah blah blah blah blah
+            </View>
+          </View>
+        </Flex>
       </View>
     )
 }

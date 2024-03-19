@@ -143,7 +143,8 @@ export function VideoRequestForm(){
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const resizeCenterComps = (windowWidth) => {
       return {
-          width: (windowWidth > 1024) ? '50%' : (windowWidth > 600) ? '80%' : '100%',
+          // width: (windowWidth > 1024) ? '50%' : (windowWidth > 600) ? '80%' : '100%',
+          width: '100%',
           margin: '0 auto',
           padding: '20px',
           maxWidth: '800px', // You can adjust this value
@@ -210,6 +211,7 @@ export function VideoRequestForm(){
           heading={headingToDisplay}
           marginBottom={'.5em'}
           minHeight={'6em'}
+          minWidth={'500px'}
         >
           {messageContent()}
         </Alert>
