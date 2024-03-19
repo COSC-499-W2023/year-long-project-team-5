@@ -3,11 +3,12 @@ import Webcam from "react-webcam";
 import { Flex, View, Button, Heading, Card, Divider, ButtonGroup } from "@aws-amplify/ui-react";
 
 import { API, Storage } from 'aws-amplify';
-import { BsFillRecordFill } from "react-icons/bs";
+import { BsFillRecordFill, BsInfoCircle } from "react-icons/bs";
 import { MdDownloadForOffline } from "react-icons/md";
 import { FaRedoAlt } from "react-icons/fa";
 import { RiVideoUploadFill } from "react-icons/ri";
 import { FaCircleStop } from "react-icons/fa6";
+import { ToolTip } from './ToolTip';
 import {
   createVideo as createVideoMutation,
   updateSubmission as updateSubmissionMutation
@@ -184,7 +185,6 @@ export default function WebcamVideo(props) {
         submittedAt: new Date().toISOString(),
       };
 
-
       try {
         await API.graphql({
           query: updateSubmissionMutation,
@@ -194,8 +194,6 @@ export default function WebcamVideo(props) {
       } catch(error){
         console.error("Error associating video with submission:", error);
       }
-
-
     } 
   }, [recordedChunks, navigate, videoLoaded]);
 
@@ -236,7 +234,7 @@ export default function WebcamVideo(props) {
       <Flex justifyContent={"center"}>
         {recordedChunks.length > 0 ? (
             <Card backgroundColor={'background.secondary'} padding={'1em 1em'} variation="elevated">
-              <Heading level={3} textAlign={'left'}>Preview</Heading>
+              <Heading level={3} textAlign={'left'}>Preview <ToolTip text = "Please note that once you submit your video, you will no longer have access to it. If you would like a copy for your records please download your video BEFORE submitting."><BsInfoCircle style = {{width:'50%'}}/></ToolTip></Heading>
               <Divider orientation="horizontal" marginBottom={'0.5em'}/>
               <div>
                 {renderVideoPreview()}
@@ -256,7 +254,7 @@ export default function WebcamVideo(props) {
               <Flex direction={'row'} justifyContent={'space-between'}>
                 <Heading level={3} textAlign={'left'}> Recording...</Heading>
               </Flex>)
-            : ( <Heading level={3} textAlign={'left'}>Record video</Heading>)
+            : ( <Heading level={3} textAlign={'left'}>Record video<ToolTip text = "Start recording your video at anytime. Once you have finished recording you will have the opportunity to: review your video, retake, download, and then submit."><BsInfoCircle style = {{width:'50%'}}/></ToolTip></Heading>)
           }
           
           <Divider orientation="horizontal"/>

@@ -9,7 +9,6 @@ body {
 /* setting css to .App applies to all components with className="App", this way theme will apply to whole screen */
 .App {
   min-height: 100vh;
-  padding-bottom: 3%;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

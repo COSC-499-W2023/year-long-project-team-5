@@ -1,3 +1,43 @@
+# Personal Log (Mar 10 - Mar 17)
+
+## Non Feature work:
+- Team meetings
+- PR Reviews
+
+## Features worked on:
+![T2W10](https://i.imgur.com/NLBD8Ym.png)
+### Issue [#114](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/114)
+
+-Feature: Make the notes field in the dashboard responsive
+
+Description of changes:
+- I had to rewrite the entirety of the feature I wrote, the task was harder than expected and the existing logic I had to truncate the text was deeply flawed.
+
+- Switched away from using "whenever the content of its text is too long and then truncates it, also renders an option to trigger a pop up which then shows the full content"
+
+- No longer triggers pop up but instead just expands the entirety of the text. Using a built in library to detect when to truncate, known as -webkit-line-clamp
+
+
+- May not be supported on super old browsers, but it was the best solution that could lead to a component that could be used anywhere on our website, pretty proud of how dramatically it improved the UI of our dashboard.
+
+**Status of work:** 
+- Fully reviewed, approved and merged.
+
+### Issue [#190](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/190)
+
+- Feature: Timer for recording page
+   - added new css styling and UI changes so that there's a recording pill that renders over the webcam.
+      - used some relative/absolute styling to achieve the overlay effect
+   - wrote a function that increments and displays timer as text each second (to act as the timer)
+
+Reason for Changes:
+(Write a brief reason for why these changes were made.)
+
+    Currently the videos just record and there's no way to keep track of how long the video you recorded is
+
+**Status of work:** 
+- Fully reviewed, approved and merged.
+
 # Personal Log (Mar 3 - Mar 10)
 ![T2W9](https://i.imgur.com/ca4FIVc.png)
 

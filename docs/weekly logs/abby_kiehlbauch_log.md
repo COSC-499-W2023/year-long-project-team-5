@@ -1,3 +1,33 @@
+# Weekly Personal Log (March 11th-March 17th)
+
+## Screenshot from peer eval
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/db4579d6-44f2-43ff-b496-ac3f2c75cc13)
+
+## Non-feature work
+- team meetings
+- PR reviews
+
+## All of my features for **this milestone**
+
+### **Feature**: Profile page
+- **Description**: Finalize the profile page (remove unimplemented forms
+- **Issue number**: issue #92
+- **Context**: After quite a bit of debugging I discovered the issue behind the profile page not accepting changes, however, the solution was going to be quite complex and the team decided it was no longer a priority. I removed the change password form (decided this was unnecessary as users can do this through cognito), and removed the option to edit personal information.
+
+### **Feature**: UI Improvements
+- **Description**: Added tooltips to both the user and admin sign and added a download video option for the admin dashboard
+- **Issue number**: issue #186 and #191
+- **Context**: Tooltips were added to make the navigation of the site even easier, as a major feature for us is ease of access and ease of use. 
+  
+## Status of work for the **last week** (in-progress or completed)
+- profile page reviewed and merged
+- tooltips and video download button complete
+
+## Issue number reference
+- Issue #186 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/186)
+- Issue #191 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/191)
+- Issue #92 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/92)
+
 # Weekly Personal Log (March 4th-March 10th)
 
 ## Screenshot from peer eval
