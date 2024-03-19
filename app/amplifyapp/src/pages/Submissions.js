@@ -90,7 +90,7 @@ export function Submissions() {
     setDisplayedSubmissions(filteredSubmissions.slice((currentPageIndex-1)*6, (currentPageIndex*6)-1));
   }
 
-  function dateSorting( a, b ) {
+  function dateSorting(a, b) {
     if ( a.createdAt < b.createdAt ){
       return 1;
     }
