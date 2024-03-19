@@ -213,7 +213,7 @@ export function Submissions() {
 
   //Rendering submission and search or no submissions message
   function renderDash () {
-    if(loading === false && displayedSubmissions.length === 0) {
+    if(loading === false && submissions.length === 0) {
       return (
         <View>
           <Flex height='20vh'/>
