@@ -56,6 +56,8 @@ export function Submissions() {
   const [totalPageNum, setTotalPageNum] = useState(1);
   const [loading, setLoading] = useState('true');
 
+  document.title = "Blur | Your Video Submissions";
+
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
   useEffect(() => {
     const handleResize = () => {
@@ -225,7 +227,7 @@ export function Submissions() {
       return (
         <View>
           <Flex height='20vh'/>
-          <Text>Hold on, we're loading your submissions</Text>
+          <Text>Hold on, we're loading your submissions...</Text>
           <Flex height='3vh'/>
           <Loader width="5%" size="large"/>
         </View>
