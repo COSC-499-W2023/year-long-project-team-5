@@ -36,8 +36,8 @@ export const NavBar = (props) => {
     const {tokens} = useTheme();
     const location = useLocation()
 
-    if(location.pathname === "/recording") {
-      return null
+    if(location.pathname === "/recording" || location.pathname === "/confirmation") {
+      return null;
     }
     return (
         <View
