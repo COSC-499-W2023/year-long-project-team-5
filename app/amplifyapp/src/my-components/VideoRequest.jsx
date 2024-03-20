@@ -23,14 +23,14 @@ import {
 
 import {debounce} from 'lodash';
 
-export function VideoRequestForm(){
+export function VideoRequestForm({previewData, setPreviewData}){
     
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false); 
   const [isFormWrong, setFormWrong] = useState(false);
-  const [isFieldBeingEdited, setIsFieldBeingEdited] = useState(false); // New state variable
+  const [isFieldBeingEdited, setIsFieldBeingEdited] = useState(false); 
   const [errorMessages, setErrorMessages] = useState(new Set());
-  const [submittedEmail, setSubmittedEmail] = useState(''); // State to store the submitted email
-  const [isSubmitting, setIsSubmitting] = useState(false); // New state variable
+  const [submittedEmail, setSubmittedEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
 
   const handleFieldEvent = (event, fieldType, eventAction) => {
@@ -49,6 +49,10 @@ export function VideoRequestForm(){
       description: {
         validate: validateDescription,
         errorMessage: "Description must be at least 20 characters."
+      },
+      recipientName: {
+        validate: (name) => name.length > 0,
+        errorMessage: "Recipient name is required."
       }
     };
     const { validate, errorMessage } = validationMap[fieldType];
@@ -60,6 +64,7 @@ export function VideoRequestForm(){
       }
     };
       if (eventAction === 'change') {
+      setPreviewData({ ...previewData, [fieldType]: fieldValue });
       setIsFieldBeingEdited(true);
       updateErrors();
       debounceFieldBeingEdited();
@@ -77,7 +82,7 @@ export function VideoRequestForm(){
   
   const debounceHandleFieldEvent = debounce((event, fieldType, eventAction) => {
     handleFieldEvent(event, fieldType, eventAction);
-  }, 250);
+  }, 50);
 
   const debounceFieldBeingEdited = debounce(() => {
     setIsFieldBeingEdited(false);
@@ -104,15 +109,13 @@ export function VideoRequestForm(){
 
     setIsSubmitting(true);
     const form = new FormData(event.target);
-    // reset everything
     setIsFormSubmitted(false);
     setFormWrong(false);
     setErrorMessages([]);
 
     try {
       const user = await createUser(form.get("email"),form.get("name"));
-      //this should store what is submitted in the form using states:
-      setSubmittedEmail(form.get("email")) // only retaining email for now.
+      setSubmittedEmail(form.get("email")) 
       const userId = user.data.createUser.id
       const otp = await generateOTP()
 
@@ -127,7 +130,6 @@ export function VideoRequestForm(){
         query: createSubmissionMutation,
         variables: { input: data },
       });
-
       event.target.reset();
       setIsFormSubmitted(true);
     } catch (error) {
@@ -135,11 +137,10 @@ export function VideoRequestForm(){
     } finally {
       setIsSubmitting(false);
     }
-      // Set the form submission state to true
+    // Set the form submission state to true
   }
     // these states and functions below are to help dynamically adjust the width of the parent Card component (i.e the form)
     // depending on browser width, takes less % of screen width if screen is large, and greater % when mobile.
-    
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const resizeCenterComps = (windowWidth) => {
       return {
@@ -228,9 +229,10 @@ export function VideoRequestForm(){
         {renderMessages()} 
         <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em'>
           <TextField
-            name="name"
+            name="recipientName"
             placeholder="Bilbo Baggins"
             label="Recipient Name"
+            onChange={(event) => debounceHandleFieldEvent(event, 'recipientName', 'change')}
             required
           />
           <TextField
