@@ -8,7 +8,7 @@ export function Confirmation(){
 
    return( 
    <View className="App">
-      <Badge variation="success">Thank you for your submission!</Badge>
+      <Badge marginTop = '3em' variation="success">Thank you for your submission!</Badge>
       <Text>You can now safely close this browser</Text>
    </View>
    )
