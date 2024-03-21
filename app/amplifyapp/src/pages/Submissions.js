@@ -56,6 +56,8 @@ export function Submissions() {
   const [totalPageNum, setTotalPageNum] = useState(1);
   const [loading, setLoading] = useState('true');
 
+  document.title = "Blur | Your Video Submissions";
+
   //this useEffect is used to look at the window and update width so it knows when to snap isMobile to True.
   useEffect(() => {
     const handleResize = () => {
@@ -92,6 +94,7 @@ export function Submissions() {
         return submission;
       })
     );
+    filteredSubmissions.sort(dateSorting);
     setSubmissions(filteredSubmissions);
     setFilteredSubmissions(filteredSubmissions)
     setTotalPageNum(Math.ceil((filteredSubmissions.length + 1)/6));
@@ -117,6 +120,16 @@ export function Submissions() {
         setCurrentPageIndex(temp);
       }
     }
+  }
+
+  function dateSorting(a, b) {
+    if ( a.createdAt < b.createdAt ){
+      return 1;
+    }
+    if ( a.createdAt > b.createdAt ){
+      return -1;
+    }
+    return 0;
   }
 
   function handleFilteringSubmissions(received, sent, videoStatus){
@@ -202,7 +215,7 @@ export function Submissions() {
 
   //Rendering submission and search or no submissions message
   function renderDash () {
-    if(loading === false && displayedSubmissions.length === 0) {
+    if(loading === false && submissions.length === 0) {
       return (
         <View>
           <Flex height='20vh'/>
@@ -214,7 +227,7 @@ export function Submissions() {
       return (
         <View>
           <Flex height='20vh'/>
-          <Text>Hold on, we're loading your submissions</Text>
+          <Text>Hold on, we're loading your submissions...</Text>
           <Flex height='3vh'/>
           <Loader width="5%" size="large"/>
         </View>
@@ -311,7 +324,7 @@ export function Submissions() {
               color={tokens.colors.background.secondary}
             >
               <option value = "submitted">Submitted video</option>
-              <option value = "noVideo" >No video submitted</option>
+              <option value = "noVideo">No video submitted</option>
             </SelectField>
             <Text>Filter by date sent</Text>
             <Input

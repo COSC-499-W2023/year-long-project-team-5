@@ -18,6 +18,9 @@ export function Profile(){
         context.route,
         context.signOut
     ]);
+
+    document.title = "Blur | Profile";
+
     return(
       <View className="App">
         <ProfileInfo 

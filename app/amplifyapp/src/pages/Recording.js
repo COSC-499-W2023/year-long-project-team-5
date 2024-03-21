@@ -43,6 +43,8 @@ export function Recording(){
     const [submissionData, setSubmissionData] = useState([]);
     const [errorCode, setErrorCode] = useState(false);
 
+    document.title = "Blur | Secure Video Software";
+
     //This function removes non-digit characters and limits input to 5 digits
     const handleChange = (e) => {
         const inputValue = e.target.value.replace(/\D/g, '');

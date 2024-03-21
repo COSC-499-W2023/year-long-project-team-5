@@ -20,6 +20,9 @@ export function Login() {
         if (route === "authenticated")
             navigate(from, { replace: true });
     }, [route, navigate, from]);
+
+    document.title = "Blur | Login";
+
     return (
         <Flex direction='column' className="auth-wrapper" >
             <Authenticator></Authenticator>
