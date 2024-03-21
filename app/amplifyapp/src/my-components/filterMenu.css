@@ -1,4 +1,4 @@
-  #aside {
+ #aside {
     height: 100vh;  
     position:fixed;
     width: fit-content;
@@ -14,13 +14,14 @@
   }
   .content.pushed{
     position:relative;
-    width:70%;
+    margin-left: 15px;
+    width:80%;
     transition: 0.15s ease transform;
-    transform: translateX(30%);
+    transform: translateX(25%);
   }
   .content{
     transition: 0.15s ease transform;
-    transform: translateX(0);
+    transform: translate(0);
   } 
   .filter_closeButton{
     cursor:pointer;
