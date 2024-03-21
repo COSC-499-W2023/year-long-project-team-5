@@ -96,10 +96,11 @@ export function Submissions() {
     );
     filteredSubmissions.sort(dateSorting);
     setSubmissions(filteredSubmissions);
+    console.log(filteredSubmissions.length);
     setFilteredSubmissions(filteredSubmissions)
-    setTotalPageNum(Math.ceil((filteredSubmissions.length + 1)/6));
+    setTotalPageNum(Math.ceil((filteredSubmissions.length + 1)/7));
     setCurrentPageIndex(1);
-    setDisplayedSubmissions(filteredSubmissions.slice((currentPageIndex-1)*6, (currentPageIndex*6)-1));
+    setDisplayedSubmissions(filteredSubmissions.slice((currentPageIndex-1)*7, (currentPageIndex*7)-1));
     setLoading(false);
   }
 
@@ -205,10 +206,10 @@ export function Submissions() {
   //This use effect sorts all submissions into pages
   useEffect(() => {
     let filteredSubmissions = filteredsubmissions;
-    setTotalPageNum(Math.ceil((filteredSubmissions.length + 1)/6));
+    setTotalPageNum(Math.ceil((filteredSubmissions.length + 1)/7));
     
-    let lowerBound = Math.min((currentPageIndex-1)*6, filteredSubmissions.length - 1)
-    let upperBound = Math.min((currentPageIndex*6)-1, filteredSubmissions.length)
+    let lowerBound = Math.min((currentPageIndex-1)*7, filteredSubmissions.length - 1)
+    let upperBound = Math.min((currentPageIndex*7)-1, filteredSubmissions.length)
     filteredSubmissions = filteredSubmissions.slice(lowerBound, upperBound);
     setDisplayedSubmissions(filteredSubmissions);
   }, [currentPageIndex, filteredsubmissions]);
