@@ -37,15 +37,15 @@ function MyRoutes({ colorMode, setColorMode }){
             <Request/>
             </RequireAuth>
           }/>
-          <Route path = "/recording" element = {<Recording/>}/>
           <Route path = "/profile" element = {
             <RequireAuth>
             <Profile/>
             </RequireAuth>
           }/>
-          <Route path = "/confirmation" element = {<Confirmation />}/>
         </Route>
-        
+        <Route path = "/recording" element = {<Recording/>}/>
+        <Route path = "/confirmation" element = {<Confirmation />}/>
+
       </Routes> 
     </BrowserRouter>
   )
