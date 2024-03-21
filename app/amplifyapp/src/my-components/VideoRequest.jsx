@@ -220,7 +220,7 @@ export function VideoRequestForm({previewData, setPreviewData}){
     }
     
     return (
-      <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle} >
+      <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle} minHeight={'inherit'}>
         {isFormSubmitted && (
           <Alert className="successFeedback" textAlign ='left' variation="success" isDismissible={true} hasIcon={true} heading="Email Sent" marginBottom={'.5em'}>
             Your video request to {submittedEmail} has been sent!

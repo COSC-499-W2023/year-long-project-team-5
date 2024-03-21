@@ -18,16 +18,12 @@ export const Request = () =>{
   const [previewData, setPreviewData] = useState({});
     return(
       <View className="App">
-        <Flex direction="row" padding={tokens.space.small} gap={"8em"} justifyContent={'center'}>
-          <View>
-            <Heading level={2} marginBottom={"15px"} textAlign={"left"}>Request Video</Heading>
+        <Flex direction="row" padding={tokens.space.small} marginTop={"4em"} gap={"8em"} justifyContent={'center'}>
+          <View minHeight={"590px"}>
             <VideoRequestForm setPreviewData={setPreviewData} previewData={previewData}/>
           </View>
-          <View>
-            <Heading level={2} textAlign={'left'} marginBottom={"15px"}> Email Preview </Heading>
-            <View>
-              <RequestPreview previewData={previewData}/>
-            </View>
+          <View minHeight={"590px"}>
+            <RequestPreview previewData={previewData}/>
           </View>
         </Flex>
       </View>
