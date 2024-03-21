@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
-import { Flex, View, Button, Heading, Card, Divider, ButtonGroup } from "@aws-amplify/ui-react";
+import { Flex, View, Button, Heading, Card, Divider, ButtonGroup, SwitchField } from "@aws-amplify/ui-react";
 
 import { API, Storage } from 'aws-amplify';
 import { BsFillRecordFill, BsInfoCircle } from "react-icons/bs";
@@ -174,7 +174,7 @@ export default function WebcamVideo(props) {
         // Redirect to another page after successful upload
         navigate('/confirmation');
       } catch (error) {
-        console.error("Error uploading video:", error);
+        console.error("Error uploading video: ", error);
       }
 
       // now we want to associate the video with the submission
@@ -231,7 +231,7 @@ export default function WebcamVideo(props) {
 
   return (
     <View>
-      <Flex justifyContent={"center"}>
+      <Flex justifyContent={"center"} marginBottom={'1em'}>
         {recordedChunks.length > 0 ? (
             <Card backgroundColor={'background.secondary'} padding={'1em 1em'} variation="elevated">
               <Heading level={3} textAlign={'left'}>Preview <ToolTip text = "Please note that once you submit your video, you will no longer have access to it. If you would like a copy for your records please download your video BEFORE submitting."><BsInfoCircle style = {{width:'50%'}}/></ToolTip></Heading>
@@ -241,9 +241,10 @@ export default function WebcamVideo(props) {
               </div>
               <Flex justifyContent={"space-evenly"} marginTop={'0.5em'}>
                 <ButtonGroup size="small">
+                  <Button className = "retakeButton" onClick={handleRetakeClick }> <FaRedoAlt style={{marginRight: '4px'}}/> Retake</Button>
                   <Button className = "downloadButton" onClick={handleDownload}> <MdDownloadForOffline style={{marginRight: '4px'}}/> Download</Button>
                   <Button className = "submitButton" onClick={handleUpload}> <RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</Button>
-                  <Button className = "retakeButton" onClick={handleRetakeClick }> <FaRedoAlt style={{marginRight: '4px'}}/> Retake</Button>
+                  <SwitchField label="Enable Face Blurring"/>
                 </ButtonGroup>
               </Flex>
             </Card>
@@ -252,7 +253,7 @@ export default function WebcamVideo(props) {
           {capturing ? 
               (
               <Flex direction={'row'} justifyContent={'space-between'}>
-                <Heading level={3} textAlign={'left'}> Recording...</Heading>
+                <Heading level={3} textAlign={'left'}>Recording...</Heading>
               </Flex>)
             : ( <Heading level={3} textAlign={'left'}>Record video<ToolTip text = "Start recording your video at anytime. Once you have finished recording you will have the opportunity to: review your video, retake, download, and then submit."><BsInfoCircle style = {{width:'50%'}}/></ToolTip></Heading>)
           }
@@ -266,7 +267,7 @@ export default function WebcamVideo(props) {
                     <div className="recordingTimerText">{formatRecordingTime(recordingTime)}</div>
             </Flex>
             <Webcam
-            className = {clsx( { 'mobile-webcam' : isMobile }, {'webcam': !isMobile}, { "recorderOn": capturing }, { "recorderOff": !capturing })}
+            className = {clsx( { 'mobile-webcam' : isMobile }, { 'webcam': !isMobile }, { "recorderOn": capturing }, { "recorderOff": !capturing })}
             muted={true}
             audio={true}
             mirrored={true}
@@ -278,7 +279,7 @@ export default function WebcamVideo(props) {
           {capturing ? (
             <Button className = "stopButton" onTouchStart = {handleStopCaptureClick} onClick={handleStopCaptureClick} variation='warning' minWidth={"100%"}><FaCircleStop style={{ marginRight: '4px', color: 'red' }}/> Finish</Button>
             ) : recordedChunks.length === 0 && isCamReady? (
-              <Button className = "recordButton" onClick={handleStartCaptureClick} variation='outline' minWidth={'100%'}><BsFillRecordFill style={{ marginRight: '4px', color: 'red'}}/> Record</Button>
+              <Button className = "recordButton" onClick = {handleStartCaptureClick} variation='outline' minWidth={'100%'}><BsFillRecordFill style={{ marginRight: '4px', color: 'red'}}/> Record</Button>
             ) : null}
         </Card>
         }
