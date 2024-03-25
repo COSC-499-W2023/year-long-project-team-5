@@ -7,7 +7,7 @@
 
 ## All of my features for **this week**
 ### **Feature**: Create a dark and light mode website favicon
-- **Description**: We havve been using the default react favicon, so I made one for us, in black and white. It dynamically changes based on your system theme
+- **Description**: We have been using the default react favicon, so I made one for us, in black and white. It dynamically changes based on your system theme
 - **Issue number**: #223
 - **Context**:
   
