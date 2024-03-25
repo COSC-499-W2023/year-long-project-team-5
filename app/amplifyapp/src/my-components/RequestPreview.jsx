@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Button, useAuthenticator } from '@aws-amplify/ui-react'
+import {View, Button, Heading, useAuthenticator } from '@aws-amplify/ui-react'
 import "./RequestPreview.css"
+import { wrap } from 'lodash';
 
 
 export const RequestPreview = ({previewData}) => {
@@ -9,7 +10,7 @@ export const RequestPreview = ({previewData}) => {
     context.user,
   ]);
   return (
-      <View className={"body"} textAlign={"left"} backgroundColor={"white"} borderRadius={"8px"} padding={"4%"} minHeight={'inherit'} boxShadow={"0px 2px 6px hsla(210, 50%, 10%, 0.15)"}> 
+      <View className={"body"} textAlign={"left"} backgroundColor={"white"} borderRadius={"8px"} padding={"4%"} minHeight={"inherit"} boxShadow={"0px 2px 6px hsla(210, 50%, 10%, 0.15)"}> 
         <div className="container">
           <p>Hello <span id="recipientName">{recipientName}</span>,</p>
           <p><span id="adminName">{user.attributes.name}</span> has requested you record a video to send them. These are the notes they left:</p>
