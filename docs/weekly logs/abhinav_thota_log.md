@@ -1,8 +1,29 @@
+# Personal Log (Mar 17-24)
+## Non Feature work:
+- Team meetings
+- PR Reviews
+
 # Personal Log (Mar 10 - Mar 17)
 
 ## Non Feature work:
 - Team meetings
 - PR Reviews
+
+## Features worked on:
+![T2W11](https://i.imgur.com/Dn8B34y.png)
+### Issue [[#192](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/192)]
+
+- Feature: "A nice-to-have would be a form preview that shows the resulting form while it is being typed in. This will provide a sense of responsiveness to the user."
+
+- I took my own liberty with this feature and wanted to make a dynamic email preview as I was inspired by team 9's demos.  
+
+- Had to remove dynamic error validation/loading animations in a previous feature as it no longer made much sense.
+
+- This feature still needs to render a clean UI on smaller screens, thinking of not having a 'live' preview but instead just show the email preview on the next screen once user presses "Send Request".
+
+** Status of work ** 
+The dynamic preview works, I had to remove some previous functionality in my form as it was simply overwhelming for users. Sad but I think the UI has been dramatically improved, I need to work on making the page work on mobile as well now and add some tests. 75% done.
+Should be done by end of W12.
 
 ## Features worked on:
 ![T2W10](https://i.imgur.com/NLBD8Ym.png)
