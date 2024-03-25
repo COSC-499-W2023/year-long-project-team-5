@@ -39,3 +39,7 @@
     transform: rotate(360deg);
   }
 }
+
+.nav{
+  z-index:99;
+}

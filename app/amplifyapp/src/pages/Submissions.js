@@ -350,7 +350,6 @@ export function Submissions() {
             </Flex>
           </Flex>
         </Flex>
-
       <Flex className ={`content ${sideBarToggled ? "pushed" : ""} `} direction={'column'}
 >
       <Heading level={2}>Your Video Submissions</Heading>

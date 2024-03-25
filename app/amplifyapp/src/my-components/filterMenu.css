@@ -1,20 +1,21 @@
  #aside {
-    height: 100vh;  
     position:fixed;
     width: fit-content;
+    height: 100vh;
     left:0;
-    top:0;
+    top: 0;
     z-index: 1;
     padding:10px;
     transform: translate(-100%);
     transition: 0.15s ease transform;
   }
   #aside.visible {
+    position: fixed;
     transform: translateX(0);
+    z-index: 1;
   }
   .content.pushed{
     position:relative;
-    margin-left: 15px;
     width:80%;
     transition: 0.15s ease transform;
     transform: translateX(25%);
