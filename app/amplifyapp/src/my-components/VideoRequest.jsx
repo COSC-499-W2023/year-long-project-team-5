@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
@@ -21,7 +21,8 @@ import {
   createSubmission as createSubmissionMutation
 } from "../graphql/mutations";
 
-import {debounce} from 'lodash';
+import { RequestPreview } from "./RequestPreview";
+import { create } from "lodash";
 
 export function VideoRequestForm({previewData, setPreviewData, isMobile = false}){
     
@@ -30,10 +31,10 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
   const [errorMessages, setErrorMessages] = useState(new Set());
   const [submittedEmail, setSubmittedEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  const showMobilePreview = (previewData) => {
-   console.log(previewData);
-  }
+  const [showMobilePreview, setShowMobilePreview] = useState(false);
+  const [mobileToSubmit, setMobileToSubmit] = useState(false);
+  const formSubmitRef = useRef(null);
+
   const handleFieldEvent = (event, fieldType, eventAction) => {
     const fieldValue = event.target.value;
     const validateEmail = (emailInput) => {
@@ -65,7 +66,7 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
       }
     };
       if (eventAction === 'change') {
-      setPreviewData({ ...previewData, [fieldType]: fieldValue });
+      setPreviewData((currentPreviewData) => ({ ...currentPreviewData, [fieldType]: fieldValue }));
     } else if (eventAction === 'blur') {
       if (fieldValue === "") {
         newErrors.delete(errorMessage);
@@ -77,11 +78,6 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
     setFormWrong(newErrors.size > 0);
   }
   
-  const debounceHandleFieldEvent = debounce((event, fieldType, eventAction) => {
-    handleFieldEvent(event, fieldType, eventAction);
-  }, 50);
-
-
   async function createUser(email,name) {
     const data = {
       email: email,
@@ -93,20 +89,46 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
     });
   }
   
+
+  const handleFormAction = async (event) => {
+    if (event) {
+      event.preventDefault();
+    }
+  
+    if (isMobile) {
+      if (showMobilePreview && mobileToSubmit) {
+        await createSubmission(); // Proceed with the submission logic
+        setShowMobilePreview(false); // Optionally, hide the preview after submission
+        setMobileToSubmit(false); // Reset the submission trigger
+      } else {
+        setShowMobilePreview(true);
+      }
+    } else {
+      await createSubmission();
+    }
+  };
+  
   async function createSubmission(event){
-    event.preventDefault();
+    if (event){
+      event.preventDefault();
+    }
+
     if (isFormWrong){
       setIsFormSubmitted(false);
       return
     }
-    setIsSubmitting(true);
-    const form = new FormData(event.target);
+    const formElement = event ? event.target : formSubmitRef.current;
+    const form = new FormData(formElement);
     setIsFormSubmitted(false);
     setFormWrong(false);
     setErrorMessages([]);
+    setIsSubmitting(true);
 
     try {
-      const user = await createUser(form.get("email"),form.get("recipientName"));
+      const email = previewData.email
+      const recipientName = previewData.recipientName
+      const description = previewData.description
+      const user = await createUser(email, recipientName);
       setSubmittedEmail(form.get("email")) 
       const userId = user.data.createUser.id
       const otp = await generateOTP()
@@ -114,7 +136,7 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
       const data = {
         adminId: Auth.user.username,
         adminName: Auth.user.attributes.name,
-        note: form.get("description"),
+        note: description,
         submissionUserId: userId,
         otpCode: otp
       };
@@ -122,14 +144,14 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
         query: createSubmissionMutation,
         variables: { input: data },
       });
-      event.target.reset();
+      formElement.reset();
+      setPreviewData({});
       setIsFormSubmitted(true);
     } catch (error) {
       console.log('error creating submission:', error);
     } finally {
       setIsSubmitting(false);
     }
-    // Set the form submission state to true
   }
     const cardStyle = {
       width: '100%',
@@ -198,7 +220,24 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
     }
     
     return (
-      <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={isMobile ? showMobilePreview : createSubmission} style={cardStyle} minHeight={'inherit'}>
+      (isMobile && showMobilePreview) ?
+      <Flex direction={'column'}>
+        <RequestPreview previewData={previewData} />
+        <Flex direction="row" justifyContent="space-between">
+          <Button onClick={() => 
+            setShowMobilePreview(false)
+            } variation="primary">Go back</Button>
+          <Button onClick={async () => {
+            setShowMobilePreview(false);
+            await new Promise(resolve => setTimeout(resolve, 0));
+            await createSubmission();
+            setMobileToSubmit(false);
+          }} variation="primary">Send Request</Button>
+
+        </Flex>
+      </Flex>
+      :
+      <Card as="form" ref={formSubmitRef} backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={handleFormAction} style={cardStyle} minHeight={'inherit'}>
         {isFormSubmitted && (
           <Alert className="successFeedback" textAlign ='left' variation="success" isDismissible={true} hasIcon={true} heading="Email Sent" marginBottom={'.5em'}>
             Your video request to {submittedEmail} has been sent!
@@ -210,7 +249,8 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
             name="recipientName"
             placeholder="Bilbo Baggins"
             label="Recipient Name"
-            onChange={(event) => debounceHandleFieldEvent(event, 'recipientName', 'change')}
+            onChange={(event) => handleFieldEvent(event, 'recipientName', 'change')}
+            value={previewData.recipientName || ""}
             required
           />
           <TextField
@@ -220,7 +260,8 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
             type="email"
             required
             onBlur ={(event) => handleFieldEvent(event, 'email', 'blur')}
-            onChange={(event) => debounceHandleFieldEvent(event, 'email', 'change')}
+            onChange={(event) => handleFieldEvent(event, 'email', 'change')}
+            value={previewData.email || ""}
             hasError={isFormWrong && errorMessages.has("Invalid email address.")}
           />
           <TextAreaField
@@ -231,16 +272,17 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
               paddingBottom: "3em",
             }}
             onBlur = {(event) => handleFieldEvent(event, 'description', 'blur')}
-            onChange = {(event) => debounceHandleFieldEvent(event, 'description', 'change')}
+            onChange = {(event) => handleFieldEvent(event, 'description', 'change')}
             hasError = {isFormWrong && errorMessages.has("Description must be at least 20 characters.")}
+            value={previewData.description || ""}
             required
           />
           <Button type="submit" variation="primary" isDisabled={isSubmitting}>
             <Flex direction="row" alignItems = "center" gap="0.5em">
-              {isMobile ? "Preview Email" : (isSubmitting ? <><Loader/>Sending...</> : "Send Request")}
+              {isMobile ? (isSubmitting ? <><Loader/>Sending...</> : "Preview Email") : (isSubmitting ? <><Loader/>Sending...</> : "Send Request")}
             </Flex>
           </Button>
         </Flex>
-      </Card>
+      </Card> 
     )
 } export default VideoRequestForm;

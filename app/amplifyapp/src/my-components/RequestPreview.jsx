@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Button, Heading, useAuthenticator } from '@aws-amplify/ui-react'
+import {View, Button, Heading, useAuthenticator, Flex } from '@aws-amplify/ui-react'
 import "./RequestPreview.css"
 import { wrap } from 'lodash';
 
