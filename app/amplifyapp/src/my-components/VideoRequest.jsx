@@ -29,6 +29,7 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
   const [isFormSubmitted, setIsFormSubmitted] = useState(false); 
   const [isFormWrong, setFormWrong] = useState(false);
   const [errorMessages, setErrorMessages] = useState(new Set());
+  const [touchedFields, setTouchedFields] = useState(new Set());
   const [submittedEmail, setSubmittedEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showMobilePreview, setShowMobilePreview] = useState(false);
@@ -42,7 +43,9 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
       return emailRegex.test(emailInput);
     };
     const validateDescription = (description) => description.length >= 20;
-    let newErrors = new Set(errorMessages);
+    let newErrors = errorMessages;
+    let newTouchedFields = touchedFields;
+
     const validationMap = {
       email: {
         validate: validateEmail,
@@ -67,7 +70,11 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
     };
       if (eventAction === 'change') {
       setPreviewData((currentPreviewData) => ({ ...currentPreviewData, [fieldType]: fieldValue }));
+      if (newTouchedFields.has(fieldType)){
+        updateErrors();
+      }
     } else if (eventAction === 'blur') {
+      newTouchedFields.add(fieldType);
       if (fieldValue === "") {
         newErrors.delete(errorMessage);
       } else {
@@ -75,6 +82,7 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
       }
     }
     setErrorMessages(newErrors);
+    setTouchedFields(newTouchedFields);
     setFormWrong(newErrors.size > 0);
   }
   
