@@ -9,8 +9,6 @@ export { default as DataRow } from "./DataRow";
 export { default as EditProfile } from "./EditProfile";
 export { default as FilterTabs } from "./FilterTabs";
 export { default as Filters } from "./Filters";
-export { default as NoteCreateForm } from "./NoteCreateForm";
-export { default as NoteUpdateForm } from "./NoteUpdateForm";
 export { default as ReceiverNav } from "./ReceiverNav";
 export { default as SearchSubmission } from "./SearchSubmission";
 export { default as SenderNav } from "./SenderNav";

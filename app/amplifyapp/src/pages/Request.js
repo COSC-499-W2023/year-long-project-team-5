@@ -28,18 +28,20 @@ export const Request = () =>{
       };
     }, []);
 
-  return(
-    <View className="App">
-      <Flex direction="row" padding={tokens.space.small} marginTop={"4em"} gap={"5em"} justifyContent={'center'}>
-        <View minHeight={"590px"}>
-          <VideoRequestForm setPreviewData={setPreviewData} previewData={previewData} isMobile={isMobile}/>
+
+
+  document.title = "Blur | Request a Video";
+
+    return(
+      <View className="App">
+        <View padding={tokens.space.xxxl}>
+        <VideoRequestForm setPreviewData={setPreviewData} previewData={previewData} isMobile={isMobile}/>
         </View>
         {!isMobile && 
           <View minHeight={"590px"}>
             <RequestPreview previewData={previewData}/>
           </View>
         }
-      </Flex>
     </View>
   )
 }

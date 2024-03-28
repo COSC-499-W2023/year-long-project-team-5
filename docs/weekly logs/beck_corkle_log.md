@@ -1,5 +1,26 @@
 # Weekly Personal Log (March 11th-March 18th)
 ## Screenshot from peer eval
+<img src="https://i.imgur.com/AIPBj8E.png">
+
+## Non-feature work
+- Class Tuesday, Team meeting Thursday
+
+## All of my features for **this week**
+### **Feature**: Create a dark and light mode website favicon
+- **Description**: We have been using the default react favicon, so I made one for us, in black and white. It dynamically changes based on your system theme
+- **Issue number**: #223
+- **Context**:
+  
+## Status of work for the week
+- Backend AWS Lambda for face blurring (working with kael)
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/223]
+  
+## Other notes
+
+# Weekly Personal Log (March 11th-March 18th)
+## Screenshot from peer eval
 <img src="https://i.imgur.com/FHbrAOD.png">
 
 ## Non-feature work
