@@ -43,8 +43,8 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
       return emailRegex.test(emailInput);
     };
     const validateDescription = (description) => description.length >= 20;
-    let newErrors = errorMessages;
-    let newTouchedFields = touchedFields;
+    let newErrors = new Set(errorMessages);
+    let newTouchedFields = new Set(touchedFields);
 
     const validationMap = {
       email: {
@@ -108,6 +108,10 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
         setShowMobilePreview(false); 
         setMobileToSubmit(false); 
       } else {
+        if (isFormWrong) {
+          setIsFormSubmitted(false);
+          return;
+        }
         setShowMobilePreview(true);
       }
     } else {
@@ -150,6 +154,8 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
       formElement.reset();
       setPreviewData({});
       setIsFormSubmitted(true);
+      setTouchedFields(new Set());
+      setErrorMessages(new Set());
     } catch (error) {
       console.log('error creating submission:', error);
     } finally {
@@ -253,6 +259,7 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
             label="Recipient Name"
             onChange={(event) => handleFieldEvent(event, 'recipientName', 'change')}
             value={previewData.recipientName || ""}
+            isDisabled={isSubmitting}
             required
           />
           <TextField
@@ -264,6 +271,7 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
             onBlur ={(event) => handleFieldEvent(event, 'email', 'blur')}
             onChange={(event) => handleFieldEvent(event, 'email', 'change')}
             value={previewData.email || ""}
+            isDisabled={isSubmitting}
             hasError={isFormWrong && errorMessages.has("Invalid email address.")}
           />
           <TextAreaField
@@ -277,6 +285,7 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
             onChange = {(event) => handleFieldEvent(event, 'description', 'change')}
             hasError = {isFormWrong && errorMessages.has("Description must be at least 20 characters.")}
             value={previewData.description || ""}
+            isDisabled={isSubmitting}
             required
           />
           <Button type="submit" variation="primary" isDisabled={isSubmitting}>
