@@ -1,7 +1,7 @@
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 import { VideoRequestForm } from "../my-components/VideoRequest";
-import { View, Heading, useTheme, Flex } from "@aws-amplify/ui-react";
+import { View, useTheme, Flex } from "@aws-amplify/ui-react";
 import { RequestPreview } from "../my-components/RequestPreview";
 import { useState, useEffect } from "react";
 
@@ -27,21 +27,19 @@ export const Request = () =>{
         window.removeEventListener('resize', handleResize);
       };
     }, []);
-
-
-
   document.title = "Blur | Request a Video";
-
-    return(
-      <View className="App">
-        <View padding={tokens.space.xxxl}>
-        <VideoRequestForm setPreviewData={setPreviewData} previewData={previewData} isMobile={isMobile}/>
+  return(
+    <View className="App">
+      <Flex direction="row" padding={tokens.space.small} marginTop={"4em"} gap={"5em"} justifyContent={'center'}>
+        <View minHeight={"590px"}>
+          <VideoRequestForm setPreviewData={setPreviewData} previewData={previewData} isMobile={isMobile}/>
         </View>
         {!isMobile && 
           <View minHeight={"590px"}>
             <RequestPreview previewData={previewData}/>
           </View>
         }
+      </Flex>
     </View>
   )
 }
