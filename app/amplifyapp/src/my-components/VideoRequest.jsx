@@ -77,9 +77,8 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
       newTouchedFields.add(fieldType);
       if (fieldValue === "") {
         newErrors.delete(errorMessage);
-      } else {
-        updateErrors();
-      }
+      } 
+      updateErrors();
     }
     setErrorMessages(newErrors);
     setTouchedFields(newTouchedFields);
@@ -105,9 +104,9 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
   
     if (isMobile) {
       if (showMobilePreview && mobileToSubmit) {
-        await createSubmission(); // Proceed with the submission logic
-        setShowMobilePreview(false); // Optionally, hide the preview after submission
-        setMobileToSubmit(false); // Reset the submission trigger
+        await createSubmission();
+        setShowMobilePreview(false); 
+        setMobileToSubmit(false); 
       } else {
         setShowMobilePreview(true);
       }
@@ -117,21 +116,17 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
   };
   
   async function createSubmission(event){
-    if (event){
-      event.preventDefault();
-    }
-
-    if (isFormWrong){
+    if (isFormWrong) {
       setIsFormSubmitted(false);
-      return
+      return;
     }
-    const formElement = event ? event.target : formSubmitRef.current;
+    const formElement = formSubmitRef.current; 
     const form = new FormData(formElement);
     setIsFormSubmitted(false);
     setFormWrong(false);
     setErrorMessages([]);
     setIsSubmitting(true);
-
+  
     try {
       const email = previewData.email
       const recipientName = previewData.recipientName
@@ -162,10 +157,9 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
     }
   }
     const cardStyle = {
-      width: '100%',
       margin: '0 auto',
       padding: '20px',
-      maxWidth: '600px',
+      width: '540px',
     };
     const { tokens } = useTheme();
 
@@ -207,7 +201,7 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
             <Text as="p" variation="error" key={index}>{errorMessages.size > 1 ? `${index + 1}. ${message}` : message}</Text>
           ));
         } else {
-          return <Text as="p" variation="info">Sends an email with OTP to record a video. <br/> {isMobile ?  "Email preview will be shown once you click 'Send Request'" : "As shown in the preview on the right."} </Text>;
+          return <Text as="p" variation="info">Sends an email with OTP to record a video. <br/> {isMobile ?  "Email preview will be shown on the next page." : "As shown in the preview on the right."} </Text>;
         }
       };
     
@@ -220,7 +214,7 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
           heading={headingToDisplay}
           marginBottom={'.5em'}
           minHeight={'6em'}
-          minWidth={'500px'}
+          width={'100%'}
         >
           {messageContent()}
         </Alert>
@@ -234,7 +228,7 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
         <Flex direction="row" justifyContent="space-between">
           <Button onClick={() => 
             setShowMobilePreview(false)
-            } variation="primary">Go back</Button>
+            } variation="secondary">Go back</Button>
           <Button onClick={async () => {
             setShowMobilePreview(false);
             await new Promise(resolve => setTimeout(resolve, 0));
