@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
@@ -22,7 +22,6 @@ import {
 } from "../graphql/mutations";
 
 import { RequestPreview } from "./RequestPreview";
-import { create } from "lodash";
 
 export function VideoRequestForm({previewData, setPreviewData, isMobile = false}){
     
