@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
+import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { Flex, View, Button, Heading, Card, Divider, ButtonGroup, SwitchField } from "@aws-amplify/ui-react";
 
 import { API, Storage } from 'aws-amplify';
@@ -15,7 +16,7 @@ import {
 } from "../graphql/mutations";
 import { useNavigate } from "react-router-dom";
 import "./VideoRecorder.css"
-import {clsx} from "clsx";
+import { clsx } from "clsx";
 import { getSupportedMimeTypes, getFileExtensionForMimeType } from "../Helpers/Other";
 
 const bestMimeType = getSupportedMimeTypes("video")[0];
@@ -39,6 +40,7 @@ export default function WebcamVideo(props) {
   });
   const [recordingTime, setRecordingTime] = useState(0);
   const recordingIntervalRef = useRef(null);
+  const [faceBlur, setFaceBlur] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -148,51 +150,65 @@ export default function WebcamVideo(props) {
   const handleUpload = useCallback( async () => {
       const submissionId = props.submissionData.id
       let videoId;
+      const client = new S3Client({});
       if (recordedChunks.length && videoLoaded) {
       const blob = new Blob(recordedChunks, {
         type: bestMimeType,
       });
 
       //UPLOAD VIDEO TO S3 DB, also make a entry in  the graphql videos table
-      const randNum = parseInt(Math.random() * 10000000);
-      const videoNameS3 = "video" + randNum + fileExt;
+      const videoNameS3 = props.submissionData.id + fileExt;
       const data = {
         videoURL: videoNameS3, // videoNameS3 is the key (not the url) for the s3 bucket, get video URL with Storage.get(name)
       };
+      const command = new PutObjectCommand({
+        Bucket: "rekouploadtest",
+        Key: videoNameS3,
+        Body: blob,
+      });
       
       try {
-        await Storage.put(videoNameS3, blob); // store video in s3 bucket under the key
-        const result_video = await API.graphql({ // store the key for the video in DynamoDB
-          query: createVideoMutation,
-          variables: { input: data },
-          authMode: "API_KEY"
-        });
-        videoId = result_video.data.createVideo.id;
+        if (faceBlur) {
+          try {
+            const response = await client.send(command);
+            console.log(response);
+          } catch (err) {
+            console.error(err);
+          }
+        } else {
+          await Storage.put(videoNameS3, blob); // store video in s3 bucket under the key
 
+          const result_video = await API.graphql({ // store the key for the video in DynamoDB
+            query: createVideoMutation,
+            variables: { input: data },
+            authMode: "API_KEY"
+          });
+          videoId = result_video.data.createVideo.id;
+
+          // Redirect to another page after successful upload
+          navigate('/confirmation');
+        }
         setRecordedChunks([]);
-        
-        // Redirect to another page after successful upload
-        navigate('/confirmation');
+
+        // now we want to associate the video with the submission
+        const data2 = {
+          id: submissionId,
+          submissionVideoId: videoId,
+          otpCode: 0,
+          submittedAt: new Date().toISOString(),
+        };
+
+        try {
+          await API.graphql({
+            query: updateSubmissionMutation,
+            variables: { input: data2 },
+            authMode: "API_KEY"
+          });
+        } catch(error){
+          console.error("Error associating video with submission:", error);
+        }
       } catch (error) {
         console.error("Error uploading video: ", error);
-      }
-
-      // now we want to associate the video with the submission
-      const data2 = {
-        id: submissionId,
-        submissionVideoId: videoId,
-        otpCode: 0,
-        submittedAt: new Date().toISOString(),
-      };
-
-      try {
-        await API.graphql({
-          query: updateSubmissionMutation,
-          variables: { input: data2 },
-          authMode: "API_KEY"
-        });
-      } catch(error){
-        console.error("Error associating video with submission:", error);
       }
     } 
   }, [recordedChunks, navigate, videoLoaded]);
@@ -244,7 +260,7 @@ export default function WebcamVideo(props) {
                   <Button className = "retakeButton" onClick={handleRetakeClick }> <FaRedoAlt style={{marginRight: '4px'}}/> Retake</Button>
                   <Button className = "downloadButton" onClick={handleDownload}> <MdDownloadForOffline style={{marginRight: '4px'}}/> Download</Button>
                   <Button className = "submitButton" onClick={handleUpload}> <RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</Button>
-                  <SwitchField label="Enable Face Blurring"/>
+                  <SwitchField label="Enable Face Blurring" onChange={(e) => {setFaceBlur(e.target.checked); }}/>
                 </ButtonGroup>
               </Flex>
             </Card>
