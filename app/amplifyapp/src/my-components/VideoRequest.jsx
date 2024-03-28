@@ -280,6 +280,7 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
             label="Video Instructions"
             inputStyles={{
               paddingBottom: "3em",
+              wordWrap: "break-word",
             }}
             onBlur = {(event) => handleFieldEvent(event, 'description', 'blur')}
             onChange = {(event) => handleFieldEvent(event, 'description', 'change')}
