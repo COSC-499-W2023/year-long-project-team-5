@@ -41,7 +41,7 @@ export const NavBar = (props) => {
     }
     return (
         <View
-         backgroundColor={tokens.colors.background.primary}
+         backgroundColor={tokens.colors.background.primary} className = "nav"
         >
            {isMobile ? (
             <Flex backgroundColor = {tokens.colors.primary} boxShadow={tokens.shadows.medium} padding={tokens.space.small} justifyContent='space-between' alignItems='center' marginBottom={tokens.space.large}>

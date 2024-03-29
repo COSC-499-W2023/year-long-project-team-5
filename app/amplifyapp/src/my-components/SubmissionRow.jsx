@@ -95,8 +95,8 @@ export const SubmissionRow = (props) => {
                 )}
             </TableCell>
             <TableCell className='subLink' width='7%'> 
-                <Button variation="primary" width='100%' onClick={ () => props.delete(props.submissionID)} cursor='pointer' backgroundColor={"#D2042D"}  borderColor={'border.error'}>
-                    <IoTrashBin/>
+                <Button variation="primary" onClick={ () => props.delete(props.submissionID)} cursor='pointer' backgroundColor={"#D2042D"}  borderColor={'border.error'}>
+                    <IoTrashBin width = '60px'/>
                 </Button>
             </TableCell>
         </TableRow>

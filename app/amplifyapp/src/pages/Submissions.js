@@ -310,7 +310,7 @@ export function Submissions() {
   //Filters and main render function
   return (
     <View className="App">
-      <Flex direction = 'row' id = 'aside' ref = {sidebarRef} className ={`sidebar ${sideBarToggled ? "visible" : ""} `} backgroundColor={tokens.colors.background.secondary}>
+      <Flex direction = 'row' id = 'aside' ref = {sidebarRef} className ={`sidebar ${sideBarToggled ? "visible" : ""} `} backgroundColor={tokens.colors.background.secondary}  >
         <Flex direction = 'column' backgroundColor={tokens.colors.background.secondary}>
           <Flex alignItems = {'flex-start'} justifyContent={'flex-start'} className="filter-close-container"><Text><IoClose className = 'filter_closeButton' size='30' onClick={()=>setSideBarToggled(false)}/></Text></Flex>
             <Heading level = {4}>Filter Submissions <ToolTip text = "You can stack as many filters as you'd like. To remove a filter, simply clear the respective filter and hit apply filters again."><BsInfoCircle style = {{width:'50%'}}/></ToolTip></Heading>
@@ -350,8 +350,9 @@ export function Submissions() {
             </Flex>
           </Flex>
         </Flex>
-      <Flex className ={`content ${sideBarToggled ? "pushed" : ""} `} direction={'column'}>
-        <Heading level={2}>Your Video Submissions</Heading>
+      <Flex className ={`content ${sideBarToggled ? "pushed" : ""} `} direction={'column'}
+>
+      <Heading level={2}>Your Video Submissions</Heading>
         {renderDash()}
       </Flex>
     </View>
