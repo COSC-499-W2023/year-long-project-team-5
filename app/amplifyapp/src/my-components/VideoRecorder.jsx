@@ -259,8 +259,8 @@ export default function WebcamVideo(props) {
                   <Button className = "retakeButton" onClick={handleRetakeClick }> <FaRedoAlt style={{marginRight: '4px'}}/> Retake</Button>
                   <Button className = "downloadButton" onClick={handleDownload}> <MdDownloadForOffline style={{marginRight: '4px'}}/> Download</Button>
                   <Button className = "submitButton" onClick={handleUpload}> <RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</Button>
-                  <SwitchField label="Enable Face Blurring" onChange={(e) => {setFaceBlur(e.target.checked); }}/>
                 </ButtonGroup>
+                <SwitchField label="Enable Face Blurring" onChange={(e) => {setFaceBlur(e.target.checked); }}/>
               </Flex>
             </Card>
         ):
