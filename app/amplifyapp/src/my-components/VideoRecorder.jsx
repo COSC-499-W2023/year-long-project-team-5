@@ -177,7 +177,7 @@ export default function WebcamVideo(props) {
           }
         } else {
           await Storage.put(videoNameS3, blob); // store video in s3 bucket under the key
-
+        }
           const result_video = await API.graphql({ // store the key for the video in DynamoDB
             query: createVideoMutation,
             variables: { input: data },
@@ -187,7 +187,6 @@ export default function WebcamVideo(props) {
 
           // Redirect to another page after successful upload
           navigate('/confirmation');
-        }
         setRecordedChunks([]);
 
         // now we want to associate the video with the submission
