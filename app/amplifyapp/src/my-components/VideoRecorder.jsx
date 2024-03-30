@@ -164,7 +164,6 @@ export default function WebcamVideo(props) {
       
       try {
         try {
-          console.log(videoNameS3);
           await Storage.put(videoNameS3, blob);
         } catch (err) {
           console.error(err);
