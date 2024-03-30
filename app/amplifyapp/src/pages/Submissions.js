@@ -90,13 +90,13 @@ export function Submissions() {
         if (submission.Video && submission.Video.videoURL) {
           if(submission.Video.videoURL.startsWith("toBlur/")) {
             //check if its in the public folder yet
-            let checkPublic = await Storage.getProperties(submission.Video.videoURL.replace("toBlur/", ""));
-            if (checkPublic.contentType !== "binary/octet-stream") {
-              submission.Video.videoURL = 'loadingBlur';
-            } else {
+            try {
+              let checkPublic = await Storage.getProperties(submission.Video.videoURL.replace("toBlur/", ""));
               const url = await Storage.get(submission.Video.videoURL.replace("toBlur/", ""));
               submission.Video.videoName = submission.Video.videoURL;
               submission.Video.videoURL = url;
+            } catch {
+              submission.Video.videoURL = 'loadingBlur';
             }
           } else {
             const url = await Storage.get(submission.Video.videoURL.replace("toBlur/", ""));
