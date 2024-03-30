@@ -168,43 +168,20 @@ export default function WebcamVideo(props) {
       });
       
       try {
-        if (faceBlur) {
-          try {
-            console.log("Should blur");
-            let key;
-            let secretkey;
-            
-            Auth.currentCredentials()
-              .then(credentials => {
-                const client = new S3Client({
-                  region:'ca-central-1',
-                  credentials:{
-                      accessKeyId: credentials.accessKeyId,
-                      secretAccessKey: credentials.secretAccessKey
-                  }
-                });
-    
-                return client.send(command);
-              })
-              .catch(error => {
-                console.error('Error getting credentials:', error);
-              });
-          } catch (err) {
-            console.error(err);
-          }
-        } else {
-          console.log("No blur");
-          await Storage.put(videoNameS3, blob); // store video in s3 bucket under the key
+        try {
+          await Storage.put( (faceBlur ? "toBlur/"+videoNameS3 : videoNameS3), blob);
+        } catch (err) {
+          console.error(err);
         }
-          const result_video = await API.graphql({ // store the key for the video in DynamoDB
-            query: createVideoMutation,
-            variables: { input: data },
-            authMode: "API_KEY"
-          });
-          videoId = result_video.data.createVideo.id;
+        const result_video = await API.graphql({ // store the key for the video in DynamoDB
+          query: createVideoMutation,
+          variables: { input: data },
+          authMode: "API_KEY"
+        });
+        videoId = result_video.data.createVideo.id;
 
-          // Redirect to another page after successful upload
-          navigate('/confirmation');
+        // Redirect to another page after successful upload
+        navigate('/confirmation');
         setRecordedChunks([]);
 
         // now we want to associate the video with the submission
