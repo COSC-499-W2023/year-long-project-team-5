@@ -1,8 +1,7 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import { Flex, View, Button, Heading, Card, Divider, ButtonGroup, SwitchField } from "@aws-amplify/ui-react";
-
-import { API, Storage, Auth } from 'aws-amplify';
+import { API, Storage } from 'aws-amplify';
 import { BsFillRecordFill, BsInfoCircle } from "react-icons/bs";
 import { MdDownloadForOffline } from "react-icons/md";
 import { FaRedoAlt } from "react-icons/fa";

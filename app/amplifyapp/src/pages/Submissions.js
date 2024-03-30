@@ -31,7 +31,6 @@ import { SubmissionTable } from '../my-components/SubmissionTable';
 import { IoClose } from "react-icons/io5";
 import { CiFilter } from "react-icons/ci";
 import { deleteSubmission as deleteSubmissionMutation } from "../graphql/mutations";
-import { RiContactsBookUploadLine } from "react-icons/ri";
 
 
 /**
@@ -91,7 +90,7 @@ export function Submissions() {
           if(submission.Video.videoURL.startsWith("toBlur/")) {
             //check if its in the public folder yet
             try {
-              let checkPublic = await Storage.getProperties(submission.Video.videoURL.replace("toBlur/", ""));
+              await Storage.getProperties(submission.Video.videoURL.replace("toBlur/", ""));
               const url = await Storage.get(submission.Video.videoURL.replace("toBlur/", ""));
               submission.Video.videoName = submission.Video.videoURL;
               submission.Video.videoURL = url;
