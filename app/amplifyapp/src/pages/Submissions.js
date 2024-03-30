@@ -87,12 +87,16 @@ export function Submissions() {
     await Promise.all(
       filteredSubmissions.map(async (submission) => {
         if (submission.Video && submission.Video.videoURL) {
-          if (await Storage.getProperties(submission.Video.videoURL)) {
-            const url = await Storage.get(submission.Video.videoURL.replace("toBlur/", ""));
-            submission.Video.videoName = submission.Video.videoURL;
-            submission.Video.videoURL = url;
-          } else {
-            submission.Video.videoURL = 'loadingBlur';
+          if(submission.Video.videoURL.startsWith("toBlur/")) {
+            //check if its in the public folder yet
+            let checkPublic = await Storage.getProperties(submission.Video.videoURL.replace("toBlur/", ""));
+            if (checkPublic.contentType !== "video/webm") {
+              submission.Video.videoURL = 'loadingBlur';
+            } else {
+              const url = await Storage.get(submission.Video.videoURL.replace("toBlur/", ""));
+              submission.Video.videoName = submission.Video.videoURL;
+              submission.Video.videoURL = url;
+            }
           }
         }
         return submission;
