@@ -86,7 +86,7 @@ export const SubmissionRow = (props) => {
                 </Text>
             </TableCell>
             <TableCell className='subLink' width={'11%'}>
-                {props.videoLink === null || props.dateReceived === null ? (
+                {props.videoLink === null || props.dateReceived === null || props.videoLink === "loadingBlur" ? (
                     <Button variation="primary" size='small' width='100%' disabled>
                         <FaVideoSlash/>
                     </Button>

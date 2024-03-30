@@ -38,7 +38,7 @@ export const SubmissionCard = (props) => {
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Flex width='6%'/>
-                    {props.videoLink===null || props.dateReceived==null ? (
+                    {props.videoLink===null || props.dateReceived==null || props.videoLink === "loadingBlur" ? (
                         <Button variation="primary" width='25%' disabled><FaVideoSlash/></Button>
                     ) : (
                     <Flex width='25%'>

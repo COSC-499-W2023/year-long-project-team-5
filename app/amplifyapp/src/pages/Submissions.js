@@ -31,6 +31,7 @@ import { SubmissionTable } from '../my-components/SubmissionTable';
 import { IoClose } from "react-icons/io5";
 import { CiFilter } from "react-icons/ci";
 import { deleteSubmission as deleteSubmissionMutation } from "../graphql/mutations";
+import { RiContactsBookUploadLine } from "react-icons/ri";
 
 
 /**
@@ -90,13 +91,18 @@ export function Submissions() {
           if(submission.Video.videoURL.startsWith("toBlur/")) {
             //check if its in the public folder yet
             let checkPublic = await Storage.getProperties(submission.Video.videoURL.replace("toBlur/", ""));
-            if (checkPublic.contentType !== "video/webm") {
+            if (checkPublic.contentType !== "binary/octet-stream") {
+              console.log(checkPublic);
               submission.Video.videoURL = 'loadingBlur';
             } else {
               const url = await Storage.get(submission.Video.videoURL.replace("toBlur/", ""));
               submission.Video.videoName = submission.Video.videoURL;
               submission.Video.videoURL = url;
             }
+          } else {
+            const url = await Storage.get(submission.Video.videoURL.replace("toBlur/", ""));
+            submission.Video.videoName = submission.Video.videoURL;
+            submission.Video.videoURL = url;
           }
         }
         return submission;
@@ -120,7 +126,7 @@ export function Submissions() {
           variables: { input: { id: submissionID } },
           authMode: "AWS_IAM"
         });
-        if (videolink != 'N/A') {
+        if (videolink !== 'N/A') {
           await Storage.remove(videolink);
         }
       } catch (error) {
