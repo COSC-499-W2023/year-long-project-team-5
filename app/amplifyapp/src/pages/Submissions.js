@@ -96,7 +96,6 @@ export function Submissions() {
     );
     filteredSubmissions.sort(dateSorting);
     setSubmissions(filteredSubmissions);
-    console.log(filteredSubmissions.length);
     setFilteredSubmissions(filteredSubmissions)
     setTotalPageNum(Math.ceil((filteredSubmissions.length + 1)/7));
     setCurrentPageIndex(1);

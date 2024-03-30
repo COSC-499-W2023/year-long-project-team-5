@@ -40,7 +40,7 @@ export default function WebcamVideo(props) {
   });
   const [recordingTime, setRecordingTime] = useState(0);
   const recordingIntervalRef = useRef(null);
-  const [faceBlur, setFaceBlur] = useState(false);
+  const [faceBlur, setFaceBlur] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -170,32 +170,30 @@ export default function WebcamVideo(props) {
       try {
         if (faceBlur) {
           try {
+            console.log("Should blur");
             let key;
             let secretkey;
             
             Auth.currentCredentials()
               .then(credentials => {
-                key = credentials.accessKeyId;
-                secretkey = credentials.secretAccessKey;
+                const client = new S3Client({
+                  region:'ca-central-1',
+                  credentials:{
+                      accessKeyId: credentials.accessKeyId,
+                      secretAccessKey: credentials.secretAccessKey
+                  }
+                });
+    
+                return client.send(command);
               })
               .catch(error => {
                 console.error('Error getting credentials:', error);
               });
-
-            const client = new S3Client({
-              region:'ca-central-1',
-              credentials:{
-                  accessKeyId: key,
-                  secretAccessKey: secretkey
-              }
-            });
-
-            const response = await client.send(command);
-            console.log(response);
           } catch (err) {
             console.error(err);
           }
         } else {
+          console.log("No blur");
           await Storage.put(videoNameS3, blob); // store video in s3 bucket under the key
         }
           const result_video = await API.graphql({ // store the key for the video in DynamoDB
@@ -280,7 +278,7 @@ export default function WebcamVideo(props) {
                   <Button className = "downloadButton" onClick={handleDownload}> <MdDownloadForOffline style={{marginRight: '4px'}}/> Download</Button>
                   <Button className = "submitButton" onClick={handleUpload}> <RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</Button>
                 </ButtonGroup>
-                <SwitchField label="Enable Face Blurring" onChange={(e) => {setFaceBlur(e.target.checked); }}/>
+                <SwitchField label="Enable Face Blurring" onChange={(e) => {setFaceBlur(e.target.checked); console.log(faceBlur); }}/>
               </Flex>
             </Card>
         ):
