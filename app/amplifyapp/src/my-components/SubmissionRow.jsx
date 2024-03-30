@@ -95,7 +95,7 @@ export const SubmissionRow = (props) => {
                 )}
             </TableCell>
             <TableCell className='subLink' width='7%'> 
-                <Button variation="primary" width='100%' onClick={ () => props.delete(props.submissionID)} cursor='pointer' backgroundColor={"#D2042D"}  borderColor={'border.error'}>
+                <Button variation="primary" width='100%' onClick={ () => props.delete(props.submissionID, props.videoLink)} cursor='pointer' backgroundColor={"#D2042D"}  borderColor={'border.error'}>
                     <IoTrashBin/>
                 </Button>
             </TableCell>

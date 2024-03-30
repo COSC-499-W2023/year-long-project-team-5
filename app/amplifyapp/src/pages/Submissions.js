@@ -103,7 +103,7 @@ export function Submissions() {
     setLoading(false);
   }
 
-  async function deletePrompt(submissionID) {
+  async function deletePrompt(submissionID, videolink) {
     const shouldRemove = window.confirm("Are you sure you want to delete this submission?")
     if(shouldRemove) {
       try {
@@ -112,6 +112,7 @@ export function Submissions() {
           variables: { input: { id: submissionID } },
           authMode: "AWS_IAM"
         });
+        await Storage.remove(videolink);
       } catch (error) {
         console.log('error deleting submission:', error);
       } finally {
