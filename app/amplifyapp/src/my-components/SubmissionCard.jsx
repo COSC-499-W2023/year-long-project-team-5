@@ -45,7 +45,7 @@ export const SubmissionCard = (props) => {
                         <VideoPreviewButton videoUrl={props.videoLink} name={props.name} description={props.description}></VideoPreviewButton>
                     </Flex>
                     )}
-                    <Button variation="primary" width='10%' onClick={ () => props.delete(props.submissionID, props.videoLink)} cursor='pointer' backgroundColor={"#D2042D"}  borderColor={'border.error'}><IoTrashBin/></Button>
+                    <Button variation="primary" width='10%' onClick={ () => props.delete(props.submissionID)} cursor='pointer' backgroundColor={"#D2042D"}  borderColor={'border.error'}><IoTrashBin/></Button>
                 </Flex>
             </Card>
         </View>

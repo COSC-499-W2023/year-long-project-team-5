@@ -92,7 +92,6 @@ export function Submissions() {
             //check if its in the public folder yet
             let checkPublic = await Storage.getProperties(submission.Video.videoURL.replace("toBlur/", ""));
             if (checkPublic.contentType !== "binary/octet-stream") {
-              console.log(checkPublic);
               submission.Video.videoURL = 'loadingBlur';
             } else {
               const url = await Storage.get(submission.Video.videoURL.replace("toBlur/", ""));
@@ -117,7 +116,7 @@ export function Submissions() {
     setLoading(false);
   }
 
-  async function deletePrompt(submissionID, videolink) {
+  async function deletePrompt(submissionID) {
     const shouldRemove = window.confirm("Are you sure you want to delete this submission?")
     if(shouldRemove) {
       try {
@@ -126,9 +125,6 @@ export function Submissions() {
           variables: { input: { id: submissionID } },
           authMode: "AWS_IAM"
         });
-        if (videolink !== 'N/A') {
-          await Storage.remove(videolink);
-        }
       } catch (error) {
         console.log('error deleting submission:', error);
       } finally {
