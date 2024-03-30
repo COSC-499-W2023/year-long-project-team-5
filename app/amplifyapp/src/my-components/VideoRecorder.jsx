@@ -3,7 +3,7 @@ import Webcam from "react-webcam";
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { Flex, View, Button, Heading, Card, Divider, ButtonGroup, SwitchField } from "@aws-amplify/ui-react";
 
-import { API, Storage } from 'aws-amplify';
+import { API, Storage, Auth } from 'aws-amplify';
 import { BsFillRecordFill, BsInfoCircle } from "react-icons/bs";
 import { MdDownloadForOffline } from "react-icons/md";
 import { FaRedoAlt } from "react-icons/fa";
@@ -150,7 +150,7 @@ export default function WebcamVideo(props) {
   const handleUpload = useCallback( async () => {
       const submissionId = props.submissionData.id
       let videoId;
-      const client = new S3Client({});
+      
       if (recordedChunks.length && videoLoaded) {
       const blob = new Blob(recordedChunks, {
         type: bestMimeType,
@@ -170,6 +170,26 @@ export default function WebcamVideo(props) {
       try {
         if (faceBlur) {
           try {
+            let key;
+            let secretkey;
+            
+            Auth.currentCredentials()
+              .then(credentials => {
+                key = credentials.accessKeyId;
+                secretkey = credentials.secretAccessKey;
+              })
+              .catch(error => {
+                console.error('Error getting credentials:', error);
+              });
+
+            const client = new S3Client({
+              region:'ca-central-1',
+              credentials:{
+                  accessKeyId: key,
+                  secretAccessKey: secretkey
+              }
+            });
+
             const response = await client.send(command);
             console.log(response);
           } catch (err) {
