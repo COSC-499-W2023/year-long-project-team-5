@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
-import { Flex, View, Button, Heading, Card, Divider, ButtonGroup } from "@aws-amplify/ui-react";
+import { Flex, View, Button, Heading, Card, Divider, ButtonGroup, Loader } from "@aws-amplify/ui-react";
 
 import { API, Storage } from 'aws-amplify';
 import { BsFillRecordFill, BsInfoCircle } from "react-icons/bs";
@@ -38,6 +38,7 @@ export default function WebcamVideo(props) {
     facingMode: "user",
   });
   const [recordingTime, setRecordingTime] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const recordingIntervalRef = useRef(null);
 
   useEffect(() => {
@@ -229,6 +230,13 @@ export default function WebcamVideo(props) {
     return null;
   };
 
+  const handleVideoSubmit = async (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    await handleUpload()
+    setIsLoading(false);
+  };
+
   return (
     <View>
       <Flex justifyContent={"center"}>
@@ -242,7 +250,9 @@ export default function WebcamVideo(props) {
               <Flex justifyContent={"space-evenly"} marginTop={'0.5em'}>
                 <ButtonGroup size="small">
                   <Button className = "downloadButton" onClick={handleDownload}> <MdDownloadForOffline style={{marginRight: '4px'}}/> Download</Button>
-                  <Button className = "submitButton" onClick={handleUpload}> <RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</Button>
+                  <Button className = "submitButton" onClick={handleVideoSubmit} disabled={isLoading}> 
+                    {isLoading ? <><Loader/>Sending...</> : <><RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</>} 
+                  </Button>
                   <Button className = "retakeButton" onClick={handleRetakeClick }> <FaRedoAlt style={{marginRight: '4px'}}/> Retake</Button>
                 </ButtonGroup>
               </Flex>
