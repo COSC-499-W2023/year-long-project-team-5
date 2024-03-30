@@ -112,7 +112,9 @@ export function Submissions() {
           variables: { input: { id: submissionID } },
           authMode: "AWS_IAM"
         });
-        await Storage.remove(videolink);
+        if (videolink != 'N/A') {
+          await Storage.remove(videolink);
+        }
       } catch (error) {
         console.log('error deleting submission:', error);
       } finally {
