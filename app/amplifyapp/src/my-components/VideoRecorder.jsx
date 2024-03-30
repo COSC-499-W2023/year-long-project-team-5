@@ -1,6 +1,5 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { Flex, View, Button, Heading, Card, Divider, ButtonGroup, SwitchField } from "@aws-amplify/ui-react";
 
 import { API, Storage, Auth } from 'aws-amplify';
