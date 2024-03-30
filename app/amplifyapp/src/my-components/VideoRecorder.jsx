@@ -157,19 +157,15 @@ export default function WebcamVideo(props) {
       });
 
       //UPLOAD VIDEO TO S3 DB, also make a entry in  the graphql videos table
-      const videoNameS3 = props.submissionData.id + fileExt;
+      const videoNameS3 = faceBlur ? "toBlur/" + props.submissionData.id + fileExt : props.submissionData.id + fileExt;
       const data = {
         videoURL: videoNameS3, // videoNameS3 is the key (not the url) for the s3 bucket, get video URL with Storage.get(name)
       };
-      const command = new PutObjectCommand({
-        Bucket: "rekouploadtest",
-        Key: videoNameS3,
-        Body: blob,
-      });
       
       try {
         try {
-          await Storage.put( (faceBlur ? "toBlur/"+videoNameS3 : videoNameS3), blob);
+          console.log(videoNameS3);
+          await Storage.put(videoNameS3, blob);
         } catch (err) {
           console.error(err);
         }

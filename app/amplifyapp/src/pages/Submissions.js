@@ -87,7 +87,8 @@ export function Submissions() {
     await Promise.all(
       filteredSubmissions.map(async (submission) => {
         if (submission.Video && submission.Video.videoURL) {
-          const url = await Storage.get(submission.Video.videoURL);
+          const url = await Storage.get(submission.Video.videoURL.replace("toBlur/", ""));
+
           submission.Video.videoName = submission.Video.videoURL;
           submission.Video.videoURL = url;
         }
