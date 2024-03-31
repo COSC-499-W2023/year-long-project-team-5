@@ -1,5 +1,5 @@
 const videoTypes = ["webm", "ogg", "mp4", "x-matroska"];
-const videoCodecs = ["should-not-be-supported","vp9", "vp9.0", "vp8,opus", "vp8.0,opus", "avc1", "av1", "h265", "h.265", "h264", "h.264", "opus", "pcm", "aac", "mpeg", "mp4a"];
+const videoCodecs = ["should-not-be-supported","vp8,opus", "vp8.0,opus", "avc1", "av1", "h265", "h.265", "h264", "h.264", "opus", "pcm", "aac", "mpeg", "mp4a"];
 
 /**
  * Retrieves the list of supported MIME types based on the provided media type, types, and codecs.
