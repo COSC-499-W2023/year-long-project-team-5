@@ -22,7 +22,7 @@ const bestMimeType = getSupportedMimeTypes("video")[0];
 const fileExt = getFileExtensionForMimeType(bestMimeType);
 
 export default function WebcamVideo(props) {
-  
+  alert("Mime type used: " + bestMimeType + " \nFile extension: " + fileExt);
   const webcamRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const [capturing, setCapturing] = useState(false);
