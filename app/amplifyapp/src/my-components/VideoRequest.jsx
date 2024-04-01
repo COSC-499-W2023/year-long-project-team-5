@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 
@@ -7,7 +7,8 @@ import {
     Button,
     Flex,
     TextField,
-    Card, 
+    Card,
+    View,
     useTheme,
     Alert,
     TextAreaField,
@@ -21,17 +22,19 @@ import {
   createSubmission as createSubmissionMutation
 } from "../graphql/mutations";
 
-import {debounce} from 'lodash';
+import { RequestPreview } from "./RequestPreview";
 
-export function VideoRequestForm(){
+export function VideoRequestForm({previewData, setPreviewData, isMobile = false}){
     
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state variable
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false); 
   const [isFormWrong, setFormWrong] = useState(false);
-  const [isFieldBeingEdited, setIsFieldBeingEdited] = useState(false); // New state variable
   const [errorMessages, setErrorMessages] = useState(new Set());
-  const [submittedEmail, setSubmittedEmail] = useState(''); // State to store the submitted email
-  const [isSubmitting, setIsSubmitting] = useState(false); // New state variable
-  
+  const [touchedFields, setTouchedFields] = useState(new Set());
+  const [submittedEmail, setSubmittedEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showMobilePreview, setShowMobilePreview] = useState(false);
+  const [mobileToSubmit, setMobileToSubmit] = useState(false);
+  const formSubmitRef = useRef(null);
 
   const handleFieldEvent = (event, fieldType, eventAction) => {
     const fieldValue = event.target.value;
@@ -41,6 +44,8 @@ export function VideoRequestForm(){
     };
     const validateDescription = (description) => description.length >= 20;
     let newErrors = new Set(errorMessages);
+    let newTouchedFields = new Set(touchedFields);
+
     const validationMap = {
       email: {
         validate: validateEmail,
@@ -49,6 +54,10 @@ export function VideoRequestForm(){
       description: {
         validate: validateDescription,
         errorMessage: "Description must be at least 20 characters."
+      },
+      recipientName: {
+        validate: (name) => name.length > 0,
+        errorMessage: "Recipient name is required."
       }
     };
     const { validate, errorMessage } = validationMap[fieldType];
@@ -60,29 +69,22 @@ export function VideoRequestForm(){
       }
     };
       if (eventAction === 'change') {
-      setIsFieldBeingEdited(true);
-      updateErrors();
-      debounceFieldBeingEdited();
-    } else if (eventAction === 'blur') {
-      setIsFieldBeingEdited(false);
-      if (fieldValue === "") {
-        newErrors.delete(errorMessage);
-      } else {
+      setPreviewData((currentPreviewData) => ({ ...currentPreviewData, [fieldType]: fieldValue }));
+      if (newTouchedFields.has(fieldType)){
         updateErrors();
       }
+    } else if (eventAction === 'blur') {
+      newTouchedFields.add(fieldType);
+      if (fieldValue === "") {
+        newErrors.delete(errorMessage);
+      } 
+      updateErrors();
     }
     setErrorMessages(newErrors);
+    setTouchedFields(newTouchedFields);
     setFormWrong(newErrors.size > 0);
   }
   
-  const debounceHandleFieldEvent = debounce((event, fieldType, eventAction) => {
-    handleFieldEvent(event, fieldType, eventAction);
-  }, 250);
-
-  const debounceFieldBeingEdited = debounce(() => {
-    setIsFieldBeingEdited(false);
-  }, 3000);
-
   async function createUser(email,name) {
     const data = {
       email: email,
@@ -94,32 +96,54 @@ export function VideoRequestForm(){
     });
   }
   
-  async function createSubmission(event){
-    event.preventDefault();
-    //if form is wrong, don't submit and don't reset the form
-    if (isFormWrong){
-      setIsFormSubmitted(false);
-      return
-    }
 
-    setIsSubmitting(true);
-    const form = new FormData(event.target);
-    // reset everything
+  const handleFormAction = async (event) => {
+    if (event) {
+      event.preventDefault();
+    }
+  
+    if (isMobile) {
+      if (showMobilePreview && mobileToSubmit) {
+        await createSubmission();
+        setShowMobilePreview(false); 
+        setMobileToSubmit(false); 
+      } else {
+        if (isFormWrong) {
+          setIsFormSubmitted(false);
+          return;
+        }
+        setShowMobilePreview(true);
+      }
+    } else {
+      await createSubmission();
+    }
+  };
+  
+  async function createSubmission(event){
+    if (isFormWrong) {
+      setIsFormSubmitted(false);
+      return;
+    }
+    const formElement = formSubmitRef.current; 
+    const form = new FormData(formElement);
     setIsFormSubmitted(false);
     setFormWrong(false);
     setErrorMessages([]);
-
+    setIsSubmitting(true);
+  
     try {
-      const user = await createUser(form.get("email"),form.get("name"));
-      //this should store what is submitted in the form using states:
-      setSubmittedEmail(form.get("email")) // only retaining email for now.
+      const email = previewData.email
+      const recipientName = previewData.recipientName
+      const description = previewData.description
+      const user = await createUser(email, recipientName);
+      setSubmittedEmail(form.get("email")) 
       const userId = user.data.createUser.id
       const otp = await generateOTP()
 
       const data = {
         adminId: Auth.user.username,
         adminName: Auth.user.attributes.name,
-        note: form.get("description"),
+        note: description,
         submissionUserId: userId,
         otpCode: otp
       };
@@ -127,35 +151,23 @@ export function VideoRequestForm(){
         query: createSubmissionMutation,
         variables: { input: data },
       });
-
-      event.target.reset();
+      formElement.reset();
+      setPreviewData({});
       setIsFormSubmitted(true);
+      setTouchedFields(new Set());
+      setErrorMessages(new Set());
     } catch (error) {
       console.log('error creating submission:', error);
     } finally {
       setIsSubmitting(false);
     }
-      // Set the form submission state to true
   }
-    // these states and functions below are to help dynamically adjust the width of the parent Card component (i.e the form)
-    // depending on browser width, takes less % of screen width if screen is large, and greater % when mobile.
-    
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const resizeCenterComps = (windowWidth) => {
-      return {
-          width: (windowWidth > 1024) ? '50%' : (windowWidth > 600) ? '80%' : '100%',
-          margin: '0 auto',
-          padding: '20px',
-          maxWidth: '800px', // You can adjust this value
-      };
-    };    
-    const cardStyle = resizeCenterComps(windowWidth);
+    const cardStyle = {
+      margin: '0 auto',
+      padding: '20px',
+      width: '540px',
+    };
     const { tokens } = useTheme();
-    useEffect(() => {
-      const handleResize = () => setWindowWidth(window.innerWidth);
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     async function generateOTP() {
       //Some gross config code for the generation API since v5 sucks:(
@@ -184,20 +196,18 @@ export function VideoRequestForm(){
 
     const renderMessages = () => {
       const errorHeading = errorMessages.size > 1 ? `There are ${errorMessages.size} issues` : 'Uh oh.';     
-      const defaultHeading = isFieldBeingEdited && isFormWrong ? (
-        <Flex direction={'row'}><Loader/> <Text as="h3">Checking...</Text></Flex>
-      ) : 'Video Request Form';
-      const headingToDisplay = isFormWrong && !isFieldBeingEdited ? errorHeading : defaultHeading;
-      const className = isFormWrong ? (isFieldBeingEdited ? "checkingFeedback" : "errorFeedback") : "infoFeedback";
-      const variation = isFormWrong ? (isFieldBeingEdited ? "default" : "error") : "info";
+      const defaultHeading = 'Video Request Form';
+      const headingToDisplay = isFormWrong ? errorHeading : defaultHeading;
+      const className = isFormWrong ?  "errorFeedback" : "infoFeedback";
+      const variation = isFormWrong ?  "error" : "info";
     
       const messageContent = () => {
-        if (isFormWrong && !isFieldBeingEdited) {
+        if (isFormWrong) {
           return Array.from(errorMessages).map((message, index) => (
             <Text as="p" variation="error" key={index}>{errorMessages.size > 1 ? `${index + 1}. ${message}` : message}</Text>
           ));
-        } else if (!isFieldBeingEdited || (isFieldBeingEdited && !isFormWrong)) {
-          return <Text as="p" variation="info">Sends an email with a link to upload the video.</Text>;
+        } else {
+          return <Text as="p" variation="info">Sends an email with OTP to record a video. <br/> {isMobile ?  "Email preview will be shown on the next page." : "As shown in the preview on the right."} </Text>;
         }
       };
     
@@ -210,6 +220,7 @@ export function VideoRequestForm(){
           heading={headingToDisplay}
           marginBottom={'.5em'}
           minHeight={'6em'}
+          width={'100%'}
         >
           {messageContent()}
         </Alert>
@@ -217,7 +228,24 @@ export function VideoRequestForm(){
     }
     
     return (
-      <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={createSubmission} style={cardStyle} >
+      (isMobile && showMobilePreview) ?
+      <Flex direction={'column'}>
+        <RequestPreview previewData={previewData} />
+        <Flex direction="row" justifyContent="space-between">
+          <Button onClick={() => 
+            setShowMobilePreview(false)
+            } variation="secondary">Go back</Button>
+          <Button onClick={async () => {
+            setShowMobilePreview(false);
+            await new Promise(resolve => setTimeout(resolve, 0));
+            await createSubmission();
+            setMobileToSubmit(false);
+          }} variation="primary">Send Request</Button>
+
+        </Flex>
+      </Flex>
+      :
+      <Card as="form" ref={formSubmitRef} backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={handleFormAction} style={cardStyle} minHeight={'inherit'}>
         {isFormSubmitted && (
           <Alert className="successFeedback" textAlign ='left' variation="success" isDismissible={true} hasIcon={true} heading="Email Sent" marginBottom={'.5em'}>
             Your video request to {submittedEmail} has been sent!
@@ -226,9 +254,12 @@ export function VideoRequestForm(){
         {renderMessages()} 
         <Flex direction="column" justifyContent = "center" textAlign = "left" gap='2em'>
           <TextField
-            name="name"
+            name="recipientName"
             placeholder="Bilbo Baggins"
             label="Recipient Name"
+            onChange={(event) => handleFieldEvent(event, 'recipientName', 'change')}
+            value={previewData.recipientName || ""}
+            isDisabled={isSubmitting}
             required
           />
           <TextField
@@ -238,7 +269,9 @@ export function VideoRequestForm(){
             type="email"
             required
             onBlur ={(event) => handleFieldEvent(event, 'email', 'blur')}
-            onChange={(event) => debounceHandleFieldEvent(event, 'email', 'change')}
+            onChange={(event) => handleFieldEvent(event, 'email', 'change')}
+            value={previewData.email || ""}
+            isDisabled={isSubmitting}
             hasError={isFormWrong && errorMessages.has("Invalid email address.")}
           />
           <TextAreaField
@@ -247,20 +280,21 @@ export function VideoRequestForm(){
             label="Video Instructions"
             inputStyles={{
               paddingBottom: "3em",
+              wordWrap: "break-word",
             }}
             onBlur = {(event) => handleFieldEvent(event, 'description', 'blur')}
-            onChange = {(event) => debounceHandleFieldEvent(event, 'description', 'change')}
+            onChange = {(event) => handleFieldEvent(event, 'description', 'change')}
             hasError = {isFormWrong && errorMessages.has("Description must be at least 20 characters.")}
+            value={previewData.description || ""}
+            isDisabled={isSubmitting}
             required
           />
-        {/* change the rendering below so that it renders disabled button with loading while waiting for createSubmission (async) */}
           <Button type="submit" variation="primary" isDisabled={isSubmitting}>
             <Flex direction="row" alignItems = "center" gap="0.5em">
-              {isSubmitting && <Loader/>}
-              {isSubmitting ? "Sending...": "Send Request"}
+              {isMobile ? (isSubmitting ? <><Loader/>Sending...</> : "Preview Email") : (isSubmitting ? <><Loader/>Sending...</> : "Send Request")}
             </Flex>
           </Button>
         </Flex>
-      </Card>
+      </Card> 
     )
 } export default VideoRequestForm;

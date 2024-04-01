@@ -1,3 +1,24 @@
+# Weekly Personal Log (March 25th-March 31st)
+
+## Screenshot from peer eval
+<img src="https://i.imgur.com/BlIvloY.png">
+
+## Non-feature work
+- Team meetings
+
+## All of my features for **this milestone**
+
+### **Feature**: Video Blur
+- **Description**: Blur faces in video
+- **Issue number**: issue #63
+- **Context**: Lambda blur finished
+
+## Status of work for the **last week** (in-progress or completed)
+- Face blur (Completed)
+
+## Issue number reference
+- Issue #63 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/63)
+
 # Weekly Personal Log (March 18th-March 24th)
 
 ## Screenshot from peer eval
