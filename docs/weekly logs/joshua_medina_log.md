@@ -517,3 +517,27 @@
 ## Issue number reference
 - Issue #218 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/218)
 - Issue #211 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/211)
+
+---
+
+# Weekly Personal Log (Mar 25 - Mar 31)
+
+## Screenshot from peer eval
+![Capture](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/2fed6fcd-a5b7-4a9c-affc-1a3022f96e56)
+
+## Non-feature work
+- Met on March 28 for meeting
+- More project document for end of project
+
+## All of my features for **this milestone**
+
+### **Feature**: Blur front-end shell (In review)
+- **Description**: In face-blurring-shell I have a button along with popup, implemented backend changes. Just need to do one more thing before PR.
+- **Issue number**: issue #218
+- **Context**: to prepare for blur we need a button that will activate it and a popup along with backend changes
+
+## Status of work for the **last week** (in-progress or completed)
+- Blur front-end shell (complete)
+
+## Issue number reference
+- Issue #218 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/218)
