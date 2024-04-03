@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Card, Flex, Heading, Button, useTheme, View, Text } from "@aws-amplify/ui-react";
+import { Card, Flex, Heading, Button, useTheme, View, Text, Loader} from "@aws-amplify/ui-react";
 import { VideoPreviewButton } from "./VideoPreviewButton";
 import { FaVideoSlash } from "react-icons/fa";
 import { IoTrashBin } from "react-icons/io5";
@@ -28,7 +28,7 @@ export const SubmissionCard = (props) => {
                 <Flex direction='column' style={{ maxWidth: '800px' }}>
                     <Flex justifyContent="space-between" wrap="wrap">
                         <Text fontWeight={"light"}>Email: {props.email}</Text>
-                        {props.videoLink===null || props.dateReceived==null ? ( <Text/>) : (<Text fontWeight={"light"}>Received: {props.dateReceived}</Text>)}
+                        {props.videoLink===null || props.dateReceived==null || props.videoLink === 'loadingBlur' ? ( <Text/>) : (<Text fontWeight={"light"}>Received: {props.dateReceived}</Text>)}
                     </Flex>
                     <Text alignSelf="flex-start" fontWeight={"semibold"}>Instructions:</Text>
                     <DynamicText alignSelf="flex-start" maxWidth="100%" textAlign='left' numLinesSpecified={2}>
@@ -38,13 +38,19 @@ export const SubmissionCard = (props) => {
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Flex width='6%'/>
-                    {props.videoLink===null || props.dateReceived==null || props.videoLink === "loadingBlur" ? (
-                        <Button variation="primary" width='25%' disabled><FaVideoSlash/></Button>
+                    {props.videoLink === 'loadingBlur' ? (
+                    <Text><Loader/> Blurring...</Text>
+                ):(
+                    props.videoLink === null || props.dateReceived === null ? (
+                        <Button variation="primary" size='small' width='100%' disabled>
+                            <FaVideoSlash/>
+                        </Button>
                     ) : (
-                    <Flex width='25%'>
-                        <VideoPreviewButton videoUrl={props.videoLink} name={props.name} description={props.description}></VideoPreviewButton>
-                    </Flex>
-                    )}
+                        <Flex width = '25%'><VideoPreviewButton videoUrl={props.videoLink} name={props.name} description={props.description}></VideoPreviewButton></Flex>
+                    )
+                )}
+                    
+                    
                     <Button variation="primary" width='10%' onClick={ () => props.delete(props.submissionID)} cursor='pointer' backgroundColor={"#D2042D"}  borderColor={'border.error'}><IoTrashBin/></Button>
                 </Flex>
             </Card>
