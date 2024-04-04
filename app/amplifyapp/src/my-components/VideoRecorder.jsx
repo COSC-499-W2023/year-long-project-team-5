@@ -251,7 +251,7 @@ export default function WebcamVideo(props) {
                 <ButtonGroup size="small">
                   <Button className = "downloadButton" onClick={handleDownload} disabled={isLoading}> <MdDownloadForOffline style={{marginRight: '4px'}}/> Download</Button>
                   <Button className = "submitButton" onClick={handleVideoSubmit} disabled={isLoading}> 
-                    {isLoading ? <><Loader/>Sending...</> : <><RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</>} 
+                    {isLoading ? <><Loader marginRight='4px'/>Sending...</> : <><RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</>} 
                   </Button>
                   <Button className = "retakeButton" onClick={handleRetakeClick } disabled={isLoading}> <FaRedoAlt style={{marginRight: '4px'}}/> Retake</Button>
                 </ButtonGroup>
