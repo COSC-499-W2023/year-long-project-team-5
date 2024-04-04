@@ -46,7 +46,7 @@ async function send_email(thedata) {
               background-color: #ffffff;
           }
           h1 {
-              color: #1a73e8;
+              color: hsl(190, 95%, 30%);
               font-size: 24px;
               margin-bottom: 20px;
           }
@@ -58,7 +58,7 @@ async function send_email(thedata) {
           .code {
               font-size: 32px;
               font-weight: bold;
-              color: #1a73e8;
+              color: hsl(190, 95%, 30%);
               margin-bottom: 20px;
         text-align: center;
           }
@@ -75,14 +75,14 @@ async function send_email(thedata) {
           .notes {
               background-color: #f0f0f0; /* Change background color */
               padding: 10px;
-              border-left: 5px solid #1a73e8; /* Add border to make it stand out */
+              border-left: 5px solid hsl(190, 95%, 30%); /* Add border to make it stand out */
               margin-bottom: 20px;
               text-align: left; /* Align notes content to the left */
           }
           .record-button {
               display: inline-block;
               padding: 10px 20px;
-              background-color: #1a73e8;
+              background-color: hsl(190, 95%, 30%);
               color: #ffffff;
               text-decoration: none;
               border-radius: 5px;
@@ -90,7 +90,7 @@ async function send_email(thedata) {
         text-align: center;
           }
           .record-button:hover {
-              background-color: #0d47a1;
+              background-color: hsl(190, 95%, 30%);
           }
       .center-button {
               text-align: center; /* Center align the button */

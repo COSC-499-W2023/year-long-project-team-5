@@ -485,3 +485,59 @@
 ## Issue number reference
 - Issue #211 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/211)
 - Issue #189 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/189)
+
+---
+
+# Weekly Personal Log (Mar 18 - Mar 24)
+
+## Screenshot from peer eval
+![Capture](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/3df8ce7c-232c-4e83-af85-6db296f9f037)
+
+## Non-feature work
+- Met on March 21 for meeting
+- Started project document for end of project
+
+## All of my features for **this milestone**
+
+### **Feature**: Blur front-end shell
+- **Description**: In face-blurring-shell I have a button along with popup, implemented backend changes. Just need to do one more thing before PR.
+- **Issue number**: issue #218
+- **Context**: to prepare for blur we need a button that will activate it and a popup along with backend changes
+
+### **Feature**: Default sort
+- **Description**: Actually merged
+- **Issue number**: issue #211
+- **Context**: submissions page needs to be have a button to delete submissions
+
+## Status of work for the **last week** (in-progress or completed)
+- Default sort in review (complete)
+- Blur front-end shell (in-progress)
+- Finishing small changes
+
+## Issue number reference
+- Issue #218 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/218)
+- Issue #211 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/211)
+
+---
+
+# Weekly Personal Log (Mar 25 - Mar 31)
+
+## Screenshot from peer eval
+![Capture](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/2fed6fcd-a5b7-4a9c-affc-1a3022f96e56)
+
+## Non-feature work
+- Met on March 28 for meeting
+- More project document for end of project
+
+## All of my features for **this milestone**
+
+### **Feature**: Blur front-end shell (In review)
+- **Description**: In face-blurring-shell I have a button along with popup, implemented backend changes. Just need to do one more thing before PR.
+- **Issue number**: issue #218
+- **Context**: to prepare for blur we need a button that will activate it and a popup along with backend changes
+
+## Status of work for the **last week** (in-progress or completed)
+- Blur front-end shell (complete)
+
+## Issue number reference
+- Issue #218 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/218)

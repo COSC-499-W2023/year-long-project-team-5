@@ -1,8 +1,47 @@
-# Personal Log (Mar 10 - Mar 17)
+# Personal Log (Mar 25-31)
+## Non Feature Work:
+- PR code review
+
+## Features worked on
+![T2W12](https://i.imgur.com/VPiS57U.png)
+### Issue [[#192](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/192)]
+
+- Feature: "A nice-to-have would be a form preview that shows the resulting form while it is being typed in. This will provide a sense of responsiveness to the user."
+
+**Status of Work** 
+I managed to get this feature done, I'm really happy with how it turned out since I had to implement different responsive layouts/navigation flows for this feature.
+
+I ended up learning about the use of Refs in React which can be used as a reference point to a component in the DOM. I used it to make a button on the mobile screens that could submit a form outside the work. Using refs and conditional styling allowed me to create a dynamic single page navigation flow. 
+
+**Feature done.**
+
+**Additional notes**
+Hoping to iron out the project next week. It will be very important to test our happy path on the develop site as well as our local machines, with the use of mobile.
+
+# Personal Log (Mar 17-24)
+## Non Feature work:
+- Team meetings
+- PR Reviews
 
 ## Non Feature work:
 - Team meetings
 - PR Reviews
+
+## Features worked on:
+![T2W11](https://i.imgur.com/Dn8B34y.png)
+### Issue [[#192](https://github.com/COSC-499-W2023/year-long-project-team-5/issues/192)]
+
+- Feature: "A nice-to-have would be a form preview that shows the resulting form while it is being typed in. This will provide a sense of responsiveness to the user."
+
+- I took my own liberty with this feature and wanted to make a dynamic email preview as I was inspired by team 9's demos.  
+
+- Had to remove dynamic error validation/loading animations in a previous feature as it no longer made much sense.
+
+- This feature still needs to render a clean UI on smaller screens, thinking of not having a 'live' preview but instead just show the email preview on the next screen once user presses "Send Request".
+
+** Status of work ** 
+The dynamic preview works, I had to remove some previous functionality in my form as it was simply overwhelming for users. Sad but I think the UI has been dramatically improved, I need to work on making the page work on mobile as well now and add some tests. 75% done.
+Should be done by end of W12.
 
 ## Features worked on:
 ![T2W10](https://i.imgur.com/NLBD8Ym.png)
