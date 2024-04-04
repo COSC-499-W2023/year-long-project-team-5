@@ -1,4 +1,4 @@
-import {TableRow,TableCell, Button, Text} from "@aws-amplify/ui-react";
+import {TableRow,TableCell, Button, Text, Loader} from "@aws-amplify/ui-react";
 import { DynamicText } from "./DynamicText";
 import { VideoPreviewButton } from "./VideoPreviewButton";
 import { FaVideoSlash } from "react-icons/fa";
@@ -30,11 +30,21 @@ export const SubmissionRow = (props) => {
     };
 
     const getVariation = (text) => {
-        return text === 'No Video Received' ? 'tertiary' : 'primary';
+        return text === 'No Video Received' || text === 'Video blurring in progress' ? 'tertiary' : 'primary';
     };
 
     const getDateReceivedText = () => {
-        return props.videoLink === null || props.dateReceived === null ? 'No Video Received' : props.dateReceived;
+        let string = props.videoLink;
+        {props.videoLink === 'loadingBlur' ? (
+            string = 'Video blurring in progress'
+        ):(
+            props.videoLink === null || props.dateReceived === null ? (
+                string = 'No Video Received'
+            ) : (
+                string = props.dateReceived
+            )
+        )}
+        return string;
     };
 
     return (
@@ -78,6 +88,7 @@ export const SubmissionRow = (props) => {
                 </Text> 
             </TableCell>
             <TableCell className='subDR' width={'10%'}>
+                
                 <Text 
                     variation={getVariation(getDateReceivedText())} 
                     style={{ overflowWrap: 'break-word' }}
@@ -86,13 +97,18 @@ export const SubmissionRow = (props) => {
                 </Text>
             </TableCell>
             <TableCell className='subLink' width={'11%'}>
-                {props.videoLink === null || props.dateReceived === null || props.videoLink === "loadingBlur" ? (
-                    <Button variation="primary" size='small' width='100%' disabled>
-                        <FaVideoSlash/>
-                    </Button>
-                ) : (
-                    <VideoPreviewButton videoUrl={props.videoLink} name={props.name} description={props.description}></VideoPreviewButton>
+                {props.videoLink === 'loadingBlur' ? (
+                    <><Loader/> Blurring...</>
+                ):(
+                    props.videoLink === null || props.dateReceived === null ? (
+                        <Button variation="primary" size='small' width='100%' disabled>
+                            <FaVideoSlash/>
+                        </Button>
+                    ) : (
+                        <VideoPreviewButton videoUrl={props.videoLink} name={props.name} description={props.description}></VideoPreviewButton>
+                    )
                 )}
+            
             </TableCell>
             <TableCell className='subLink' width='7%'> 
                 <Button variation="primary" width='100%' onClick={ () => props.delete(props.submissionID)} cursor='pointer' backgroundColor={"#D2042D"}  borderColor={'border.error'}>
