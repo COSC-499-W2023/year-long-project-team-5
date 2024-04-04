@@ -33,6 +33,14 @@ The purpose of our software is to allow admins (such as doctors, managers, profe
 3. Run `npx cypress run` (if you want just component tests or just e2e tests add `--component` or `--e2e` respectively)
 4. This will run all the specs for e2e or component respectively
 
+## Working with Emails
+By default, every email recipient will not be able to receive emails from Amazon Simple Email Service unless the email is manually verified (this doesn't apply to account creation, only OTP code sending). This behaviour can be mitigated only after you have a production app. These are the steps to verify an email:
+1. Go to Amazon SES Dashboard
+2. Under the configuration dropdown, click "identities"
+3. Click "Create Identity" and input the email you want to verify
+4. AWS will send a verification link to that email, once clicked the email will be verified. You can verify this by checking if a green checkmark is next to the email in the Identities tab.
+
+
 # Project Design Documents:
 ## Design Checkpoint (Document and Video) (Halfway-point)
 [Design Document (PDF)](https://github.com/COSC-499-W2023/year-long-project-team-5/blob/master/docs/design/Team%205%20Design%20Document.pdf)
