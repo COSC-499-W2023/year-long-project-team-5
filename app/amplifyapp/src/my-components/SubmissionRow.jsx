@@ -30,16 +30,16 @@ export const SubmissionRow = (props) => {
     };
 
     const getVariation = (text) => {
-        return text === 'No Video Received' || text === 'Video blurring in progress' ? 'tertiary' : 'primary';
+        return text === 'No Video Received' || text === 'Recieved, blurring...' ? 'tertiary' : 'primary';
     };
 
     const getDateReceivedText = () => {
         let string = props.videoLink;
         {props.videoLink === 'loadingBlur' ? (
-            string = 'Video blurring in progress'
+            string = 'Recieved, blurring...'
         ):(
             props.videoLink === null || props.dateReceived === null ? (
-                string = 'No Video Received'
+                string = 'N/A'
             ) : (
                 string = props.dateReceived
             )
@@ -98,7 +98,7 @@ export const SubmissionRow = (props) => {
             </TableCell>
             <TableCell className='subLink' width={'11%'}>
                 {props.videoLink === 'loadingBlur' ? (
-                    <><Loader/> Blurring...</>
+                    <Button variation="primary"  width='100%' disabled><Loader/></Button>
                 ):(
                     props.videoLink === null || props.dateReceived === null ? (
                         <Button variation="primary" size='small' width='100%' disabled>

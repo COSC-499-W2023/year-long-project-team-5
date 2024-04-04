@@ -39,7 +39,7 @@ export const SubmissionCard = (props) => {
                 <Flex justifyContent="space-between">
                     <Flex width='6%'/>
                     {props.videoLink === 'loadingBlur' ? (
-                    <Text><Loader/> Blurring...</Text>
+                    <Button variation="primary" width='25%' disabled><Loader/>Blurring...</Button>
                 ):(
                     props.videoLink === null || props.dateReceived === null ? (
                         <Button variation="primary" size='small' width='100%' disabled>
@@ -49,8 +49,6 @@ export const SubmissionCard = (props) => {
                         <Flex width = '25%'><VideoPreviewButton videoUrl={props.videoLink} name={props.name} description={props.description}></VideoPreviewButton></Flex>
                     )
                 )}
-                    
-                    
                     <Button variation="primary" width='10%' onClick={ () => props.delete(props.submissionID)} cursor='pointer' backgroundColor={"#D2042D"}  borderColor={'border.error'}><IoTrashBin/></Button>
                 </Flex>
             </Card>
