@@ -26,7 +26,7 @@ export const SubmissionRow = (props) => {
  * @returns {JSX.Element}
  */
     const getNameText = () => {
-        return props.name || 'No Video Received';
+        return props.name || 'N/A';
     };
 
     const getVariation = (text) => {
