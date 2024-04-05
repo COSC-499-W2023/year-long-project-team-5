@@ -42,7 +42,7 @@ export const SubmissionCard = (props) => {
                     <Button variation="primary" width='25%' disabled><Loader/>Blurring...</Button>
                 ):(
                     props.videoLink === null || props.dateReceived === null ? (
-                        <Button variation="primary" size='small' width='100%' disabled>
+                        <Button variation="primary" width='25%' disabled>
                             <FaVideoSlash/>
                         </Button>
                     ) : (
