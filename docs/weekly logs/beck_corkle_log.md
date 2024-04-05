@@ -1,4 +1,29 @@
-# Weekly Personal Log (March 11th-March 18th)
+# Weekly Personal Log (March 24th-March 31st)
+## Screenshot from peer eval
+<img src="https://i.imgur.com/K3iGpr5.png">
+
+## Non-feature work
+- Class Tuesday, Class thursday
+- Code review
+- Got a website to redirect to our develop page so we don't have to find the big URL with random letters that AWS auto generates us. http://www.blurapp.tech
+- Worked on final document
+
+## All of my features for **this week**
+### **Feature**: Loading circle after submitting video
+- **Description**: This communicates to the user the video is being sent with a spinning loading circle
+- **Issue number**: #236
+- **Context**:
+  
+## Status of work for the week
+- Loading circle is in review
+- Face blurring in progress, kael and josh are leading this
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/236]
+  
+## Other notes
+
+# Weekly Personal Log (March 18th-March 24th)
 ## Screenshot from peer eval
 <img src="https://i.imgur.com/AIPBj8E.png">
 

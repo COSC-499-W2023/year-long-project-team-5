@@ -1,3 +1,21 @@
+# Weekly Personal Log (March 25th-March 31st)
+
+## Screenshot from peer eval
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/00852577-1e4d-4bb9-9547-24dfde9d4aca)
+
+## Non-feature work
+- team meetings
+- PR reviews
+- helping which other's code
+- working on final report (began creating a list of features for the team so we can ensure that everyone is on the same page about who did which feature)
+  
+## Status of work for the **last week** (in-progress or completed)
+- bug fixes from last week (dashboard and filter menu) were merged and issues completed
+  
+## Issue number reference
+- Issue #222 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/222)
+- Issue #217 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/217)
+
 # Weekly Personal Log (March 18th-March 24th)
 
 ## Screenshot from peer eval

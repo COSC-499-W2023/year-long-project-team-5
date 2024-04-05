@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 import "@aws-amplify/ui-react/styles.css";
 import VideoRecorder from "../my-components/VideoRecorder";
@@ -26,16 +26,7 @@ import {
  */
 
 export function Recording(){
-    const [windowWidth] = useState(window.innerWidth);
-    const resizeCenterComps = (windowWidth) => {
-      return {
-          width: (windowWidth > 1024) ? '50%' : (windowWidth > 600) ? '80%' : '100%',
-          margin: '0 auto',
-          padding: '20px',
-          maxWidth: '800px', // You can adjust this value
-      };
-    }; 
-    const cardStyle = resizeCenterComps(windowWidth);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
     const { tokens } = useTheme();
     const [isAuthCodeGiven, setIsAuthCodeGiven] = useState(false);
     const [value, setValue] = useState('');
@@ -44,6 +35,16 @@ export function Recording(){
     const [errorCode, setErrorCode] = useState(false);
 
     document.title = "Blur | Secure Video Software";
+
+    useEffect(() => {
+        const handleResize = () => {
+          setIsMobile(window.innerWidth <= 1000);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+      }, []);
 
     //This function removes non-digit characters and limits input to 5 digits
     const handleChange = (e) => {
@@ -60,7 +61,7 @@ export function Recording(){
         let unValidatedOTP = form.get("code");
 
         let data = await getSubmissionByOTP(unValidatedOTP);
-        if (data.length === 0) {
+        if (data.length === 0 || unValidatedOTP.length < 7) {
             setErrorCode(true);
             event.target.reset();
             return
@@ -84,20 +85,21 @@ export function Recording(){
                             </Alert>
                         )}
                     </Flex>
-                    <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={checkOTP} style={cardStyle}>
-                        <Flex justifyContent = "center" textAlign = "left" gap='2em'>
-                            <Heading>Please enter your unique seven digit code.</Heading>
+                    <Card as="form" backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={checkOTP}>
+                        <Flex direction={isMobile && "column"} justifyContent = "center" textAlign = "left" gap='2em' alignItems={'center'}>
+                            <Heading width={isMobile ? "100%" : "55%"}>Please enter your unique seven digit code.</Heading>
                             <Input
-                                width={'8em'}
+                                width={isMobile ? "100%" : "20%"}
                                 name="code"
                                 type="text"
+                                textAlign='center'
                                 placeholder="_ _ _ _ _ _ _"
                                 label="Unique Code:"
                                 onChange={handleChange}
                                 value={value}
                                 required
                             />
-                            <Button type="submit" variation="primary">Submit</Button>
+                            <Button type="submit" width={isMobile ? "100%" : "25%"} variation="primary">Submit</Button>
                         </Flex>
                     </Card>
                 </Flex>
