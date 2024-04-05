@@ -35,7 +35,7 @@ export const SubmissionRow = (props) => {
 
     const getDateReceivedText = () => {
         let string = props.videoLink;
-        {props.videoLink === 'loadingBlur' ? (
+        props.videoLink === 'loadingBlur' ? (
             string = 'Recieved, blurring...'
         ):(
             props.videoLink === null || props.dateReceived === null ? (
@@ -43,7 +43,7 @@ export const SubmissionRow = (props) => {
             ) : (
                 string = props.dateReceived
             )
-        )}
+        )
         return string;
     };
 
