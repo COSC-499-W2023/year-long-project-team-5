@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
-import { Flex, View, Button, Heading, Card, Divider, ButtonGroup, SwitchField } from "@aws-amplify/ui-react";
+import { Flex, View, Button, Heading, Card, Divider, ButtonGroup, Loader, SwitchField } from "@aws-amplify/ui-react";
 import { API, Storage } from 'aws-amplify';
 import { BsFillRecordFill, BsInfoCircle } from "react-icons/bs";
 import { MdDownloadForOffline } from "react-icons/md";
@@ -37,6 +37,7 @@ export default function WebcamVideo(props) {
     facingMode: "user",
   });
   const [recordingTime, setRecordingTime] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const recordingIntervalRef = useRef(null);
   const [faceBlur, setFaceBlur] = useState(true);
 
@@ -232,6 +233,13 @@ export default function WebcamVideo(props) {
     return null;
   };
 
+  const handleVideoSubmit = async (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    await handleUpload()
+    setIsLoading(false);
+  };
+
   return (
     <View>
       <Flex justifyContent={"center"} marginBottom={'1em'}>
@@ -244,9 +252,11 @@ export default function WebcamVideo(props) {
               </div>
               <Flex justifyContent={"space-evenly"} marginTop={'0.5em'}>
                 <ButtonGroup size="small">
-                  <Button className = "retakeButton" onClick={handleRetakeClick }> <FaRedoAlt style={{marginRight: '4px'}}/> Retake</Button>
-                  <Button className = "downloadButton" onClick={handleDownload}> <MdDownloadForOffline style={{marginRight: '4px'}}/> Download</Button>
-                  <Button className = "submitButton" onClick={handleUpload}> <RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</Button>
+                  <Button className = "downloadButton" onClick={handleDownload} disabled={isLoading}> <MdDownloadForOffline style={{marginRight: '4px'}}/> Download</Button>
+                  <Button className = "submitButton" onClick={handleVideoSubmit} disabled={isLoading}> 
+                    {isLoading ? <><Loader marginRight='4px'/>Sending...</> : <><RiVideoUploadFill style={{marginRight: '4px'}}/>Submit</>} 
+                  </Button>
+                  <Button className = "retakeButton" onClick={handleRetakeClick } disabled={isLoading}> <FaRedoAlt style={{marginRight: '4px'}}/> Retake</Button>
                 </ButtonGroup>
                 <SwitchField label="Enable Face Blurring" onChange={(e) => {setFaceBlur(!faceBlur); }}/>
               </Flex>
