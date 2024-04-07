@@ -18,14 +18,14 @@
 The purpose of our software is to allow admins (such as doctors, managers, professors, etc.) to receive videos from users. From this we can enable asynchronized communication which allows for more efficient communication, enhancing the experience for both the user and admin. The intention of our software is to provide an easy to use, secure solution to asynchronous video sharing.
 
 # **Usage**
-### AWS Amplify CLI Installation
+## AWS Amplify CLI Installation
 
-#### Prerequisites
+### Prerequisites
 - **Node.js v14.x or later**
 - **npm v6.14.4 or later**
 - **git v2.14.1 or later**
 
-#### Setup and configure AWS Amplify CLI
+### Setup and configure AWS Amplify CLI
 - [Follow this guide by Amazon for up to date instructions](https://docs.amplify.aws/react/start/getting-started/installation/)
 
 ## Run website locally
