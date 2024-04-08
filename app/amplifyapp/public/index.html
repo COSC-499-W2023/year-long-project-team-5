@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" id='favicon' href="%PUBLIC_URL%/favicon-dark.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -24,7 +24,23 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Blur</title>
+    <script>
+      const usesDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches || false;
+      const favicon = document.getElementById('favicon');
+      const manifest = document.getElementById('manifest');
+
+      function switchIcon(usesDarkMode) {
+        if (usesDarkMode) { 
+          favicon.href = '%PUBLIC_URL%/favicon-light.png';
+        } else {
+        favicon.href = '%PUBLIC_URL%/favicon-dark.png';
+        }
+      }
+
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener( "change", (e) => switchIcon(e.matches));
+      switchIcon(usesDarkMode);
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

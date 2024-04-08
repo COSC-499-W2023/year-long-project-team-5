@@ -29,14 +29,15 @@ describe('SubmissionCard loading props', () => {
     cy.contains(/Sent: 2024-01-23/i).should('exist');
     cy.contains(/Instructions:/i).should('exist');
     cy.contains(/Test description/i).should('exist');
-    cy.contains(/video/i).should('exist');
+    cy.get('button.amplify-button:nth-child(1) > svg:nth-child(1)').should('exist');
+    cy.get('button.amplify-button:nth-child(3) > svg:nth-child(1)').should('exist');
     cy.contains(/Received: 2024-01-24/i).should('exist');
   });
 
   it('opens video link in a new window when "Video" button is clicked', () => {
     cy.get('.amplify-card').should('exist');
     //window should open at correct URL
-    cy.contains(/video/i).click();
+    cy.get('button.amplify-button:nth-child(1) > svg:nth-child(1)').click();
     cy.get('#overlay').should('be.visible');
   });
 });
@@ -55,7 +56,7 @@ describe('SubmissionCard loading props with nulls', () => {
     cy.mount(<SubmissionCard {...propsWithNull} />)
 
     cy.get('.amplify-card').should('exist');
-    cy.contains(/No Video Received/i).should('exist');
+    cy.get('button.amplify-button:nth-child(2) > svg:nth-child(1)').should('exist');
     cy.contains(/Received:/i).should('not.exist');
   });
 });

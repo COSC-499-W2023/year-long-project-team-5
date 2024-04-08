@@ -18,20 +18,20 @@ describe('VideoPreviewButton Component', () => {
     });
   
     it('should open and close the video preview', () => {
-        cy.contains(/video/i).click();
+        cy.get('svg').click();
   
         // Video preview should be open
         cy.get('#overlay').should('be.visible');
     
         // Close the video preview
-        cy.get('svg').click({force: true});
+        cy.get('div.amplify-flex:nth-child(1) > svg:nth-child(2)').click({force: true});
     
         // Video preview should be closed
         cy.get('#overlay').should('not.exist');
     });
   
     it('should display video details correctly', () => { 
-      cy.contains(/video/i).click();
+      cy.get('svg').click();
   
       // Video preview should display correct details
       cy.get('#overlay')

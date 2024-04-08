@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import DarkLightToggle from "../my-components/DarkLightToggle"
 import {Button, useTheme, useAuthenticator,View, Flex, Link as AmplifyLink, Menu, MenuItem } from '@aws-amplify/ui-react';
 /**
@@ -34,10 +34,14 @@ export const NavBar = (props) => {
       }, []);
 
     const {tokens} = useTheme();
+    const location = useLocation()
 
+    if(location.pathname === "/recording" || location.pathname === "/confirmation") {
+      return null;
+    }
     return (
         <View
-         backgroundColor={tokens.colors.background.primary}
+         backgroundColor={tokens.colors.background.primary} className = "nav"
         >
            {isMobile ? (
             <Flex backgroundColor = {tokens.colors.primary} boxShadow={tokens.shadows.medium} padding={tokens.space.small} justifyContent='space-between' alignItems='center' marginBottom={tokens.space.large}>

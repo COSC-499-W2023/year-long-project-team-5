@@ -1,0 +1,57 @@
+.body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 600px;
+    padding: 20px;
+    background-color: #ffffff;
+}
+h1 {
+    color: hsl(190, 95%, 30%);
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+.code {
+    font-size: 32px;
+    font-weight: bold;
+    color: hsl(190, 95%, 30%);
+    margin-bottom: 20px;
+    text-align: center;
+}
+.footer {
+    font-size: 12px;
+    color: #777777;
+    text-align: center;
+    margin-top: 40px;
+}
+.notes {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-left: 5px solid hsl(190, 95%, 30%);
+    overflow-wrap: break-word;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.record-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: hsl(190, 95%, 30%);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.record-button:hover {
+    background-color: hsl(190, 100%, 28%)
+}
+.center-button {
+    text-align: center;
+}

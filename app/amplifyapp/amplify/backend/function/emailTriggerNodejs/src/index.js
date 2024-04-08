@@ -26,15 +26,101 @@ async function send_email(thedata) {
   let adminName = thedata?.data?.getSubmission?.adminName;
   let adminNote = thedata?.data?.getSubmission?.note
   let otpCode = thedata?.data?.getSubmission?.otpCode
-  let email = `
-    Hello ${recipientName},
-
-    ${adminName} has requested you record a video to send them. These are the notes they left:
-
-    ${adminNote}
-
-    You can use the following link to record and send an email to ${adminName}: https://develop.d1tz6jy97536kp.amplifyapp.com/recording/
-    Your verification code for entering the platform is ${otpCode}.
+  let email = `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Blur - Validation Code</title>
+      <style>
+          body {
+              font-family: Arial, sans-serif;
+              background-color: #f5f5f5;
+              margin: 0;
+              padding: 0;
+          }
+          .container {
+              max-width: 600px;
+              margin: 0 auto;
+              padding: 20px;
+              background-color: #ffffff;
+          }
+          h1 {
+              color: hsl(190, 95%, 30%);
+              font-size: 24px;
+              margin-bottom: 20px;
+          }
+          p {
+              font-size: 16px;
+              line-height: 1.5;
+              margin-bottom: 20px;
+          }
+          .code {
+              font-size: 32px;
+              font-weight: bold;
+              color: hsl(190, 95%, 30%);
+              margin-bottom: 20px;
+        text-align: center;
+          }
+          .footer {
+              font-size: 12px;
+              color: #777777;
+              text-align: center;
+              margin-top: 40px;
+          }
+          .footer img {
+              max-width: 100px;
+              margin-bottom: 10px; /* Adjust the spacing between logo and copyright */
+          }
+          .notes {
+              background-color: #f0f0f0; /* Change background color */
+              padding: 10px;
+              border-left: 5px solid hsl(190, 95%, 30%); /* Add border to make it stand out */
+              margin-bottom: 20px;
+              text-align: left; /* Align notes content to the left */
+          }
+          .record-button {
+              display: inline-block;
+              padding: 10px 20px;
+              background-color: hsl(190, 95%, 30%);
+              color: #ffffff;
+              text-decoration: none;
+              border-radius: 5px;
+              margin-bottom: 20px; /* Add margin to the button for spacing */
+        text-align: center;
+          }
+          .record-button:hover {
+              background-color: hsl(190, 95%, 30%);
+          }
+      .center-button {
+              text-align: center; /* Center align the button */
+          }
+      </style>
+  </head>
+  <body>
+  <div class="container">
+      <p>Hello <span id="recipientName">${recipientName}</span>,</p>
+  
+      <p><span id="adminName">${adminName}</span> has requested you record a video to send them. These are the notes they left:</p>
+  
+      <div class="notes" id="adminNote">${adminNote}</div>
+  
+      <p>Your verification code for entering the platform is</p>
+      <div class="code">${otpCode}</div>
+  
+    <div class="center-button">
+      <a href="https://develop.d1tz6jy97536kp.amplifyapp.com/recording/" target=”_blank”  class="record-button">
+      <span style="color:#ffffff;font-weight:bolder">Record Video</span>
+      </a>
+    </div>
+      <div class="footer">
+          <img src="https://i.imgur.com/ZXQ4FTp.gif" alt="Blur Logo">
+          <br>
+          &copy; 2023 Blur. All rights reserved.
+      </div>
+  </div>
+  </body>
+  </html>
   `;
   const command = new SendEmailCommand({
     Destination: {
@@ -42,21 +128,26 @@ async function send_email(thedata) {
     },
     Message: {
       Body: {
-        Text: {
+        Html: {
+          Charset: "UTF-8",
           Data: email,
         },
       },
 
       Subject: { Data: "Blur: " + thedata?.data?.getSubmission?.adminName + " is requesting a video from you" },
     },
-    Source: "corklebeck@gmail.com",
+    Source: "blur.video.app@gmail.com",
   });
 
   try {
-    let response = await ses.send(command);
-    console.log("EMAIL RESPONSE:", response)
-    // process data.
-    return response;
+    if(typeof otpCode === 'string' && otpCode.length > 2) {
+      let response = await ses.send(command);
+      console.log("EMAIL RESPONSE:", response)
+      // process data.
+      return response;
+    } else {
+      console.log("ERROR: OTP CODE NOT VALID")
+    }
   }
   catch (error) {
     console.log("EMAIL ERROR:", error)

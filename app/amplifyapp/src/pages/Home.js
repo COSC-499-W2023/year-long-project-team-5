@@ -34,6 +34,9 @@ import {
 	useEffect(() => {
 	// Update video source when colorMode changes
 	setVideoSource(colorMode === 'light' ? videoBG : darkVideoBG);
+
+	document.title = "Blur | Secure Video Software";
+
 	}, [colorMode]);
 	return (
 		<div>
