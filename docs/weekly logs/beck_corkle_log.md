@@ -1,3 +1,27 @@
+# Weekly Personal Log (April 1st-April 7th)
+## Screenshot from peer eval
+<img src="https://i.imgur.com/Y5DQxMP.png">
+
+## Non-feature work
+- class Tuesday, meeting thursday
+- code review
+- FINISHED final document!!! (wooohooo)
+
+## All of my features for **this week**
+### **Feature**: Added explanations to readme
+- **Description**: For our final document I added more setup instructions to our readme such as email verification and amplify CLI setup
+- **Issue number**: #243
+- **Context**:
+  
+## Status of work for the week
+- ITS ALL OVER!!!!!!!!
+
+## Issue number reference
+- [https://github.com/COSC-499-W2023/year-long-project-team-5/issues/243]
+  
+## Other notes
+
+
 # Weekly Personal Log (March 24th-March 31st)
 ## Screenshot from peer eval
 <img src="https://i.imgur.com/K3iGpr5.png">

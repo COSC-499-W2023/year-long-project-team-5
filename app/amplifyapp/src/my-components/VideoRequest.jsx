@@ -8,7 +8,6 @@ import {
     Flex,
     TextField,
     Card,
-    View,
     useTheme,
     Alert,
     TextAreaField,
@@ -40,7 +39,7 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
     const fieldValue = event.target.value;
     const validateEmail = (emailInput) => {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(emailInput);
+      return emailRegex.test(emailInput) && emailInput !== Auth.user.attributes.email;
     };
     const validateDescription = (description) => description.length >= 20;
     let newErrors = new Set(errorMessages);
@@ -49,7 +48,7 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
     const validationMap = {
       email: {
         validate: validateEmail,
-        errorMessage: "Invalid email address."
+        errorMessage: "Invalid email address. Emails addresses must: Exist and be valid, and not be the account's email"
       },
       description: {
         validate: validateDescription,
@@ -165,7 +164,8 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
     const cardStyle = {
       margin: '0 auto',
       padding: '20px',
-      width: '540px',
+      width: 'inherit',
+      minHeight: 'inherit',
     };
     const { tokens } = useTheme();
 
@@ -207,7 +207,7 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
             <Text as="p" variation="error" key={index}>{errorMessages.size > 1 ? `${index + 1}. ${message}` : message}</Text>
           ));
         } else {
-          return <Text as="p" variation="info">Sends an email with OTP to record a video. <br/> {isMobile ?  "Email preview will be shown on the next page." : "As shown in the preview on the right."} </Text>;
+          return <Text as="p" variation="info" style={{wordWrap: 'break-word'}}>Sends an email with a one-time password to allow the recipient to record a video.<br/> {isMobile ?  "Email preview will be shown on the next page." : "Email will be sent as shown in the preview on the right."} </Text>;
         }
       };
     
@@ -245,7 +245,7 @@ export function VideoRequestForm({previewData, setPreviewData, isMobile = false}
         </Flex>
       </Flex>
       :
-      <Card as="form" ref={formSubmitRef} backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={handleFormAction} style={cardStyle} minHeight={'inherit'}>
+      <Card as="form" ref={formSubmitRef} backgroundColor={tokens.colors.background.secondary} variation="elevated" onSubmit={handleFormAction} style={cardStyle}>
         {isFormSubmitted && (
           <Alert className="successFeedback" textAlign ='left' variation="success" isDismissible={true} hasIcon={true} heading="Email Sent" marginBottom={'.5em'}>
             Your video request to {submittedEmail} has been sent!

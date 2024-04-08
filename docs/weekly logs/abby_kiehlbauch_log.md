@@ -1,3 +1,22 @@
+# Weekly Personal Log (April 1st-April 7th)
+
+## Screenshot from peer eval
+![image](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/79242419/089506c1-7ec0-4f78-b3f8-df5ab5b1131f)
+
+## Non-feature work
+- team meetings
+- PR reviews
+- helping with other's code
+- final report and demo video
+  
+## Status of work for the **last week** (in-progress or completed)
+- Issue #237: added a blurring indicator to the dashboard (loading button) - UI improvement (not a full feature)
+- finalized all PRs and issues
+- completed demo video and final report
+  
+## Issue number reference
+- Issue #237 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/222)
+
 # Weekly Personal Log (March 25th-March 31st)
 
 ## Screenshot from peer eval
@@ -6,7 +25,7 @@
 ## Non-feature work
 - team meetings
 - PR reviews
-- helping which other's code
+- helping with other's code
 - working on final report (began creating a list of features for the team so we can ensure that everyone is on the same page about who did which feature)
   
 ## Status of work for the **last week** (in-progress or completed)

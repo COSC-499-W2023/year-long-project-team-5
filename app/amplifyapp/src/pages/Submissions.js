@@ -87,9 +87,21 @@ export function Submissions() {
     await Promise.all(
       filteredSubmissions.map(async (submission) => {
         if (submission.Video && submission.Video.videoURL) {
-          const url = await Storage.get(submission.Video.videoURL);
-          submission.Video.videoName = submission.Video.videoURL;
-          submission.Video.videoURL = url;
+          if(submission.Video.videoURL.startsWith("toBlur/")) {
+            //check if its in the public folder yet
+            try {
+              await Storage.getProperties(submission.Video.videoURL.replace("toBlur/", ""));
+              const url = await Storage.get(submission.Video.videoURL.replace("toBlur/", ""));
+              submission.Video.videoName = submission.Video.videoURL;
+              submission.Video.videoURL = url;
+            } catch {
+              submission.Video.videoURL = 'loadingBlur';
+            }
+          } else {
+            const url = await Storage.get(submission.Video.videoURL.replace("toBlur/", ""));
+            submission.Video.videoName = submission.Video.videoURL;
+            submission.Video.videoURL = url;
+          }
         }
         return submission;
       })
@@ -97,9 +109,9 @@ export function Submissions() {
     filteredSubmissions.sort(dateSorting);
     setSubmissions(filteredSubmissions);
     setFilteredSubmissions(filteredSubmissions)
-    setTotalPageNum(Math.ceil((filteredSubmissions.length + 1)/6));
+    setTotalPageNum(Math.ceil((filteredSubmissions.length + 1)/7));
     setCurrentPageIndex(1);
-    setDisplayedSubmissions(filteredSubmissions.slice((currentPageIndex-1)*6, (currentPageIndex*6)-1));
+    setDisplayedSubmissions(filteredSubmissions.slice((currentPageIndex-1)*7, (currentPageIndex*7)-1));
     setLoading(false);
   }
 
@@ -205,10 +217,10 @@ export function Submissions() {
   //This use effect sorts all submissions into pages
   useEffect(() => {
     let filteredSubmissions = filteredsubmissions;
-    setTotalPageNum(Math.ceil((filteredSubmissions.length + 1)/6));
+    setTotalPageNum(Math.ceil((filteredSubmissions.length + 1)/7));
     
-    let lowerBound = Math.min((currentPageIndex-1)*6, filteredSubmissions.length - 1)
-    let upperBound = Math.min((currentPageIndex*6)-1, filteredSubmissions.length)
+    let lowerBound = Math.min((currentPageIndex-1)*7, filteredSubmissions.length - 1)
+    let upperBound = Math.min((currentPageIndex*7)-1, filteredSubmissions.length)
     filteredSubmissions = filteredSubmissions.slice(lowerBound, upperBound);
     setDisplayedSubmissions(filteredSubmissions);
   }, [currentPageIndex, filteredsubmissions]);

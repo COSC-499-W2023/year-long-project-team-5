@@ -31,7 +31,7 @@ export const Request = () =>{
   return(
     <View className="App">
       <Flex direction="row" padding={tokens.space.small} marginTop={"4em"} gap={"5em"} justifyContent={'center'}>
-        <View minHeight={"590px"}>
+        <View minHeight={"590px"} width={isMobile ? "100%" : '540px'} maxWidth={'540px'}>
           <VideoRequestForm setPreviewData={setPreviewData} previewData={previewData} isMobile={isMobile}/>
         </View>
         {!isMobile && 
