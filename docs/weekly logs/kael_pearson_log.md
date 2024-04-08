@@ -1,3 +1,28 @@
+# Weekly Personal Log (March 31st - April 7th)
+
+## Screenshot from peer eval
+<img src="https://i.imgur.com/pC28fhJ.png">
+
+## Non-feature work
+- Team meetings
+- Project Final Report
+
+## All of my features for **this milestone**
+
+### **Feature**: Video Blur
+- **Description**: Blur faces in video
+- **Issue number**: 240, 235, 233
+- **Context**: Fixed small issues with video blur
+
+## Status of work for the **last week** (in-progress or completed)
+- Face blur (Completed)
+- Project (Completed)
+
+## Issue number reference
+- Issue #240 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/240)
+- Issue #235 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/235)
+- Issue #233 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/233)
+
 # Weekly Personal Log (March 25th-March 31st)
 
 ## Screenshot from peer eval
