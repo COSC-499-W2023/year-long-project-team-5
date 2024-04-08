@@ -541,3 +541,34 @@
 
 ## Issue number reference
 - Issue #218 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/218)
+
+---
+
+# Weekly Personal Log (Apr 1 - Apr 7) Final Log
+
+## Screenshot from peer eval
+<img width="686" alt="Screenshot 2024-04-07 at 9 50 01 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-5/assets/60419500/7bf7f699-4cb9-4e58-8cdc-16e4890aa249">
+
+## Non-feature work
+- Met on April 4 for meeting
+- Project document for end of project
+
+## All of my features for **this milestone**
+
+### **Feature**: Don't allow client to request own email (Complete)
+- **Description**: Bug where client requested own email broke system, patched out this bug
+- **Issue number**: issue #247
+- **Context**: Complete
+
+### **Feature**: Blur front-end shell (Complete)
+- **Description**: In face-blurring-shell I have a button along with popup, implemented backend changes. Just need to do one more thing before PR.
+- **Issue number**: issue #218
+- **Context**: to prepare for blur we need a button that will activate it and a popup along with backend changes
+
+## Status of work for the **last week** (in-progress or completed)
+- Blur front-end shell (complete)
+- Don't allow admin email (complete)
+
+## Issue number reference
+- Issue #218 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/218)
+- Issue #247 (https://github.com/COSC-499-W2023/year-long-project-team-5/issues/247)

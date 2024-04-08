@@ -1,5 +1,7 @@
 # Team 5 Project Github (Option 3)
-[Current Week: Term 2 Week 13 (FINAL WEEK)](https://github.com/orgs/COSC-499-W2023/projects/43)
+Access the deployed web-app [here.](HTTP://blurapp.tech)
+
+[Current Week: Project Complete](https://github.com/orgs/COSC-499-W2023/projects/43)
 
 ![logo-dark-bg](https://github.com/COSC-499-W2023/year-long-project-team-5/assets/36575231/09d7017e-7226-40fe-bf3d-62fef6d73d0e)
 
@@ -18,6 +20,16 @@
 The purpose of our software is to allow admins (such as doctors, managers, professors, etc.) to receive videos from users. From this we can enable asynchronized communication which allows for more efficient communication, enhancing the experience for both the user and admin. The intention of our software is to provide an easy to use, secure solution to asynchronous video sharing.
 
 # **Usage**
+## AWS Amplify CLI Installation
+
+### Prerequisites
+- **Node.js v14.x or later**
+- **npm v6.14.4 or later**
+- **git v2.14.1 or later**
+
+### Setup and configure AWS Amplify CLI
+- [Follow this guide by Amazon for up to date instructions](https://docs.amplify.aws/react/start/getting-started/installation/)
+
 ## Run website locally
 1. Git pull all files from the repo
 2. Change directory to `app\amplifyapp`
